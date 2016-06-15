@@ -49,7 +49,7 @@ tischitischer@gmail.com
 <div style="page-break-after: always;"></div>
 ## Handling multi-color images and adding scale bar
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLQ0lWU2ZPTkF1TG8" width=200>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/color-image.png" width=200>
 
 Aim: make the images look like the image above!
 
