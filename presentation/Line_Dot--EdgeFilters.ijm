@@ -1,0 +1,12 @@
+selectWindow("input");
+run("Duplicate...", "title=edge_LR");
+run("Convolve...", "text1=[-1 1 0\n] normalize");
+selectWindow("input");
+run("Duplicate...", "title=edge_RL");
+run("Convolve...", "text1=[0 1 -1\n] normalize");
+selectWindow("input");
+run("Duplicate...", "title=edge_UD");
+run("Convolve...", "text1=-1\n1\n0\n normalize");
+selectWindow("input");
+run("Duplicate...", "title=edge_DU");
+run("Convolve...", "text1=0\n1\n-1\n normalize");
