@@ -56,7 +56,7 @@ Aim: make the images look like the image above!
  - __[File>Import>Image Sequence] '../multi-color/'__ (*opens all images in one folder; __Mac__: just click on the folder; __Win__: click on one of the files*)
  - __[Image>Color>Make Composite] 'Display Mode = Composite'__ (*converts to an image type that is good for colors*) 
  - Use the __c__ slider at bottom of image to select a channel and then change its color via __[Image>Lookup Tables]__
- - __[Image>Properties] 'Unit of length = um' 'Pixel width = 0.16' 'Pixel height = 0.16' __ (*changes the scaling to physical distances*)
+ - __[Image>Properties] 'Unit of length = um' 'Pixel width = 0.16' 'Pixel height = 0.16'__ (*changes the scaling to physical distances*)
  - Add scale bar: __[Analyze>Tools>Scale Bar..] 'Overlay = Check'__
  - Save image twice: 
 	 - __[File>Save As>Tiff]__
