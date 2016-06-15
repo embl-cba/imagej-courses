@@ -82,22 +82,22 @@ Literature: [A guided tour into subcellular colocalization analysis in light mic
 
 First we segment the images, i.e. we make objects pixels 255 and background pixels 0.
 
-- __[File>Open..] '“../colocalization/stain1.tif” __
+- __[File>Open..] '“../colocalization/stain1.tif”__
 - __[Image>Rename..] 'Title=original'__
 - __[Image>Duplicate] 'Title=median'__
 - __[Process>Filters>Median..] 'radius=20'__ (*3D: [Process>Filters>Median 3D..]*)
 - __[Process>Image Calculator] 'Image1 = original' 'Operation = Subtract' 'Image2 = median' 'Create new window=Check'__ 
 - __[Image>Adjust>Threshold..] 'lower th=30' 'upper th=255'__ (*you don't have to press [Apply] now, the actual 'applying' of the threshold will happen in the next step*)
 - __[Analyze>Analyze Particles..] 'Size = 5-Infinity' 'Pixel units = Check' 'Show = Masks' [OK]__ (*selecting 'Show = Masks' generates a binary image in which only 'connected components' of at least 5 pixels are kept, i.e. 'noise' is filtered*)
-- __[File>Save As..] '“../colocalization/stain1_segmented.tif” __
+- __[File>Save As..] '“../colocalization/stain1_segmented.tif”__
 - You also have to do this "stain2.tif"...
 
 ## Area, object and distance-based colocalization
 
 First we load the data and compute the overlap image:
 
-- __[File>Open..] '“../colocalization/stain1_segmented.tif” __
-- __[File>Open..] '“../colocalization/stain2_segmented.tif” __
+- __[File>Open..] '“../colocalization/stain1_segmented.tif”__
+- __[File>Open..] '“../colocalization/stain2_segmented.tif”__
 - __[Process>Image Calculator] 'stain1_segmented.tif' 'AND' 'stain2_segmented.tif'__
 - __[Image>Rename..] 'Title = overlap'__
 
@@ -319,9 +319,9 @@ To measure how many 'spots' (vesicular structures) we have in each cell, we simp
 
 - __[File>Open] 'spots_points.tif'__ (*you may see nothing on this image...do you know why?*)
 - __[Image>Adjust>Brightness/Contrast..] [Auto]__
-- __[Analyze>Tools>ROI Manager..] __
+- __[Analyze>Tools>ROI Manager..]__
 - __[ROI Manager>More>>Open..] 'cells.zip'__
-- __[ROI Manager>Measure] __
+- __[ROI Manager>Measure]__
 - Click on Results Table and __[File>Save] 'spot_count.csv'__
 
 The 'RawIntDen' value is the spot count. How many spots did you find?
