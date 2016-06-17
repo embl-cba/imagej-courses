@@ -75,7 +75,7 @@ When comparing images it is a good idea to ensure that the LUT settings are the 
 <div style="page-break-after: always;"></div>
 # Workflow: pixel- and object-based colocalisation
 
-Literature: [A guided tour into subcellular colocalization analysis in light microscopy. S. B O LT E & F. P. C O R D E L I È R E S Journal of Microscopy, Vol. 224, 2006, pp. 213–232.](http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01706.x/epdf)
+Literature: [A guided tour into subcellular colocalization analysis in light microscopy. S. B O LT E & F. P. C O R D E L I È R E S Journal of Microscopy, Vol. 224, 2006, pp. 213–232.](http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01706.x/epdf)
 
 
 ## Segmentation: Local background subtraction and thresholding
@@ -125,7 +125,7 @@ If you messed up or missed a step there also is a sub-folder __'teacher'__, form
 <div style="page-break-after: always;"></div>
 ## What to measure?
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLY0RSLTBGbTFaRlk" width=300>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/bothChannels.jpg" width=200>
 
 - __[File>Open..] 'bothChannels.jpeg'__
 
@@ -165,7 +165,8 @@ In all methods the *radius* parameter should be "quite a bit larger" than the ra
 <div style="page-break-after: always;"></div>
 ## Local background subtraction using a median filter
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLUHVxUTVMNHVYd0E" width=700>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/orig__median__subtraction.png" width=700>
+
 
 (Whiteboard: 1-D example)
 
@@ -185,7 +186,8 @@ __Exercise 1:__ Try other radii for the median filter (e.g., 1 and 100) for the 
 <div style="page-break-after: always;"></div>
 ## Local background subtraction using a top-hat filter 
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLb0NRUGd5aHBPVzQ" width=700>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/orig__open__tophat.png" width=700>
+
 (Whiteboard: 1-D example)
 
 Here a morphological opening filter is applied to the image and subtracted from the original. The morphological opening is defined as the dilation of the erosion if the image. Alltogether this reads: top_hat(image) = image - dilation(erosion(image))
@@ -203,7 +205,8 @@ Here a morphological opening filter is applied to the image and subtracted from 
 <div style="page-break-after: always;"></div>
 ## Local background subtraction using IJs "Subtract Background"
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLYkZiaTJIYlBlMkU" width=700>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/orig__bg__rollingball.png" width=700>
+
 (Whiteboard: 1-D example)
 
 - __[File>Open..] 'autophagosomes_raw.tif'__
@@ -253,7 +256,8 @@ As you can see there are maxima detected only due to the cellular background. If
 <div style="page-break-after: always;"></div>
 ## Cell detection using seeded watershed
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLUEg4TGVZQTNzOXM" width=400>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/cell_segmentation_watershed.png" width=700>
+
 
 The seeded watershed algorithm implemented in ImageJ's 'Find Maxima' first finds local intensity maxima as starting ('seed') points.  From these seed points it performs a 'region growing' algorithm, using the intensity information in the image to draw dividing lines at dim parts of the image.   
 
@@ -294,7 +298,8 @@ We run the 'Particle Analyzer' to convert the binary cell image into 'objects' (
 <div style="page-break-after: always;"></div>
 ## Improved cell detection by excluding background pixels
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLaFlualFWMXBKRjg" width=400>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/cell segmentation.png" width=400>
+
 
 The problem of the seeded watershed algorithm is that the 'grows into the background' (see image). To avoid this one has to threshold the cells and combine this with the results of the watershed:
 
@@ -353,7 +358,7 @@ Do the same but leave out the 32-bit conversion step. Now measure the intensity 
 ## Compute nuclear distance map
 (=> Whiteboard session on Distance Transform)
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLcVpZaXZKWElYRkk" width=400>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/distance map.png" width=400>
 
 Quite often in biology one wants to know how far a certain structure is away from another (e.g. endocytosis: vesicles from plasma membrane). Such distances often can be quite easily measured using the 'Distance Transform'.
 
@@ -373,7 +378,8 @@ Quite often in biology one wants to know how far a certain structure is away fro
 
 In order to measure the distance of each previously detected spot to the nucleus we (almost) simply multiply the distance map with the spot image. The only problem we have is that a zero in the final image could mean: (i) there was no spot or (ii) there was a spot but its distance to the nucleus was zero. To distinguish these cases we will  set non-spot pixels to NaN (Not a Number) before we do the multiplication.    
 
-<img src="http://drive.google.com/uc?export=view&id=0B3D4N0YB6omLcXAwcnItZHZiUVk" width=400>
+<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/spots dist2nuc.png" width=400>
+
 
 - __[File>Open..] 'spots_points.tif'__ (*pixel values: 1 = spot; 0 = no spot*)
 - __[Image>Type>32-bit]__ (*necessary to enable NaN values*)
