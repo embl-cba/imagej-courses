@@ -8,36 +8,8 @@
 # Author Information
 
 <strong class="textmarkergelb"> Christian "Tischi" Tischer </strong>
-tischitischer@gmail.com
 
-
-# Practicals to add
-
-## Find particles inside cells and measure their properties; identify parent cell by measuring particle intensities in label mask
-
-## 3D objects..something with the new 3D manager
-
-
-## Local Image Filtering 
-
-- explain convolution filtering
-- practical where different filters are compared: edge preserving, filter size, ...
-- probably use the autophagosome data
-
-## Automated Global Thresholding: Using the image histogram
-- show different images and their histograms side-by-side
-- discuss the case where there are no objects
-- discuss that most algorithms assume a certain fraction of the image occupied with objects. this is a problem if this varies a lot, for example detecting nuclei (show examples)
-
-
-## Automated Local Thresholding: Using local mathematics
-
-## Smoothing improves thresholding
-- add this to the autophagosome workflow by adding some noise
-
-## Local Background Subtraction
-- try subtracting a median filtered opening from a pure noise image => does the mean background value become zero?
- 
+e-mail: tischitischer@gmail.com
 
 # General practicals 
 
