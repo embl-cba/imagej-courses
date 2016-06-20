@@ -230,8 +230,7 @@ Whiteboard session:
 <div style="page-break-after: always;"></div>
 ## Spot detection using 'Find Maxima'
 
-(=> Whiteboard: Explanation of IJs 'Find Maxima')
-ImageJ's 'Find Maxima' considers a pixel a maximum if its intensity is higher - by the 'Noise tolerance' - than neighboring pixels; see this discussion about [Topographic prominence](http://en.wikipedia.org/wiki/Topographic_prominence). 
+ImageJ's 'Find Maxima' considers a pixel a maximum if its intensity is higher - by the 'Noise tolerance' - than neighboring pixels; see [Topographic prominence](http://en.wikipedia.org/wiki/Topographic_prominence). 
 
 - __[File>Open] 'spots_median.tif'__
 - __Draw a line ROI__ across some of the spots and __[Analyze>Plot Profile]__
@@ -335,7 +334,7 @@ The 'RawIntDen' value is the spot count. How many spots did you find?
 Manually draw a region on the image, add it to the ROI Manager __[ROI Manager>Add]__ and measure the number of spots in this region.
 
 <div style="page-break-after: always;"></div>
-## Global background subtraction 
+## Manual background subtraction on whole image
 
 If we want to measure total cell intensity in a biophysically meaningful way we have to set the image background intensity to zero.  Since cells can grow dense it can be difficult or even impossible to find the correct background value in one image. Thus, sometimes one has to manually subtract a fixed background value from the image. 
 
