@@ -199,6 +199,15 @@ Whiteboard session:
 	- e.g., may fail if used to find the background intensity in an image full of cells
 - using the Spheroids image in 3D_Segmentation one can d emonstrate that the top-hat (dramatically) underestimates the background in noisy images
 
+
+<div style="page-break-after: always;"></div>
+## Further enhancing of spots using a Laplacian of Gaussian filter (optional)
+
+Above local background subtraction methods already helped a lot to enhance the spots; however in some cases there might still be some patchy locally bright regions left that are not corresponding to "real" spots. The reason is that the local background subtraction methods cannot distinguish locall bright elongated from locally bright round objects. Convolution of the image with a [Laplacian of Gaussian](https://en.wikipedia.org/wiki/Blob_detection#The_Laplacian_of_Gaussian) filter can help to further enhance spots of a certain size. 
+
+- ...
+
+
 <div style="page-break-after: always;"></div>
 ## Spot detection using 'Find Maxima'
 
@@ -347,15 +356,19 @@ Quite often in biology one wants to know how far a certain structure is away fro
 <div style="page-break-after: always;"></div>
 ## Use nuclear distance map on detected spots
 
-In order to measure the distance of each previously detected spot to the nucleus we (almost) simply multiply the distance map with the spot image. The only problem we have is that a zero in the final image could mean: (i) there was no spot or (ii) there was a spot but its distance to the nucleus was zero. To distinguish these cases we will  set non-spot pixels to NaN (Not a Number) before we do the multiplication.    
+In order to measure the distance of each previously detected spot to the nucleus we (almost) simply multiply the distance map with the spot image. The only problem we have is that a zero in the final image could mean: (i) there was no spot or (ii) there was a spot but its distance to the nucleus was zero. To distinguish these cases we will set non-spot pixels to NaN (Not a Number) before we do the multiplication 
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/spots dist2nuc.png" width=400>
 
 
 - __[File>Open..] 'spots_points.tif'__ (*pixel values: 1 = spot; 0 = no spot*)
-- __[Image>Type>32-bit]__ (*necessary to enable NaN values*)
-- __[Image>Adjust>Threshold..] 'lower=0.5' 'upper=1' [Apply]__ When asked: __Check 'Set background pixels to NaN'__
 
+Set non spot pixels to NaN (Not a Number):
+- __[Image>Type>32-bit]__ (*necessary to enable NaN values*)
+- __[Image>Adjust>Threshold..] [Set] 'lower=0.5' 'upper=1' [Apply]__
+	- When asked: __Check 'Set background pixels to NaN'__
+
+Multiply spot image with distance image:
 - __[File>Open..] 'nuclei_dist.tif'__ (*pixel values: distances to nearest nucleus*)
 - __[Process>Image Calculator..] 'Image1 = nuclei_dist.tif' 'Operation = Multiply' 'Image2 = spots_points.tif' '32-bit result = Check'__ 
 	- *the value of each pixel is now distance of the spot to nearest nucleus or NaN if there was no spot*
