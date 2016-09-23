@@ -11,6 +11,12 @@
 
 e-mail: tischitischer@gmail.com
 
+# Introduction
+
+## Recommended Literature
+
+http://www.imaging-git.com/olympus-website-bioimage-data-analysis
+
 # General practicals 
 
 <div style="page-break-after: always;"></div>
@@ -58,6 +64,7 @@ Literature: [A guided tour into subcellular colocalization analysis in light mic
 - Due to the diffraction limit everything can appear to colocalise with ER or tubulin
 - The cytoplasm in a cell can be quite small, so proteins might colocalise just by chance
 - You should make only comparative statements sich as: In condition XY the colocalisation increases
+- Create synthetic (simulated) test images to check if your analysis does what you want
 
 ## Segmentation: Local background subtraction and thresholding
 
