@@ -49,6 +49,15 @@ When comparing images it is a good idea to ensure that the LUT settings are the 
 
 Literature: [A guided tour into subcellular colocalization analysis in light microscopy. S. B O LT E & F. P. C O R D E L I È R E S Journal of Microscopy, Vol. 224, 2006, pp. 213–232.](http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01706.x/epdf)
 
+## General considerations
+
+- Use tetraspec beads to check your microscope
+- You have to chose your point of view: overlap of ch1 with ch2 vs. overlap of ch2 with ch1
+- You can measure pixel- or object-based overlap or some distance criterium (e.g., centroid- or boundary-based)
+- Diffraction limit depends on wavelength
+- Due to the diffraction limit everything can appear to colocalise with ER or tubulin
+- The cytoplasm in a cell can be quite small, so proteins might colocalise just by chance
+- You should make only comparative statements sich as: In condition XY the colocalisation increases
 
 ## Segmentation: Local background subtraction and thresholding
 
