@@ -23,7 +23,6 @@ http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 ## Mathematical prerequisites
 - Mean and Median
 
-
 <div style="page-break-after: always;"></div>
 ## Handling multi-color images and adding scale bar
 
@@ -99,6 +98,59 @@ Now, you can compute an area-based, object-based or distance-based colocalisatio
 - Object based colocalization: __Count__ (e.g., divide overlap by stain1) 
 - Area based colocalization: __Area__ (e.g., divide overlap by stain1)
 - Distance based colocalization: you have to write some code to find particles that are next to each other in the Results tables
+
+# The meaning of intensities in confocal and widefield microscopy
+
+todo: put images here
+
+
+# Intensity-based quantifications of BFA-induced Golgi disassembly (confocal)
+
+## Data
+
+- 3D confocal stacks
+- ...
+
+## Challenges
+
+- Intensities depend on evertyhing!
+
+## Maximum intensity in 3-D maximum intensity projection
+
+Maximum value in a 3-D maximum intensity projection is proportional to the highest local density of observed fluorophores, where local corresponds to the confocal point spread function (~200x200x800 nm^3).
+
+### Workflow
+
+- Maximum projection
+- Manual background subtraction
+- Draw ROI
+- Measure
+
+- Easy to compute readout for the maximal local concentration in a 3-D data set.
+
+#### Normalisation strategies
+
+In a time-lapse experiment one could use the intial maximal local concentration in each cell and then monitor the 
+
+### Pro
+
+### Con
+
+- Only very local readout of whole cell
+- 
+	- 
+	- Measure the average maximal local concentration in a set of control cells and divide by this value
+
+
+## Sum
+
+
+
+# Intensity-based quantifications of H2B-mCherry during the cell-cycle (wide-field)
+
+## Mean intensity
+## Maximum intensity
+##
  
 
 # Workflow: Autophagosome quantification
