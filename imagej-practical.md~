@@ -28,8 +28,8 @@ http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
 ## Simple global thresholding
 
-Set-up:
-- [Process > Binary > Options]: Check 'Black Background'
+Configure ImageJ:
+- [Process > Binary > Options]: Check "Black Background"
 
 Example data: 
 - [File > Open Samples > Blobs]
@@ -75,17 +75,23 @@ Discussion points:
 
 ## Segmentation with uneven background
 
+If there is a strong uneven background in your image segmenting the objects just with thresholding will not work.
+
+Ways to combat this are:
+- Local background subtraction
+- Local tresholding
+- Edge enhancement combined with 'fill holes' (not shown)
+
+
 Example data:
 - [File > Open]: ../data_new/uneven-background/blobs-with-background.tif
 	- Alternatives:
 	- ../data/workflow_autophagosomes/autophagosomes_raw.tif
 
 
-
 ### Method 1: Local background subtraction
 
 Workflow:
-- Segmenting the object just with thresholding will not work
 - Try different **local background subtraction** methods (see [here](#local-background-subtraction) for more detailed examples)
 	- Subtract a **mean** filtered version of the image from the original
 	- Subtract a **median** filtered version of the image from the original
