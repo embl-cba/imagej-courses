@@ -1,8 +1,6 @@
-
 # Table of contents
 
 [TOC]
-
 
 # Author Information
 
@@ -15,6 +13,83 @@ e-mail: tischitischer@gmail.com
 ## Recommended Literature
 
 http://www.imaging-git.com/olympus-website-bioimage-data-analysis
+
+# Segmentation
+
+- pixels -> objects
+
+## Applications
+
+- object counting
+- object localization measurements
+- object shape measurements
+- object intensity measurements
+- in general: object **feature** measurements
+
+## Simple global thresholding
+
+Set-up:
+- [Process > Binary > Options]: Check 'Black Background'
+
+Example data: 
+- [File > Open Samples > Blobs]
+- [Image > Lookup Tables > Invert LUT]
+
+Workflow:
+- [Image > Adjust > Threshold]
+- [Analyze > Analyze Particles] 
+
+Discussion points:
+- Single threshold vs. "gating"
+- Object size and shape filtering
+- Different types of object representations (pros and cons)
+
+## Segmentation of noisy images 
+
+Example data: 
+- [File > Open Samples > Blobs]
+- [Image > Lookup Tables > Invert LUT]
+- [Process > Noise > Add Noise]
+	- do this twice or more times
+
+Workflow without filtering:
+- [Image > Adjust > Threshold]
+- [Analyze > Analyze Particles] 
+
+Workflow with filtering:
+- [Process > Filters > Gaussian Blur]
+	- Try alternatives:
+	- [Process > Filters > Mean] 
+	- [Process > Filters > Median]
+	- [Process > Filters > Maximum] followed by [ ... > Minimum] 
+		- "Morphological closing" eliminates holes
+	- [Process > Filters > Minimum] followed by [ ... > Maximum]
+		- "Morphological opening" eliminates 'noise'
+
+- [Image > Adjust > Threshold]
+- [Analyze > Analyze Particles] 
+
+Discussion points:
+- How to also make it work without filtering
+
+
+
+
+## Segmentation with uneven background
+
+Example data:
+- [File > Open]: ../data_new/uneven-background/blobs-with-background
+
+Workflow:
+- Try the different local background subtraction workflows outlined below
+
+
+
+## Object splitting
+
+		
+
+
 
 # General practicals 
 
