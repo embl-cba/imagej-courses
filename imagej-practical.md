@@ -14,7 +14,7 @@ e-mail: tischitischer@gmail.com
 
 http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
-# Segmentation
+# Segmentation <a name="segmentation"></a> 
 
 - pixels -> objects
 
@@ -58,7 +58,7 @@ Workflow without filtering:
 
 Workflow with filtering:
 - [Process > Filters > Gaussian Blur]
-	- Try alternatives:
+	- Alternatives:
 	- [Process > Filters > Mean] 
 	- [Process > Filters > Median]
 	- [Process > Filters > Maximum] followed by [ ... > Minimum] 
@@ -70,25 +70,69 @@ Workflow with filtering:
 - [Analyze > Analyze Particles] 
 
 Discussion points:
-- How to also make it work without filtering
-
-
-
+- How to make it work without filtering?
+- Are the object shapes preserved?
 
 ## Segmentation with uneven background
 
 Example data:
-- [File > Open]: ../data_new/uneven-background/blobs-with-background
+- [File > Open]: ../data_new/uneven-background/blobs-with-background.tif
+	- Alternatives:
+	- ../data/workflow_autophagosomes/autophagosomes_raw.tif
+
+
+
+### Method 1: Local background subtraction
 
 Workflow:
-- Try the different local background subtraction workflows outlined below
+- Segmenting the object just with thresholding will not work
+- Try different **local background subtraction** methods (see [here](#local-background-subtraction) for more detailed examples)
+	- Subtract a **mean** filtered version of the image from the original
+	- Subtract a **median** filtered version of the image from the original
+	- Subtract a morphological **opening** of the image from the original (i.e. do a **top-hat** filter)
+	- Use ImageJ's inbuild "Subtract background" method 
+- After applying the local background correction, segment using a simple intensity threshold
+
+### Method 2: Local tresholding
+
+Instead of a local background subtraction we can also try different local thresholding algorithms.
+
+Workflow:
+- [Image > Adjust > Auto Local Threshold]
+	- Documentation: http://imagej.net/Auto_Local_Threshold
 
 
+
+# Object manipulation
+
+Once you found your objects you often want to split touching object or measure only in certain parts of the object or just close-by the object. 
+
+Example data: 
+- [File > Open Samples > Blobs]; [Image > Lookup Tables > Invert LUT]	
+- [File > Open Samples > HeLa Cells]; [Color > Split Channels]
+- [File > Open Samples > Fluorescent Cells]; [Color > Split Channels]
+
+Convert the image to a binary image ([s.a.](#segmentation)) and then manipluate the object's shape using below methods.
 
 ## Object splitting
 
+- [Process > Binary > Watershed]
 		
+## Object growing and shrinking and "boundary object creation"
 
+- [Process > Binary > Erode]
+- [Process > Binary > Dilate]
+- [Process > Image Calculator]
+
+Application examples:
+- Measure the amount of protein X in the nuclear envelope
+	- Data given: Confocal slice with staining for DAPI and protein X 
+
+
+## Using the distance transform to select sub-regions in an object 
+
+The distance transform is a powerful tool for many image analysis tasks, also in biology.
+Using the distance transform you can measure distances but also select regions in a specific distance range to certain objects.
 
 
 # General practicals 
@@ -289,11 +333,12 @@ If you messed up or missed a step there also is a sub-folder __'teacher'__, form
 	- not clear what the biological meaning in the wide-field images is. 
 
 
-<div style="page-break-after: always;"></div>
-## Local background subtraction
+
+## Local background subtraction <a name="local-background-subtraction"></a>
 
 In biological fluorescence microscopy one often wants to detect locally bright objects such as vesicular structures on top of a non-uniform background fluorescence, e.g. from unbound cytoplasmic protein. There are different methods to remove such 'background' fluorescence from the image:
 
+- corrected\_image = image - mean\_filter(image, radius) 
 - corrected\_image = image - median\_filter(image, radius) 
 - corrected\_image = image - morphological\_opening(image, radius) = top\_hat(image, radius)
 - corrected\_image = IJs "RollingBall" Algorithm
@@ -301,13 +346,9 @@ In biological fluorescence microscopy one often wants to detect locally bright o
 
 In all methods the *radius* parameter should be "quite a bit larger" than the radius of the largest locally bright structure that you want to measure (why that is becomes clear when we discuss the methods in detail).
 
-<div style="page-break-after: always;"></div>
-## Local background subtraction using a median filter
+### Local background subtraction using a median filter
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/orig__median__subtraction.png" width=700/>
-
-
-(Whiteboard: 1-D example)
 
 Duplicate image and apply median filter to remove the locally bright spots. Then subtract the median filtered image from the raw image and save the result for later use. 
 
@@ -319,17 +360,11 @@ Duplicate image and apply median filter to remove the locally bright spots. Then
 - __[File>Save] 'spots_median.tif'__
 
 
-__Exercise 1:__ Try other radii for the median filter (e.g., 1 and 100) for the median filter. What is the effect?
-
-
-<div style="page-break-after: always;"></div>
 ## Local background subtraction using a top-hat filter 
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/orig__open__tophat.png" width=700/>
 
-(Whiteboard: 1-D example)
-
-Here a morphological opening filter is applied to the image and subtracted from the original. The morphological opening is defined as the dilation of the erosion if the image. Alltogether this reads: top_hat(image) = image - dilation(erosion(image))
+A morphological opening filter is applied to the image and subtracted from the original. The morphological opening is defined as the dilation of the erosion if the image. Alltogether this reads: top_hat(image) = image - dilation(erosion(image))
 
 - __[File>Open..] 'autophagosomes_raw.tif'__
 - __[Image>Rename..] 'Title=original'__
@@ -340,13 +375,9 @@ Here a morphological opening filter is applied to the image and subtracted from 
 - __[File>Save] 'spots_tophat.tif'__
 
 
-
-<div style="page-break-after: always;"></div>
 ## Local background subtraction using IJs "Subtract Background"
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/orig__bg__rollingball.png" width=700/>
-
-(Whiteboard: 1-D example)
 
 - __[File>Open..] 'autophagosomes_raw.tif'__
 - __[Process>Subtract Background..] 'radius=5'__
@@ -354,7 +385,6 @@ Here a morphological opening filter is applied to the image and subtracted from 
 This seems to implement a ['rolling ball'](https://github.com/nearlyfreeapps/Rolling-Ball-Algorithm/blob/master/rolling_ball.py) background estimation (=> Whiteboard). I don't understand the mathematical algorithm how to compute this, but based on the code that i saw it seems not so simple (see also [here](http://dsp.stackexchange.com/questions/10597/uneven-background-subtraction-rolling-ball-vs-disk-tophat) and [here](https://en.wikipedia.org/wiki/Dilation_%28morphology%29#Grayscale_dilation)).
 
 
-<div style="page-break-after: always;"></div>
 ### Comparison of the different BG subtraction methods
 
 Whiteboard session: 
@@ -364,7 +394,7 @@ Whiteboard session:
 	- median overestimates background in presence of "holes"
 - Local background subtraction should only be used for (small) isolated objects
 	- e.g., may fail if used to find the background intensity in an image full of cells
-- using the Spheroids image in 3D_Segmentation one can d emonstrate that the top-hat (dramatically) underestimates the background in noisy images
+- Using the Spheroids image in 3D_Segmentation one can d emonstrate that the top-hat (dramatically) underestimates the background in noisy images
 
 
 <div style="page-break-after: always;"></div>
