@@ -14,7 +14,7 @@ e-mail: tischitischer@gmail.com
 
 http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
-# Segmentation
+# Segmentation <a name="segmentation"></a> 
 
 - pixels -> objects
 
@@ -84,7 +84,6 @@ Example data:
 
 ### Method 1: Local background subtraction
 
-
 Workflow:
 - Segmenting the object just with thresholding will not work
 - Try different **local background subtraction** methods (see [here](#local-background-subtraction) for more detailed examples)
@@ -96,14 +95,44 @@ Workflow:
 
 ### Method 2: Local tresholding
 
+Instead of a local background subtraction we can also try different local thresholding algorithms.
+
+Workflow:
+- [Image > Adjust > Auto Local Threshold]
+	- Documentation: http://imagej.net/Auto_Local_Threshold
 
 
 
+# Object manipulation
+
+Once you found your objects you often want to split touching object or measure only in certain parts of the object or just close-by the object. 
+
+Example data: 
+- [File > Open Samples > Blobs]; [Image > Lookup Tables > Invert LUT]	
+- [File > Open Samples > HeLa Cells]; [Color > Split Channels]
+- [File > Open Samples > Fluorescent Cells]; [Color > Split Channels]
+
+Convert the image to a binary image ([s.a.](#segmentation)) and then manipluate the object's shape using below methods.
 
 ## Object splitting
 
+- [Process > Binary > Watershed]
 		
+## Object growing and shrinking and "boundary object creation"
 
+- [Process > Binary > Erode]
+- [Process > Binary > Dilate]
+- [Process > Image Calculator]
+
+Application examples:
+- Measure the amount of protein X in the nuclear envelope
+	- Data given: Confocal slice with staining for DAPI and protein X 
+
+
+## Using the distance transform to select sub-regions in an object 
+
+The distance transform is a powerful tool for many image analysis tasks, also in biology.
+Using the distance transform you can measure distances but also select regions in a specific distance range to certain objects.
 
 
 # General practicals 
