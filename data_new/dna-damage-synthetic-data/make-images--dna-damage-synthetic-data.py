@@ -21,6 +21,9 @@ background = 200
 blur = 1
 PI = 3.141 
 
+nucleus_area = PI*((d/2)**2)
+damage_area = r*l
+
 # Functions
 
 def draw_nucleus(imp, value):
@@ -43,60 +46,69 @@ def blur_and_noise(imp, blur, noise):
   IJ.resetMinAndMax(imp);
   return(imp)
 
+
+def draw_cell(imp, i, nucleus_total, damage_total, title):
+  imp.append(impBG.duplicate()); 
+  draw_nucleus( imp[i], nucleus_total / nucleus_area )
+  draw_damage( imp[i], damage_total / damage_area )
+  imp[i] = blur_and_noise(imp[i], 2, 1)
+  imp[i].show()
+  imp[i].setTitle(title)
+  return(imp)
+
 # Main
 
 # Create background image
-imp = IJ.createImage("Untitled", "16-bit black", 512, 512, 1);
+impBG = IJ.createImage("Untitled", "16-bit black", 512, 512, 1);
 #IJ.run(imp, "RGB Color", "");
 #IJ.run(imp, "Radial Gradient", "");
 #IJ.run(imp, "16-bit", "");
 #IJ.run(imp, "Multiply...", "value="+str(255));
 #IJ.run(imp, "Gaussian Blur...", "sigma=30");
 #IJ.run(imp, "Divide...", "value="+str(65535/background));
-IJ.run(imp, "Add...", "value="+str(background));
+IJ.run(impBG, "Add...", "value="+str(background));
 
-# Areas
-nucleus_area = PI*((d/2)**2)
-damage_area = r*l
+
 
 # Intensities
 nucleus_total = 1000000
 
+imps = []; 
+i = -1;
+
 # No damage
-imp2 = imp.duplicate()
-draw_nucleus(imp2, nucleus_total / nucleus_area)
-imp2 = blur_and_noise(imp2, 2, 1)
-imp2.show()
+
+damage_total = 0
+i = i + 1; imps = draw_cell(imps, i, nucleus_total, damage_total, "Control")
 
 # With damage, clear signal in the damage region, same total intensity as "No damage"
 # => recruitement to damage site
+
 damage_total = nucleus_total * 0.1
 nucleus_total = nucleus_total - damage_total
-damage_mean = damage_total / damage_area
-nucleus_mean = nucleus_total / nucleus_area
-imp3 = imp.duplicate()
-draw_nucleus( imp3, nucleus_total / nucleus_area )
-draw_damage( imp3, damage_total / damage_area )
-imp3 = blur_and_noise(imp3, 2, 1)
-imp3.show()
+
+i = i + 1; imps = draw_cell(imps, i, nucleus_total, damage_total, "Damaged")
+
 
 # With damage, clear signal in the damage region, less total intensity as "No damage"
 # but same ratio of damage/total
 # => recruitement to damage site ok, but probably bleaching during the damage
+# or overall less expression
+
+bleaching = 0.8
+damage_total = nucleus_total * bleaching * 0.1
+nucleus_total = nucleus_total * bleaching - damage_total
+
+i = i + 1; imps = draw_cell(imps, i, nucleus_total, damage_total, "Damaged and treated 01")
+
 
 # "Treated": with damage, same total intensity as "No damage", but less signal in the damage site
 # => the treatment reduced the binding strength of the DNA repair molecule
 
-# Same signal in damage site but less in total ("treated")
-# => increased binding strength and less expression
+bleaching = 1.0 # no bleaching
+damage_total = nucleus_total * bleaching * 0.05
+nucleus_total = nucleus_total * bleaching - damage_total
+i = i + 1; imps = draw_cell(imps, i, nucleus_total, damage_total, "Damaged and treated 02")
 
 # With damage and high noise
 # => tophat filter does not work very well
-
-
-
-# With damage, same total intensity as "No damage", low noise
-
-
-
-# Rename

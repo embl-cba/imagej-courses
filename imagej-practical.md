@@ -214,6 +214,14 @@ Workflow:
 ## 
 
 
+
+Discussion:
+- Background subtraction must be done with floating point
+- 
+
+
+
+
 # Diverse practicals 
 
 <div style="page-break-after: always;"></div>

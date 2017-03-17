@@ -173,15 +173,13 @@ Application examples:
 - Measure the amount of protein X in the nuclear envelope
 	- Data given: Confocal slice with staining for DAPI and protein X 
 
-## Using the distance transform to select sub-regions in an object 
+## Distance transform
 
 The distance transform is a powerful tool for many image analysis tasks, also in biology.
 Using the distance transform you can
 - measure distances between different objects (from different fluorescence channels) 
 - select specific regions within of or close by objects 
 - split objects based on a shape criterium (see [below](#object-splitting))
-
-Examples:
 
 Workflow for distance measurements: 
 - Example data: One object in ch0, many objects in ch1
@@ -198,7 +196,6 @@ Workflow for finding circle centers:
     - [Process > Binary > Distance Map]
     - [Process > Find Maxima]
 
-
 Further reading:
 - http://imagej.net/Local_Thickness
 
@@ -212,14 +209,12 @@ Workflow:
 	- [Process > Binary > Watershed]
 	
 
-# Object measurements
+# Intensity measurements
 
-## Object distance measurements 
-
-
+## 
 
 
-# Divers practicals 
+# Diverse practicals 
 
 <div style="page-break-after: always;"></div>
 ## Mathematical prerequisites
