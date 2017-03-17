@@ -146,11 +146,6 @@ Discussion:
 		- Find object centers using DoG
 		- Find object volumes growing from the object centers
 
-
-
-
-
- 
 # Object manipulation
 
 Once you found your objects you often want to split touching object or measure only in certain parts of the object or just close-by the object. 
@@ -178,13 +173,31 @@ Application examples:
 - Measure the amount of protein X in the nuclear envelope
 	- Data given: Confocal slice with staining for DAPI and protein X 
 
-## Using the distance transform to select sub-regions in an object 
+## Distance transform
 
 The distance transform is a powerful tool for many image analysis tasks, also in biology.
 Using the distance transform you can
 - measure distances between different objects (from different fluorescence channels) 
 - select specific regions within of or close by objects 
 - split objects based on a shape criterium (see [below](#object-splitting))
+
+Workflow for distance measurements: 
+- Example data: One object in ch0, many objects in ch1
+- Segment both images
+- Distance transform ch0 => distTrafoCh0
+- Measure mean intensity of ch1 objects in distTrafoCh0
+
+Workflow for finding circle centers:
+- Example data:
+	- ../data-new/distance-transform-applications/hollow-tubes.tif
+- Compute distance transform
+- Find local maxima
+- Fiji commands:
+    - [Process > Binary > Distance Map]
+    - [Process > Find Maxima]
+
+Further reading:
+- http://imagej.net/Local_Thickness
 
 ## Object splitting <a name="object-splitting"></a>
 
@@ -196,14 +209,12 @@ Workflow:
 	- [Process > Binary > Watershed]
 	
 
-# Object measurements
+# Intensity measurements
 
-## Object distance measurements 
-
-
+## 
 
 
-# Divers practicals 
+# Diverse practicals 
 
 <div style="page-break-after: always;"></div>
 ## Mathematical prerequisites

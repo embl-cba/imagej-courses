@@ -36,8 +36,11 @@ Example data:
 - [Image > Lookup Tables > Invert LUT]
 
 Workflow:
-- [Image > Adjust > Threshold]
-- [Analyze > Analyze Particles] 
+- Threshold
+- Connected component analysis
+- Fiji commands:
+	- [Image > Adjust > Threshold]
+	- [Analyze > Analyze Particles] 
 
 Discussion points:
 - Single threshold vs. "gating"
@@ -46,28 +49,33 @@ Discussion points:
 
 ## Segmentation of noisy images 
 
-Example data: 
+Generate example data: 
 - [File > Open Samples > Blobs]
 - [Image > Lookup Tables > Invert LUT]
 - [Process > Noise > Add Noise]
 	- do this twice or more times
 
 Workflow without filtering:
-- [Image > Adjust > Threshold]
-- [Analyze > Analyze Particles] 
+- Threshold the image
+- Find the connected components
+- Fiji commands:
+	- [Image > Adjust > Threshold]
+	- [Analyze > Analyze Particles] 
 
 Workflow with filtering:
-- [Process > Filters > Gaussian Blur]
-	- Alternatives:
+- Smooth the image
+- Threshold
+- Connected component analysis
+- Fiji commands:
+	- [Process > Filters > Gaussian Blur]
 	- [Process > Filters > Mean] 
 	- [Process > Filters > Median]
 	- [Process > Filters > Maximum] followed by [ ... > Minimum] 
 		- "Morphological closing" eliminates holes
 	- [Process > Filters > Minimum] followed by [ ... > Maximum]
 		- "Morphological opening" eliminates 'noise'
-
-- [Image > Adjust > Threshold]
-- [Analyze > Analyze Particles] 
+	- [Image > Adjust > Threshold]
+	- [Analyze > Analyze Particles] 
 
 Discussion points:
 - How to make it work without filtering?
@@ -84,12 +92,11 @@ Ways to combat this are:
 
 
 Example data:
-- [File > Open]: ../data_new/uneven-background/blobs-with-background.tif
-	- Alternatives:
-	- ../data/workflow_autophagosomes/autophagosomes_raw.tif
+- ../data_new/uneven-background/blobs-with-background.tif
+- ../data/workflow_autophagosomes/autophagosomes_raw.tif
 
 
-### Method 1: Local background subtraction
+### Local background subtraction
 
 Workflow:
 - Try different **local background subtraction** methods (see [here](#local-background-subtraction) for more detailed examples)
@@ -97,17 +104,47 @@ Workflow:
 	- Subtract a **median** filtered version of the image from the original
 	- Subtract a morphological **opening** of the image from the original (i.e. do a **top-hat** filter)
 	- Use ImageJ's inbuild "Subtract background" method 
-- After applying the local background correction, segment using a simple intensity threshold
+- After local background subtraction, segment the objectis with a global intensity threshold and connected component analysis
+- Fiji commands:
+	- [Process > Filters > Mean]
+	- [Process > Filters > Median]
+	- [Process > Filters > Minimum]
+	- [Process > Filters > Maximum]
+	- [Process > Image Calculator]
+	
 
-### Method 2: Local tresholding
+### Local tresholding
 
-Instead of a local background subtraction we can also try different local thresholding algorithms.
+Local thresholding is another method to segment objects in the prescence of a locally varying background.
 
 Workflow:
-- [Image > Adjust > Auto Local Threshold]
-	- Documentation: http://imagej.net/Auto_Local_Threshold
+- Threshold using a local thresholding algorithm
+- Connected component analysis
+- Fiji commands:
+	- [Image > Adjust > Auto Local Threshold]
+		- Documentation: http://imagej.net/Auto_Local_Threshold
+	- [Analyze > Analyze Particles]
+	
+### Spot detection using the Difference of Gaussian
 
+The Difference of Gaussian (DoG) is a very popluar method for object detection when there is uneven background or also an uneven object brightness distribution.
 
+Workflow:
+- Blur image with a small Gaussian (about the size of the objects)
+- Blur image with a large Gaussian (about two-three times the object size)
+- Subtract the large blur from the small blur; this is the DoG!
+- Threshold the resulting image to find the object centers
+- Fiji commands:
+	- [Process > Filters> Gaussian]
+	- [Process > Image Calculator]
+	- [Analyze > Analyze Particles] or [Process > Find Maxima]
+
+Discussion:
+- The object shape is not preserved with this method
+	- One could combine the DoG with a region growing algorithm to recover the object shape
+	- Workflow:
+		- Find object centers using DoG
+		- Find object volumes growing from the object centers
 
 # Object manipulation
 
@@ -120,28 +157,69 @@ Example data:
 
 Convert the image to a binary image ([s.a.](#segmentation)) and then manipluate the object's shape using below methods.
 
-## Object splitting
-
-- [Process > Binary > Watershed]
-		
+	
 ## Object growing and shrinking and "boundary object creation"
 
-- [Process > Binary > Erode]
-- [Process > Binary > Dilate]
-- [Process > Image Calculator]
+Workflow:
+- Dilate (grow) and erode (shrink) the binary image to change the object size
+- In addition, by subtracting the eroded image from the original one can generate outlines
+- Fiji commands:
+	- [Process > Binary > Erode]
+	- [Process > Binary > Dilate]
+	- [Image > Duplicate]
+	- [Process > Image Calculator]
 
 Application examples:
 - Measure the amount of protein X in the nuclear envelope
 	- Data given: Confocal slice with staining for DAPI and protein X 
 
-
 ## Using the distance transform to select sub-regions in an object 
 
 The distance transform is a powerful tool for many image analysis tasks, also in biology.
-Using the distance transform you can measure distances but also select regions in a specific distance range to certain objects.
+Using the distance transform you can
+- measure distances between different objects (from different fluorescence channels) 
+- select specific regions within of or close by objects 
+- split objects based on a shape criterium (see [below](#object-splitting))
+
+Examples:
+
+Workflow for distance measurements: 
+- Example data: One object in ch0, many objects in ch1
+- Segment both images
+- Distance transform ch0 => distTrafoCh0
+- Measure mean intensity of ch1 objects in distTrafoCh0
+
+Workflow for finding circle centers:
+- Example data:
+	- ../data-new/distance-transform-applications/hollow-tubes.tif
+- Compute distance transform
+- Find local maxima
+- Fiji commands:
+    - [Process > Binary > Distance Map]
+    - [Process > Find Maxima]
 
 
-# General practicals 
+Further reading:
+- http://imagej.net/Local_Thickness
+
+## Object splitting <a name="object-splitting"></a>
+
+Often, objects that are very close are idenftied as one object in the connected component analysis. The distance-transform based watershed algorithm is the most commonly way to deal with this.
+
+Workflow:
+- Subject the binary image to a (distance-transform based) watershed algorithm
+- Fiji commands:
+	- [Process > Binary > Watershed]
+	
+
+# Object measurements
+
+## Object distance measurements 
+
+
+
+
+# Divers practicals 
 
 <div style="page-break-after: always;"></div>
 ## Mathematical prerequisites

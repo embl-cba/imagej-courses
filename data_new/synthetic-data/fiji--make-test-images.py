@@ -4,7 +4,6 @@ from ij.gui import OvalRoi, Line
 # Requirements
 # - RandomJ: RandomJ is available from the ImageScience update site.
 
-
 r = 3
 c = 256
 dc = 30
