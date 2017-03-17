@@ -214,7 +214,8 @@ Workflow:
 
 Example data:
 - ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
-    - [Run] to generate the images
+	- [Help > Update > Manage Update Sites]: ImageScience
+	- [Run] to generate the images
 
 Workflow:
 - Background subtraction
@@ -227,7 +228,9 @@ Workflow:
 Discussion:
 - Background subtraction must be done with floating point
 - Normalisation: local/total is more robust then local/surrounding
-
+- Median filter has trouble when there is not much background
+- Tophat filter has trouble when there is noise
+ 
 
 
 
