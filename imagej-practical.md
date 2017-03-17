@@ -211,13 +211,22 @@ Workflow:
 
 # Intensity measurements
 
-## 
 
+Example data:
+- ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
+    - [Run] to generate the images
+
+Workflow:
+- Background subtraction
+- Separate intensity in damage site (bound protein) from unbound protein
+	- Use local background subtraction
+- Measure intensity in damage site
+- Measure total nuclear intensity
 
 
 Discussion:
 - Background subtraction must be done with floating point
-- 
+- Normalisation: local/total is more robust then local/surrounding
 
 
 
