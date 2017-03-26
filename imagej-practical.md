@@ -29,7 +29,8 @@ http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 ## Simple global thresholding
 
 Configure ImageJ:
-- [Process > Binary > Options]: Check "Black Background"
+
+- [Process > Binary > Options]: [X] Black Background
 
 Example data: 
 - [File > Open Samples > Blobs]
@@ -40,6 +41,7 @@ Workflow:
 - Connected component analysis
 - Fiji commands:
 	- [Image > Adjust > Threshold]
+		- You may press [Apply] but you do not have to; it also works with the "red" overlay.
 	- [Analyze > Analyze Particles] 
 
 Discussion points:
@@ -103,7 +105,7 @@ Workflow:
 	- Subtract a **mean** filtered version of the image from the original
 	- Subtract a **median** filtered version of the image from the original
 	- Subtract a morphological **opening** of the image from the original (i.e. do a **top-hat** filter)
-	- Use ImageJ's inbuild "Subtract background" method 
+	- Use "Subtract background" method 
 - After local background subtraction, segment the objectis with a global intensity threshold and connected component analysis
 - Fiji commands:
 	- [Process > Filters > Mean]
@@ -111,7 +113,7 @@ Workflow:
 	- [Process > Filters > Minimum]
 	- [Process > Filters > Maximum]
 	- [Process > Image Calculator]
-	
+	- [Process > Subtract Background]
 
 ### Local tresholding
 
@@ -135,7 +137,7 @@ Workflow:
 - Subtract the large blur from the small blur; this is the DoG!
 - Threshold the resulting image to find the object centers
 - Fiji commands:
-	- [Process > Filters> Gaussian]
+	- [Process > Filters > Gaussian]
 	- [Process > Image Calculator]
 	- [Analyze > Analyze Particles] or [Process > Find Maxima]
 
@@ -161,13 +163,18 @@ Convert the image to a binary image ([s.a.](#segmentation)) and then manipluate 
 ## Object growing and shrinking and "boundary object creation"
 
 Workflow:
+- Example data:
+	- Simply draw some objects yourself
 - Dilate (grow) and erode (shrink) the binary image to change the object size
 - In addition, by subtracting the eroded image from the original one can generate outlines
 - Fiji commands:
+	- [File > New Image...]
+		- Use Fiji's drawing tools to generate some objects of choice
 	- [Process > Binary > Erode]
 	- [Process > Binary > Dilate]
 	- [Image > Duplicate]
 	- [Process > Image Calculator]
+		- Use this to subtract images from each other
 
 Application examples:
 - Measure the amount of protein X in the nuclear envelope
@@ -181,11 +188,18 @@ Using the distance transform you can
 - select specific regions within of or close by objects 
 - split objects based on a shape criterium (see [below](#object-splitting))
 
-Workflow for distance measurements: 
-- Example data: One object in ch0, many objects in ch1
-- Segment both images
-- Distance transform ch0 => distTrafoCh0
-- Measure mean intensity of ch1 objects in distTrafoCh0
+Workflow for measuring distances to nearest object in another channel: 
+- Example data: One object in Ch0, many objects in Ch1
+	- ../data-new/distance-transform-applications/distances-between-objects.tif
+- Split stack into individual channels
+- Distance transform Ch0 => DistTrafoCh0
+- Measure mean intensity of Ch1 objects in DistTrafoCh0
+- Fiji commands:
+    - [Image > Stacks > Stack to Images]
+    - [Process > Binary > Distance Map]
+    - [Image > Rename] 
+    - [Analyze > Set Measurements]: [X] Mean gray value; Redirect to 'DistTrafoCh0'
+    - [Analyze > Analyze Particles]: [x] Display Results
 
 Workflow for finding circle centers:
 - Example data:
@@ -211,26 +225,63 @@ Workflow:
 
 # Intensity measurements
 
+Intensity measurements are a **very tricky business**, not because they are technically difficult, but because one can make many mistakes in the interpretation of the numbers. This very easily leads to wrong scientific conclusions!
+
+## Lecture
+
+- Show slides from the PowerPoint presentation 
+- White-board session on H2B-mCherry during cell-cycle (wide-field vs. confocal, sum vs. mean)
+
+## Practical 
 
 Example data:
 - ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
 	- [Help > Update > Manage Update Sites]: ImageScience
 	- [Run] to generate the images
 
+We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
+
 Workflow:
 - Background subtraction
 - Separate intensity in damage site (bound protein) from unbound protein
-	- Use local background subtraction
-- Measure intensity in damage site
-- Measure total nuclear intensity
+	- Local background subtraction alternatives:
+		- Manual
+			- on image
+			- in R/Excel
+		- Median subtraction (32bit!)
+		- Tophat filter
+- Measure sum intensity in damage site (including bg-subtraction)
+- Measure sum intensity in nucleus
 
 
 Discussion:
+- How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
+
+- Divide by the length (and or width) of the laser damage cut?
+	- length makes sense
+	- width probably not
+
+- What about computing the mean intensity in the nucleus next to the damage site?
+	- In principle attractive, because for a KD we need the concentration of the unbound protein.
+	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous in the region where we measure the mean (you have to think in 3-D; PSF!) this mean intensity gives information about the concentration of unbound protein; however as soon as there is a lot of structure in the signal it is not clear that it helps
+	- For a widefield image it is kind of the same argument, however the 3D shape of the measured region is infinitely big! One can see that one measures a larger amount of protein in the center than at the edge of the nucleus.
+
 - Background subtraction must be done with floating point
-- Normalisation: local/total is more robust then local/surrounding
-- Median filter has trouble when there is not much background
-- Tophat filter has trouble when there is noise
- 
+	- Not for tophat though
+
+- What about computing mean intensity in the nucleus next to the damage site?
+
+- Median filter: Pros and cons?
+	- has trouble when there are not clearly more background than foreground pixels
+
+- Tophat filter: Pros and cons?
+	- has trouble when there is noise
+
+- Alternative local background subtraction strategies
+
+- What changes if we assume that this is **one confocal slice** rather than a widefield image?
+
+
 
 
 
