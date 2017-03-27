@@ -265,9 +265,8 @@ Intensity measurements are a **very tricky business**, not because they are tech
 Example data:
 
 - ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
-
-	- [Help > Update > Manage Update Sites]: ImageScience
-	- [Run] to generate the images
+	-  [Help > Update > Manage Update Sites] ImageScience
+	-  [Run] to generate the images
 
 We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
 
