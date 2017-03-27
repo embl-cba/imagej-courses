@@ -184,18 +184,18 @@ Example data:
 Convert the image to a binary image ([s.a.](#segmentation)) and then manipluate the object's shape using below methods.
 
 	
-## Object growing and shrinking and "boundary object creation"
+## Object growing and shrinking and boundary creation
 
 Workflow:
 - Example data:
 	- Simply draw some objects yourself
-- Dilate (grow) and erode (shrink) the binary image to change the object size
+- Dilate (grow, 'maximum') and erode (shrink, 'minimum') the binary image to change the object size
 - In addition, by subtracting the eroded image from the original one can generate outlines
 - Fiji commands:
 	- [File > New Image...]
 		- Use Fiji's drawing tools to generate some objects of choice
-	- [Process > Binary > Erode]
-	- [Process > Binary > Dilate]
+	- [Process > Filters > Minimum]
+	- [Process > Filters > Maximum]
 	- [Image > Duplicate]
 	- [Process > Image Calculator]
 		- Use this to subtract images from each other
@@ -263,6 +263,7 @@ Intensity measurements are a **very tricky business**, not because they are tech
 ## Practical 
 
 Example data:
+
 - ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
 	- [Help > Update > Manage Update Sites]: ImageScience
 	- [Run] to generate the images
