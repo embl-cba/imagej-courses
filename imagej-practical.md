@@ -265,6 +265,7 @@ Intensity measurements are a **very tricky business**, not because they are tech
 Example data:
 
 - ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
+
 	- [Help > Update > Manage Update Sites]: ImageScience
 	- [Run] to generate the images
 
