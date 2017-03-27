@@ -26,7 +26,7 @@ http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 - object intensity measurements
 - in general: object **feature** measurements
 
-## Simple global thresholding
+## Manual global thresholding
 
 Configure ImageJ:
 
@@ -37,8 +37,9 @@ Example data:
 - [Image > Lookup Tables > Invert LUT]
 
 Workflow:
-- Threshold
-- Connected component analysis
+- Manually adjust a threshold value
+- Perform a "connected component analysis"
+	- Other wordings are: "object detection", "particle analysis"
 - Fiji commands:
 	- [Image > Adjust > Threshold]
 		- You may press [Apply] but you do not have to; it also works with the "red" overlay.
@@ -48,6 +49,30 @@ Discussion points:
 - Single threshold vs. "gating"
 - Object size and shape filtering
 - Different types of object representations (pros and cons)
+
+## Automated global thresholding
+
+Sometimes, if you have many images to analyse, you may need automated methods that find the threshold for you. There are many good methods, but it is dangerous to apply them, and you always need to check if it worked! 
+
+Workflow:
+- Apply automated thresholding
+
+Example data within Fiji: 
+- [File > Open Samples > Blobs]
+	- [Image > Lookup Tables > Invert LUT]
+- [File > Open Samples > Hela cells]
+	- [Image > Color > Split Channels]
+- [File > New Image]
+	- [Process > Noise > Add Noise]
+
+Fiji commands:
+- [Image > Adjust > Auto Threshold]
+
+
+
+### Discussion
+
+- Many automated thresholding methods always find a threshold, even if there is only noise.
 
 ## Segmentation of noisy images 
 
@@ -97,7 +122,6 @@ Example data:
 - ../data_new/uneven-background/blobs-with-background.tif
 - ../data/workflow_autophagosomes/autophagosomes_raw.tif
 
-
 ### Local background subtraction
 
 Workflow:
@@ -115,9 +139,9 @@ Workflow:
 	- [Process > Image Calculator]
 	- [Process > Subtract Background]
 
-### Local tresholding
+### Automated local tresholding
 
-Local thresholding is another method to segment objects in the prescence of a locally varying background.
+Automated local thresholding is another method to segment objects in the prescence of a locally varying background.
 
 Workflow:
 - Threshold using a local thresholding algorithm
@@ -222,6 +246,10 @@ Workflow:
 - Fiji commands:
 	- [Process > Binary > Watershed]
 	
+Comments:
+- E.g., CellProfiler offers a number of interesting choices for object splitting, which are not only shape but also intensity-based 
+
+
 
 # Intensity measurements
 
