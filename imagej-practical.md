@@ -316,11 +316,9 @@ Discussion:
 
 # Diverse practicals 
 
-<div style="page-break-after: always;"></div>
 ## Mathematical prerequisites
 - Mean and Median
 
-<div style="page-break-after: always;"></div>
 ## Handling multi-color images and adding scale bar
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/color-image.png" width=200>
@@ -340,14 +338,12 @@ Aim: make the images look like the image above!
 
 What is better for saving? Tiff or Jpeg? 
 
-<div style="page-break-after: always;"></div>
 ## Tip for comparing different images
 
 When comparing images it is a good idea to ensure that the LUT settings are the same for all images. This can be achieved with __[Image>Adjust>Brightness/Contrast..]__ clicking __[Set]__ and choosing  __‘Propagate to all other open images = Check’__.
 
 
-<div style="page-break-after: always;"></div>
-# Workflow: pixel- and object-based colocalisation
+# Colocalisation: Pixel-, distance- and object-based
 
 Literature: [A guided tour into subcellular colocalization analysis in light microscopy. S. B O LT E & F. P. C O R D E L I È R E S Journal of Microscopy, Vol. 224, 2006, pp. 213–232.](http://onlinelibrary.wiley.com/doi/10.1111/j.1365-2818.2006.01706.x/epdf)
 
