@@ -940,3 +940,62 @@ The macro 'CellAndSpotDetection_Batch.ijm' is not bad but it is also missing a f
 	- e.g., remove cells from analysis that do not express enough protein
 
 It is possible to add all this in ImageJ however I highly recommend to also check the free [CellProfiler](http://cellprofiler.org) software. CellProfiler enables you to perform these operations without actual programming. Note that as of June 2015 CellProfiler only works for 2-D data but this may change.
+
+
+# Batch analysis in ImageJ
+
+There are several ways to achieve batch analysis of many images in ImageJ:
+- Putting images into an image stack 
+	- This works for 2-D data with one channel
+- Using [Process > Batch]
+- Writing scripts, e.g. using the ImageJ Macro language
+
+## Batch analysis using image stacks
+
+### Counting the number of nuclei in many images
+
+...
+Data:
+- Mitocheck time-lapse movie
+
+Workflow:
+- Load all images into an image stack
+	- [File > Import > Image Sequence]
+- Threshold
+- Set measurements
+	- Keep track of filename
+- Find objects
+
+
+### Converting various images to Tiff files
+
+If your images are 3D or have different sizes above trick using an image stack will not work.
+
+Data:
+- Diverse images with different file formats and dimensions
+
+Workflow:
+- [Process > Batch > Convert]
+
+### Display the filename on multiple images
+
+It is good practice to have meaningful filenames, e.g., containing a particular treatment that your images were subjected to. For quick visual inspection of your data it can thus be useful to display the filename in the image.
+
+Data:
+- Mitocheck data from EMBO HTM course.
+
+Workflow:
+- Use ImageJ's in-built batch processing, chosing one of the example macros.
+	- [Process > Batch > Macro]  
+	- Combine code from two of the example macros: "Print index and title", "Label' 
+
+#### ImageJ macro notes:
+- Information about macro language:
+	- https://imagej.nih.gov/ij/developer/macro/macros.html
+	- https://imagej.nih.gov/ij/developer/macro/functions.html
+ 
+
+### Put scale bar on multiple images
+
+
+
