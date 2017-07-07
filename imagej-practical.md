@@ -965,9 +965,12 @@ Even though the trick of loading all images into one stack saved as a lot of wor
 
 - [Plugins > Macros > Record]
 - Repeat all the steps from above, including opening the file!
-- You should have recorded something like this ("../macros/mitocheck-movie-count-cells.ijm"):
+- You should have recorded something like thi:
 
 ```
+//
+// ../macros/CountCells.ijm
+//
 run("Image Sequence...", "open=/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie sort");
 run("Set Measurements...", "area display redirect=None decimal=4");
 setAutoThreshold("Default dark");
@@ -983,12 +986,15 @@ If you now [Create] the macro and [Run] it, it should do the job.
 - Note: "//" means that a line of code only is a comment
 - We have to remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
 
-### Making it a nice macro, using variables
+#### Making it nicer, using variables
 
 Some commands in our macro will be the same, but some stuff will be different for different files.
-It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables" ("../macros/mitocheck-movie-count-all-cells-with-variables.ijm");
+It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables":
 
 ```
+//
+// ../macros/CountCells-Variables.ijm
+//
 // User input
 path = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
 threshold = 29;
@@ -1003,9 +1009,75 @@ run("Convert to Mask", "method=Default background=Dark");
 run("Analyze Particles...", "  show=Nothing summarize stack");
 ```
 
+#### Making it really nice, with a graphical user interface
 
- 
+It is nice, not to have to type into the macro, but enter the variables with a GUI.
 
+Google: imagej macro get directory
+- https://imagej.nih.gov/ij/macros/GetDirectoryDemo.txt
+- getDirectory("Select a directory");
+
+Google: imagej macro get variable from user
+- http://imagej.1557.x6.nabble.com/Having-a-macro-prompt-for-variable-input-td3694090.html
+- getNumber("prompt", defaultValue); 
+
+```
+//
+// ../macros/CountCells-GUI.ijm
+//
+
+// User input
+directory = getDirectory("Select a directory");
+threshold = getNumber("Enter threshold", 29);
+
+// General code
+run("Image Sequence...", "open=["+directory+"] sort");
+run("Set Measurements...", "area display redirect=None decimal=4");
+setAutoThreshold("Default dark");
+setThreshold(threshold, 255);
+setOption("BlackBackground", false);
+run("Convert to Mask", "method=Default background=Dark");
+run("Analyze Particles...", "  show=Nothing summarize stack");
+```
+
+#### The final touch: functions
+
+It is very good for readability and for reusing parts of our code to pack it into small parts that belong together, so-called "functions".
+
+```
+//
+// ../macros/CountCells-Functions.ijm
+//
+
+// User input
+//
+directory = getDirectory("Select a directory");
+threshold = getNumber("Enter threshold", 29);
+
+// Main
+//
+loadImagesIntoStack(directory);
+thresholdImages(threshold);
+measureCells();
+
+// Functions
+// 
+function loadImagesIntoStack(directory) {
+	run("Image Sequence...", "open=["+directory+"] sort");
+}
+
+function thresholdImages(threshold) {
+	setAutoThreshold("Default dark");
+	setThreshold(threshold, 255);
+	setOption("BlackBackground", false);
+	run("Convert to Mask", "method=Default background=Dark"); 
+}
+
+function measureCells() {
+	run("Set Measurements...", "area display redirect=None decimal=4");
+	run("Analyze Particles...", "  show=Nothing summarize stack");
+}  
+```
 
 
 ### Dealing with data distributed across different folders

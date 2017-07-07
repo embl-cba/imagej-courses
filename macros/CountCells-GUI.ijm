@@ -1,3 +1,7 @@
+//
+// ../macros/CountCells-GUI.ijm
+//
+
 // User input
 directory = getDirectory("Select a directory");
 threshold = getNumber("Enter threshold", 29);

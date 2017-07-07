@@ -1,6 +1,6 @@
 // User input
-directory = getDirectory("Select a directory");
-threshold = getNumber("Enter threshold", 29);
+path = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
+threshold = 29;
 
 // General code
 run("Image Sequence...", "open=["+directory+"] sort");
