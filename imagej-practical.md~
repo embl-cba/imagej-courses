@@ -949,6 +949,11 @@ There are several ways to achieve batch analysis of many images in ImageJ:
 - Using [Process > Batch]
 - Writing scripts, e.g. using the ImageJ Macro language
 
+## More information
+
+- https://imagej.net/How_to_apply_a_common_operation_to_a_complete_directory
+- https://imagej.net/Batch_Processing
+
 ## Batch analysis using image stacks
 
 If your images have the same dimensions in x,y (and z) and you want to apply the exact same operation to all of them the easiest option for batch analysis is to load all of them into one image (hyper-)stack.
@@ -1038,29 +1043,34 @@ Workflow 2 (using Bio-Formats Importer):
 Another frequently occuring scenario is that you have 3-D data, where each file is one image stack.
 In the following we will see how to deal with this case. In fact, you can still do the hyperstack trick, because the Bio-Formats plugin can automatically combine data from image stacks into one hyperstack.
 
-
-
- 
-
-
-
-
- 
-
+Workflow:
+- Load all stacks at once into one hyperstack
+	- [Plugins > Bio-Formats > Bio-Formats Importer]:
+		- View stack with: "Hyperstack"
+		- [X] Group files with similar names
+			- You'll see how it interprets your file-naming scheme
+		- [OK]
+- Do the processing of your choice, e.g. background subtraction
+- Save the data again as individual stacks
+	- [Plugins > Bio-Formats > Bio-Formats Exporter]
+	- Note: the Bio-Formats Exporter has (had) a bug when doing this for multi-channel images
 
   
-
 ## Batch analysis using [Process > Batch]
+
+If your images have different sizes above tricks using an image stack will not work. 
+In such cases the next thing you can try is the batch-processing that is built into ImageJ.
  
 ### Converting various images to Tiff files
-
-If your images are 3D or have different sizes above trick using an image stack will not work.
 
 Data:
 - Diverse images with different file formats and dimensions
 
 Workflow:
-- [Process > Batch > Convert]
+- [Process > Batch > Convert]: 
+	- Input: "../data_new/different-file-formats/"
+	- Output: you can choose :-)
+	- Leave other options at default values
 
 ### Display the filename on multiple images
 
@@ -1072,7 +1082,10 @@ Data:
 Workflow:
 - Use ImageJ's in-built batch processing, chosing one of the example macros.
 	- [Process > Batch > Macro]  
-	- Combine code from two of the example macros: "Print index and title", "Label' 
+	- Combine code from two of the example macros: "Print index and title", "Label"
+		- setFont("SansSerif", 18, "antialiased");
+		- setColor("red");
+		- drawString(getTitle(), 20, 30); 
 
 #### ImageJ macro notes:
 - Information about macro language:
@@ -1080,7 +1093,105 @@ Workflow:
 	- https://imagej.nih.gov/ij/developer/macro/functions.html
  
 
-### Put scale bar on multiple images
+### Putting a scale bar on multiple images
+
+It is also very useful to have a scale bar in the images, e.g. for publication on a web-site.
+There is no predefined macro for adding a scale bar in Process > Batch; thus we have to record the command on our own.
+
+Workflow:
+- Record the macro command for putting a scale bar:
+	- [Plugins > Macros > Record..]
+		- Record: Macro (not Java)
+	- Open some file, e.g. "../data_new/meaningful_filenames/Treatment_A.tif"
+	- Put a scale bar:
+		- [Analyze > Tools > Scale Bar..]
+			- choose some parameters that you like
+			- [OK]
+	- Now the Recorded window should show some text, e.g.
+		- run("Scale Bar...", "width=50 height=4 font=14 color=White background=None location=[Lower Right] bold");
+	 - Use this text to put a scale bar onto multiple images using [Process > Batch > Macro..] (see above)
+ 
+## Batch analysis with macro programming
+
+References:
+- https://imagej.nih.gov/ij/developer/macro/functions.html
+- https://imagej.nih.gov/ij/developer/macro/macros.html
+
+Sometimes you really need to write all the code; for instance, once your data is distributed across different folders none of the approaches above currently works (apart from the special script "../macros/import-from-subfolder.py").
+
+Thus, we will learn how to deal with data in different folders. In programming, it is typical not to start from scratch, but modify existing code (everybody does that ;-). Thus, let's just try to understand below IJM (ImageJ-Macro) code. In fact, the way I found this code was like this:
+
+GOOGLE: imagej macro batch process folders
+
+CODE: https://imagej.nih.gov/ij/macros/BatchProcessFolders.txt
+
+'''
+// "BatchProcessFolders"
+//
+// This macro batch processes all the files in a folder and any
+// subfolders in that folder. In this example, it runs the Subtract 
+// Background command of TIFF files. For other kinds of processing,
+// edit the processFile() function at the end of this macro.
+
+   requires("1.33s"); 
+   dir = getDirectory("Choose a Directory ");
+   setBatchMode(true);
+   count = 0;
+   countFiles(dir);
+   n = 0;
+   processFiles(dir);
+   //print(count+" files processed");
+   
+   function countFiles(dir) {
+      list = getFileList(dir);
+      for (i=0; i<list.length; i++) {
+          if (endsWith(list[i], "/"))
+              countFiles(""+dir+list[i]);
+          else
+              count++;
+      }
+   }
+
+   function processFiles(dir) {
+      list = getFileList(dir);
+      for (i=0; i<list.length; i++) {
+          if (endsWith(list[i], "/"))
+              processFiles(""+dir+list[i]);
+          else {
+             showProgress(n++, count);
+             path = dir+list[i];
+             processFile(path);
+          }
+      }
+  }
+
+  function processFile(path) {
+       if (endsWith(path, ".tif")) {
+           open(path);
+           // 
+           // CHANGE HERE: START
+           //
+           run("Subtract Background...", "rolling=50 white");
+           save(path+"--processed.tif");
+           // 
+           // CHANGE HERE: END
+           //
+           close();
+      }
+  }
+
+
+''
+
+Looks complicated, doen't it?! 
+
+The really good news however is that the only part you really need to care about is the tiny bit between CHANGE HERE START and END.
+
+
+
+
+
+
 
 
 

@@ -949,6 +949,11 @@ There are several ways to achieve batch analysis of many images in ImageJ:
 - Using [Process > Batch]
 - Writing scripts, e.g. using the ImageJ Macro language
 
+## More information
+
+- https://imagej.net/How_to_apply_a_common_operation_to_a_complete_directory
+- https://imagej.net/Batch_Processing
+
 ## Batch analysis using image stacks
 
 If your images have the same dimensions in x,y (and z) and you want to apply the exact same operation to all of them the easiest option for batch analysis is to load all of them into one image (hyper-)stack.
@@ -1106,6 +1111,90 @@ Workflow:
 		- run("Scale Bar...", "width=50 height=4 font=14 color=White background=None location=[Lower Right] bold");
 	 - Use this text to put a scale bar onto multiple images using [Process > Batch > Macro..] (see above)
  
+## Batch analysis with macro programming
+
+References:
+- https://imagej.nih.gov/ij/developer/macro/functions.html
+- https://imagej.nih.gov/ij/developer/macro/macros.html
+
+Sometimes you really need to write all the code; for instance, once your data is distributed across different folders none of the approaches above currently works (apart from the special script "../macros/import-from-subfolder.py").
+
+Thus, we will learn how to deal with data in different folders. In programming, it is typical not to start from scratch, but modify existing code (everybody does that ;-). Thus, let's just try to understand below IJM (ImageJ-Macro) code. In fact, the way I found this code was like this:
+
+GOOGLE: imagej macro batch process folders
+
+CODE: https://imagej.nih.gov/ij/macros/BatchProcessFolders.txt
+
+'''
+// "BatchProcessFolders"
+//
+// This macro batch processes all the files in a folder and any
+// subfolders in that folder. In this example, it runs the Subtract 
+// Background command of TIFF files. For other kinds of processing,
+// edit the processFile() function at the end of this macro.
+
+   requires("1.33s"); 
+   dir = getDirectory("Choose a Directory ");
+   setBatchMode(true);
+   count = 0;
+   countFiles(dir);
+   n = 0;
+   processFiles(dir);
+   //print(count+" files processed");
+   
+   function countFiles(dir) {
+      list = getFileList(dir);
+      for (i=0; i<list.length; i++) {
+          if (endsWith(list[i], "/"))
+              countFiles(""+dir+list[i]);
+          else
+              count++;
+      }
+   }
+
+   function processFiles(dir) {
+      list = getFileList(dir);
+      for (i=0; i<list.length; i++) {
+          if (endsWith(list[i], "/"))
+              processFiles(""+dir+list[i]);
+          else {
+             showProgress(n++, count);
+             path = dir+list[i];
+             processFile(path);
+          }
+      }
+  }
+
+  function processFile(path) {
+       if (endsWith(path, ".tif")) {
+           open(path);
+           // 
+           // CHANGE HERE: START
+           //
+           run("Subtract Background...", "rolling=50 white");
+           save(path+"--processed.tif");
+           // 
+           // CHANGE HERE: END
+           //
+           close();
+      }
+  }
+
+
+''
+
+Looks complicated, doesn't it?! 
+
+The really good news however is that the only part you really need to care about is the tiny bit between CHANGE HERE START and END. You can replace that part by anything that you recorded as a macro.
+
+For example, let's try smoothing all the images:
+
+...
+
+
+
+
+
 
 
 
