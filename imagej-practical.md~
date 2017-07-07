@@ -1183,9 +1183,13 @@ CODE: https://imagej.nih.gov/ij/macros/BatchProcessFolders.txt
 
 ''
 
-Looks complicated, doen't it?! 
+Looks complicated, doesn't it?! 
 
-The really good news however is that the only part you really need to care about is the tiny bit between CHANGE HERE START and END.
+The really good news however is that the only part you really need to care about is the tiny bit between CHANGE HERE START and END. You can replace that part by anything that you recorded as a macro.
+
+For example, let's try smoothing all the images:
+
+...
 
 
 
