@@ -68,8 +68,6 @@ Example data within Fiji:
 Fiji commands:
 - [Image > Adjust > Auto Threshold]
 
-
-
 ### Discussion
 
 - Many automated thresholding methods always find a threshold, even if there is only noise.
@@ -480,7 +478,6 @@ Your working directory is: __'../data/workflow_autophagosomes'__. This folder co
 If you messed up or missed a step there also is a sub-folder __'teacher'__, form which you can load all files that you need during the practicals :-)
 
 
-<div style="page-break-after: always;"></div>
 ## What to measure?
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/bothChannels.jpg" width=200/>
@@ -572,7 +569,6 @@ Whiteboard session:
 - Using the Spheroids image in 3D_Segmentation one can d emonstrate that the top-hat (dramatically) underestimates the background in noisy images
 
 
-<div style="page-break-after: always;"></div>
 ## Further enhancing of spots using a Laplacian of Gaussian filter (optional)
 
 Above local background subtraction methods already helped a lot to enhance the spots; however in some cases there might still be some patchy locally bright regions left that are not corresponding to "real" spots. The reason is that the local background subtraction methods cannot distinguish locall bright elongated from locally bright round objects. Convolution of the image with a [Laplacian of Gaussian](https://en.wikipedia.org/wiki/Blob_detection#The_Laplacian_of_Gaussian) filter can help to further enhance spots of a certain size. 
@@ -580,7 +576,6 @@ Above local background subtraction methods already helped a lot to enhance the s
 - ...
 
 
-<div style="page-break-after: always;"></div>
 ## Spot detection using 'Find Maxima'
 
 ImageJ's 'Find Maxima' considers a pixel a maximum if its intensity is higher - by the 'Noise tolerance' - than neighboring pixels; see [Topographic prominence](http://en.wikipedia.org/wiki/Topographic_prominence). 
@@ -605,7 +600,6 @@ ImageJ's 'Find Maxima' considers a pixel a maximum if its intensity is higher - 
 As you can see there are maxima detected only due to the cellular background. If you do the same using 'spots_median.tif' - where the background was removed - as input image there should be no maxima (for this 'Noise tolerance').
 
 
-<div style="page-break-after: always;"></div>
 ## Cell detection using seeded watershed
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/cell_segmentation_watershed.png" width=700/>
@@ -625,7 +619,6 @@ Explanation for this use-case: Look at the image after blurring it. Then imagine
 Try the same leaving out the 'Gaussian Blur' step. Can you get it to work?
 
 
-<div style="page-break-after: always;"></div>
 ## Generate cell 'objects' that can be used for measurements
 
 We run the 'Particle Analyzer' to convert the binary cell image into 'objects' (i.e., regions of interest = ROIs). This will be handy later for cell-based measurements. 
@@ -647,7 +640,6 @@ We run the 'Particle Analyzer' to convert the binary cell image into 'objects' (
 		- Click __[Help]__ to figure out what 'Circularity' is.
 
 
-<div style="page-break-after: always;"></div>
 ## Improved cell detection by excluding background pixels
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/cell segmentation.png" width=400/>
@@ -665,7 +657,6 @@ The problem of the seeded watershed algorithm is that the 'grows into the backgr
 - __[Analyze>Analyze Particles..] 'Size=100-Infinity' 'Exclude on edges=Check' 'Add to Manager=Check'__  (*simply finds the cell objects*)
 - __[ROI Manager>More>>Save..] 'cells_improved.zip'__
 
-<div style="page-break-after: always;"></div>
 ## Measure spots per cell
 
 ImageJ can measure lots of features. To have our readout more "to-the-point" we will first only select a small subset: 
@@ -686,7 +677,6 @@ The 'RawIntDen' value is the spot count. How many spots did you find?
 #### Exercise
 Manually draw a region on the image, add it to the ROI Manager __[ROI Manager>Add]__ and measure the number of spots in this region.
 
-<div style="page-break-after: always;"></div>
 ## Manual background subtraction on whole image
 
 If we want to measure total cell intensity in a biophysically meaningful way we have to set the image background intensity to zero.  Since cells can grow dense it can be difficult or even impossible to find the correct background value in one image. Thus, sometimes one has to manually subtract a fixed background value from the image. 
@@ -704,9 +694,6 @@ If we want to measure total cell intensity in a biophysically meaningful way we 
 #### Exercise
 Do the same but leave out the 32-bit conversion step. Now measure the intensity in the background after correction! What happens? 
 
-
-
-<div style="page-break-after: always;"></div>
 ## Compute nuclear distance map
 (=> Whiteboard session on Distance Transform)
 
@@ -725,7 +712,6 @@ Quite often in biology one wants to know how far a certain structure is away fro
 #### Exercise
 ...
 
-<div style="page-break-after: always;"></div>
 ## Use nuclear distance map on detected spots
 
 In order to measure the distance of each previously detected spot to the nucleus we (almost) simply multiply the distance map with the spot image. The only problem we have is that a zero in the final image could mean: (i) there was no spot or (ii) there was a spot but its distance to the nucleus was zero. To distinguish these cases we will set non-spot pixels to NaN (Not a Number) before we do the multiplication 
@@ -747,7 +733,6 @@ Multiply spot image with distance image:
 - __[File>Save As>Tiff..] 'spots_dist2nuc.tif'__
 
 
-<div style="page-break-after: always;"></div>
 ## Measure intensity inside autophagosomes
 (=> Whiteboard session on intensity measurements in diffraction limited objects in the presence of local background (unbound protein))
 
@@ -760,7 +745,6 @@ Often one wants quantify the intensity of objects as it reports the amount of bo
 	- *pixel values: inside spots: background corrected spot intensity; outside spots: NaN*
 - __[File>Save As>Tiff..] 'spots_intensity.tif'__
 
-<div style="page-break-after: always;"></div>
 ## Perform all kinds of cell based measurements 
 
 Once we have the cell ROIs we can measure many cell-based features, simply loading different input images for the measurement: 
@@ -779,12 +763,10 @@ Once we have the cell ROIs we can measure many cell-based features, simply loadi
 Try to remember the biological interpretation of these measurements. Think about ratios of any of the measured numbers.
 
 
-<div style="page-break-after: always;"></div>
 ## Automation using the IJ macro language 
 
 In order to apply the previous measurements to more than one image, we will now automate all the step that we did previously. For this we will use the ImageJ Macro language (http://rsb.info.nih.gov/ij/developer/macro/macros.html) and ImageJ's inbuilt  Macro Recorder [Plugins>Macros>Record].
 
-<div style="page-break-after: always;"></div>
 ### Create a macro for automated cell detection
 
 First clean up things, e.g. by restarting ImageJ, and then turn on the Macro Recorder [Plugins>Macros>Record..]
@@ -809,7 +791,6 @@ Look at the macro for the improved cell detection with exclusion of background p
 Try to understand the code. Look up commands that you don't know on
 http://rsb.info.nih.gov/ij/developer/macro/functions.html
 
-<div style="page-break-after: always;"></div>
 ### Create a macro for automated spot detection
 
 First clean up things, e.g. by simply restarting ImageJ, and turn on the Macro Recorder [Plugins>Macros>Record..]
@@ -830,7 +811,6 @@ Execute below commands for automated spot detection (same commands we used earli
 
 
 
-<div style="page-break-after: always;"></div>
 ### Combine cell- and spot-detection macros and add the spot-per-cell measurement
 
 Open both macros (of course, if you have them both open already you can skip this step) and then simply code and paste the SpotDetection code below the CellDetection code.
@@ -856,7 +836,6 @@ Now we need to add the spot-per-cell counting by recording the appropriate macro
 
 Run the code twice in a row without closing any windows. Confirm that both the content of the ROI Manager and the content of the Results table get messed up. What happens?
 
-<div style="page-break-after: always;"></div>
 ### Close all windows in a macro (help yourself!)
 
 We saw above that we need to automatically close Results Table and ROI Manager before running our macro. Also it would be good to close all image windows. In this case macro recording not always helps (at least on the teachers Mac for a specific version of ImageJ and Fiji). Try to find the right commands using any of the following approaches:
@@ -872,7 +851,6 @@ If you found nothing useful you can see what I found:
 
 - [File>Open..] '../teacher/closeEverything.ijm'
 
-<div style="page-break-after: always;"></div>
 ## Adding a function to close all windows
 Above we already found the commands to close all windows. Here we will see how to neatly pack them into a "function" such they can be called conveniently from every point of your macro.
 
@@ -882,7 +860,6 @@ Above we already found the commands to close all windows. Here we will see how t
 
 => Discussion of the code with help of teacher.
 
-<div style="page-break-after: always;"></div>
 ## Adding code to select an arbitrary image
 
 Right now our 'CellAndSpotDetection_Improved.ijm' only runs on one specific image. Let's look at a slightly modified version that makes it useable for any given input image:
@@ -894,7 +871,6 @@ Right now our 'CellAndSpotDetection_Improved.ijm' only runs on one specific imag
 
 => Discussion of the code with help of teacher.
 
-<div style="page-break-after: always;"></div>
 ## Batch me if you can
 
 Of course, we'd like to run a macro on many images. In ImageJ there is the function [Process>Batch>Macro..], which automatically applies a macro to all files in the 'Input..' folder. However, this function is very limited, for instance it cannot handle saving results tables.    
@@ -907,7 +883,6 @@ This code involves some 'real programming' that, in principle, you don't have to
 
 (=> Discussion of the code with teacher.)
 
-<div style="page-break-after: always;"></div>
 ## Batch cell and spot detection
 
 Ok, let's have a look the final code, which apart from a few marked changes is just the central part of 'CellAndSpotDetection_ChooseImage.ijm' copied into 'runAsBatch.ijm':
@@ -923,7 +898,6 @@ Ok, let's have a look the final code, which apart from a few marked changes is j
 Think about the following: Is this code ready to use for a project? What is missing? 
 
 
-<div style="page-break-after: always;"></div>
 ## Batch processing considerations  
 
 The macro 'CellAndSpotDetection_Batch.ijm' is not bad but it is also missing a few things:

@@ -932,18 +932,81 @@ There are several ways to achieve batch analysis of many images in ImageJ:
 
 If your images have the same dimensions in x,y (and z) and you want to apply the exact same operation to all of them the easiest option for batch analysis is to load all of them into one image (hyper-)stack.
 
-### Counting the number of nuclei in many images
+### Automatically counting the number of nuclei in many images
 
 Data:
 - Mitocheck time-lapse movie saved as individual images
 
 Workflow:
 - Load all images into an image stack
-	- [File > Import > Image Sequence]
-- Threshold
-- Set measurements
-	- Keep track of filename
-- Find objects
+	- [File > Import > Image Sequence]: "../data_new/mitocheck_movie"
+
+- Threshold all images
+	- [Image > Adjust Threshold]: [X] Dark background
+		- [Apply]
+		- [ ] Calculate threshold for each image
+			- Uncheck this, otherwise some auto-thresholdin is going on!
+		 
+
+- Set measurements, keeping tracking of the file-name
+	- [Analyze > Set measurements]
+		- [X] Area
+		- [X] Display label
+			- this will keep track of the filename
+
+- Find and measure the cells in all images
+	- [Analyze > Analyze Particles...]
+		- [X] Summarize
+			- This will give you for each image the average results of all cells
+
+### Even more automated counting of all cells in many images using an IJ-Macro
+
+Even though the trick of loading all images into one stack saved as a lot of work, we still need to click quite a bit. If you want to do this workflow for many folders with images it will become boring. Thus, let's record a macro that does the job for us:
+
+- [Plugins > Macros > Record]
+- Repeat all the steps from above, including opening the file!
+- You should have recorded something like this ("../macros/mitocheck-movie-count-cells.ijm"):
+
+```
+run("Image Sequence...", "open=/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie sort");
+run("Set Measurements...", "area display redirect=None decimal=4");
+setAutoThreshold("Default dark");
+//run("Threshold...");
+//setThreshold(29, 255);
+setOption("BlackBackground", false);
+run("Convert to Mask", "method=Default background=Dark");
+selectWindow("mitocheck-movie");
+run("Analyze Particles...", "  show=Nothing summarize stack");
+```
+
+If you now [Create] the macro and [Run] it, it should do the job.
+- Note: "//" means that a line of code only is a comment
+- We have to remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
+
+### Making it a nice macro, using variables
+
+Some commands in our macro will be the same, but some stuff will be different for different files.
+It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables" ("../macros/mitocheck-movie-count-all-cells-with-variables.ijm");
+
+```
+// User input
+path = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
+threshold = 29;
+
+// General code
+run("Image Sequence...", "open=["+path+"] sort");
+run("Set Measurements...", "area display redirect=None decimal=4");
+setAutoThreshold("Default dark");
+setThreshold(threshold, 255);
+setOption("BlackBackground", false);
+run("Convert to Mask", "method=Default background=Dark");
+run("Analyze Particles...", "  show=Nothing summarize stack");
+```
+
+
+ 
+
+
 
 ### Dealing with data distributed across different folders
 
@@ -1099,7 +1162,7 @@ GOOGLE: imagej macro batch process folders
 
 CODE: https://imagej.nih.gov/ij/macros/BatchProcessFolders.txt
 
-'''
+```
 // "BatchProcessFolders"
 //
 // This macro batch processes all the files in a folder and any
@@ -1153,9 +1216,7 @@ CODE: https://imagej.nih.gov/ij/macros/BatchProcessFolders.txt
            close();
       }
   }
-
-
-''
+```
 
 Looks complicated, doesn't it?! 
 
