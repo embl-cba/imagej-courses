@@ -934,26 +934,24 @@ If your images have the same dimensions in x,y (and z) and you want to apply the
 
 ### Automatically counting the number of nuclei in many images <a name="AutoCount"></a>
 
-Data:
-- Mitocheck time-lapse movie saved as individual images
+Counting the number of objects in many images is probably the most classical bio-image analysis application; thus let's start with this!
 
 Workflow:
 - Load all images into an image stack
-	- [File > Import > Image Sequence]: "../data_new/mitocheck_movie"
-
+	- [File > Import > Image Sequence] 
+		- '../data_new/mitocheck_movie'
 - Threshold all images
-	- [Image > Adjust Threshold]: [X] Dark background
-		- [Apply]
+	- [Image > Adjust Threshold]
+		- [X] Dark background
 		- [ ] Calculate threshold for each image
 			- Uncheck this, otherwise some auto-thresholdin is going on!
-		 
-
+		- [Apply]
+			- Yes, do it for the whole stack!
 - Set measurements, keeping tracking of the file-name
 	- [Analyze > Set measurements]
 		- [X] Area
 		- [X] Display label
 			- this will keep track of the filename
-
 - Find and measure the cells in all images
 	- [Analyze > Analyze Particles...]
 		- [X] Summarize
@@ -961,31 +959,31 @@ Workflow:
 
 ### Dealing with data distributed across different folders
 
-Often your data might not be in one folder. To still load them into one image stack you can use a macro that is provided in this repository:
-
-Data:
-- Several images from Mitocheck screen, distributed across different folders
+Often your data might not be in one folder. 
+For example have a look at the folder:
+"../data_new/data-in-subfolders"
+To still load them into one image stack you can use a macro that is provided in this repository:
 
 Workflow:
 - Load and run the macro
 	- Drag&Drop onto Fij: "../macros/import-from-subfolders.py"
 	- Press [Run]
-- Do an operation of your choice
+		- Filename contains: ".tif"
+		- Choose as folder: "../data_new/data-in-subfolders/"
+- You have all data in one stack and could for instance count the number of cells, as we learned above.
 
 Comment:
 - Like this, you cannot change the data and then save it back into the same folder-structure; this would require writing some macro code (see below)
 
-### Computing and saving 3-D Maximum projections of many stacks
+### Computing and saving 3-D maximum projections of many stacks
 
-If you have 3-D data, which all have the same x,y,z dimensions, you could implement batch operations using so-called "hyper-stacks"; the challenge here is to actually load the data into a hyperstack; once you have it, batch operations are easy.
+If you have 3-D data, all having the same x,y,z dimensions, you could implement batch operations using so-called "hyper-stacks"; the challenge here is to actually load the data into a hyperstack; once you have it, batch operations are easy.
 
-### Making a hyperstack from single files, using Import Image Sequence
+### Making a hyperstack from single files, using [Import Image Sequence]
 
 Sometimes data beloning to different image stacks is distributed across single files.
 Here, you can see how to rearrange them into a hyper-stack after loading. 
 
-Data:
-- 5-D (X,Y,Z,C,T) mitosis movie (from ImageJ Samples), saved as single files
 
 Workflow:
 - Load all images
@@ -993,12 +991,12 @@ Workflow:
 		- "../data_new/mitosis-5D-single-files/"
 - Make a hyperstack
 	- [Image > Hyperstack > Stack to Hyperstack]
-	- To enter the right numbers you have to inspect how the data was loaded and read from the filenames how many Z,C,T we have
-	- Solution: 
-		- Order: xyczt
-		- Channels: 2
-		- Time-frames: 51
-		- Z-Slices: 5
+		- Determine the correct dimensions inspecting the filenames 
+		- Solution: 
+			- Order: xyczt
+			- Channels: 2
+			- Time-frames: 51
+			- Z-Slices: 5
 - Make a maximum projection of all time-frames
 	- [Image > Stacks > Z Project]: Projection Type: "Max Intensity"
 - Save data as individual files
@@ -1009,9 +1007,7 @@ If the filenames are very well structured those dimensions can be determined aut
 
 ### Making a hyperstack from single files using the Bioformats Importer
 
-In order for this to work we need the BioFormats plugin:
-
-Installing Bio-Formats:
+In order for this to work we need to install the very useful BioFormats plugin:
 - [Help > Update]: 
 	- [Manage Update Sites]: 
 		- [X] Java-8
@@ -1097,8 +1093,9 @@ Workflow:
 		- [Analyze > Tools > Scale Bar..]
 			- choose some parameters that you like
 			- [OK]
-	- Now the Recorded window should show some text, e.g.
-		- run("Scale Bar...", "width=50 height=4 font=14 color=White background=None location=[Lower Right] bold");
+	- Now the window should show some text, such as:
+		- ```run("Scale Bar...", "width=50 height=4 font=14 color=White background=None location=[Lower Right] bold");```
+
 - Use the recorded text (copy & paste) to put a scale bar onto multiple images using [Process > Batch > Macro..] (see above)
  
 ## Batch analysis with macro programming
@@ -1107,11 +1104,11 @@ References:
 - https://imagej.nih.gov/ij/developer/macro/functions.html
 - https://imagej.nih.gov/ij/developer/macro/macros.html
 
-
 ### Even more automated counting of all cells in many images using an IJ-Macro
 
-As our first real example of a macro we will automate above workflow ["Automatically counting the number of cells in many images"](#AutoCount), because even though the trick of loading all images into one stack saved us a lot of work, we still need to click quite a bit. If you want to do this workflow for many folders with images it will become boring. Thus, let's record a macro that does the job for us:
+As our first real example of a macro we will automate above workflow ["Automatically counting the number of cells in many images"](#AutoCount). Even though the trick of loading all images into one stack saved us a lot of work, we still needed to click a lot. If you want to do this workflow for many folders it surely will become boring. Thus, let's record a macro that does the job for us:
 
+Record a macro:
 - [Plugins > Macros > Record]
 - Repeat all the steps from [above](#AutoCount), including opening the file!
 - You should have recorded something like this:
@@ -1141,7 +1138,7 @@ If you now [Create] the macro and [Run] it, it should do the job.
 Some commands in our macro will be the same, but some stuff will be different for different files.
 It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables".
 
-[Short interactive practical on variables].
+**=> Interactive practical on variables.**
 
 
 ```
@@ -1166,13 +1163,15 @@ run("Analyze Particles...", "  show=Nothing summarize stack");
 
 It is nice, not to have to type into the macro, but enter the variables with a GUI.
 
-Google: imagej macro get directory
-- https://imagej.nih.gov/ij/macros/GetDirectoryDemo.txt
-- getDirectory("Select a directory");
-
 Google: imagej macro get variable from user
 - http://imagej.1557.x6.nabble.com/Having-a-macro-prompt-for-variable-input-td3694090.html
 - getNumber("prompt", defaultValue); 
+
+**=> interactive practical, getting a number and printing it**
+
+Google: imagej macro get directory
+- https://imagej.nih.gov/ij/macros/GetDirectoryDemo.txt
+- getDirectory("Select a directory");
 
 ```
 //
