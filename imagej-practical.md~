@@ -934,20 +934,18 @@ If your images have the same dimensions in x,y (and z) and you want to apply the
 
 ### Automatically counting the number of nuclei in many images <a name="AutoCount"></a>
 
-Counting the number of objects in many images is probably the most classical bio-image analysis application; thus let's start with this!
+Data:
+- Mitocheck time-lapse movie saved as individual images
 
 Workflow:
 - Load all images into an image stack
-	- [File > Import > Image Sequence] 
-		- '../data_new/mitocheck_movie'
+	- [File > Import > Image Sequence]: "../data_new/mitocheck_movie"
 
 - Threshold all images
-	- [Image > Adjust Threshold]
-		- [X] Dark background
+	- [Image > Adjust Threshold]: [X] Dark background
+		- [Apply]
 		- [ ] Calculate threshold for each image
 			- Uncheck this, otherwise some auto-thresholdin is going on!
-		- [Apply]
-			- Yes, do it for the whole stack!
 		 
 
 - Set measurements, keeping tracking of the file-name
