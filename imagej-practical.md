@@ -932,7 +932,7 @@ There are several ways to achieve batch analysis of many images in ImageJ:
 
 If your images have the same dimensions in x,y (and z) and you want to apply the exact same operation to all of them the easiest option for batch analysis is to load all of them into one image (hyper-)stack.
 
-### Automatically counting the number of nuclei in many images
+### Automatically counting the number of nuclei in many images <a name="AutoCount"></a>
 
 Data:
 - Mitocheck time-lapse movie saved as individual images
@@ -959,13 +959,162 @@ Workflow:
 		- [X] Summarize
 			- This will give you for each image the average results of all cells
 
+### Dealing with data distributed across different folders
+
+Often your data might not be in one folder. To still load them into one image stack you can use a macro that is provided in this repository:
+
+Data:
+- Several images from Mitocheck screen, distributed across different folders
+
+Workflow:
+- Load and run the macro
+	- Drag&Drop onto Fij: "../macros/import-from-subfolders.py"
+	- Press [Run]
+- Do an operation of your choice
+
+Comment:
+- Like this, you cannot change the data and then save it back into the same folder-structure; this would require writing some macro code (see below)
+
+### Computing and saving 3-D Maximum projections of many stacks
+
+If you have 3-D data, which all have the same x,y,z dimensions, you could implement batch operations using so-called "hyper-stacks"; the challenge here is to actually load the data into a hyperstack; once you have it, batch operations are easy.
+
+### Making a hyperstack from single files, using Import Image Sequence
+
+Sometimes data beloning to different image stacks is distributed across single files.
+Here, you can see how to rearrange them into a hyper-stack after loading. 
+
+Data:
+- 5-D (X,Y,Z,C,T) mitosis movie (from ImageJ Samples), saved as single files
+
+Workflow:
+- Load all images
+	- [File > Import Image Sequence]
+		- "../data_new/mitosis-5D-single-files/"
+- Make a hyperstack
+	- [Image > Hyperstack > Stack to Hyperstack]
+	- To enter the right numbers you have to inspect how the data was loaded and read from the filenames how many Z,C,T we have
+	- Solution: 
+		- Order: xyczt
+		- Channels: 2
+		- Time-frames: 51
+		- Z-Slices: 5
+- Make a maximum projection of all time-frames
+	- [Image > Stacks > Z Project]: Projection Type: "Max Intensity"
+- Save data as individual files
+	- [File > Save as > Image Sequence]
+
+In above workflow we had to manually enter the dimensions of the data.
+If the filenames are very well structured those dimensions can be determined automatically as shown in the next workflow.
+
+### Making a hyperstack from single files using the Bioformats Importer
+
+In order for this to work we need the BioFormats plugin:
+
+Installing Bio-Formats:
+- [Help > Update]: 
+	- [Manage Update Sites]: 
+		- [X] Java-8
+		- [X] Bio-Formats
+		- [Close]
+	- [Apply Changes]
+- Restart Fiji
+ 
+
+Workflow:
+- Load individual files as hyperstack
+	- [Plugins > Bio-Formats > Bio-Formats Importer]:
+		- click on one file in the folder "../data_new/mitosis-5D-single-files/"
+		- View stack with: "Hyperstack"
+		- [X] Group files with similar names
+			- You'll see how it interprets your file-naming scheme
+		- [OK]
+- Do the processing of your choice and save the data again using [File > Save as > Image Sequence]
+
+#### Image stacks
+
+Another frequently occuring scenario is that you have 3-D data, where each file is one image stack.
+In the following we will see how to deal with this case. In fact, you can still do the hyperstack trick, because the Bio-Formats plugin can automatically combine data from image stacks into one hyperstack.
+
+Workflow:
+- Load many stacks into one hyperstack
+	- [Plugins > Bio-Formats > Bio-Formats Importer]:
+		- click on one file in folder: "../data_new/mitosis-4D-stacks/"
+		- View stack with: "Hyperstack"
+		- [X] Group files with similar names
+			- You'll see how it interprets your file-naming scheme
+		- [OK]
+- Do the processing of your choice, e.g. background subtraction
+- Save the data again as individual stacks
+	- [Plugins > Bio-Formats > Bio-Formats Exporter]
+	- Note: the Bio-Formats Exporter has (had) a bug when doing this for multi-channel images
+
+  
+## Batch analysis using [Process > Batch]
+
+If your images have different sizes above tricks using an image stack will not work. 
+In such cases the next thing you can try is the batch-processing that is built into ImageJ.
+ 
+### Converting various images to Tiff files
+
+Data:
+- Diverse images with different file formats and dimensions
+
+Workflow:
+- [Process > Batch > Convert]: 
+	- Input: "../data_new/different-file-formats/"
+	- Output: you can choose :-)
+	- Leave other options at default values
+
+### Display the filename on multiple images
+
+It is good practice to have meaningful filenames, e.g., containing a particular treatment that your images were subjected to. For quick visual inspection of your data it can thus be useful to display the filename in the image.
+
+Workflow:
+- Use ImageJ's in-built batch processing, chosing one of the example macros.
+	- [Process > Batch > Macro] 
+		- Input: "../data_new/meaningful-filenames/"
+		- Output: your choice 
+		- Combine code from two of the example macros: "Print index and title", "Label"
+			- ```setFont("SansSerif", 18, "antialiased");```
+			- ```setColor("red");```
+			- ```drawString(getTitle(), 20, 30);``` 
+		- [Process]
+
+Don't worry for now too much about the code; we will learn more about it later.
+
+### Macro recording for putting a scale bar on multiple images
+
+It is also very useful to have a scale bar in the images, e.g. for publication on a web-site.
+There is no predefined macro for adding a scale bar in Process > Batch; thus we have to record the command on our own.
+
+Workflow:
+- Record the macro command for putting a scale bar:
+	- [Plugins > Macros > Record..]
+		- Record: Macro (not Java)
+	- Open some file, e.g. "../data_new/meaningful_filenames/Treatment_A.tif"
+	- Put a scale bar:
+		- [Analyze > Tools > Scale Bar..]
+			- choose some parameters that you like
+			- [OK]
+	- Now the Recorded window should show some text, e.g.
+		- run("Scale Bar...", "width=50 height=4 font=14 color=White background=None location=[Lower Right] bold");
+- Use the recorded text (copy & paste) to put a scale bar onto multiple images using [Process > Batch > Macro..] (see above)
+ 
+## Batch analysis with macro programming
+
+References:
+- https://imagej.nih.gov/ij/developer/macro/functions.html
+- https://imagej.nih.gov/ij/developer/macro/macros.html
+
+
 ### Even more automated counting of all cells in many images using an IJ-Macro
 
-Even though the trick of loading all images into one stack saved as a lot of work, we still need to click quite a bit. If you want to do this workflow for many folders with images it will become boring. Thus, let's record a macro that does the job for us:
+As our first real example of a macro we will automate above workflow ["Automatically counting the number of cells in many images"](#AutoCount), because even though the trick of loading all images into one stack saved us a lot of work, we still need to click quite a bit. If you want to do this workflow for many folders with images it will become boring. Thus, let's record a macro that does the job for us:
 
 - [Plugins > Macros > Record]
-- Repeat all the steps from above, including opening the file!
-- You should have recorded something like thi:
+- Repeat all the steps from [above](#AutoCount), including opening the file!
+- You should have recorded something like this:
 
 ```
 //
@@ -983,13 +1132,17 @@ run("Analyze Particles...", "  show=Nothing summarize stack");
 ```
 
 If you now [Create] the macro and [Run] it, it should do the job.
+
 - Note: "//" means that a line of code only is a comment
 - We have to remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
 
 #### Making it nicer, using variables
 
 Some commands in our macro will be the same, but some stuff will be different for different files.
-It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables":
+It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables".
+
+[Short interactive practical on variables].
+
 
 ```
 //
@@ -1080,153 +1233,10 @@ function measureCells() {
 ```
 
 
-### Dealing with data distributed across different folders
 
-Often your data might not be in one folder. To still load them into one image stack you can use a macro that is provided in this repository:
+### Dealing with data in different folders using macro programming
 
-Data:
-- Several images from Mitocheck screen, distributed across different folders
-
-Workflow:
-- Load and run the macro
-	- Drag&Drop onto Fij: "../macros/import-from-subfolders.py"
-	- Press [Run]
-- Do an operation of your choice
-
-Comment:
-- Like this, you cannot change the data and then save it back into the same folder-structure; this would require writing some macro code (see below)
-
-### Computing and saving 3-D Maximum projections of many stacks
-
-If you have 3-D data, which all have the same x,y,z dimensions, you could implement batch operations using so-called "hyper-stacks"; the challenge here is to actually load the data into a hyperstack; once you have it, batch operations are easy.
-
-#### Single files
-
-Sometimes all the data is in single files. 
-
-Data:
-- 5-D (X,Y,Z,C,T) mitosis movie (from ImageJ Samples), saved as single files
-
-Workflow 1 (using Import Image Sequence):
-- Load all images
-	- [File > Import Image Sequence]
-- Make a hyperstack
-	- [Image > Hyperstack > Stack to Hyperstack]
-	- To enter the right numbers you have to inspect how the data was loaded and read from the filenames how many Z,C,T we have
-	- Solution: 
-		- Order: xyczt
-		- Channels: 2
-		- Time-frames: 51
-		- Z-Slices: 5
-- Make a maximum projection of all time-frames
-	- [Image > Stacks > Z Project]: Projection Type: "Max Intensity"
-- Save data as individual files
-	- [File > Save as > Image Sequence]
-
-In above workflow we had to manually enter the dimensions of the data.
-If the filenames are very well structured those dimensions can be determined automatically as shown in the next workflow.
-
-In order for this to work we need the BioFormats plugin:
-
-Installing Bio-Formats:
-- [Help > Update]: 
-	- [Manage Update Sites]: 
-		- [X] Java-8
-		- [X] Bio-Formats
-		- [Close]
-	- [Apply Changes]
-- Restart Fiji
- 
-
-Workflow 2 (using Bio-Formats Importer):
-- Load individual files as hyperstack
-	- [Plugins > Bio-Formats > Bio-Formats Importer]:
-		- View stack with: "Hyperstack"
-		- [X] Group files with similar names
-			- You'll see how it interprets your file-naming scheme
-		- [OK]
-- Do the processing of your choice and save the data again using [File > Save as > Image Sequence]
-
-#### Image stacks
-
-Another frequently occuring scenario is that you have 3-D data, where each file is one image stack.
-In the following we will see how to deal with this case. In fact, you can still do the hyperstack trick, because the Bio-Formats plugin can automatically combine data from image stacks into one hyperstack.
-
-Workflow:
-- Load all stacks at once into one hyperstack
-	- [Plugins > Bio-Formats > Bio-Formats Importer]:
-		- View stack with: "Hyperstack"
-		- [X] Group files with similar names
-			- You'll see how it interprets your file-naming scheme
-		- [OK]
-- Do the processing of your choice, e.g. background subtraction
-- Save the data again as individual stacks
-	- [Plugins > Bio-Formats > Bio-Formats Exporter]
-	- Note: the Bio-Formats Exporter has (had) a bug when doing this for multi-channel images
-
-  
-## Batch analysis using [Process > Batch]
-
-If your images have different sizes above tricks using an image stack will not work. 
-In such cases the next thing you can try is the batch-processing that is built into ImageJ.
- 
-### Converting various images to Tiff files
-
-Data:
-- Diverse images with different file formats and dimensions
-
-Workflow:
-- [Process > Batch > Convert]: 
-	- Input: "../data_new/different-file-formats/"
-	- Output: you can choose :-)
-	- Leave other options at default values
-
-### Display the filename on multiple images
-
-It is good practice to have meaningful filenames, e.g., containing a particular treatment that your images were subjected to. For quick visual inspection of your data it can thus be useful to display the filename in the image.
-
-Data:
-- Mitocheck data from EMBO HTM course.
-
-Workflow:
-- Use ImageJ's in-built batch processing, chosing one of the example macros.
-	- [Process > Batch > Macro]  
-	- Combine code from two of the example macros: "Print index and title", "Label"
-		- setFont("SansSerif", 18, "antialiased");
-		- setColor("red");
-		- drawString(getTitle(), 20, 30); 
-
-#### ImageJ macro notes:
-- Information about macro language:
-	- https://imagej.nih.gov/ij/developer/macro/macros.html
-	- https://imagej.nih.gov/ij/developer/macro/functions.html
- 
-
-### Putting a scale bar on multiple images
-
-It is also very useful to have a scale bar in the images, e.g. for publication on a web-site.
-There is no predefined macro for adding a scale bar in Process > Batch; thus we have to record the command on our own.
-
-Workflow:
-- Record the macro command for putting a scale bar:
-	- [Plugins > Macros > Record..]
-		- Record: Macro (not Java)
-	- Open some file, e.g. "../data_new/meaningful_filenames/Treatment_A.tif"
-	- Put a scale bar:
-		- [Analyze > Tools > Scale Bar..]
-			- choose some parameters that you like
-			- [OK]
-	- Now the Recorded window should show some text, e.g.
-		- run("Scale Bar...", "width=50 height=4 font=14 color=White background=None location=[Lower Right] bold");
-	 - Use this text to put a scale bar onto multiple images using [Process > Batch > Macro..] (see above)
- 
-## Batch analysis with macro programming
-
-References:
-- https://imagej.nih.gov/ij/developer/macro/functions.html
-- https://imagej.nih.gov/ij/developer/macro/macros.html
-
-Sometimes you really need to write all the code; for instance, once your data is distributed across different folders none of the approaches above currently works (apart from the special script "../macros/import-from-subfolder.py").
+Once your data is distributed across different folders none of the approaches above currently works (apart from the special script "../macros/import-from-subfolder.py").
 
 Thus, we will learn how to deal with data in different folders. In programming, it is typical not to start from scratch, but modify existing code (everybody does that ;-). Thus, let's just try to understand below IJM (ImageJ-Macro) code. In fact, the way I found this code was like this:
 

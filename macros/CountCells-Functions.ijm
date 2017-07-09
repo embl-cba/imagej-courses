@@ -2,7 +2,6 @@
 // ../macros/CountCells-Functions.ijm
 //
 
-
 // User input
 //
 directory = getDirectory("Select a directory");
@@ -14,13 +13,11 @@ loadImagesIntoStack(directory);
 thresholdImages(threshold);
 measureCells();
 
-
 // Functions
 // 
 function loadImagesIntoStack(directory) {
 	run("Image Sequence...", "open=["+directory+"] sort");
 }
-
 
 function thresholdImages(threshold) {
 	setAutoThreshold("Default dark");
