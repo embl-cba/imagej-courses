@@ -1,5 +1,5 @@
 // User input
-path = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
+directory = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
 threshold = 29;
 
 // General code

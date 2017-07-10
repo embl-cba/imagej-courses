@@ -1133,35 +1133,42 @@ If you now [Create] the macro and [Run] it, it should do the job.
 - Note: "//" means that a line of code only is a comment
 - We have to remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
 
-#### Making it nicer, using variables
+#### Using variables
 
 Some commands in our macro will be the same, but some stuff will be different for different files.
 It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables".
 
 **=> Interactive practical on variables: numbers, strings, adding, concatenating.**
 
+##### Activity:
+
+In below code the directory with the images is already a variable (note how string-concatentation was used to paste it into the command).
+ 
+Copy the code into Fiji and also **try to make the threshold a variable**.
 
 ```
-//
-// ../macros/CountCells-Variables.ijm
-//
-// User input
-path = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
-threshold = 29;
+// User input as variables
+directory = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
 
 // General code
-run("Image Sequence...", "open=["+path+"] sort");
+run("Image Sequence...", "open=["+directory+"] sort");
 run("Set Measurements...", "area display redirect=None decimal=4");
 setAutoThreshold("Default dark");
-setThreshold(threshold, 255);
+setThreshold(29, 255);
 setOption("BlackBackground", false);
 run("Convert to Mask", "method=Default background=Dark");
 run("Analyze Particles...", "  show=Nothing summarize stack");
 ```
 
+Solution: '../macros/CountCells-Variables.ijm'
+
+
 #### Making it really nice, with a graphical user interface
 
 It is nice, not to have to type into the macro, but enter the variables with a GUI.
+In fact, it is not only nice, but also safer, because it prevents us from breaking the code by typing something wrong there. 
+
+Typically, I use google to find out how to do something related to programming:
 
 Google: imagej macro get variable from user
 - http://imagej.1557.x6.nabble.com/Having-a-macro-prompt-for-variable-input-td3694090.html
@@ -1169,17 +1176,18 @@ Google: imagej macro get variable from user
 
 **=> interactive practical, getting a number via the GUI and printing it**
 
-Google: imagej macro get directory
-- https://imagej.nih.gov/ij/macros/GetDirectoryDemo.txt
-- getDirectory("Select a directory");
+
+##### Activity
+
+In below code the threshold variable already has its GUI.
+Try to also **obtain the directory from the GUI**.
+
+Hint: 
+- Google: imagej macro get directory
 
 ```
-//
-// ../macros/CountCells-GUI.ijm
-//
-
 // User input
-directory = getDirectory("Select a directory");
+directory = "/Users/tischi/Documents/imagej-courses/data_new/mitocheck-movie";
 threshold = getNumber("Enter threshold", 29);
 
 // General code
@@ -1192,15 +1200,20 @@ run("Convert to Mask", "method=Default background=Dark");
 run("Analyze Particles...", "  show=Nothing summarize stack");
 ```
 
+Solutions:
+- https://imagej.nih.gov/ij/macros/GetDirectoryDemo.txt
+- getDirectory("Select a directory");
+- '../macros/CountCells-GUI.ijm'
+ 
 #### The final touch: functions
 
 It is very good for readability and for reusing parts of our code to pack it into small parts that belong together, so-called "functions".
 
-```
-//
-// ../macros/CountCells-Functions.ijm
-//
+##### Activity
 
+Copy below code into Fiji and try to also **make a function for the thresholding**.
+
+```
 // User input
 //
 directory = getDirectory("Select a directory");
@@ -1208,8 +1221,15 @@ threshold = getNumber("Enter threshold", 29);
 
 // Main
 //
+
 loadImagesIntoStack(directory);
-thresholdImages(threshold);
+
+// put into a function...
+setAutoThreshold("Default dark");
+setThreshold(threshold, 255);
+setOption("BlackBackground", false);
+run("Convert to Mask", "method=Default background=Dark"); 
+
 measureCells();
 
 // Functions
@@ -1218,18 +1238,14 @@ function loadImagesIntoStack(directory) {
 	run("Image Sequence...", "open=["+directory+"] sort");
 }
 
-function thresholdImages(threshold) {
-	setAutoThreshold("Default dark");
-	setThreshold(threshold, 255);
-	setOption("BlackBackground", false);
-	run("Convert to Mask", "method=Default background=Dark"); 
-}
-
 function measureCells() {
 	run("Set Measurements...", "area display redirect=None decimal=4");
 	run("Analyze Particles...", "  show=Nothing summarize stack");
 }  
 ```
+
+Solution:
+- ../macros/CountCells-Functions.ijm
 
 
 
