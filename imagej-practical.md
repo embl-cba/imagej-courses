@@ -1133,6 +1133,11 @@ If you now [Create] the macro and [Run] it, it should do the job.
 - Note: "//" means that a line of code only is a comment
 - We have to remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
 
+##### Activity: Automatically save the results table
+
+Above code does not automatically save the results table, try to add this, using macro recording.
+
+
 #### Using variables
 
 Some commands in our macro will be the same, but some stuff will be different for different files.
@@ -1177,7 +1182,7 @@ Google: imagej macro get variable from user
 **=> interactive practical, getting a number via the GUI and printing it**
 
 
-##### Activity
+##### Activity: adding another GUI element
 
 In below code the threshold variable already has its GUI.
 Try to also **obtain the directory from the GUI**.
@@ -1205,6 +1210,19 @@ Solutions:
 - getDirectory("Select a directory");
 - '../macros/CountCells-GUI.ijm'
  
+##### Activity: Saving the results table
+
+Now that we have the input folder as a variable, we can automatically save the results table in a place related to this folder.
+Try to add this on your own.
+
+Hints:
+- Google: ImageJ Macro save results table
+- http://imagej.1557.x6.nabble.com/save-results-table-as-csv-with-custom-name-td5003427.html
+- Google: ImageJ Macro create new folder
+- https://stackoverflow.com/questions/36144914/imagej-macro-make-new-folder-and-save-output-in-new-folder 
+
+
+
 #### The final touch: functions
 
 It is very good for readability and for reusing parts of our code to pack it into small parts that belong together, so-called "functions".

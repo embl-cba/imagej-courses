@@ -1205,18 +1205,15 @@ Solutions:
 - getDirectory("Select a directory");
 - '../macros/CountCells-GUI.ijm'
  
-
-
-
 #### The final touch: functions
 
 It is very good for readability and for reusing parts of our code to pack it into small parts that belong together, so-called "functions".
 
-```
-//
-// ../macros/CountCells-Functions.ijm
-//
+##### Activity
 
+Copy below code into Fiji and try to also **make a function for the thresholding**.
+
+```
 // User input
 //
 directory = getDirectory("Select a directory");
@@ -1224,8 +1221,15 @@ threshold = getNumber("Enter threshold", 29);
 
 // Main
 //
+
 loadImagesIntoStack(directory);
-thresholdImages(threshold);
+
+// put into a function...
+setAutoThreshold("Default dark");
+setThreshold(threshold, 255);
+setOption("BlackBackground", false);
+run("Convert to Mask", "method=Default background=Dark"); 
+
 measureCells();
 
 // Functions
@@ -1234,18 +1238,14 @@ function loadImagesIntoStack(directory) {
 	run("Image Sequence...", "open=["+directory+"] sort");
 }
 
-function thresholdImages(threshold) {
-	setAutoThreshold("Default dark");
-	setThreshold(threshold, 255);
-	setOption("BlackBackground", false);
-	run("Convert to Mask", "method=Default background=Dark"); 
-}
-
 function measureCells() {
 	run("Set Measurements...", "area display redirect=None decimal=4");
 	run("Analyze Particles...", "  show=Nothing summarize stack");
 }  
 ```
+
+Solution:
+- ../macros/CountCells-Functions.ijm
 
 
 
