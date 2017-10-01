@@ -14,9 +14,9 @@ e-mail: tischitischer@gmail.com
 
 http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
-# Image properties and how to inspect them
+# How to visualize and inspect the numerical content of images
 
-An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of the images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
+An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of your images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
 
 ## Pratical activity: image inspection
 
@@ -61,19 +61,43 @@ Let's open an image and explore different tools to inspect the numbers in a imag
 
 Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
 
-### Offset
+### Background (offset)
 
 ### Dynamic range
 
 ### Saturation
 
+## Practical activity: Image content inspection
 
-## Practical activity
+# Image bit depth conversion
 
+## Practical activity: 16- to 8-bit conversion
 
+- [File > Open]
+- Inspect the gray values: What is the minimum and maximum? Note them down.
+- [Image > Adjust B&C]
+- [Image > Type > 8bit]
+- Inspect the gray values: What is the minimum and maximum now?
 
+Hopefully you are shocked that we all got different results! How can this be?
 
-# Segmentation <a name="segmentation"></a> 
+# Image format conversion
+
+## Practial activity: Save an image in different formats and inspect how this affects numerical content and file size
+
+# Image intensity measurements <a name="intensity_measurements"></a> 
+
+## Mean intensity and sum intensity
+
+## The biophysical meaning of intensities in fluorescence microscopy images
+
+See respective PowerPoint presentation slides.
+
+## Practical activity: Manual intensity measurements
+
+Sum_BgCorr = Sum_Raw - NumPixelsInROI * Mean_Bg
+
+# Image segmentation <a name="segmentation"></a> 
 
 - pixels -> objects
 
@@ -161,7 +185,7 @@ Workflow with filtering:
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles] 
 
-Discussion points:
+### Discussion:
 - How to make it work without filtering?
 - Are the object shapes preserved?
 
@@ -208,7 +232,7 @@ Workflow:
 		- Documentation: http://imagej.net/Auto_Local_Threshold
 	- [Analyze > Analyze Particles]
 	
-### Spot detection using the Difference of Gaussian
+### Spot detection using Difference of Gaussian
 
 The Difference of Gaussian (DoG) is a very popluar method for object detection when there is uneven background or also an uneven object brightness distribution.
 

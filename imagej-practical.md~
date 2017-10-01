@@ -14,6 +14,65 @@ e-mail: tischitischer@gmail.com
 
 http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
+# Image properties and how to inspect them
+
+An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of the images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
+
+## Pratical activity: image inspection
+
+Let's open an image and explore different tools to inspect the numbers in a image.
+
+- [File > Open]: 
+
+### Mouse over
+
+### Pixel inspection tool
+
+### Line profile
+
+### Histogram
+
+
+## Image visualization
+
+### Lookup tables
+
+- HiLo
+	- Red: highest, Blue: lowest
+	- Important note: "highest" and "lowest" depends on your Brightness&Contrast settings!
+
+### Brightness & Contrast
+
+
+
+## Numerical image properties
+
+### Bit depth
+
+- 8-bit
+	- integers from 0-255 (2^8-1)
+- 16-bit
+	- integers from 0-65535 (2^16-1)
+- 32-bit floating point
+	- can have negative numbers, such as -1
+	- can have non-integer numbers, such as 1.5 or -3.2
+	- this format is recommended as soon as you do any kind of mathematical operations on your images
+	- disadvantage: needs more memory and disk space 
+
+Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
+
+### Offset
+
+### Dynamic range
+
+### Saturation
+
+
+## Practical activity
+
+
+
+
 # Segmentation <a name="segmentation"></a> 
 
 - pixels -> objects
