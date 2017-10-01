@@ -14,6 +14,65 @@ e-mail: tischitischer@gmail.com
 
 http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
+# Image properties and how to inspect them
+
+An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of the images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
+
+## Pratical activity: image inspection
+
+Let's open an image and explore different tools to inspect the numbers in a image.
+
+- [File > Open]: 
+
+### Mouse over
+
+### Pixel inspection tool
+
+### Line profile
+
+### Histogram
+
+
+## Image visualization
+
+### Lookup tables
+
+- HiLo
+	- Red: highest, Blue: lowest
+	- Important note: "highest" and "lowest" depends on your Brightness&Contrast settings!
+
+### Brightness & Contrast
+
+
+
+## Numerical image properties
+
+### Bit depth
+
+- 8-bit
+	- integers from 0-255 (2^8-1)
+- 16-bit
+	- integers from 0-65535 (2^16-1)
+- 32-bit floating point
+	- can have negative numbers, such as -1
+	- can have non-integer numbers, such as 1.5 or -3.2
+	- this format is recommended as soon as you do any kind of mathematical operations on your images
+	- disadvantage: needs more memory and disk space 
+
+Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
+
+### Offset
+
+### Dynamic range
+
+### Saturation
+
+
+## Practical activity
+
+
+
+
 # Segmentation <a name="segmentation"></a> 
 
 - pixels -> objects
@@ -363,10 +422,12 @@ First we segment the images, i.e. we make objects pixels 255 and background pixe
 - __[File>Open..] '“../colocalization/stain1.tif”__
 - __[Image>Rename..] 'Title=original'__
 - __[Image>Duplicate] 'Title=median'__
-- __[Process>Filters>Median..] 'radius=20'__ (*3D: [Process>Filters>Median 3D..]*)
+- __[Process>Filters>Median..] 'radius=20'__ 
+	- 3D: [Process>Filters>Median 3D..]
 - __[Process>Image Calculator] 'Image1 = original' 'Operation = Subtract' 'Image2 = median' 'Create new window=Check'__ 
 - __[Image>Adjust>Threshold..] 'lower th=30' 'upper th=255'__ (*you don't have to press [Apply] now, the actual 'applying' of the threshold will happen in the next step*)
 - __[Analyze>Analyze Particles..] 'Size = 5-Infinity' 'Pixel units = Check' 'Show = Masks' [OK]__ (*selecting 'Show = Masks' generates a binary image in which only 'connected components' of at least 5 pixels are kept, i.e. 'noise' is filtered*)
+	- for 3D use [Analyze>3D Objects Counter]  
 - __[File>Save As..] '“../colocalization/stain1_segmented.tif”__
 - You also have to do this "stain2.tif"...
 
@@ -384,7 +445,8 @@ Now, you can compute an area-based, object-based or distance-based colocalisatio
 
 - __[Analyze>Set Measurements..] 'Centroid = Check'  'Display label = Check'__ *('Display label = check': this will associate measurements with the name of the image (and ROI) on which they were computed.)*
 - For all three images, i.e. __'stain1_segmented.tif', 'stain2_segmented.tif', 'overlap'__, run the following command : 
-	- __[Analyze>Analyze Particles] 'Display Results = Check' 'Summarize =Check' 'Display Labels__ *(for 3D use [Analyze>3D Objects Counter])* 
+	- __[Analyze>Analyze Particles] 'Display Results = Check' 'Summarize =Check' 'Display Labels__ 
+		- for 3D use [Analyze>3D Objects Counter] 
 		- choose particle selection criteria that make sense for your project... 
 - Object based colocalization: __Count__ (e.g., divide overlap by stain1) 
 - Area based colocalization: __Area__ (e.g., divide overlap by stain1)

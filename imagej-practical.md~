@@ -363,10 +363,12 @@ First we segment the images, i.e. we make objects pixels 255 and background pixe
 - __[File>Open..] '“../colocalization/stain1.tif”__
 - __[Image>Rename..] 'Title=original'__
 - __[Image>Duplicate] 'Title=median'__
-- __[Process>Filters>Median..] 'radius=20'__ (*3D: [Process>Filters>Median 3D..]*)
+- __[Process>Filters>Median..] 'radius=20'__ 
+	- 3D: [Process>Filters>Median 3D..]
 - __[Process>Image Calculator] 'Image1 = original' 'Operation = Subtract' 'Image2 = median' 'Create new window=Check'__ 
 - __[Image>Adjust>Threshold..] 'lower th=30' 'upper th=255'__ (*you don't have to press [Apply] now, the actual 'applying' of the threshold will happen in the next step*)
 - __[Analyze>Analyze Particles..] 'Size = 5-Infinity' 'Pixel units = Check' 'Show = Masks' [OK]__ (*selecting 'Show = Masks' generates a binary image in which only 'connected components' of at least 5 pixels are kept, i.e. 'noise' is filtered*)
+	- for 3D use [Analyze>3D Objects Counter]  
 - __[File>Save As..] '“../colocalization/stain1_segmented.tif”__
 - You also have to do this "stain2.tif"...
 
@@ -384,7 +386,8 @@ Now, you can compute an area-based, object-based or distance-based colocalisatio
 
 - __[Analyze>Set Measurements..] 'Centroid = Check'  'Display label = Check'__ *('Display label = check': this will associate measurements with the name of the image (and ROI) on which they were computed.)*
 - For all three images, i.e. __'stain1_segmented.tif', 'stain2_segmented.tif', 'overlap'__, run the following command : 
-	- __[Analyze>Analyze Particles] 'Display Results = Check' 'Summarize =Check' 'Display Labels__ *(for 3D use [Analyze>3D Objects Counter])* 
+	- __[Analyze>Analyze Particles] 'Display Results = Check' 'Summarize =Check' 'Display Labels__ 
+		- for 3D use [Analyze>3D Objects Counter] 
 		- choose particle selection criteria that make sense for your project... 
 - Object based colocalization: __Count__ (e.g., divide overlap by stain1) 
 - Area based colocalization: __Area__ (e.g., divide overlap by stain1)
@@ -1133,6 +1136,11 @@ If you now [Create] the macro and [Run] it, it should do the job.
 - Note: "//" means that a line of code only is a comment
 - We have to remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
 
+##### Activity: Automatically save the results table
+
+Above code does not automatically save the results table, try to add this, using macro recording.
+
+
 #### Using variables
 
 Some commands in our macro will be the same, but some stuff will be different for different files.
@@ -1177,7 +1185,7 @@ Google: imagej macro get variable from user
 **=> interactive practical, getting a number via the GUI and printing it**
 
 
-##### Activity
+##### Activity: adding another GUI element
 
 In below code the threshold variable already has its GUI.
 Try to also **obtain the directory from the GUI**.
@@ -1205,6 +1213,19 @@ Solutions:
 - getDirectory("Select a directory");
 - '../macros/CountCells-GUI.ijm'
  
+##### Activity: Saving the results table
+
+Now that we have the input folder as a variable, we can automatically save the results table in a place related to this folder.
+Try to add this on your own.
+
+Hints:
+- Google: ImageJ Macro save results table
+- http://imagej.1557.x6.nabble.com/save-results-table-as-csv-with-custom-name-td5003427.html
+- Google: ImageJ Macro create new folder
+- https://stackoverflow.com/questions/36144914/imagej-macro-make-new-folder-and-save-output-in-new-folder 
+
+
+
 #### The final touch: functions
 
 It is very good for readability and for reusing parts of our code to pack it into small parts that belong together, so-called "functions".
