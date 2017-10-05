@@ -12,7 +12,8 @@ e-mail: tischitischer@gmail.com
 
 ## Recommended Literature
 
-http://www.imaging-git.com/olympus-website-bioimage-data-analysis
+- http://www.imaging-git.com/olympus-website-bioimage-data-analysis
+- ...
 
 # How to visualize and inspect the numerical content of images
 
@@ -22,32 +23,46 @@ An image essentially is an array of numbers with some metadata. For scientific i
 
 Let's open an image and explore different tools to inspect the numbers in a image.
 
-- [File > Open]: 
+- Fiji:
+	- [File > Open]: "../image-inspection/B.tif"
 
 ### Mouse over
 
 ### Pixel inspection tool
 
-### Line profile
+- Fiji:
+	- Menu bar: [Px]
 
+### Intensity line profile
+
+- Fiji:
+	- Menu bar: select the Line profile tool
+	- [Analyze > Plot Profile]
+		
 ### Histogram
 
+- Fiji:
+	- [Analyze > Histogram]
 
 ## Image visualization
 
-### Lookup tables
+### Lookup tables (LUTs)
 
-- HiLo
-	- Red: highest, Blue: lowest
-	- Important note: "highest" and "lowest" depends on your Brightness&Contrast settings!
+LUTs assign a certain color to each numerical value. Intensity differences are best seen using a grayscale LUT. Choosing the LUT color similar to the emission color of the imaged fluorophore can also make sense. LUTs with multiple colors (e.g., "Fire" in Fiji) are good for simultaneously seening very dim and very bright images. Finally, LUTs where only the lowest and highest value have a certain color are useful for microscopy, e.g. to indicate saturated pixels.
+
+- Fiji:
+	- [Image > Lookup Tables]
+		- Grays
+		- HiLo
+			- Red: highest, Blue: lowest
+			- Important note: "highest" and "lowest" depend on your Brightness&Contrast settings!
+
 
 ### Brightness & Contrast
 
-
-
 ## Numerical image properties
 
-### Bit depth
+### Image bit depths
 
 - 8-bit
 	- integers from 0-255 (2^8-1)
@@ -56,10 +71,14 @@ Let's open an image and explore different tools to inspect the numbers in a imag
 - 32-bit floating point
 	- can have negative numbers, such as -1
 	- can have non-integer numbers, such as 1.5 or -3.2
-	- this format is recommended as soon as you do any kind of mathematical operations on your images
+	- this format is generally recommended as soon as you do any kind of mathematical operations on your images
 	- disadvantage: needs more memory and disk space 
 
 Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
+
+#### Practical activity: Conversion from 16-bit to 32-bit and the differences 
+
+
 
 ### Background (offset)
 
@@ -69,15 +88,37 @@ Although ImageJ does not support it, your images could also have been acquired w
 
 ## Practical activity: Image content inspection
 
-# Image bit depth conversion
+In this activity we will open several images and find out which "issues" they have.
+The aim is to assign each image to one of the following issues:
+- no problem
+- high background
+- too low background
+- low dynamic range
+- too much saturation
 
-## Practical activity: 16- to 8-bit conversion
 
-- [File > Open]
-- Inspect the gray values: What is the minimum and maximum? Note them down.
+Use below workflow to inspect the images:
+- Open “../image-inspection/A.tif” [File > Open]
+- Also open B.tif, C.tif, D.tif, E.tif 
+- Use below methods to inspect the images and find their "issues"
+	- Adjust the display [Image > Adjust > Brightness/Contrast]
+	- Examine gray values in whole image [Analyze > Histogram]
+	- Analyze gray values along a line [Analyze > Plot Profile]
+
+Additional tasks:
+- Lets find five or more different ways to identify saturated pixels in an image 
+
+# Image bit depth conversions
+
+Image bit depth conversion is something that you should generally avoid, but sometimes you can't either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore now what happens of you do convert between different bit depths.
+
+## Practical activity: 16-bit to 8-bit conversion
+
+- [File > Open]: "../image-format-conversion/16bit.tif"
+- Inspect the gray values: What are the minimum and maximum? Note them down.
 - [Image > Adjust B&C]
 - [Image > Type > 8bit]
-- Inspect the gray values: What is the minimum and maximum now?
+- Inspect the gray values again: What are the minimum and maximum now?
 
 Hopefully you are shocked that we all got different results! How can this be?
 
@@ -85,9 +126,26 @@ Hopefully you are shocked that we all got different results! How can this be?
 
 ## Practial activity: Save an image in different formats and inspect how this affects numerical content and file size
 
+- Open “../image-format-conversion/16bit.tif” [File > Open]
+	- Adjust the display such that you actually see something [Image > Adjust > Brightness/Contrast]
+- Save as **Jpeg** using different levels of compression (quality)
+	- Adjust Jpeg quality (0-100) to 10 [Edit > Option > Input/Output]
+	- save as Q10.jpg (File..Save As..Jpeg)
+	- repeat for Jpeg qualities 75, and 100
+- Save as **png** [File > Save As > PNG]
+- Adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
+	- Save as Q100_saturated.jpg [File > Save As > Jpeg]
+	- Save as im_saturated.png [File > Save As > PNG]
+
+Now lets go to the folder where you saved the images and check their file size!
+And, even more important, lets reopen them and check what happened to their gray values!
+
+
 # Image intensity measurements <a name="intensity_measurements"></a> 
 
 ## Mean intensity and sum intensity
+
+See respective PowerPoint presentation slides.
 
 ## The biophysical meaning of intensities in fluorescence microscopy images
 
@@ -95,7 +153,25 @@ See respective PowerPoint presentation slides.
 
 ## Practical activity: Manual intensity measurements
 
-Sum_BgCorr = Sum_Raw - NumPixelsInROI * Mean_Bg
+- Open “../bit-conversion/16bit.tif”
+- Draw a region around a nucleus (nucleus_1), e.g. using Fiji's Polygon Selection
+	- Since we will do sum intensity measurements with proper background subtraction you should draw this region rather generous!
+- Add region to ROI manager [Analyze > Tools > ROI Manager > Add)
+- Name the region “nucleus_1” [Analyze > Tools > ROI Manager > Rename]
+- Repeat above steps for a background ROI and another nucleus (nucleus_2)
+- Select measurements [Analyze > Set Measurements]:
+	- [X] Mean gray value
+	- [X] Area
+	- [X] Integrated density
+		- This measures the sum intensity; in fact it will output two values; the "good" one is the **RawIntDen**, which really simply adds up the gray values in the measurement ROI.
+- Select all regions and measure [ROI Manager > Measure]
+
+Now we need to do the proper background subtraction for the two nuclei ROIs, using below formula:
+
+`Sum_BgCorr = RawIntDen - Area * Mean_Background`
+
+In words, we subtract for each pixel in the ROI (Area) the mean value of the background.
+
 
 # Image segmentation <a name="segmentation"></a> 
 

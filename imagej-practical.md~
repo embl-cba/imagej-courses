@@ -12,34 +12,52 @@ e-mail: tischitischer@gmail.com
 
 ## Recommended Literature
 
-http://www.imaging-git.com/olympus-website-bioimage-data-analysis
+- http://www.imaging-git.com/olympus-website-bioimage-data-analysis
+- ...
 
-# Image properties and how to inspect them
+# How to visualize and inspect the numerical content of images
 
-An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of the images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
+An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of your images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
 
 ## Pratical activity: image inspection
 
 Let's open an image and explore different tools to inspect the numbers in a image.
 
-- [File > Open]: 
+- Fiji:
+	- [File > Open]: 
 
 ### Mouse over
 
 ### Pixel inspection tool
 
-### Line profile
+- Fiji:
+	- Menu bar: [Px]
 
+
+### Intensity line profile
+
+- Fiji:
+	- Menu bar: select the Line profile tool
+	- [Analyze > Plot Profile]
+		
 ### Histogram
 
+- Fiji:
+	- [Analyze > Histogram]
 
 ## Image visualization
 
-### Lookup tables
+### Lookup tables (LUTs)
 
-- HiLo
-	- Red: highest, Blue: lowest
-	- Important note: "highest" and "lowest" depends on your Brightness&Contrast settings!
+LUTs assign a certain color to each numerical value. Intensity differences are best seen using a grayscale LUT. Choosing the LUT color similar to the emission color of the imaged fluorophore can also make sense. LUTs with multiple colors (e.g., "Fire" in Fiji) are good for simultaneously seening very dim and very bright images. Finally, LUTs where only the lowest and highest value have a certain color are useful for microscopy, e.g. to indicate saturated pixels.
+
+- Fiji:
+	- [Image > Lookup Tables]
+		- Grays
+		- HiLo
+			- Red: highest, Blue: lowest
+			- Important note: "highest" and "lowest" depend on your Brightness&Contrast settings!
+
 
 ### Brightness & Contrast
 
@@ -61,19 +79,100 @@ Let's open an image and explore different tools to inspect the numbers in a imag
 
 Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
 
-### Offset
+### Background (offset)
 
 ### Dynamic range
 
 ### Saturation
 
+## Practical activity: Image content inspection
 
-## Practical activity
+In this activity we will open several images and find out which "issues" they have.
+The aim is to assign each image to one of the following issues:
+- no problem
+- high background
+- too low background
+- low dynamic range
+- too much saturation
 
 
+Use below workflow to inspect the images:
+- Open “../image-inspection/A.tif” [File > Open]
+- Also open B.tif, C.tif, D.tif, E.tif 
+- Use below methods to inspect the images and find their "issues"
+	- Adjust the display [Image > Adjust > Brightness/Contrast]
+	- Examine gray values in whole image [Analyze > Histogram]
+	- Analyze gray values along a line [Analyze > Plot Profile]
+
+Additional tasks:
+- Name up to five different ways to find saturated pixels in an image
+ 
 
 
-# Segmentation <a name="segmentation"></a> 
+# Image bit depth conversion
+
+## Practical activity: 16-bit to 8-bit conversion
+
+- [File > Open]
+- Inspect the gray values: What is the minimum and maximum? Note them down.
+- [Image > Adjust B&C]
+- [Image > Type > 8bit]
+- Inspect the gray values: What is the minimum and maximum now?
+
+Hopefully you are shocked that we all got different results! How can this be?
+
+# Image format conversion
+
+## Practial activity: Save an image in different formats and inspect how this affects numerical content and file size
+
+- Open “../image-format-conversion/16bit.tif” [File > Open]
+	- Adjust the display such that you actually see something [Image > Adjust > Brightness/Contrast]
+- Save as **Jpeg** using different levels of compression (quality)
+	- Adjust Jpeg quality (0-100) to 10 [Edit > Option > Input/Output]
+	- save as Q10.jpg (File..Save As..Jpeg)
+	- repeat for Jpeg qualities 75, and 100
+- Save as **png** [File > Save As > PNG]
+- Adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
+	- Save as Q100_saturated.jpg [File > Save As > Jpeg]
+	- Save as im_saturated.png [File > Save As > PNG]
+
+Now lets go to the folder where you saved the images and check their file size!
+And, even more important, lets reopen them and check what happened to their gray values!
+
+
+# Image intensity measurements <a name="intensity_measurements"></a> 
+
+## Mean intensity and sum intensity
+
+See respective PowerPoint presentation slides.
+
+## The biophysical meaning of intensities in fluorescence microscopy images
+
+See respective PowerPoint presentation slides.
+
+## Practical activity: Manual intensity measurements
+
+- Open “../bit-conversion/16bit.tif”
+- Draw a region around a nucleus (nucleus_1), e.g. using Fiji's Polygon Selection
+	- Since we will do sum intensity measurements with proper background subtraction you should draw this region rather generous!
+- Add region to ROI manager [Analyze > Tools > ROI Manager > Add)
+- Name the region “nucleus_1” [Analyze > Tools > ROI Manager > Rename]
+- Repeat above steps for a background ROI and another nucleus (nucleus_2)
+- Select measurements [Analyze > Set Measurements]:
+	- [X] Mean gray value
+	- [X] Area
+	- [X] Integrated density
+		- This measures the sum intensity; in fact it will output two values; the "good" one is the **RawIntDen**, which really simply adds up the gray values in the measurement ROI.
+- Select all regions and measure [ROI Manager > Measure]
+
+Now we need to do the proper background subtraction for the two nuclei ROIs, using below formula:
+
+`Sum_BgCorr = RawIntDen - Area * Mean_Background`
+
+In words, we subtract for each pixel in the ROI (Area) the mean value of the background.
+
+
+# Image segmentation <a name="segmentation"></a> 
 
 - pixels -> objects
 
@@ -161,7 +260,7 @@ Workflow with filtering:
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles] 
 
-Discussion points:
+### Discussion:
 - How to make it work without filtering?
 - Are the object shapes preserved?
 
@@ -208,7 +307,7 @@ Workflow:
 		- Documentation: http://imagej.net/Auto_Local_Threshold
 	- [Analyze > Analyze Particles]
 	
-### Spot detection using the Difference of Gaussian
+### Spot detection using Difference of Gaussian
 
 The Difference of Gaussian (DoG) is a very popluar method for object detection when there is uneven background or also an uneven object brightness distribution.
 
