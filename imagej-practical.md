@@ -22,27 +22,26 @@ An image essentially is an array of numbers with some metadata. For scientific i
 ## Pratical activity: image inspection
 
 Let's open an image and explore different tools to inspect the numbers in a image.
+We start by inspection an 8-bit image, where the numbers range from 0 to 255 (2^8-1); we'll explore different bit depths later.
 
-- Fiji:
-	- [File > Open]: "../image-inspection/B.tif"
+- [File > Open]: "../image-inspection/B.tif"
 
 ### Mouse over
 
+Simply move with the mouse over the image; the intensity will be shown in Fiji's menu bar.
+
 ### Pixel inspection tool
 
-- Fiji:
-	- Menu bar: [Px]
+- Menu bar: [Px]
 
 ### Intensity line profile
 
-- Fiji:
-	- Menu bar: select the Line profile tool
-	- [Analyze > Plot Profile]
+- Menu bar: Select the line profile tool
+- [Analyze > Plot Profile]
 		
 ### Histogram
 
-- Fiji:
-	- [Analyze > Histogram]
+- [Analyze > Histogram]
 
 ## Image visualization
 
@@ -50,33 +49,19 @@ Let's open an image and explore different tools to inspect the numbers in a imag
 
 LUTs assign a certain color to each numerical value. Intensity differences are best seen using a grayscale LUT. Choosing the LUT color similar to the emission color of the imaged fluorophore can also make sense. LUTs with multiple colors (e.g., "Fire" in Fiji) are good for simultaneously seening very dim and very bright images. Finally, LUTs where only the lowest and highest value have a certain color are useful for microscopy, e.g. to indicate saturated pixels.
 
-- Fiji:
-	- [Image > Lookup Tables]
-		- Grays
-		- HiLo
-			- Red: highest, Blue: lowest
-			- Important note: "highest" and "lowest" depend on your Brightness&Contrast settings!
+- [Image > Lookup Tables]
+	- Grays
+	- HiLo
+		- Red: highest, Blue: lowest
+		- Important note: "highest" and "lowest" depend on your Brightness&Contrast settings!
 
 
-### Brightness & Contrast
+### Adjust Brightness & Contrast
 
-## Numerical image properties
+- [Image > Adjust > Brightness/Contrast]
 
-### Image bit depths
-
-- 8-bit
-	- integers from 0-255 (2^8-1)
-- 16-bit
-	- integers from 0-65535 (2^16-1)
-- 32-bit floating point
-	- can have negative numbers, such as -1
-	- can have non-integer numbers, such as 1.5 or -3.2
-	- this format is generally recommended as soon as you do any kind of mathematical operations on your images
-	- disadvantage: needs more memory and disk space 
-
-Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
-
-#### Practical activity: Conversion from 16-bit to 32-bit and the differences 
+This does not change the numbers but only the LUT.
+Important: Don't press [Apply] as this will in fact change the gray values. 
 
 
 
@@ -108,21 +93,98 @@ Use below workflow to inspect the images:
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 
 
-# Image bit depth conversions
+# Image bit depths
+
+Images can have different bit depths. Let's start by exploring some of the limitations of the 8-bit image that we were dealing with until now.
+
+## Activity: Exploring the limitations of an 8-bit image <a name="8bit_limitations"></a> 
+
+- Open image "../image-inspection/B.tif" [File > Open]
+- Adding numbers:
+	- Copy the original image [Image > Duplicate]
+	- Add 500 to each pixel in the image [Process > Math > Add]
+	- Inspect the gray values!
+- Subtracting numbers:
+	- Copy the original image [Image > Duplicate]
+	- Subtract 100 from each pixel in the image [Process > Math > Subtract]
+	- Inspect the gray values!
+- Dividing numbers:
+	- Copy the image [Image > Duplicate]
+	- Divide each pixel in the image by 2 [Process > Math > Divide]
+	- Inspect the gray values!
+ 
+Obviously this is not what we want since it is all wrong :-).
+
+## Activity: Exploring properties of floating point images
+
+- Open image "../image-inspection/B.tif" [File > Open]
+- Duplicate the image and rename it to "32-bit" [Image > Duplicate]
+- Convert to 32-bit floating point [Image > Type > 32 bit]
+- Inspect the gray values! Did they change after the conversion to 32 bit?
+- Now let's repeat [above activity](#8bit_limitations)
+
+Much better, right?!
+
+## Image bit depths in ImageJ
+
+- 8-bit
+	- integers from 0-255 (2^8-1)
+- 16-bit
+	- integers from 0-65535 (2^16-1)
+- 32-bit floating point
+	- can have negative numbers, such as -1
+	- can have non-integer numbers, such as 1.5 or -3.2
+	- this format is generally recommended as soon as you do any kind of mathematical operations on your images
+	- disadvantage: needs more memory and disk space 
+
+Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
+
+
+## Image bit depth conversions
 
 Image bit depth conversion is something that you should generally avoid, but sometimes you can't either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore now what happens of you do convert between different bit depths.
 
+
+## Activity: Conversion from 8-bit to 32-bit floating point
+
+- Open image "../image-inspection/B.tif" [File > Open]
+- Duplicate the image and rename it to "32-bit" [Image > Duplicate]
+- Convert to 32-bit floating point [Image > Type > 32 bit]
+- Inspect the gray values! Did they change after the conversion?
+
+## Activity: Conversion from 16-bit to 32-bit floating point
+ 
+- Open image "../image-format-conversion/16bit.tif" [File > Open]
+- Duplicate the image and rename it to "32-bit" [Image > Duplicate]
+- Convert to 32-bit floating point [Image > Type > 32 bit]
+- Inspect the gray values! Did they change after the conversion?
+
 ## Practical activity: 16-bit to 8-bit conversion
 
-- [File > Open]: "../image-format-conversion/16bit.tif"
+OK! Now comes the **tricky part** where I have seen several project going very wrong!
+
+- Open "../image-format-conversion/16bit.tif" [File > Open]
 - Inspect the gray values: What are the minimum and maximum? Note them down.
-- [Image > Adjust B&C]
-- [Image > Type > 8bit]
+- Adjust the display such that it looks nice [Image > Adjust > Brightness/Contrast]
+- Convert to 8-bit [Image > Type > 8bit]
 - Inspect the gray values again: What are the minimum and maximum now?
 
-Hopefully you are shocked that we all got different results! How can this be?
+Hopefully you are **shocked** that we all got different results! How can this be?
+
+## Discussion: How to convert 16-bit to 8-bit
+
+- 0,65535 => 0,255
+	- Preserves intensities but looses dynamic range
+- min,max => 0,255
+	- Maximizes dynamic range, but looses intensity information
+- minLUT,maxLUT => 0,255 
+	- leave it up to the user!
+	- This is what ImageJ is doing!
 
 # Image format conversion
+
+Unfortunately there are very many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice this :-)
+
 
 ## Practial activity: Save an image in different formats and inspect how this affects numerical content and file size
 
@@ -145,11 +207,11 @@ And, even more important, lets reopen them and check what happened to their gray
 
 ## Mean intensity and sum intensity
 
-See respective PowerPoint presentation slides.
+PowerPoint presentation.
 
 ## The biophysical meaning of intensities in fluorescence microscopy images
 
-See respective PowerPoint presentation slides.
+PowerPoint presentation.
 
 ## Practical activity: Manual intensity measurements
 
@@ -172,12 +234,11 @@ Now we need to do the proper background subtraction for the two nuclei ROIs, usi
 
 In words, we subtract for each pixel in the ROI (Area) the mean value of the background.
 
-
 # Image segmentation <a name="segmentation"></a> 
 
-- pixels -> objects
+[https://en.wikipedia.org/wiki/Image_segmentation] says: In computer vision, image segmentation is the process of partitioning a digital image into multiple segments (sets of pixels, also known as super-pixels). The goal of segmentation is to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze. Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.
 
-## Applications
+## Applications of image segmentation in biology
 
 - object counting
 - object localization measurements
@@ -185,51 +246,42 @@ In words, we subtract for each pixel in the ROI (Area) the mean value of the bac
 - object intensity measurements
 - in general: object **feature** measurements
 
-## Manual global thresholding
+## Activity: Manual global thresholding followed by "particle analysis"
 
-Configure ImageJ:
+In general, image segmentation typically is a two step process, where you 
+- first identify all pixels that potentially belong to an object, and
+- second group pixels together belonging to the one object (you mayb have several objects in one image).
 
-- [Process > Binary > Options]: [X] Black Background
+In fluorescence microscopy image segmentation often is easy, because the objects of interest are simply brighter than the "background". 
 
-Example data: 
-- [File > Open Samples > Blobs]
-- [Image > Lookup Tables > Invert LUT]
-
-Workflow:
-- Manually adjust a threshold value
-- Perform a "connected component analysis"
+Let's try:
+ 
+- Configure image segmentation settings [Process > Binary > Options]: [X] Black Background 
+- Open image "../image-inspection/B.tif" [File > Open]
+- Manually adjust a threshold value [Image > Adjust > Threshold]
+	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
+- Perform a "connected component analysis"  [Analyze > Analyze Particles]
 	- Other wordings are: "object detection", "particle analysis"
-- Fiji commands:
-	- [Image > Adjust > Threshold]
-		- You may press [Apply] but you do not have to; it also works with the "red" overlay.
-	- [Analyze > Analyze Particles] 
+- Run it again and explore the different options of the "Particle Analyzer"
 
-Discussion points:
+### Discussion
+
 - Single threshold vs. "gating"
 - Object size and shape filtering
 - Different types of object representations (pros and cons)
 
-## Automated global thresholding
+# The signal to noise (S/N) ratio
 
-Sometimes, if you have many images to analyse, you may need automated methods that find the threshold for you. There are many good methods, but it is dangerous to apply them, and you always need to check if it worked! 
+At the microscope, especially setting up a live cell experiment where you want to avoid photo-bleaching of your fluorophore, you typically wonder: "How good does the image need to be in order for me to be able to still segment the objects?"
 
-Workflow:
-- Apply automated thresholding
+A very important concept in this regard is the signal to noise ratio (S/N), which, in my humble opinion, is often confused with the much less important signal to background ratio (S/B).
 
-Example data within Fiji: 
-- [File > Open Samples > Blobs]
-	- [Image > Lookup Tables > Invert LUT]
-- [File > Open Samples > Hela cells]
-	- [Image > Color > Split Channels]
-- [File > New Image]
-	- [Process > Noise > Add Noise]
+Let's have a look:
 
-Fiji commands:
-- [Image > Adjust > Auto Threshold]
+- Open "../signal-to-noise/hb2-mCherry.tif" [File > Open]
 
-### Discussion
+ 
 
-- Many automated thresholding methods always find a threshold, even if there is only noise.
 
 ## Segmentation of noisy images 
 
@@ -262,6 +314,7 @@ Workflow with filtering:
 	- [Analyze > Analyze Particles] 
 
 ### Discussion:
+
 - How to make it work without filtering?
 - Are the object shapes preserved?
 
@@ -296,7 +349,30 @@ Workflow:
 	- [Process > Image Calculator]
 	- [Process > Subtract Background]
 
-### Automated local tresholding
+## Automated global thresholding
+
+Sometimes, if you have many images to analyse, you may need automated methods that find the threshold for you. There are many good methods, but it is dangerous to apply them, and you always need to check if it worked! 
+
+Workflow:
+- Apply automated thresholding
+
+Example data within Fiji: 
+- [File > Open Samples > Blobs]
+	- [Image > Lookup Tables > Invert LUT]
+- [File > Open Samples > Hela cells]
+	- [Image > Color > Split Channels]
+- [File > New Image]
+	- [Process > Noise > Add Noise]
+
+Fiji commands:
+- [Image > Adjust > Auto Threshold]
+
+### Discussion
+
+- Many automated thresholding methods always find a threshold, even if there is only noise.
+
+
+## Automated local tresholding
 
 Automated local thresholding is another method to segment objects in the prescence of a locally varying background.
 
