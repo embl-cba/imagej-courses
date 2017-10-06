@@ -276,14 +276,48 @@ At the microscope, especially setting up a live cell experiment where you want t
 
 A very important concept in this regard is the signal to noise ratio (S/N), which, in my humble opinion, is often confused with the much less important signal to background ratio (S/B).
 
-Let's have a look:
+Let's have a look and try to segment nuclei of different intensities:
 
 - Open "../signal-to-noise/hb2-mCherry.tif" [File > Open]
+- Now try to threshold the nuclei [Image > Adjust > Threshold]
+	- You see that this is easy for the bright ones but does not really work for the very dim ones (you may have to adjust the LUT settings [Image > Adjust > Brightness/Contrast] to even see the dark ones).
 
- 
+Let's now try to quantify why it is difficult to segment the dark nuclei by measuring the S/N.
+
+- [Analyze > Set Measurements]: 
+	- [X] Mean gray value
+	- [X] Standard deviation
+- Draw an ROI inside a dim nuclues of your choice, e.g. using the “Oval Selection”
+- Save that ROI  [Analyze > Tools > ROI Manager > Add]
+	- ...and give it a good name [Analyze > Tools > ROI Manager > Rename]
+- Now also draw and save an ROI in the background right next to the nucleus
+- Select all regions and measure them [ROI Manager > Measure]
+
+Now let's apply below formulas to measure the S/N and S/B: 
+- S/N = Mean_Nucleus - Mean_Background / Sdev_Background
+- S/B = Mean_Nucleus / Mean_Background
+
+## Discussion
+
+As mentioned, although sometimes used, I don't understand the use of S/B. For S/N however it is very clear that if you are getting as low as 2.0 you start getting into trouble in terms of being able to still segment this object.
 
 
-## Segmentation of noisy images 
+# Image filtering
+
+Image filtering is a very wide field, mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example probably being the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
+
+Let's do a little whiteboard session and compute a 3x3 mean and a 3x3 median filter for below example:
+
+|   |   |   |   |   |
+|---|---|---|---|---|
+|   |   |   |   |   |
+|   |   |   |   |   |
+|   |   |   |   |   |
+
+
+
+
+## Activity: Segmentation of noisy images 
 
 Generate example data: 
 - [File > Open Samples > Blobs]
