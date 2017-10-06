@@ -257,7 +257,7 @@ In fluorescence microscopy image segmentation often is easy, because the objects
 Let's try:
  
 - Configure image segmentation settings [Process > Binary > Options]: [X] Black Background 
-- Open image "../image-inspection/B.tif" [File > Open]
+- Open image '../image-inspection/B.tif' [File > Open]
 - Manually adjust a threshold value [Image > Adjust > Threshold]
 	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
 - Perform a "connected component analysis"  [Analyze > Analyze Particles]
@@ -266,7 +266,7 @@ Let's try:
 
 ### Discussion
 
-- Single threshold vs. "gating"
+- Single threshold vs. 'gating'
 - Object size and shape filtering
 - Different types of object representations (pros and cons)
 
@@ -306,15 +306,32 @@ As mentioned, although sometimes used, I don't understand the use of S/B. For S/
 
 Image filtering is a very wide field, mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example probably being the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
 
-Let's do a little whiteboard session and compute a 3x3 mean and a 3x3 median filter for below example:
+Let's do a little whiteboard session and compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples:
 
-|   |   |   |   |   |
+| 10  | 11  | 10  | 13  | 12  |
 |---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+| 13  | 1000  | 10  | 11  | 14  |
+| 21  | 15  | **11**  | 13  | 10  |
+| 14  | 13  | 12  | 11  | 10  |
+| 11  | 11  | 10  | 13  | 12  |
+
+What do you get for mean and median?
 
 
+| 10  | 11  | 10  | 1 | 1  |
+|---|---|---|---|---|
+| 13  | 12  | 10  | 1  | 1  |
+| 21  | 15  | **11**  | 0  | 0  |
+| 14  | 13  | 12  | 0  | 0  |
+| 11  | 11  | 10  | 1  | 0  |
+
+And what do you get now?
+
+### Discussion
+
+From above examples, it should have become clear why a median filter is called both:
+- robust to outliers
+- edge preserving
 
 
 ## Activity: Segmentation of noisy images 
