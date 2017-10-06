@@ -236,7 +236,7 @@ In words, we subtract for each pixel in the ROI (Area) the mean value of the bac
 
 # Image segmentation <a name="segmentation"></a> 
 
-[https://en.wikipedia.org/wiki/Image_segmentation] says: In computer vision, image segmentation is the process of partitioning a digital image into multiple segments (sets of pixels, also known as super-pixels). The goal of segmentation is to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze. Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.
+https://en.wikipedia.org/wiki/Image_segmentation says: In computer vision, image segmentation is the process of partitioning a digital image into multiple segments (sets of pixels, also known as super-pixels). The goal of segmentation is to simplify and/or change the representation of an image into something that is more meaningful and easier to analyze. Image segmentation is typically used to locate objects and boundaries (lines, curves, etc.) in images. More precisely, image segmentation is the process of assigning a label to every pixel in an image such that pixels with the same label share certain characteristics.
 
 ## Applications of image segmentation in biology
 
@@ -257,7 +257,7 @@ In fluorescence microscopy image segmentation often is easy, because the objects
 Let's try:
  
 - Configure image segmentation settings [Process > Binary > Options]: [X] Black Background 
-- Open image '../image-inspection/B.tif' \[File > Open\]
+- Open image: "../image-inspection/B.tif"  [File > Open]
 - Manually adjust a threshold value [Image > Adjust > Threshold]
 	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
 - Perform a "connected component analysis"  [Analyze > Analyze Particles]
@@ -278,8 +278,8 @@ A very important concept in this regard is the signal to noise ratio (S/N), whic
 
 Let's have a look and try to segment nuclei of different intensities:
 
-- Open "../signal-to-noise/hb2-mCherry.tif" [File > Open]
-- Now try to threshold the nuclei [Image > Adjust > Threshold]
+- Open "../signal-to-noise/hb2-mCherry.tif"  [File > Open]
+- Now try to threshold the nuclei  [Image > Adjust > Threshold]
 	- You see that this is easy for the bright ones but does not really work for the very dim ones (you may have to adjust the LUT settings [Image > Adjust > Brightness/Contrast] to even see the dark ones).
 
 Let's now try to quantify why it is difficult to segment the dark nuclei by measuring the S/N.
@@ -288,7 +288,7 @@ Let's now try to quantify why it is difficult to segment the dark nuclei by meas
 	- [X] Mean gray value
 	- [X] Standard deviation
 - Draw an ROI inside a dim nuclues of your choice, e.g. using the “Oval Selection”
-- Save that ROI  [Analyze > Tools > ROI Manager > Add]
+- Save that ROI [Analyze > Tools > ROI Manager > Add]
 	- ...and give it a good name [Analyze > Tools > ROI Manager > Rename]
 - Now also draw and save an ROI in the background right next to the nucleus
 - Select all regions and measure them [ROI Manager > Measure]
@@ -308,8 +308,9 @@ Image filtering is a very wide field, mostly one replaces the intensity of each 
 
 Let's do a little whiteboard session and compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples:
 
-| 10  | 11  | 10  | 13  | 12  |
+|   |   |   |   |   |
 |---|---|---|---|---|
+| 10  | 11  | 10  | 13  | 12  ||
 | 13  | 1000  | 10  | 11  | 14  |
 | 21  | 15  | **11**  | 13  | 10  |
 | 14  | 13  | 12  | 11  | 10  |
@@ -318,14 +319,15 @@ Let's do a little whiteboard session and compute a 3x3 mean and a 3x3 median fil
 What do you get for mean and median?
 
 
-| 10  | 11  | 10  | 1 | 1  |
+|   |   |   |  |   |
 |---|---|---|---|---|
+| 10  | 11  | 10  | 1 | 1  |
 | 13  | 12  | 10  | 1  | 1  |
 | 21  | 15  | **11**  | 0  | 0  |
 | 14  | 13  | 12  | 0  | 0  |
 | 11  | 11  | 10  | 1  | 0  |
 
-And what do you get now?
+And what do you get here for mean and median?
 
 ### Discussion
 
@@ -333,14 +335,12 @@ From above examples, it should have become clear why a median filter is called b
 - robust to outliers
 - edge preserving
 
+## Activity: Compare mean and median filter on noisy images 
+ 
+- Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
 
-## Activity: Segmentation of noisy images 
 
-Generate example data: 
-- [File > Open Samples > Blobs]
-- [Image > Lookup Tables > Invert LUT]
-- [Process > Noise > Add Noise]
-	- do this twice or more times
+
 
 Workflow without filtering:
 - Threshold the image
@@ -348,6 +348,7 @@ Workflow without filtering:
 - Fiji commands:
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles] 
+
 
 Workflow with filtering:
 - Smooth the image
