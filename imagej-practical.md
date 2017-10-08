@@ -302,11 +302,13 @@ Now let's apply below formulas to measure the S/N and S/B:
 As mentioned, although sometimes used, I don't understand the use of S/B. For S/N however it is very clear that if you are getting as low as 2.0 you start getting into trouble in terms of being able to still segment this object.
 
 
-# Image filtering
+# Image filtering / convolution
 
 Image filtering is a very wide field, mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example probably being the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
 
-Let's do a little whiteboard session and compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples:
+## Activity: Manually compute a 3x3 mean and median filter
+
+Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples and compare the results.
 
 |   |   |   |   |   |
 |---|---|---|---|---|
@@ -335,11 +337,14 @@ From above examples, it should have become clear why a median filter is called b
 - robust to outliers
 - edge preserving
 
+
 ## Activity: Compare mean and median filter on noisy images 
  
 - Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
-
-
+- Simply play with below filters using their preview function:
+	- [Process > Filters > Mean] 
+	- [Process > Filters > Median]
+- For example, you could duplicate the image twice, apply mean filter to one and median filter to the other image, both with a radius of 15 and use a line profile to compare the one nuclues on all three images.
 
 
 Workflow without filtering:
@@ -369,6 +374,13 @@ Workflow with filtering:
 
 - How to make it work without filtering?
 - Are the object shapes preserved?
+
+
+## Image convolution
+
+The 3x3 mean filter that we applied above can also be expressed in terms on a "convolution". 
+
+
 
 ## Segmentation with uneven background
 
@@ -456,6 +468,17 @@ Discussion:
 	- Workflow:
 		- Find object centers using DoG
 		- Find object volumes growing from the object centers
+
+
+# Deep convolution
+
+Since a few years "deep convolution" has revolutionized image segmentation. Mostly it is implemented as "Deep convolutional neural networks", see e.g., https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/.
+
+However, to understand what deep convolution is all about one can also simply do it with classical operations in ImageJ. Let's see how!
+
+
+
+
 
 # Object manipulation
 

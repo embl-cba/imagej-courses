@@ -306,7 +306,9 @@ As mentioned, although sometimes used, I don't understand the use of S/B. For S/
 
 Image filtering is a very wide field, mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example probably being the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
 
-Let's do a little whiteboard session and compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples:
+## Activity: Manually compute a 3x3 mean and median filter
+
+Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples and compare the results.
 
 |   |   |   |   |   |
 |---|---|---|---|---|
@@ -335,14 +337,14 @@ From above examples, it should have become clear why a median filter is called b
 - robust to outliers
 - edge preserving
 
+## Activity: Compare mean and median filter on noisy images 
+ 
+- Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
+- Simply play with below filters using their preview function:
+	- [Process > Filters > Mean] 
+	- [Process > Filters > Median]
+- For example, you could duplicate the image twice, apply mean filter to one and median filter to the other image, both with a radius of 15 and use a line profile to compare the one nuclues on all three images.
 
-## Activity: Segmentation of noisy images 
-
-Generate example data: 
-- [File > Open Samples > Blobs]
-- [Image > Lookup Tables > Invert LUT]
-- [Process > Noise > Add Noise]
-	- do this twice or more times
 
 Workflow without filtering:
 - Threshold the image
@@ -350,6 +352,7 @@ Workflow without filtering:
 - Fiji commands:
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles] 
+
 
 Workflow with filtering:
 - Smooth the image
