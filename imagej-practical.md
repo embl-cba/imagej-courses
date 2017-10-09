@@ -302,7 +302,7 @@ Now let's apply below formulas to measure the S/N and S/B:
 As mentioned, although sometimes used, I don't understand the use of S/B. For S/N however it is very clear that if you are getting as low as 2.0 you start getting into trouble in terms of being able to still segment this object.
 
 
-# Image filtering / convolution
+# Image filtering (convolution)
 
 Image filtering is a very wide field, mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example probably being the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
 
@@ -337,7 +337,6 @@ From above examples, it should have become clear why a median filter is called b
 - robust to outliers
 - edge preserving
 
-
 ## Activity: Compare mean and median filter on noisy images 
  
 - Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
@@ -347,40 +346,61 @@ From above examples, it should have become clear why a median filter is called b
 - For example, you could duplicate the image twice, apply mean filter to one and median filter to the other image, both with a radius of 15 and use a line profile to compare the one nuclues on all three images.
 
 
-Workflow without filtering:
-- Threshold the image
-- Find the connected components
-- Fiji commands:
-	- [Image > Adjust > Threshold]
-	- [Analyze > Analyze Particles] 
-
-
-Workflow with filtering:
-- Smooth the image
-- Threshold
-- Connected component analysis
-- Fiji commands:
-	- [Process > Filters > Gaussian Blur]
-	- [Process > Filters > Mean] 
-	- [Process > Filters > Median]
-	- [Process > Filters > Maximum] followed by [ ... > Minimum] 
-		- "Morphological closing" eliminates holes
-	- [Process > Filters > Minimum] followed by [ ... > Maximum]
-		- "Morphological opening" eliminates 'noise'
-	- [Image > Adjust > Threshold]
-	- [Analyze > Analyze Particles] 
-
-### Discussion:
-
-- How to make it work without filtering?
-- Are the object shapes preserved?
-
-
 ## Image convolution
 
-The 3x3 mean filter that we applied above can also be expressed in terms on a "convolution". 
+The 3x3 mean filter that we applied above can also be expressed in terms on a "convolution", with a "convolution kernel" as show below:
+
+Kernel:
+|   |   |   |
+|---|---|---|
+| 1/9  | 1/9  | 1/9 |
+| 1/9  | **1/9**  | 1/9 |
+| 1/9  | 1/9  | 1/9 |
+
+Original image:
+|   |   |   |
+|---|---|---|
+| 15  | 11  | 5 |
+| 14  | **13**  | 12  | 
+| 11  | 11  | 10  | 
+
+Intermediate step:
+|   |   |   |
+|---|---|---|
+| 15 * 1/9  | 11 * 1/9  | 5 * 1/9 |
+| 14 * 1/9   | **13** * 1/9   | 12 * 1/9   | 
+| 11 * 1/9   | 11 * 1/9   | 10 * 1/9   | 
+
+Sum is 11.33333
+
+Convolved image:
+
+|   |   |   |
+|---|---|---|
+|   |   |  |
+|   | **11.333**  |   | 
+|   |   |   | 
 
 
+Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
+
+## Activity: Try the effect of different convolution kernels
+
+- Open any image of your choice
+- [Process > Filters > Convolve] 
+
+
+## Activity: Segmentation of noisy images
+
+- Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
+- Try to threshold the image [Image > Adjust > Threshold]
+	- This doesn't really work, right?
+- Let's try to smooth the image first, e.g. using 
+	- A 11x11 median filter [Process > Filters > Median]
+		- Radius: 5 ( 2*5 + 1 = 11)
+- Now, let's segment the nuclei, using:
+	- [Image > Adjust > Threshold]
+	- [Analyze > Analyze Particles]
 
 ## Segmentation with uneven background
 
@@ -468,15 +488,6 @@ Discussion:
 	- Workflow:
 		- Find object centers using DoG
 		- Find object volumes growing from the object centers
-
-
-# Deep convolution
-
-Since a few years "deep convolution" has revolutionized image segmentation. Mostly it is implemented as "Deep convolutional neural networks", see e.g., https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/.
-
-However, to understand what deep convolution is all about one can also simply do it with classical operations in ImageJ. Let's see how!
-
-
 
 
 
@@ -1654,6 +1665,19 @@ For example, let's try smoothing all the images:
 
 ...
 
+
+# Deep convolution
+
+Since a few years "deep convolution" has revolutionized image segmentation. Mostly it is implemented as "Deep convolutional neural networks", see e.g., https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/.
+
+However, to understand what deep convolution is all about one can also simply do it with classical operations in ImageJ. Let's see how!
+
+- Open image "../deep-convolution/edge-of-dots/input01.tif" [File > Open]
+- Open macro "../deep-convolution/edge-of-dots/egde-of-dots--deep-convolution.ijm" 
+	- [File > New > Script]
+		- Script editor: [File > Open]
+- Change the line after "// Load image" to match your path 
+- [Run] the macro
 
 
 
