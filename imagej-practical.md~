@@ -337,20 +337,6 @@ From above examples, it should have become clear why a median filter is called b
 - robust to outliers
 - edge preserving
 
-## Image convolution
-
-The 3x3 mean filter that we applied above can also be expressed in terms on a "convolution", with a "convolution kernel" as show below:
-
-|   |   |   |
-|---|---|---|
-| 1/9  | 1/9  | 1/9 |
-| 1/9  | 1/9  | 1/9 |
-| 1/9  | 1/9  | 1/9 |
-
-
-
-
-
 ## Activity: Compare mean and median filter on noisy images 
  
 - Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
@@ -358,6 +344,50 @@ The 3x3 mean filter that we applied above can also be expressed in terms on a "c
 	- [Process > Filters > Mean] 
 	- [Process > Filters > Median]
 - For example, you could duplicate the image twice, apply mean filter to one and median filter to the other image, both with a radius of 15 and use a line profile to compare the one nuclues on all three images.
+
+
+## Image convolution
+
+The 3x3 mean filter that we applied above can also be expressed in terms on a "convolution", with a "convolution kernel" as show below:
+
+Kernel:
+|   |   |   |
+|---|---|---|
+| 1/9  | 1/9  | 1/9 |
+| 1/9  | **1/9**  | 1/9 |
+| 1/9  | 1/9  | 1/9 |
+
+Original image:
+|   |   |   |
+|---|---|---|
+| 15  | 11  | 5 |
+| 14  | **13**  | 12  | 
+| 11  | 11  | 10  | 
+
+Intermediate step:
+|   |   |   |
+|---|---|---|
+| 15 * 1/9  | 11 * 1/9  | 5 * 1/9 |
+| 14 * 1/9   | **13** * 1/9   | 12 * 1/9   | 
+| 11 * 1/9   | 11 * 1/9   | 10 * 1/9   | 
+
+Sum is 11.33333
+
+Convolved image:
+
+|   |   |   |
+|---|---|---|
+|   |   |  |
+|   | **11.333**  |   | 
+|   |   |   | 
+
+
+Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
+
+## Activity: Try the effect of different convolution kernels
+
+- Open any image of your choice
+- [Process > Filters > Convolve] 
 
 
 ## Activity: Segmentation of noisy images
