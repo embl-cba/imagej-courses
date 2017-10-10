@@ -1,75 +1,100 @@
-# Table of contents
-
-[TOC]
-
 # Author Information
 
-<strong class="textmarkergelb"> Christian "Tischi" Tischer </strong>
+Christian "Tischi" Tischer
 
-e-mail: tischitischer@gmail.com
+e-mails: christian.tischer@embl.de, tischitischer@gmail.com
 
-# Introduction
-
-## Recommended Literature
+# Recommended literature on bioimage analysis
 
 - http://www.imaging-git.com/olympus-website-bioimage-data-analysis
-- ...
 
-# How to visualize and inspect the numerical content of images
+# Inspection of the numerical content of images
 
-An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of your images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
+An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of our images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
 
-## Pratical activity: image inspection
+## Activity: Image inspection
 
-Let's open an image and explore different tools to inspect the numbers in a image.
+Let's open an image and explore different tools to inspect the numbers in this image.
 We start by inspection an 8-bit image, where the numbers range from 0 to 255 (2^8-1); we'll explore different bit depths later.
 
-- [File > Open]: "../image-inspection/B.tif"
+- Open image "../image-inspection/B.tif"  [File > Open]
 
 ### Mouse over
 
-Simply move with the mouse over the image; the intensity will be shown in Fiji's menu bar.
+Simply move with the mouse over the image; the intensity will be shown in ImageJ's menu bar.
+
+
+
 
 ### Pixel inspection tool
 
 - Menu bar: [Px]
 
+
+
+
 ### Intensity line profile
 
 - Menu bar: Select the line profile tool
 - [Analyze > Plot Profile]
+
+
+
 		
 ### Histogram
 
 - [Analyze > Histogram]
 
-## Image visualization
 
-### Lookup tables (LUTs)
 
-LUTs assign a certain color to each numerical value. Intensity differences are best seen using a grayscale LUT. Choosing the LUT color similar to the emission color of the imaged fluorophore can also make sense. LUTs with multiple colors (e.g., "Fire" in Fiji) are good for simultaneously seening very dim and very bright images. Finally, LUTs where only the lowest and highest value have a certain color are useful for microscopy, e.g. to indicate saturated pixels.
 
-- [Image > Lookup Tables]
+# Lookup tables (LUTs)
+
+LUTs assign a certain color to each numerical value. Intensity differences are best seen using a grayscale LUT. Choosing the LUT color similar to the emission color of the imaged fluorophore can also make sense. LUTs with multiple colors (e.g., "Fire" in ImageJ) are good for simultaneously seening very dim and very bright images. Finally, LUTs where only the lowest and highest value have a certain color are useful for microscopy, e.g. to indicate saturated pixels.
+
+## Activity: Adjust Brightness & Contrast
+
+While the colors in a given LUT are fixed, one can change how these colors are mapped onto the numbers in the image.
+
+- Open image "../image-inspection/B.tif"  [File > Open]
+- Change the LUT settings:
+	- [Image > Adjust > Brightness/Contrast]
+
+Note that this does not change the numbers but only the appearance on your screen.
+Important: Don't press [Apply] as this will in fact change the pixel values. 
+
+
+
+
+## Activity: Explore different LUTs 
+
+- Open image "../image-inspection/B.tif"  [File > Open]
+- Explore different LUTs [Image > Lookup Tables], e.g.
 	- Grays
 	- HiLo
 		- Red: highest, Blue: lowest
 		- Important note: "highest" and "lowest" depend on your Brightness&Contrast settings!
-
-
-### Adjust Brightness & Contrast
-
-- [Image > Adjust > Brightness/Contrast]
-
-This does not change the numbers but only the LUT.
-Important: Don't press [Apply] as this will in fact change the gray values. 
+	- Fire
 
 
 
-### Background (offset)
 
-### Dynamic range
+# Important numerical properties of microscopy images
 
-### Saturation
+## Background (offset)
+
+
+
+
+## Dynamic range
+
+
+
+
+## Saturation
+
+
+
 
 ## Practical activity: Image content inspection
 
@@ -81,9 +106,8 @@ The aim is to assign each image to one of the following issues:
 - low dynamic range
 - too much saturation
 
-
 Use below workflow to inspect the images:
-- Open “../image-inspection/A.tif” [File > Open]
+- Open “../image-inspection/A.tif”  [File > Open]
 - Also open B.tif, C.tif, D.tif, E.tif 
 - Use below methods to inspect the images and find their "issues"
 	- Adjust the display [Image > Adjust > Brightness/Contrast]
@@ -92,6 +116,10 @@ Use below workflow to inspect the images:
 
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 
+
+
+
+
 
 # Image bit depths
 
@@ -114,6 +142,9 @@ Images can have different bit depths. Let's start by exploring some of the limit
 	- Inspect the gray values!
  
 Obviously this is not what we want since it is all wrong :-).
+
+
+
 
 ## Activity: Exploring properties of floating point images
 
