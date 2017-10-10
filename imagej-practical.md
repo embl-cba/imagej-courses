@@ -25,14 +25,17 @@ We start by inspection an 8-bit image, where the numbers range from 0 to 255 (2^
 
 Simply move with the mouse over the image; the intensity will be shown in ImageJ's menu bar.
 
-...
+&nbsp;
 
+&nbsp;
 
 ### Pixel inspection tool
 
 - Menu bar: [Px]
 
-...
+&nbsp;
+
+&nbsp;
 
 
 ### Intensity line profile
@@ -40,15 +43,19 @@ Simply move with the mouse over the image; the intensity will be shown in ImageJ
 - Menu bar: Select the line profile tool
 - [Analyze > Plot Profile]
 
-...
+&nbsp;
+
+&nbsp;
+
 
 		
 ### Histogram
 
 - [Analyze > Histogram]
 
-...
+&nbsp;
 
+&nbsp;
 
 # Lookup tables (LUTs)
 
@@ -119,6 +126,7 @@ Use below workflow to inspect the images:
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 
 
+&nbsp;
 
 # Image bit depths
 
@@ -151,12 +159,20 @@ Obviously this is not what we want since it is all wrong :-).
 ## Activity: Exploring properties of floating point images
 
 - Open image "../image-inspection/B.tif" [File > Open]
-- Duplicate the image and rename it to "32-bit" [Image > Duplicate]
+- Duplicate the image and already name "32-bit" [Image > Duplicate]
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion to 32 bit?
 - Now let's repeat [above activity](#8bit_limitations)
 
 Much better, right?!
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 
 ## Image bit depths in ImageJ
 
@@ -173,9 +189,12 @@ Much better, right?!
 Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
 
 
+&nbsp;
+
+
 ## Image bit depth conversions
 
-Image bit depth conversion is something that you should generally avoid, but sometimes you can't either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore now what happens of you do convert between different bit depths.
+Image bit depth conversion is something that you should generally avoid, but sometimes you can't; either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore now what happens if you do convert between different bit depths.
 
 
 ## Activity: Conversion from 8-bit to 32-bit floating point
@@ -185,6 +204,8 @@ Image bit depth conversion is something that you should generally avoid, but som
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion?
 
+&nbsp;
+
 ## Activity: Conversion from 16-bit to 32-bit floating point
  
 - Open image "../image-format-conversion/16bit.tif" [File > Open]
@@ -192,9 +213,9 @@ Image bit depth conversion is something that you should generally avoid, but som
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion?
 
-## Practical activity: 16-bit to 8-bit conversion
+## Activity: 16-bit to 8-bit conversion
 
-OK! Now comes the **tricky part** where I have seen several project going very wrong!
+OK! Now comes the **tricky part**, where several projects were going very wrong in the past!
 
 - Open "../image-format-conversion/16bit.tif" [File > Open]
 - Inspect the gray values: What are the minimum and maximum? Note them down.
@@ -206,54 +227,71 @@ Hopefully you are **shocked** that we all got different results! How can this be
 
 ## Discussion: How to convert 16-bit to 8-bit
 
-- 0,65535 => 0,255
+- 0, 65535 => 0, 255
 	- Preserves intensities but looses dynamic range
-- min,max => 0,255
+- min, max => 0, 255
 	- Maximizes dynamic range, but looses intensity information
-- minLUT,maxLUT => 0,255 
-	- leave it up to the user!
+- minLUT, maxLUT => 0, 255 
+	- Leave it up to the user!
 	- This is what ImageJ is doing!
+
+&nbsp;
+
 
 # Image format conversion
 
-Unfortunately there are very many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice this :-)
+Unfortunately there are many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice!
 
-
-## Practial activity: Save an image in different formats and inspect how this affects numerical content and file size
+## Activity: Save an image in different formats and inspect how this affects its numerical content and file size
 
 - Open “../image-format-conversion/16bit.tif” [File > Open]
 	- Adjust the display such that you actually see something [Image > Adjust > Brightness/Contrast]
 - Save as **Jpeg** using different levels of compression (quality)
 	- Adjust Jpeg quality (0-100) to 10 [Edit > Option > Input/Output]
-	- save as Q10.jpg (File..Save As..Jpeg)
+	- save as "quality_10.jpg"  [File > Save As > Jpeg]
 	- repeat for Jpeg qualities 75, and 100
 - Save as **png** [File > Save As > PNG]
 - Adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
-	- Save as Q100_saturated.jpg [File > Save As > Jpeg]
-	- Save as im_saturated.png [File > Save As > PNG]
+	- Save as "saturated.jpg"  [File > Save As > Jpeg]
+	- Save as "saturated.png"  [File > Save As > PNG]
 
 Now lets go to the folder where you saved the images and check their file size!
 And, even more important, lets reopen them and check what happened to their gray values!
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 
 
 # Image intensity measurements <a name="intensity_measurements"></a> 
 
 ## Mean intensity and sum intensity
 
-PowerPoint presentation.
+=> PowerPoint presentation.
+
+&nbsp;
+
+
 
 ## The biophysical meaning of intensities in fluorescence microscopy images
 
-PowerPoint presentation.
+=> PowerPoint presentation.
+
+&nbsp;
+
+
 
 ## Practical activity: Manual intensity measurements
 
 - Open “../bit-conversion/16bit.tif”
-- Draw a region around a nucleus (nucleus_1), e.g. using Fiji's Polygon Selection
-	- Since we will do sum intensity measurements with proper background subtraction you should draw this region rather generous!
+- Draw a region around a nucleus, e.g. using ImageJ's Polygon Selection
+	- Since we will do sum intensity measurements with proper background subtraction you should draw this region rather generously not to miss any intensities!
 - Add region to ROI manager [Analyze > Tools > ROI Manager > Add)
 - Name the region “nucleus_1” [Analyze > Tools > ROI Manager > Rename]
-- Repeat above steps for a background ROI and another nucleus (nucleus_2)
+- Repeat above steps for a background ROI and another nucleus
 - Select measurements [Analyze > Set Measurements]:
 	- [X] Mean gray value
 	- [X] Area
@@ -265,7 +303,15 @@ Now we need to do the proper background subtraction for the two nuclei ROIs, usi
 
 `Sum_BgCorr = RawIntDen - Area * Mean_Background`
 
-In words, we subtract for each pixel in the ROI (Area) the mean value of the background.
+In words, we subtract for each pixel in the ROI the mean value of the background.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 
 # Image segmentation <a name="segmentation"></a> 
 
@@ -279,17 +325,17 @@ https://en.wikipedia.org/wiki/Image_segmentation says: In computer vision, image
 - object intensity measurements
 - in general: object **feature** measurements
 
+In general, image segmentation typically is a two step process, where you 
+1. identify all pixels that potentially belong to an object
+2. group pixels together belonging to one object (as you typically have several objects in one image).
 ## Activity: Manual global thresholding followed by "particle analysis"
 
-In general, image segmentation typically is a two step process, where you 
-- first identify all pixels that potentially belong to an object, and
-- second group pixels together belonging to the one object (you mayb have several objects in one image).
-
-In fluorescence microscopy image segmentation often is easy, because the objects of interest are simply brighter than the "background". 
+In fluorescence microscopy, image segmentation often is easy, because the objects of interest are simply brighter than the "background". 
 
 Let's try:
  
-- Configure image segmentation settings [Process > Binary > Options]: [X] Black Background 
+- Configure image segmentation settings [Process > Binary > Options]: 
+	- [X] Black Background
 - Open image: "../image-inspection/B.tif"  [File > Open]
 - Manually adjust a threshold value [Image > Adjust > Threshold]
 	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
@@ -297,11 +343,31 @@ Let's try:
 	- Other wordings are: "object detection", "particle analysis"
 - Run it again and explore the different options of the "Particle Analyzer"
 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ### Discussion
 
 - Single threshold vs. 'gating'
 - Object size and shape filtering
 - Different types of object representations (pros and cons)
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 
 # The signal to noise (S/N) ratio
 
@@ -315,7 +381,7 @@ Let's have a look and try to segment nuclei of different intensities:
 - Now try to threshold the nuclei  [Image > Adjust > Threshold]
 	- You see that this is easy for the bright ones but does not really work for the very dim ones (you may have to adjust the LUT settings [Image > Adjust > Brightness/Contrast] to even see the dark ones).
 
-Let's now try to quantify why it is difficult to segment the dark nuclei by measuring the S/N.
+Let's now try to quantify why it is difficult to segment the dark nuclei by measuring their S/N.
 
 - [Analyze > Set Measurements]: 
 	- [X] Mean gray value
@@ -324,22 +390,30 @@ Let's now try to quantify why it is difficult to segment the dark nuclei by meas
 - Save that ROI [Analyze > Tools > ROI Manager > Add]
 	- ...and give it a good name [Analyze > Tools > ROI Manager > Rename]
 - Now also draw and save an ROI in the background right next to the nucleus
-- Select all regions and measure them [ROI Manager > Measure]
+- Select both regions and measure them [ROI Manager > Measure]
 
 Now let's apply below formulas to measure the S/N and S/B: 
-- S/N = Mean_Nucleus - Mean_Background / Sdev_Background
+- S/N = ( Mean_Nucleus - Mean_Background ) / Sdev_Background
 - S/B = Mean_Nucleus / Mean_Background
 
 ## Discussion
 
-As mentioned, although sometimes used, I don't understand the use of S/B. For S/N however it is very clear that if you are getting as low as 2.0 you start getting into trouble in terms of being able to still segment this object.
+As mentioned, although sometimes used, I don't understand the use of S/B. For S/N however it is very clear that if you are getting as low as two, you start getting into trouble in terms of being able to still segment this object.
+
+
+&nbsp;
+
+&nbsp;
+
 
 
 # Image filtering (convolution)
 
-Image filtering is a very wide field, mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example probably being the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
+Image filtering is a very wide field, where mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example is probably the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
 
-## Activity: Manually compute a 3x3 mean and median filter
+## Activity: Manually compute a 3x3 mean and a 3x3 median filter
+
+Mean and median can be almost the same, but, depening on the data, also be very different; thus let's compare them. In fact, the median filter is quite important for local background subtraction, while the mean filter is less useful in this context (see below).
 
 Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples and compare the results.
 
@@ -370,13 +444,25 @@ From above examples, it should have become clear why a median filter is called b
 - robust to outliers
 - edge preserving
 
-## Activity: Compare mean and median filter on noisy images 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+## Activity: Apply mean and median filter to noisy images 
  
 - Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
 - Simply play with below filters using their preview function:
 	- [Process > Filters > Mean] 
 	- [Process > Filters > Median]
-- For example, you could duplicate the image twice, apply mean filter to one and median filter to the other image, both with a radius of 15 and use a line profile to compare the one nuclues on all three images.
+
+For example, you could duplicate the image twice, apply mean filter to one and median filter to the other image, both with a radius of 15 and use a line profile to compare the one nuclues on all three images.
+
+&nbsp;
+
+&nbsp;
 
 
 ## Image convolution
@@ -417,10 +503,24 @@ Convolved image:
 
 Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+
 ## Activity: Try the effect of different convolution kernels
 
 - Open any image of your choice
 - [Process > Filters > Convolve] 
+
+&nbsp
+
+&nbsp
+
+&nbsp
 
 
 ## Activity: Segmentation of noisy images
@@ -435,36 +535,55 @@ Basically, you multiply each pixel in the original image with the number that is
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles]
 
+&nbsp
+
+&nbsp
+
+&nbsp
+
+
 ## Segmentation with uneven background
 
-If there is a strong uneven background in your image segmenting the objects just with thresholding will not work.
+If there is a strong uneven background in your image segmenting the objects with just one threshold will not work.
 
-Ways to combat this are:
+Ways to combat this challenge are:
+
 - Local background subtraction
+	- If possible, this is the best method because it also corrects the intensities in your image in the right way.
 - Local tresholding
+	- Works, but does not correct intensities.
 - Edge enhancement combined with 'fill holes' (not shown)
-
+	- Also works, but also in fact even alters your intensities in a bad way.
 
 Example data:
 - ../data_new/uneven-background/blobs-with-background.tif
 - ../data/workflow_autophagosomes/autophagosomes_raw.tif
 
-### Local background subtraction
+### Activity: Try different local background subtraction methods
 
-Workflow:
 - Try different **local background subtraction** methods (see [here](#local-background-subtraction) for more detailed examples)
-	- Subtract a **mean** filtered version of the image from the original
 	- Subtract a **median** filtered version of the image from the original
 	- Subtract a morphological **opening** of the image from the original (i.e. do a **top-hat** filter)
-	- Use "Subtract background" method 
+	- Use ImageJ's "Subtract background" method 
 - After local background subtraction, segment the objectis with a global intensity threshold and connected component analysis
-- Fiji commands:
+- ImageJ commands:
 	- [Process > Filters > Mean]
 	- [Process > Filters > Median]
 	- [Process > Filters > Minimum]
 	- [Process > Filters > Maximum]
 	- [Process > Image Calculator]
 	- [Process > Subtract Background]
+	- [Image > Adjust > Threshold]
+	- [Analyze > Analyze Particles]
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 
 ## Automated global thresholding
 
@@ -602,23 +721,20 @@ Comments:
 - E.g., CellProfiler offers a number of interesting choices for object splitting, which are not only shape but also intensity-based 
 
 
-
-# Intensity measurements
+# Intensity measurements with local background
 
 Intensity measurements are a **very tricky business**, not because they are technically difficult, but because one can make many mistakes in the interpretation of the numbers. This very easily leads to wrong scientific conclusions!
 
-## Lecture
+Especially subtracting the right background is very challenging!
 
-- Show slides from the PowerPoint presentation 
-- White-board session on H2B-mCherry during cell-cycle (wide-field vs. confocal, sum vs. mean)
-
-## Practical 
+## Activity: Local background subtraction
 
 Example data:
 
-- ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
-	-  [Help > Update > Manage Update Sites] ImageScience
-	-  [Run] to generate the images
+- We need to run this macro to generate example data: 
+	- "../dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py"
+	- [Help > Update > Manage Update Sites] ImageScience
+	- [Run] to generate the images
 
 We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
 

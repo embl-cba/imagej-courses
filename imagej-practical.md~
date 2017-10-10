@@ -8,6 +8,8 @@ e-mails: christian.tischer@embl.de, tischitischer@gmail.com
 
 - http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
+...
+
 # Inspection of the numerical content of images
 
 An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of our images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
@@ -23,14 +25,17 @@ We start by inspection an 8-bit image, where the numbers range from 0 to 255 (2^
 
 Simply move with the mouse over the image; the intensity will be shown in ImageJ's menu bar.
 
+&nbsp;
 
-
+&nbsp;
 
 ### Pixel inspection tool
 
 - Menu bar: [Px]
 
+&nbsp;
 
+&nbsp;
 
 
 ### Intensity line profile
@@ -38,6 +43,9 @@ Simply move with the mouse over the image; the intensity will be shown in ImageJ
 - Menu bar: Select the line profile tool
 - [Analyze > Plot Profile]
 
+&nbsp;
+
+&nbsp;
 
 
 		
@@ -45,8 +53,9 @@ Simply move with the mouse over the image; the intensity will be shown in ImageJ
 
 - [Analyze > Histogram]
 
+&nbsp;
 
-
+&nbsp;
 
 # Lookup tables (LUTs)
 
@@ -61,9 +70,8 @@ While the colors in a given LUT are fixed, one can change how these colors are m
 	- [Image > Adjust > Brightness/Contrast]
 
 Note that this does not change the numbers but only the appearance on your screen.
-Important: Don't press [Apply] as this will in fact change the pixel values. 
 
-
+**Important: Don't press [Apply] as this will in fact change the pixel values.** 
 
 
 ## Activity: Explore different LUTs 
@@ -77,27 +85,25 @@ Important: Don't press [Apply] as this will in fact change the pixel values.
 	- Fire
 
 
-
-
 # Important numerical properties of microscopy images
 
 ## Background (offset)
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
 
 ## Dynamic range
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
 
 ## Saturation
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
 
 ## Practical activity: Image content inspection
 
@@ -120,9 +126,7 @@ Use below workflow to inspect the images:
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 
 
-.
-.
-.
+&nbsp;
 
 # Image bit depths
 
@@ -146,19 +150,29 @@ Images can have different bit depths. Let's start by exploring some of the limit
  
 Obviously this is not what we want since it is all wrong :-).
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 ## Activity: Exploring properties of floating point images
 
 - Open image "../image-inspection/B.tif" [File > Open]
-- Duplicate the image and rename it to "32-bit" [Image > Duplicate]
+- Duplicate the image and already name "32-bit" [Image > Duplicate]
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion to 32 bit?
 - Now let's repeat [above activity](#8bit_limitations)
 
 Much better, right?!
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 
 ## Image bit depths in ImageJ
 
@@ -175,9 +189,12 @@ Much better, right?!
 Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
 
 
+&nbsp;
+
+
 ## Image bit depth conversions
 
-Image bit depth conversion is something that you should generally avoid, but sometimes you can't either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore now what happens of you do convert between different bit depths.
+Image bit depth conversion is something that you should generally avoid, but sometimes you can't; either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore now what happens if you do convert between different bit depths.
 
 
 ## Activity: Conversion from 8-bit to 32-bit floating point
@@ -187,6 +204,8 @@ Image bit depth conversion is something that you should generally avoid, but som
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion?
 
+&nbsp;
+
 ## Activity: Conversion from 16-bit to 32-bit floating point
  
 - Open image "../image-format-conversion/16bit.tif" [File > Open]
@@ -194,9 +213,9 @@ Image bit depth conversion is something that you should generally avoid, but som
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion?
 
-## Practical activity: 16-bit to 8-bit conversion
+## Activity: 16-bit to 8-bit conversion
 
-OK! Now comes the **tricky part** where I have seen several project going very wrong!
+OK! Now comes the **tricky part**, where several projects were going very wrong in the past!
 
 - Open "../image-format-conversion/16bit.tif" [File > Open]
 - Inspect the gray values: What are the minimum and maximum? Note them down.
@@ -208,54 +227,71 @@ Hopefully you are **shocked** that we all got different results! How can this be
 
 ## Discussion: How to convert 16-bit to 8-bit
 
-- 0,65535 => 0,255
+- 0, 65535 => 0, 255
 	- Preserves intensities but looses dynamic range
-- min,max => 0,255
+- min, max => 0, 255
 	- Maximizes dynamic range, but looses intensity information
-- minLUT,maxLUT => 0,255 
-	- leave it up to the user!
+- minLUT, maxLUT => 0, 255 
+	- Leave it up to the user!
 	- This is what ImageJ is doing!
+
+&nbsp;
+
 
 # Image format conversion
 
-Unfortunately there are very many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice this :-)
+Unfortunately there are many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice!
 
-
-## Practial activity: Save an image in different formats and inspect how this affects numerical content and file size
+## Activity: Save an image in different formats and inspect how this affects its numerical content and file size
 
 - Open “../image-format-conversion/16bit.tif” [File > Open]
 	- Adjust the display such that you actually see something [Image > Adjust > Brightness/Contrast]
 - Save as **Jpeg** using different levels of compression (quality)
 	- Adjust Jpeg quality (0-100) to 10 [Edit > Option > Input/Output]
-	- save as Q10.jpg (File..Save As..Jpeg)
+	- save as "quality_10.jpg"  [File > Save As > Jpeg]
 	- repeat for Jpeg qualities 75, and 100
 - Save as **png** [File > Save As > PNG]
 - Adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
-	- Save as Q100_saturated.jpg [File > Save As > Jpeg]
-	- Save as im_saturated.png [File > Save As > PNG]
+	- Save as "saturated.jpg"  [File > Save As > Jpeg]
+	- Save as "saturated.png"  [File > Save As > PNG]
 
 Now lets go to the folder where you saved the images and check their file size!
 And, even more important, lets reopen them and check what happened to their gray values!
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 
 
 # Image intensity measurements <a name="intensity_measurements"></a> 
 
 ## Mean intensity and sum intensity
 
-PowerPoint presentation.
+=> PowerPoint presentation.
+
+&nbsp;
+
+
 
 ## The biophysical meaning of intensities in fluorescence microscopy images
 
-PowerPoint presentation.
+=> PowerPoint presentation.
+
+&nbsp;
+
+
 
 ## Practical activity: Manual intensity measurements
 
 - Open “../bit-conversion/16bit.tif”
-- Draw a region around a nucleus (nucleus_1), e.g. using Fiji's Polygon Selection
-	- Since we will do sum intensity measurements with proper background subtraction you should draw this region rather generous!
+- Draw a region around a nucleus, e.g. using ImageJ's Polygon Selection
+	- Since we will do sum intensity measurements with proper background subtraction you should draw this region rather generously not to miss any intensities!
 - Add region to ROI manager [Analyze > Tools > ROI Manager > Add)
 - Name the region “nucleus_1” [Analyze > Tools > ROI Manager > Rename]
-- Repeat above steps for a background ROI and another nucleus (nucleus_2)
+- Repeat above steps for a background ROI and another nucleus
 - Select measurements [Analyze > Set Measurements]:
 	- [X] Mean gray value
 	- [X] Area
@@ -267,7 +303,15 @@ Now we need to do the proper background subtraction for the two nuclei ROIs, usi
 
 `Sum_BgCorr = RawIntDen - Area * Mean_Background`
 
-In words, we subtract for each pixel in the ROI (Area) the mean value of the background.
+In words, we subtract for each pixel in the ROI the mean value of the background.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 
 # Image segmentation <a name="segmentation"></a> 
 
@@ -281,17 +325,17 @@ https://en.wikipedia.org/wiki/Image_segmentation says: In computer vision, image
 - object intensity measurements
 - in general: object **feature** measurements
 
+In general, image segmentation typically is a two step process, where you 
+1. identify all pixels that potentially belong to an object
+2. group pixels together belonging to one object (as you typically have several objects in one image).
 ## Activity: Manual global thresholding followed by "particle analysis"
 
-In general, image segmentation typically is a two step process, where you 
-- first identify all pixels that potentially belong to an object, and
-- second group pixels together belonging to the one object (you mayb have several objects in one image).
-
-In fluorescence microscopy image segmentation often is easy, because the objects of interest are simply brighter than the "background". 
+In fluorescence microscopy, image segmentation often is easy, because the objects of interest are simply brighter than the "background". 
 
 Let's try:
  
-- Configure image segmentation settings [Process > Binary > Options]: [X] Black Background 
+- Configure image segmentation settings [Process > Binary > Options]: 
+	- [X] Black Background
 - Open image: "../image-inspection/B.tif"  [File > Open]
 - Manually adjust a threshold value [Image > Adjust > Threshold]
 	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
@@ -299,11 +343,31 @@ Let's try:
 	- Other wordings are: "object detection", "particle analysis"
 - Run it again and explore the different options of the "Particle Analyzer"
 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ### Discussion
 
 - Single threshold vs. 'gating'
 - Object size and shape filtering
 - Different types of object representations (pros and cons)
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 
 # The signal to noise (S/N) ratio
 
