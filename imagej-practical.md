@@ -8,6 +8,8 @@ e-mails: christian.tischer@embl.de, tischitischer@gmail.com
 
 - http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
+...
+
 # Inspection of the numerical content of images
 
 An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of our images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
@@ -23,14 +25,14 @@ We start by inspection an 8-bit image, where the numbers range from 0 to 255 (2^
 
 Simply move with the mouse over the image; the intensity will be shown in ImageJ's menu bar.
 
-
+...
 
 
 ### Pixel inspection tool
 
 - Menu bar: [Px]
 
-
+...
 
 
 ### Intensity line profile
@@ -38,14 +40,14 @@ Simply move with the mouse over the image; the intensity will be shown in ImageJ
 - Menu bar: Select the line profile tool
 - [Analyze > Plot Profile]
 
-
+...
 
 		
 ### Histogram
 
 - [Analyze > Histogram]
 
-
+...
 
 
 # Lookup tables (LUTs)
@@ -61,9 +63,8 @@ While the colors in a given LUT are fixed, one can change how these colors are m
 	- [Image > Adjust > Brightness/Contrast]
 
 Note that this does not change the numbers but only the appearance on your screen.
-Important: Don't press [Apply] as this will in fact change the pixel values. 
 
-
+**Important: Don't press [Apply] as this will in fact change the pixel values.** 
 
 
 ## Activity: Explore different LUTs 
@@ -77,27 +78,25 @@ Important: Don't press [Apply] as this will in fact change the pixel values.
 	- Fire
 
 
-
-
 # Important numerical properties of microscopy images
 
 ## Background (offset)
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
 
 ## Dynamic range
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
 
 ## Saturation
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
 
 ## Practical activity: Image content inspection
 
@@ -120,9 +119,6 @@ Use below workflow to inspect the images:
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 
 
-.
-.
-.
 
 # Image bit depths
 
@@ -146,9 +142,11 @@ Images can have different bit depths. Let's start by exploring some of the limit
  
 Obviously this is not what we want since it is all wrong :-).
 
-.
-.
-.
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 ## Activity: Exploring properties of floating point images
 

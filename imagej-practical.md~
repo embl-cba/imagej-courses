@@ -83,18 +83,21 @@ Important: Don't press [Apply] as this will in fact change the pixel values.
 
 ## Background (offset)
 
-
-
+.
+.
+.
 
 ## Dynamic range
 
-
-
+.
+.
+.
 
 ## Saturation
 
-
-
+.
+.
+.
 
 ## Practical activity: Image content inspection
 
@@ -117,9 +120,9 @@ Use below workflow to inspect the images:
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 
 
-
-
-
+.
+.
+.
 
 # Image bit depths
 
@@ -143,8 +146,9 @@ Images can have different bit depths. Let's start by exploring some of the limit
  
 Obviously this is not what we want since it is all wrong :-).
 
-
-
+.
+.
+.
 
 ## Activity: Exploring properties of floating point images
 
