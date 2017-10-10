@@ -274,15 +274,11 @@ And, even more important, lets reopen them and check what happened to their gray
 
 &nbsp;
 
-
-
 ## The biophysical meaning of intensities in fluorescence microscopy images
 
 => PowerPoint presentation.
 
 &nbsp;
-
-
 
 ## Practical activity: Manual intensity measurements
 
@@ -311,6 +307,63 @@ In words, we subtract for each pixel in the ROI the mean value of the background
 
 &nbsp;
 
+## Intensity measurements with local background
+
+Intensity measurements are a **very tricky business**, not because they are technically difficult, but because one can make many mistakes in the interpretation of the numbers. This very easily leads to wrong scientific conclusions!
+
+Especially subtracting the right background is very challenging!
+
+## Activity: Intensity measurements with local background subtraction
+
+Let's first open the images:
+
+- Open all images in this folder "../dna-damage-synthetic-data/"
+
+We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
+
+Workflow:
+- Background subtraction
+- Separate intensity in damage site (bound protein) from unbound protein
+	- Local background subtraction alternatives:
+		- Manual
+			- on image
+			- in R/Excel
+		- Median subtraction (32bit!)
+		- Tophat filter
+- Measure sum intensity in damage site (including bg-subtraction)
+- Measure sum intensity in nucleus
+
+## Discussion:
+
+- How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
+
+- Divide by the length (and or width) of the laser damage cut?
+	- length makes sense
+	- width probably not
+
+- What about computing the mean intensity in the nucleus next to the damage site?
+	- In principle attractive, because for a KD we need the concentration of the unbound protein.
+	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous in the region where we measure the mean (you have to think in 3-D; PSF!) this mean intensity gives information about the concentration of unbound protein; however as soon as there is a lot of structure in the signal it is not clear that it helps
+	- For a widefield image it is kind of the same argument, however the 3D shape of the measured region is infinitely big! One can see that one measures a larger amount of protein in the center than at the edge of the nucleus.
+
+- Background subtraction must be done with floating point
+	- Not for tophat though
+
+- What about computing mean intensity in the nucleus next to the damage site?
+
+- Median filter: Pros and cons?
+	- has trouble when there are not clearly more background than foreground pixels
+
+- Tophat filter: Pros and cons?
+	- has trouble when there is noise
+
+- Alternative local background subtraction strategies
+
+- What changes if we assume that this is **one confocal slice** rather than a widefield image?
+
+
+
+
 
 
 # Image segmentation <a name="segmentation"></a> 
@@ -328,6 +381,7 @@ https://en.wikipedia.org/wiki/Image_segmentation says: In computer vision, image
 In general, image segmentation typically is a two step process, where you 
 1. identify all pixels that potentially belong to an object
 2. group pixels together belonging to one object (as you typically have several objects in one image).
+
 ## Activity: Manual global thresholding followed by "particle analysis"
 
 In fluorescence microscopy, image segmentation often is easy, because the objects of interest are simply brighter than the "background". 
@@ -342,15 +396,6 @@ Let's try:
 - Perform a "connected component analysis"  [Analyze > Analyze Particles]
 	- Other wordings are: "object detection", "particle analysis"
 - Run it again and explore the different options of the "Particle Analyzer"
-
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
 
 ### Discussion
 
@@ -368,7 +413,6 @@ Let's try:
 &nbsp;
 
 
-
 # The signal to noise (S/N) ratio
 
 At the microscope, especially setting up a live cell experiment where you want to avoid photo-bleaching of your fluorophore, you typically wonder: "How good does the image need to be in order for me to be able to still segment the objects?"
@@ -381,7 +425,7 @@ Let's have a look and try to segment nuclei of different intensities:
 - Now try to threshold the nuclei  [Image > Adjust > Threshold]
 	- You see that this is easy for the bright ones but does not really work for the very dim ones (you may have to adjust the LUT settings [Image > Adjust > Brightness/Contrast] to even see the dark ones).
 
-Let's now try to quantify why it is difficult to segment the dark nuclei by measuring the S/N.
+Let's now try to quantify why it is difficult to segment the dark nuclei by measuring their S/N.
 
 - [Analyze > Set Measurements]: 
 	- [X] Mean gray value
@@ -390,22 +434,30 @@ Let's now try to quantify why it is difficult to segment the dark nuclei by meas
 - Save that ROI [Analyze > Tools > ROI Manager > Add]
 	- ...and give it a good name [Analyze > Tools > ROI Manager > Rename]
 - Now also draw and save an ROI in the background right next to the nucleus
-- Select all regions and measure them [ROI Manager > Measure]
+- Select both regions and measure them [ROI Manager > Measure]
 
 Now let's apply below formulas to measure the S/N and S/B: 
-- S/N = Mean_Nucleus - Mean_Background / Sdev_Background
+- S/N = ( Mean_Nucleus - Mean_Background ) / Sdev_Background
 - S/B = Mean_Nucleus / Mean_Background
 
 ## Discussion
 
-As mentioned, although sometimes used, I don't understand the use of S/B. For S/N however it is very clear that if you are getting as low as 2.0 you start getting into trouble in terms of being able to still segment this object.
+As mentioned, although sometimes used, I don't understand the use of S/B. For S/N however it is very clear that if you are getting as low as two, you start getting into trouble in terms of being able to still segment this object.
+
+
+&nbsp;
+
+&nbsp;
+
 
 
 # Image filtering (convolution)
 
-Image filtering is a very wide field, mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example probably being the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
+Image filtering is a very wide field, where mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example is probably the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
 
-## Activity: Manually compute a 3x3 mean and median filter
+## Activity: Manually compute a 3x3 mean and a 3x3 median filter
+
+Mean and median can be almost the same, but, depening on the data, also be very different; thus let's compare them. In fact, the median filter is quite important for local background subtraction, while the mean filter is less useful in this context (see below).
 
 Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples and compare the results.
 
@@ -436,13 +488,29 @@ From above examples, it should have become clear why a median filter is called b
 - robust to outliers
 - edge preserving
 
-## Activity: Compare mean and median filter on noisy images 
- 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Activity: Segmentation of noisy images with the help of filtering (smoothing)
+
 - Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
-- Simply play with below filters using their preview function:
-	- [Process > Filters > Mean] 
-	- [Process > Filters > Median]
-- For example, you could duplicate the image twice, apply mean filter to one and median filter to the other image, both with a radius of 15 and use a line profile to compare the one nuclues on all three images.
+- Try to threshold the image [Image > Adjust > Threshold]
+	- This doesn't really work, right?
+- Let's try to smooth the image first, e.g. using 
+	- A 11x11 median filter [Process > Filters > Median]
+		- Radius: 5 ( 2*5 + 1 = 11)
+- Now, let's segment the nuclei, using:
+	- [Image > Adjust > Threshold]
+	- [Analyze > Analyze Particles]
+
+&nbsp
+
+&nbsp
+
+&nbsp
 
 
 ## Image convolution
@@ -483,54 +551,127 @@ Convolved image:
 
 Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+
 ## Activity: Try the effect of different convolution kernels
 
 - Open any image of your choice
 - [Process > Filters > Convolve] 
 
+&nbsp
 
-## Activity: Segmentation of noisy images
+&nbsp
 
-- Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
-- Try to threshold the image [Image > Adjust > Threshold]
-	- This doesn't really work, right?
-- Let's try to smooth the image first, e.g. using 
-	- A 11x11 median filter [Process > Filters > Median]
-		- Radius: 5 ( 2*5 + 1 = 11)
-- Now, let's segment the nuclei, using:
-	- [Image > Adjust > Threshold]
-	- [Analyze > Analyze Particles]
+&nbsp
+
+
+## Intensity measurements with automated local background subtraction
+
+Above we already practiced how to subtract a local background manually; let's try to automated this. This is important for image batch analysis or when the local background is uneven and not easy to subtract manually.
+
+
+## Activity: Automated local background subtraction
+
+Example data:
+
+- We need to run this macro to generate example data: 
+	- "../dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py"
+	- [Help > Update > Manage Update Sites] ImageScience
+	- [Run] to generate the images
+
+We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
+
+Workflow:
+- Background subtraction
+- Separate intensity in damage site (bound protein) from unbound protein
+	- Local background subtraction alternatives:
+		- Manual
+			- on image
+			- in R/Excel
+		- Median subtraction (32bit!)
+		- Tophat filter
+- Measure sum intensity in damage site (including bg-subtraction)
+- Measure sum intensity in nucleus
+
+## Discussion:
+
+- How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
+
+- Divide by the length (and or width) of the laser damage cut?
+	- length makes sense
+	- width probably not
+
+- What about computing the mean intensity in the nucleus next to the damage site?
+	- In principle attractive, because for a KD we need the concentration of the unbound protein.
+	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous in the region where we measure the mean (you have to think in 3-D; PSF!) this mean intensity gives information about the concentration of unbound protein; however as soon as there is a lot of structure in the signal it is not clear that it helps
+	- For a widefield image it is kind of the same argument, however the 3D shape of the measured region is infinitely big! One can see that one measures a larger amount of protein in the center than at the edge of the nucleus.
+
+- Background subtraction must be done with floating point
+	- Not for tophat though
+
+- What about computing mean intensity in the nucleus next to the damage site?
+
+- Median filter: Pros and cons?
+	- has trouble when there are not clearly more background than foreground pixels
+
+- Tophat filter: Pros and cons?
+	- has trouble when there is noise
+
+- Alternative local background subtraction strategies
+
+- What changes if we assume that this is **one confocal slice** rather than a widefield image?
+
+
+
 
 ## Segmentation with uneven background
 
-If there is a strong uneven background in your image segmenting the objects just with thresholding will not work.
+If there is a strong uneven background in your image segmenting the objects with just one threshold will not work.
 
-Ways to combat this are:
+Ways to combat this challenge are:
+
 - Local background subtraction
+	- If possible, this is the best method because it also corrects the intensities in your image in the right way.
 - Local tresholding
+	- Works, but does not correct intensities.
 - Edge enhancement combined with 'fill holes' (not shown)
-
+	- Also works, but also in fact even alters your intensities in a bad way.
 
 Example data:
 - ../data_new/uneven-background/blobs-with-background.tif
 - ../data/workflow_autophagosomes/autophagosomes_raw.tif
 
-### Local background subtraction
+### Activity: Try different local background subtraction methods
 
-Workflow:
 - Try different **local background subtraction** methods (see [here](#local-background-subtraction) for more detailed examples)
-	- Subtract a **mean** filtered version of the image from the original
 	- Subtract a **median** filtered version of the image from the original
 	- Subtract a morphological **opening** of the image from the original (i.e. do a **top-hat** filter)
-	- Use "Subtract background" method 
+	- Use ImageJ's "Subtract background" method 
 - After local background subtraction, segment the objectis with a global intensity threshold and connected component analysis
-- Fiji commands:
+- ImageJ commands:
 	- [Process > Filters > Mean]
 	- [Process > Filters > Median]
 	- [Process > Filters > Minimum]
 	- [Process > Filters > Maximum]
 	- [Process > Image Calculator]
 	- [Process > Subtract Background]
+	- [Image > Adjust > Threshold]
+	- [Analyze > Analyze Particles]
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 
 ## Automated global thresholding
 
@@ -583,7 +724,7 @@ Workflow:
 
 Discussion:
 - The object shape is not preserved with this method
-	- One could combine the DoG with a region growing algorithm to recover the object shape
+
 	- Workflow:
 		- Find object centers using DoG
 		- Find object volumes growing from the object centers
@@ -669,75 +810,7 @@ Comments:
 
 
 
-# Intensity measurements
-
-Intensity measurements are a **very tricky business**, not because they are technically difficult, but because one can make many mistakes in the interpretation of the numbers. This very easily leads to wrong scientific conclusions!
-
-## Lecture
-
-- Show slides from the PowerPoint presentation 
-- White-board session on H2B-mCherry during cell-cycle (wide-field vs. confocal, sum vs. mean)
-
-## Practical 
-
-Example data:
-
-- ../data_new/dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py
-	-  [Help > Update > Manage Update Sites] ImageScience
-	-  [Run] to generate the images
-
-We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
-
-Workflow:
-- Background subtraction
-- Separate intensity in damage site (bound protein) from unbound protein
-	- Local background subtraction alternatives:
-		- Manual
-			- on image
-			- in R/Excel
-		- Median subtraction (32bit!)
-		- Tophat filter
-- Measure sum intensity in damage site (including bg-subtraction)
-- Measure sum intensity in nucleus
-
-
-Discussion:
-- How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
-
-- Divide by the length (and or width) of the laser damage cut?
-	- length makes sense
-	- width probably not
-
-- What about computing the mean intensity in the nucleus next to the damage site?
-	- In principle attractive, because for a KD we need the concentration of the unbound protein.
-	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous in the region where we measure the mean (you have to think in 3-D; PSF!) this mean intensity gives information about the concentration of unbound protein; however as soon as there is a lot of structure in the signal it is not clear that it helps
-	- For a widefield image it is kind of the same argument, however the 3D shape of the measured region is infinitely big! One can see that one measures a larger amount of protein in the center than at the edge of the nucleus.
-
-- Background subtraction must be done with floating point
-	- Not for tophat though
-
-- What about computing mean intensity in the nucleus next to the damage site?
-
-- Median filter: Pros and cons?
-	- has trouble when there are not clearly more background than foreground pixels
-
-- Tophat filter: Pros and cons?
-	- has trouble when there is noise
-
-- Alternative local background subtraction strategies
-
-- What changes if we assume that this is **one confocal slice** rather than a widefield image?
-
-
-
-
-
-# Diverse practicals 
-
-## Mathematical prerequisites
-- Mean and Median
-
-## Handling multi-color images and adding scale bar
+# Handling multi-color images and adding a scale bar
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/color-image.png" width=200>
 
