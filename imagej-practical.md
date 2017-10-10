@@ -524,11 +524,11 @@ From above examples, it should have become clear why a median filter is called b
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles]
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
 
 ## Image convolution
@@ -536,13 +536,16 @@ From above examples, it should have become clear why a median filter is called b
 The 3x3 mean filter that we applied above can also be expressed in terms on a "convolution", with a "convolution kernel" as show below:
 
 Kernel:
+
 |   |   |   |
 |---|---|---|
 | 1/9  | 1/9  | 1/9 |
 | 1/9  | **1/9**  | 1/9 |
 | 1/9  | 1/9  | 1/9 |
 
+
 Original image:
+
 |   |   |   |
 |---|---|---|
 | 15  | 11  | 5 |
@@ -550,11 +553,13 @@ Original image:
 | 11  | 11  | 10  | 
 
 Intermediate step:
+
 |   |   |   |
 |---|---|---|
 | 15 * 1/9  | 11 * 1/9  | 5 * 1/9 |
 | 14 * 1/9   | **13** * 1/9   | 12 * 1/9   | 
 | 11 * 1/9   | 11 * 1/9   | 10 * 1/9   | 
+
 
 Sum is 11.33333
 
@@ -562,9 +567,9 @@ Convolved image:
 
 |   |   |   |
 |---|---|---|
-|   |   |  |
-|   | **11.333**  |   | 
-|   |   |   | 
+| ?  | ?  | ? |
+| ?  | **11.333**  | ?  | 
+| ?  | ?  | ?  | 
 
 
 Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
@@ -582,11 +587,11 @@ Basically, you multiply each pixel in the original image with the number that is
 - Open any image of your choice
 - [Process > Filters > Convolve] 
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
 
 ## Intensity measurements with automated local background subtraction

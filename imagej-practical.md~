@@ -307,11 +307,9 @@ In words, we subtract for each pixel in the ROI the mean value of the background
 
 &nbsp;
 
-## Intensity measurements with local background
+## Intensity measurements and their interpretation,  with local background
 
 Intensity measurements are a **very tricky business**, not because they are technically difficult, but because one can make many mistakes in the interpretation of the numbers. This very easily leads to wrong scientific conclusions!
-
-Especially subtracting the right background is very challenging!
 
 ## Activity: Intensity measurements with local background subtraction
 
@@ -321,19 +319,48 @@ Let's first open the images:
 
 We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
 
-Workflow:
-- Background subtraction
-- Separate intensity in damage site (bound protein) from unbound protein
-	- Local background subtraction alternatives:
-		- Manual
-			- on image
-			- in R/Excel
-		- Median subtraction (32bit!)
-		- Tophat filter
-- Measure sum intensity in damage site (including bg-subtraction)
-- Measure sum intensity in nucleus
+### Examine with line profile
 
-## Discussion:
+Let's first look at the images using an intensity line profile and discuss what we see.
+
+### Measure fraction of protein bound to damage site
+
+Ok, now let's try to really measure a bio-physically meaningful number. This is generally challenging and one really has to think about it! 
+
+In this case, assuming 
+
+- this is widefield microscopy, and
+- the unbound molecule is fast diffusing
+- the laser cut had the exact same effect in all experiments
+
+..it probably makes sense to divide the sum intensity of the bound protein by the sum intensity in the nucleus; i.e. total_bound / total_available.
+
+To do this we need to measure:
+
+- Mean intensity outside the nucleus (mean_bg)
+- Mean intensity next to damage site inside the nucleus (mean_nucleus_diffusive)
+- Sum intensity of nucleus and area of corresponding ROI (sum_nucleus, area_nucleus_ROI)
+- Sum intensity of damage site and area of corresponding ROI (sum_damage, area_damage_ROI)
+
+Now we need to compute:
+
+- total_signal_nucleus = sum_nucleus - area_nucleus_ROI * mean_bg
+- total_signal_damage = sum_damage - area_damage_ROI * mean_nucleus_diffusive
+
+And finally:
+
+- fraction_bound_to_damage = total_signal_damage / total_signal_nucleus
+
+Hard work, right? And many options to make little mistakes, thus we only should preform intensity measurements with utmost care!
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+## Discussion points
 
 - How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
 
@@ -346,22 +373,13 @@ Workflow:
 	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous in the region where we measure the mean (you have to think in 3-D; PSF!) this mean intensity gives information about the concentration of unbound protein; however as soon as there is a lot of structure in the signal it is not clear that it helps
 	- For a widefield image it is kind of the same argument, however the 3D shape of the measured region is infinitely big! One can see that one measures a larger amount of protein in the center than at the edge of the nucleus.
 
-- Background subtraction must be done with floating point
-	- Not for tophat though
-
-- What about computing mean intensity in the nucleus next to the damage site?
-
-- Median filter: Pros and cons?
-	- has trouble when there are not clearly more background than foreground pixels
-
-- Tophat filter: Pros and cons?
-	- has trouble when there is noise
-
-- Alternative local background subtraction strategies
-
 - What changes if we assume that this is **one confocal slice** rather than a widefield image?
 
+&nbsp;
 
+&nbsp;
+
+&nbsp;
 
 
 
@@ -506,11 +524,11 @@ From above examples, it should have become clear why a median filter is called b
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles]
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
 
 ## Image convolution
@@ -518,13 +536,16 @@ From above examples, it should have become clear why a median filter is called b
 The 3x3 mean filter that we applied above can also be expressed in terms on a "convolution", with a "convolution kernel" as show below:
 
 Kernel:
+
 |   |   |   |
 |---|---|---|
 | 1/9  | 1/9  | 1/9 |
 | 1/9  | **1/9**  | 1/9 |
 | 1/9  | 1/9  | 1/9 |
 
+
 Original image:
+
 |   |   |   |
 |---|---|---|
 | 15  | 11  | 5 |
@@ -532,11 +553,13 @@ Original image:
 | 11  | 11  | 10  | 
 
 Intermediate step:
+
 |   |   |   |
 |---|---|---|
 | 15 * 1/9  | 11 * 1/9  | 5 * 1/9 |
 | 14 * 1/9   | **13** * 1/9   | 12 * 1/9   | 
 | 11 * 1/9   | 11 * 1/9   | 10 * 1/9   | 
+
 
 Sum is 11.33333
 
@@ -544,9 +567,9 @@ Convolved image:
 
 |   |   |   |
 |---|---|---|
-|   |   |  |
-|   | **11.333**  |   | 
-|   |   |   | 
+| ?  | ?  | ? |
+| ?  | **11.333**  | ?  | 
+| ?  | ?  | ?  | 
 
 
 Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
@@ -564,11 +587,11 @@ Basically, you multiply each pixel in the original image with the number that is
 - Open any image of your choice
 - [Process > Filters > Convolve] 
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
-&nbsp
+&nbsp;
 
 
 ## Intensity measurements with automated local background subtraction
