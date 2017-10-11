@@ -630,8 +630,6 @@ What we'll do here is to duplicate the image and apply median filter to remove t
 
 ## Local background subtraction using a top-hat filter 
 
-<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/origopen__tophat.png" width=700/>
-
 A morphological opening filter is applied to the image and subtracted from the original. The morphological opening is defined as the dilation of the erosion if the image. Alltogether this reads: top_hat(image) = image - dilation(erosion(image))
 
 - [File>Open..] "../dna-damage-synthetic-data/Damaged.tif"
@@ -640,8 +638,8 @@ A morphological opening filter is applied to the image and subtracted from the o
 - [Process>Filters>Minimum..] 'radius=5' 
 - [Process>Filters>Maximum..] 'radius=5' 
 - [Process>Image Calculator] 'original' 'Subtract' 'opened' 
-        - [X] Create new window 
-        - [ ] 32-bit output
+	- [X] Create new window 
+	- [ ] 32-bit output
 		- Note: By construction, the 'opened' image is always lower than the original; thus we cannot get negative pixels. 
 - [Image>Rename] 'Tophat.tif'
 
@@ -654,8 +652,6 @@ A morphological opening filter is applied to the image and subtracted from the o
 
 
 ## Local background subtraction using IJs "Subtract Background"
-
-<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/orig__bg__rollingball.png" width=700/>
 
 - [File > Open..] "../dna-damage-synthetic-data/Damaged.tif" 
 - [Process > Subtract Background..] 
@@ -676,10 +672,17 @@ This seems to implement a ['rolling ball'](https://github.com/nearlyfreeapps/Rol
 - Difference between median-subtraction and top-hat:
 	- top-hat underestimates background in presence of noise
 	- median overestimates background in presence of "holes"
+	- median does not work well along curved egdes
 - Local background subtraction should only be used for (small) isolated objects
 	- e.g., may fail if used to find the background intensity in an image full of cells
-- Using the Spheroids image in 3D_Segmentation one can d emonstrate that the top-hat (dramatically) underestimates the background in noisy images
 
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 
 ## Activity: Automated local background subtraction
@@ -732,6 +735,13 @@ Workflow:
 - Alternative local background subtraction strategies
 
 - What changes if we assume that this is **one confocal slice** rather than a widefield image?
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 
 
