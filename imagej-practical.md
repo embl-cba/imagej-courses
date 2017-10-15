@@ -8,7 +8,10 @@ e-mails: christian.tischer@embl.de, tischitischer@gmail.com
 
 - http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
-...
+&nbsp;
+
+&nbsp;
+
 
 # Inspection of the numerical content of images
 
@@ -74,15 +77,30 @@ Note that this does not change the numbers but only the appearance on your scree
 **Important: Don't press [Apply] as this will in fact change the pixel values.** 
 
 
+&nbsp;
+
+&nbsp;
+
+
+
 ## Activity: Explore different LUTs 
 
 - Open image "../image-inspection/B.tif"  [File > Open]
 - Explore different LUTs [Image > Lookup Tables], e.g.
 	- Grays
+		- If you have no specific other reason, this is the "go-to" LUT
 	- HiLo
+		- Good for seeing saturated pixels
 		- Red: highest, Blue: lowest
 		- Important note: "highest" and "lowest" depend on your Brightness&Contrast settings!
 	- Fire
+		- Good for seeing dim and bright values at the same time
+
+
+&nbsp;
+
+&nbsp;
+
 
 
 # Important numerical properties of microscopy images
@@ -122,6 +140,21 @@ Use below workflow to inspect the images:
 	- Adjust the display [Image > Adjust > Brightness/Contrast]
 	- Examine gray values in whole image [Analyze > Histogram]
 	- Analyze gray values along a line [Analyze > Plot Profile]
+
+| Image   |  Issue |
+|-------|:------------------------:|
+|A||
+|B||
+|C||
+|D||
+|E||
+
+&nbsp;
+
+&nbsp;
+
+
+
 
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 

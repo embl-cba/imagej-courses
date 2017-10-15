@@ -8,7 +8,10 @@ e-mails: christian.tischer@embl.de, tischitischer@gmail.com
 
 - http://www.imaging-git.com/olympus-website-bioimage-data-analysis
 
-...
+&nbsp;
+
+&nbsp;
+
 
 # Inspection of the numerical content of images
 
@@ -74,15 +77,30 @@ Note that this does not change the numbers but only the appearance on your scree
 **Important: Don't press [Apply] as this will in fact change the pixel values.** 
 
 
+&nbsp;
+
+&nbsp;
+
+
+
 ## Activity: Explore different LUTs 
 
 - Open image "../image-inspection/B.tif"  [File > Open]
 - Explore different LUTs [Image > Lookup Tables], e.g.
 	- Grays
+		- If you have no specific other reason, this is the "go-to" LUT
 	- HiLo
+		- Good for seeing saturated pixels
 		- Red: highest, Blue: lowest
 		- Important note: "highest" and "lowest" depend on your Brightness&Contrast settings!
 	- Fire
+		- Good for seeing dim and bright values at the same time
+
+
+&nbsp;
+
+&nbsp;
+
 
 
 # Important numerical properties of microscopy images
@@ -122,6 +140,21 @@ Use below workflow to inspect the images:
 	- Adjust the display [Image > Adjust > Brightness/Contrast]
 	- Examine gray values in whole image [Analyze > Histogram]
 	- Analyze gray values along a line [Analyze > Plot Profile]
+
+| Image   |  Issue |
+|-------|:------------------------:|
+|A||
+|B||
+|C||
+|D||
+|E||
+
+&nbsp;
+
+&nbsp;
+
+
+
 
 Additional tasks:
 - Lets find five or more different ways to identify saturated pixels in an image 
@@ -685,67 +718,6 @@ This seems to implement a ['rolling ball'](https://github.com/nearlyfreeapps/Rol
 &nbsp;
 
 
-## Activity: Automated local background subtraction
-
-Example data:
-
-- We need to run this macro to generate example data: 
-	- "../dna-damage-synthetic-data/make-images--dna-damage-synthetic-data.py"
-	- [Help > Update > Manage Update Sites] ImageScience
-	- [Run] to generate the images
-
-We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
-
-Workflow:
-- Background subtraction
-- Separate intensity in damage site (bound protein) from unbound protein
-	- Local background subtraction alternatives:
-		- Manual
-			- on image
-			- in R/Excel
-		- Median subtraction (32bit!)
-		- Tophat filter
-- Measure sum intensity in damage site (including bg-subtraction)
-- Measure sum intensity in nucleus
-
-## Discussion:
-
-- How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
-
-- Divide by the length (and or width) of the laser damage cut?
-	- length makes sense
-	- width probably not
-
-- What about computing the mean intensity in the nucleus next to the damage site?
-	- In principle attractive, because for a KD we need the concentration of the unbound protein.
-	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous in the region where we measure the mean (you have to think in 3-D; PSF!) this mean intensity gives information about the concentration of unbound protein; however as soon as there is a lot of structure in the signal it is not clear that it helps
-	- For a widefield image it is kind of the same argument, however the 3D shape of the measured region is infinitely big! One can see that one measures a larger amount of protein in the center than at the edge of the nucleus.
-
-- Background subtraction must be done with floating point
-	- Not for tophat though
-
-- What about computing mean intensity in the nucleus next to the damage site?
-
-- Median filter: Pros and cons?
-	- has trouble when there are not clearly more background than foreground pixels
-
-- Tophat filter: Pros and cons?
-	- has trouble when there is noise
-
-- Alternative local background subtraction strategies
-
-- What changes if we assume that this is **one confocal slice** rather than a widefield image?
-
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-
-
-
 ## Segmentation with uneven background
 
 If there is a strong uneven background in your image segmenting the objects with just one threshold will not work.
@@ -769,7 +741,7 @@ Example data:
 	- Subtract a **median** filtered version of the image from the original
 	- Subtract a morphological **opening** of the image from the original (i.e. do a **top-hat** filter)
 	- Use ImageJ's "Subtract background" method 
-- After local background subtraction, segment the objectis with a global intensity threshold and connected component analysis
+- After local background subtraction, segment the objects with a global intensity threshold and connected component analysis
 - ImageJ commands:
 	- [Process > Filters > Mean]
 	- [Process > Filters > Median]
