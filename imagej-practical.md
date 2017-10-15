@@ -12,12 +12,15 @@ e-mails: christian.tischer@embl.de, tischitischer@gmail.com
 
 &nbsp;
 
+# General notes
+
+Below teaching material is currently not "self-contained", but needs explanations by a teacher.
 
 # Inspection of the numerical content of images
 
 An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of our images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
 
-## Activity: Image inspection
+## Activity: Image inspection <a name="image_inspection"></a> 
 
 Let's open an image and explore different tools to inspect the numbers in this image.
 We start by inspection an 8-bit image, where the numbers range from 0 to 255 (2^8-1); we'll explore different bit depths later.
@@ -123,7 +126,7 @@ Note that this does not change the numbers but only the appearance on your scree
 
 &nbsp;
 
-## Practical activity: Image content inspection
+## Activity: Image content inspection
 
 In this activity we will open several images and find out which "issues" they have.
 The aim is to assign each image to one of the following issues:
@@ -136,28 +139,24 @@ The aim is to assign each image to one of the following issues:
 Use below workflow to inspect the images:
 - Open “../image-inspection/A.tif”  [File > Open]
 - Also open B.tif, C.tif, D.tif, E.tif 
-- Use below methods to inspect the images and find their "issues"
-	- Adjust the display [Image > Adjust > Brightness/Contrast]
-	- Examine gray values in whole image [Analyze > Histogram]
-	- Analyze gray values along a line [Analyze > Plot Profile]
+- Use the following [image inspection methods](#image_inspection) to check above the images and find their "issues", e.g, inspect the values in the images by
+	- Adjusting the display [Image > Adjust > Brightness/Contrast]
+	- Examining gray values in whole image [Analyze > Histogram]
+	- Analyzing gray values along a line [Analyze > Plot Profile]
 
-| Image   |  Issue |
-|-------|:------------------------:|
-|A||
-|B||
-|C||
-|D||
-|E||
+What did you find?
+
+ Image |  This image has the following issue |
+-------|-------------------------------------|
+A      |                                     |
+B      |  no problem     |
+C      |                                     |
+D      |                                     |
+E      |                                     |
 
 &nbsp;
 
 &nbsp;
-
-
-
-
-Additional tasks:
-- Lets find five or more different ways to identify saturated pixels in an image 
 
 &nbsp;
 
@@ -189,7 +188,9 @@ Obviously this is not what we want since it is all wrong :-).
 
 &nbsp;
 
-## Activity: Exploring properties of floating point images
+## Activity: Exploring floating point images
+
+Floating point images are there to solve the issues that you encountered in above activity, because they allow for numbers like -1.2 and 0.55, which are not allowd in integer images.
 
 - Open image "../image-inspection/B.tif" [File > Open]
 - Duplicate the image and already name "32-bit" [Image > Duplicate]
@@ -219,15 +220,16 @@ Much better, right?!
 	- this format is generally recommended as soon as you do any kind of mathematical operations on your images
 	- disadvantage: needs more memory and disk space 
 
-Although ImageJ does not support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit. 
+Although ImageJ does not specifially support it, your images could also have been acquired with cameras of different bit depth such as 12 or 14 bit; such images will be stored and dealt with as 16-bit. 
 
+&nbsp;
 
 &nbsp;
 
 
 ## Image bit depth conversions
 
-Image bit depth conversion is something that you should generally avoid, but sometimes you can't; either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore now what happens if you do convert between different bit depths.
+Image bit depth conversion is something that you should generally avoid, but sometimes you can't; either because you need to save disk space or because certain operations or plugins only work with certain bit depths. Let's thus explore what happens if you do convert between different bit depths.
 
 
 ## Activity: Conversion from 8-bit to 32-bit floating point
@@ -246,6 +248,8 @@ Image bit depth conversion is something that you should generally avoid, but som
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion?
 
+&nbsp;
+
 ## Activity: 16-bit to 8-bit conversion
 
 OK! Now comes the **tricky part**, where several projects were going very wrong in the past!
@@ -258,7 +262,9 @@ OK! Now comes the **tricky part**, where several projects were going very wrong 
 
 Hopefully you are **shocked** that we all got different results! How can this be?
 
-## Discussion: How to convert 16-bit to 8-bit
+&nbsp;
+
+### Discussion: How to convert 16-bit to 8-bit
 
 - 0, 65535 => 0, 255
 	- Preserves intensities but looses dynamic range
@@ -267,6 +273,10 @@ Hopefully you are **shocked** that we all got different results! How can this be
 - minLUT, maxLUT => 0, 255 
 	- Leave it up to the user!
 	- This is what ImageJ is doing!
+
+&nbsp;
+
+&nbsp;
 
 &nbsp;
 
@@ -283,7 +293,7 @@ Unfortunately there are many different image formats and since not all software 
 	- Adjust Jpeg quality (0-100) to 10 [Edit > Option > Input/Output]
 	- save as "quality_10.jpg"  [File > Save As > Jpeg]
 	- repeat for Jpeg qualities 75, and 100
-- Save as **png** [File > Save As > PNG]
+- Save as **Png** "image.png" [File > Save As > PNG]
 - Adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
 	- Save as "saturated.jpg"  [File > Save As > Jpeg]
 	- Save as "saturated.png"  [File > Save As > PNG]
@@ -291,13 +301,32 @@ Unfortunately there are many different image formats and since not all software 
 Now lets go to the folder where you saved the images and check their file size!
 And, even more important, lets reopen them and check what happened to their gray values!
 
-&nbsp;
+
+
+ Image       | File size | Gray values (min, max) 
+-------------|-----------|------------------------ 
+ 16bit.tif   |           |
+ quality_10.jpg    |       |
+ quality_75.jpg      |                                   |
+ quality_100.jp     |                                   |
+ image.png     |                                  |
+ saturated.jpg | |
+ saturated.png | |
+
 
 &nbsp;
 
 &nbsp;
 
+&nbsp;
 
+Take home message: Always check what happens to your image when you save it! 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 # Image intensity measurements <a name="intensity_measurements"></a> 
 
@@ -307,20 +336,38 @@ And, even more important, lets reopen them and check what happened to their gray
 
 &nbsp;
 
+&nbsp;
+
+&nbsp;
+
+
 ## The biophysical meaning of intensities in fluorescence microscopy images
 
 => PowerPoint presentation.
 
 &nbsp;
 
-## Practical activity: Manual intensity measurements
+&nbsp;
+
+&nbsp;
+
+
+## Activity: Manual intensity measurements
+
+Let's measure the sum intensity of two nuclei in a widefield microscopy image. Assuming that the staining is quantitative this gives us information on the cell cycle state (because the DNA content doubles during the cell cycle).
 
 - Open “../bit-conversion/16bit.tif”
-- Draw a region around a nucleus, e.g. using ImageJ's Polygon Selection
-	- Since we will do sum intensity measurements with proper background subtraction you should draw this region rather generously not to miss any intensities!
-- Add region to ROI manager [Analyze > Tools > ROI Manager > Add)
-- Name the region “nucleus_1” [Analyze > Tools > ROI Manager > Rename]
-- Repeat above steps for a background ROI and another nucleus
+- Record a ROI around one nuclues:
+	- Draw a region around a nucleus, e.g. using ImageJ's Polygon Selection
+		- We will do sum intensity measurements with background subtraction, thus one should draw this region rather generously not to miss any intensities!
+	- Add region to ROI manager [Analyze > Tools > ROI Manager > Add)
+	- Name the region “nucleus_1” [Analyze > Tools > ROI Manager > Rename]
+- Repeat above steps:
+	- Choosing another nucleus (maybe one that clearly appears dimmer or brighter than the first one).
+		- "nucleus_2"
+	- Now choosing a background region (strongly increase the image brightness to find a clean background region). 
+		- "background"
+		 
 - Select measurements [Analyze > Set Measurements]:
 	- [X] Mean gray value
 	- [X] Area
@@ -334,6 +381,10 @@ Now we need to do the proper background subtraction for the two nuclei ROIs, usi
 
 In words, we subtract for each pixel in the ROI the mean value of the background.
 
+Two compare the intensities of the two nuclei, typically computing the ratio of the sum intensities is a good readout.
+
+In this case, given the staining is quantitative, this could be used to measure the cell cycle state.
+
 &nbsp;
 
 &nbsp;
@@ -346,6 +397,8 @@ Intensity measurements are a **very tricky business**, not because they are tech
 
 ## Activity: Intensity measurements with local background subtraction
 
+In biology, almost always there is some "background" intensity. It is very important to think about what kind of background it is and how to deal with it. Again, wrong decisions here can yield wrong biological conclusions. In this activity we will practice some of the most common issues.
+
 Let's first open the images:
 
 - Open all images in this folder "../dna-damage-synthetic-data/"
@@ -356,24 +409,39 @@ We pretent that these are **widefield microscopy** images of one nucleus where a
 
 Let's first look at the images using an intensity line profile and discuss what we see.
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 ### Measure fraction of protein bound to damage site
 
-Ok, now let's try to really measure a bio-physically meaningful number. This is generally challenging and one really has to think about it! 
+Ok, now let's try to measure a number that is robust with respect to microscope settings and also has some biological meaning. This is generally challenging and one has to think about it for every project. 
 
 In this case, assuming 
 
 - this is widefield microscopy, and
-- the unbound molecule is fast diffusing
-- the laser cut had the exact same effect in all experiments
+- the unbound molecule is fast diffusing, and
+- the laser cut had the exact same strength in all experiments
 
-..it probably makes sense to divide the sum intensity of the bound protein by the sum intensity in the nucleus; i.e. total_bound / total_available.
+it probably makes sense to divide the sum intensity of the bound protein by the sum intensity in the nucleus; i.e. total_bound / total_available. This gives the fraction of protein bound to the damage site, which has the following nice properties, it is:
 
-To do this we need to measure:
+- independent of microscope settings
+- always a number between 0 and 1
+- closer to 1 the "better" the protein binds to the damage site
 
-- Mean intensity outside the nucleus (mean_bg)
-- Mean intensity next to damage site inside the nucleus (mean_nucleus_diffusive)
-- Sum intensity of nucleus and area of corresponding ROI (sum_nucleus, area_nucleus_ROI)
-- Sum intensity of damage site and area of corresponding ROI (sum_damage, area_damage_ROI)
+One could put more thought into this and try to relate this to a real binding rate constant (K_A), but this goes beyond the scope of this tutorial. 
+
+To measure the **fraction of bound protein** we need to measure:
+
+- mean intensity outside the nucleus (mean_bg)
+- mean intensity next to damage site inside the nucleus (mean_nucleus_diffusive)
+- sum intensity of nucleus and area of corresponding ROI (sum_nucleus, area_nucleus_ROI)
+- sum intensity of damage site and area of corresponding ROI (sum_damage, area_damage_ROI)
 
 Now we need to compute:
 
@@ -395,26 +463,24 @@ Hard work, right? And many options to make little mistakes, thus we only should 
 
 ## Discussion points
 
-- How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
 
 - Divide by the length (and or width) of the laser damage cut?
 	- length makes sense
 	- width probably not
 
+- How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
+
 - What about computing the mean intensity in the nucleus next to the damage site?
-	- In principle attractive, because for a KD we need the concentration of the unbound protein.
-	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous in the region where we measure the mean (you have to think in 3-D; PSF!) this mean intensity gives information about the concentration of unbound protein; however as soon as there is a lot of structure in the signal it is not clear that it helps
-	- For a widefield image it is kind of the same argument, however the 3D shape of the measured region is infinitely big! One can see that one measures a larger amount of protein in the center than at the edge of the nucleus.
-
-- What changes if we assume that this is **one confocal slice** rather than a widefield image?
-
-&nbsp;
+	- In principle attractive, because for a association rate constant (K_A) we need the concentration of the unbound protein.
+	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous, the mean intensity gives information about the concentration of the unbound protein.
+		- However, it is less obvious how to measure the concentration of the bound protein, as required for a K_A, probably one needs something else?!
+	- For a widefield image the PSF is unbounded in 3D and it is thus not clear at all how to measure a concentration.
 
 &nbsp;
 
 &nbsp;
 
-
+&nbsp;
 
 
 # Image segmentation <a name="segmentation"></a> 
