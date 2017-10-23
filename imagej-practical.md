@@ -132,7 +132,7 @@ In this activity we will open several images and find out which "issues" they ha
 The aim is to assign each image to one of the following issues:
 - no problem
 - high background
-- too low background
+- clipping (too low background)
 - low dynamic range
 - too much saturation
 
@@ -166,21 +166,47 @@ Images can have different bit depths. Let's start by exploring some of the limit
 
 ## Activity: Exploring the limitations of an 8-bit image <a name="8bit_limitations"></a> 
 
+### Adding numbers
+
 - Open image "../image-inspection/B.tif" [File > Open]
-- Adding numbers:
-	- Copy the original image [Image > Duplicate]
-	- Add 500 to each pixel in the image [Process > Math > Add]
-	- Inspect the gray values!
-- Subtracting numbers:
-	- Copy the original image [Image > Duplicate]
-	- Subtract 100 from each pixel in the image [Process > Math > Subtract]
-	- Inspect the gray values!
-- Dividing numbers:
-	- Copy the image [Image > Duplicate]
-	- Divide each pixel in the image by 2 [Process > Math > Divide]
-	- Inspect the gray values!
+- Copy image [Image > Duplicate]
+	- Title: "after math"
+- Add 100 to each pixel in the image [Process > Math > Add]
+- Inspect the gray values!
+- Find (two) pixels for which the result is correct and incorrect
+
+| x  | y  | original value  | value after math   | correct?  |
+|---|---|---|---|---|
+|   |   |   |   |   |
+|   |   |   |   |   |
+
+
+### Subtracting numbers
+
+- Open image "../image-inspection/B.tif" [File > Open]
+- Copy image [Image > Duplicate]
+	- Title: "after math"
+- Subtract 100 from each pixel in the image [Process > Math > Subtract]
+- Inspect the gray values!
+
+
+
+### Dividing numbers
+
+- Open image "../image-inspection/B.tif" [File > Open]
+- Copy image [Image > Duplicate]
+	- Title: "after math"
+- Copy the image [Image > Duplicate]
+- Divide each pixel in the image by 2 [Process > Math > Divide]
+- Inspect the gray values!
  
-Obviously this is not what we want since it is all wrong :-).
+
+### Conclusions
+
+- Obviously this is not what we want since it is all wrong :-).
+- If possible try to avoid mathematical operations on a pixel level
+- If you need to change the values in an image consider changing it to a "floating point image" (see below).
+
 
 &nbsp;
 
@@ -308,8 +334,8 @@ And, even more important, lets reopen them and check what happened to their gray
  16bit.tif   |           |
  quality_10.jpg    |       |
  quality_75.jpg      |                                   |
- quality_100.jp     |                                   |
- image.png     |                                  |
+ quality_100.jpg    |                           |
+ image.png     |                            |
  saturated.jpg | |
  saturated.png | |
 
@@ -356,7 +382,7 @@ Take home message: Always check what happens to your image when you save it!
 
 Let's measure the sum intensity of two nuclei in a widefield microscopy image. Assuming that the staining is quantitative this gives us information on the cell cycle state (because the DNA content doubles during the cell cycle).
 
-- Open “../bit-conversion/16bit.tif”
+- Open “../image-inspection/B.tif”
 - Record a ROI around one nuclues:
 	- Draw a region around a nucleus, e.g. using ImageJ's Polygon Selection
 		- We will do sum intensity measurements with background subtraction, thus one should draw this region rather generously not to miss any intensities!
