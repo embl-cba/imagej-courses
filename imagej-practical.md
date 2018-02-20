@@ -105,6 +105,16 @@ Note that this does not change the numbers but only the appearance on your scree
 &nbsp;
 
 
+# Image presentation
+
+-> see ../handouts/image-data-presentation.pdf
+ 
+&nbsp;
+
+&nbsp;
+
+
+
 
 # Important numerical properties of microscopy images
 
@@ -177,8 +187,8 @@ Images can have different bit depths. Let's start by exploring some of the limit
 
 | x  | y  | original value  | value after math   | correct?  |
 |---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
+| &nbsp;  |   |   |   |   |
+| &nbsp;  |   |   |   |   |
 
 
 ### Subtracting numbers
