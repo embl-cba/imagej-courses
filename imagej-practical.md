@@ -352,6 +352,7 @@ To document your findings, you may make a table like below and fill in columns:
  image.png     |                            |
  image.zip     |                            |
  saturated.tif |   |
+ saturated.jpg |   |
  saturated.png |   |
 
 
