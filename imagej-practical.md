@@ -330,14 +330,18 @@ Unfortunately there are many different image formats and since not all software 
 	- save as "quality_10.jpg"  [File > Save As > Jpeg]
 	- repeat for Jpeg qualities 75, and 100
 - Save as **Png** "image.png" [File > Save As > PNG]
-- Adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
-	- Save as "saturated.jpg"  [File > Save As > Jpeg]
-	- Save as "saturated.png"  [File > Save As > PNG]
+- Save as **Zip** "image.zip" [File > Save As > ZIP]
+- Now, adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
+	- Save as "saturated.tif" [File > Save As > Tiff]
+	- Save as "saturated.jpg" [File > Save As > Jpeg]
+	- Save as "saturated.png" [File > Save As > PNG]
 
-Now lets go to the folder where you saved the images and check their file size!
-And, even more important, lets reopen them and check what happened to their gray values!
+Now, let's inspect what happened to the image when saving it in the different formats.
 
+1. Go to the folder where they have been saved an observe the file sizes
+2. Open them again in Fiji and check what happened to the gray values
 
+To document your findings, you may make a table like below and fill in columns:
 
  Image       | File size | Gray values (min, max) 
 -------------|-----------|------------------------ 
@@ -346,8 +350,9 @@ And, even more important, lets reopen them and check what happened to their gray
  quality_75.jpg      |                                   |
  quality_100.jpg    |                           |
  image.png     |                            |
- saturated.jpg | |
- saturated.png | |
+ image.zip     |                            |
+ saturated.tif |   |
+ saturated.png |   |
 
 
 &nbsp;
