@@ -370,6 +370,10 @@ Take home message: Always check what happens to your image when you save it!
 
 &nbsp;
 
+# Point spread function examination
+
+<img width="144" alt="image" src="https://user-images.githubusercontent.com/2157566/38816126-b88faba0-4195-11e8-86b2-d2d29bd5fd82.png">
+
 # Image intensity measurements <a name="intensity_measurements"></a> 
 
 ## Mean intensity and sum intensity
