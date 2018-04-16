@@ -372,7 +372,37 @@ Take home message: Always check what happens to your image when you save it!
 
 # Point spread function examination
 
-<img width="144" alt="image" src="https://user-images.githubusercontent.com/2157566/38816126-b88faba0-4195-11e8-86b2-d2d29bd5fd82.png">
+For microscopy, it is very important to understand the point spread function (PSF) very well. 
+Thus, in this practical we will explore several ways of looking at 3D data in ImageJ examining PSFs.
+
+- Open “../psf/beads_p_close.tif” [File > Open]
+	- This is a so-called hyperstack with two channels: green (c1) and red (c2)
+- Generate side views [Image > Stacks > Reslice]
+	- Don't avoid interpolation
+- Project into 2-D  [Image > Stacks > Z-Project]
+	- Projection Type: Sum Slices
+- Repeat above steps for “../psf/beads_p_open.tif”
+
+Just visually comparing the PSFs of closed and open pinhole, what is the main difference? 
+Can you also see a difference between the green and the red PSF? What would you expect?
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/2157566/38828012-00cd084e-41b5-11e8-9ed6-488641015eed.png">
+
+
+## Optional activity: measure the width of the PSFs
+
+Compare the width of the green and red PSFs in the x/y-direction. What would you expect?
+
+- Choose a central z-plane in the original file
+	- Using the channel slider of the hyperstack viewer, select the green channel.
+- Draw a line profile across the signal 
+- Get the profile [ Analyze > Plot Profile ]
+- Measure the profile's shape and width [Analyze > Tools > Curve Fitting (gaussian)]
+	- (You need to copy the list from the profile plot into the fitting tool)
+- Repeat with the red channel.
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/2157566/38828149-678479c8-41b5-11e8-99b0-1141413d0b33.png">
+
 
 # Image intensity measurements <a name="intensity_measurements"></a> 
 
