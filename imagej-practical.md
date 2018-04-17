@@ -371,23 +371,37 @@ Take home message: Always check what happens to your image when you save it!
 &nbsp;
 
 
-# Examine 3-D data, using the Hyperstack viewer, the 3D Viewer, ClearVolume, and the BigDataViewer
+# 5-D data visualisation: Hyperstack viewer, 3D Viewer, ClearVolume, and BigDataViewer
 
-There are many ways of looking at 3D data in ImageJ. In this pratical session we will explore a number of them.
+There are many ways of looking at 3D data in ImageJ. In this pratical we will explore a number of them.
 
-- open “../4D/mitosis_tub-h2b.lif” as Hyperstack (Plugins..LOCI..Bioformats Importer)
-examine data using Hyperstack sliders
-Separate channels: Image..Color..Split Channels
-Alternatively keep both channels: Image..Color..Make Composite
-Select DNA channel and open volume view (Plugins..3D Viewer)
-accept default values
-Examine data by
-Rotating (left mouse button)
-Zooming (mouse wheel)
-Playing the movie
-Change Display Settings
-Edit...Change Color
-Edit...Transfer Function
+- Open “../5D-mitosis/mitosis-tubulin-h2b.zip” [File > Open]
+
+## Hyperstack Viewer
+
+The hyperstack viewer enables browsing 5-D data with z-slicing.
+
+
+## 3D Viewer
+
+- Separate the channels [Image > Color > Split Channels]
+- Alternatively keep both channels: Image..Color..Make Composite
+- Select DNA channel and open in 3D Viewer [Plugins > 3D Viewer]
+	- accept default values
+- Examine data by
+	- Rotating (left mouse button)
+	- Zooming (mouse wheel)
+	- Playing the movie
+- Change Display Settings
+	- Edit...Change Color
+	- Edit...Transfer Function
+
+## ClearVolume
+
+- Install ClearVolume update site [Help > Update > Manage Update Sites > [X] ClearVolume]
+- Fiji Search Bar: ClearVolume => Open in ClearVolume
+
+## BigDataViewer
 
 
 # Point spread function examination
