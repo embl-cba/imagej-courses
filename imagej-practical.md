@@ -377,21 +377,29 @@ There are many ways of looking at 3D data in ImageJ. In this pratical we will ex
 
 - Open “../psf/beads_p_open.tif” [File > Open]
 
-## Composite image for multi-channel viewing
+
+## Hyperstack Viewer
+
+The hyperstack viewer enables browsing 5-D data with z-slicing.
+
+### Composite image for multi-channel viewing
 
 In oder to view two colors simultaneously we need to enable the so-called "composite" viewing mode:
 
 - [ Image > Color > Make Composite ]
 
-## Hyperstack Viewer
+![image](https://user-images.githubusercontent.com/2157566/38928439-24556630-4309-11e8-87e6-56d4f85cdbfd.png)
 
-The hyperstack viewer enables browsing 5-D data with z-slicing.
 
 ## Ortho-slicing
 
 Ortho-slicing is a very standard way of looking at 3-D data and typically is available in all softwares, including microscope acquisition softwares.
 
 - [ Image > Stacks > Orthogonal Views ]
+
+![image](https://user-images.githubusercontent.com/2157566/38928505-5af4e8c8-4309-11e8-859d-148d3dad1a54.png)
+
+
 
 ## 3D Viewer
 
@@ -405,6 +413,9 @@ The 3D Viewer provides volume rendering; however, we feel that ClearVolume (see 
 - Change Display Settings
 	- Edit...Change Color
 	- Edit...Transfer Function
+	
+![image](https://user-images.githubusercontent.com/2157566/38928558-7f5a455a-4309-11e8-93cd-dbb09cc0c2ca.png)
+
 
 ## ClearVolume
 
@@ -414,11 +425,17 @@ ClearVolume provides volume rendering with a nice user interface.
 	- [ Help > Update > Manage Update Sites > [X] ClearVolume ]
 - Fiji Search Bar: ClearVolume => Open in ClearVolume
 
+
+![image](https://user-images.githubusercontent.com/2157566/38928602-9ea40b1c-4309-11e8-84cc-b67bc5188960.png)
+
+
 ## BigDataViewer
 
 The BDV provides 3-D slicing in arbitrary orientations.
 
 - [ Plugins > BigDataViewer > Open current image ]
+
+![image](https://user-images.githubusercontent.com/2157566/38928635-cd32d968-4309-11e8-9432-d4ef5fc93680.png)
 
 
 # Point spread function examination
@@ -453,6 +470,45 @@ Compare the width of the green and red PSFs in the x/y-direction. What would you
 - Repeat with the red channel.
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/2157566/38828149-678479c8-41b5-11e8-99b0-1141413d0b33.png">
+
+# Basics time-lapse data annotation and movie generation
+
+- Open “../tracking/ TransportOfEndosomalVirus.tif”
+- Add time stamps: [ Image > Stacks > Time Stamper] (dt=2s)
+- Save as movie: [File > Save As > AVI…] (jpeg compression)
+
+# Manual tracking
+
+- Open “../tracking/ TransportOfEndosomalVirus.tif”
+- Start tracker: [ Plugins > Tracking > Manual Tracking ]
+	- Enter scaling: [X] Show Parameters
+	- Time interval: 2 s
+	- x/y calibration: 0.129 um
+- Track a few (e.g., 3) different particles
+- [X] Use centering correction? Local Maximum
+- Track particles: [Add track] click..click… [End track]
+- Try different drawing options, e.g. [Overlay Dots & Lines]
+
+Examine the results table: what are the fastest speeds that you measured?
+
+![image](https://user-images.githubusercontent.com/2157566/38928238-6c991366-4308-11e8-8fcd-1df408223676.png)
+
+# Kymograph analysis
+
+Kymographs are a very useful way of visualising and quantifying motion in movies. The are used in many biological publications.
+
+- Open “../kymograph/tubulin-tirf-dt500ms-dxy106nm.avi”
+- Enhance microtubules [ Process > Subtract Background ]
+	- 5 pixel radius (no “light background”)
+- Trace a dynamic microtubule (Segmented Line Tool)
+	- Optional Trick:  Make a max-projection of the movie 
+- Make a kymograph [ Image > Stacks > Reslice ]
+	- Accept all default values
+- Measure the growth and shrinkage speed of the microtubule
+
+![image](https://user-images.githubusercontent.com/2157566/38928170-42dc51d2-4308-11e8-9c99-fb648d2e9933.png)
+
+
 
 
 # Image intensity measurements <a name="intensity_measurements"></a> 
