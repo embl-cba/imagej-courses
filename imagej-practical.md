@@ -471,6 +471,7 @@ Compare the width of the green and red PSFs in the x/y-direction. What would you
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/2157566/38828149-678479c8-41b5-11e8-99b0-1141413d0b33.png">
 
+
 # Basics time-lapse data annotation and movie generation
 
 - Open “../tracking/ TransportOfEndosomalVirus.tif”
@@ -478,6 +479,8 @@ Compare the width of the green and red PSFs in the x/y-direction. What would you
 - Save as movie: [File > Save As > AVI…] (jpeg compression)
 
 # Manual tracking
+
+To determine the motility of (not too many) particles manual tracking can be a good option.
 
 - Open “../tracking/ TransportOfEndosomalVirus.tif”
 - Start tracker: [ Plugins > Tracking > Manual Tracking ]
@@ -506,8 +509,7 @@ Kymographs are a very useful way of visualising and quantifying motion in movies
 	- Accept all default values
 - Measure the growth and shrinkage speed of the microtubule
 
-![image](https://user-images.githubusercontent.com/2157566/38928170-42dc51d2-4308-11e8-9c99-fb648d2e9933.png)
-
+![image](https://user-images.githubusercontent.com/2157566/38929198-dbb6e41e-430b-11e8-8e3b-0fe238209086.png)
 
 
 
