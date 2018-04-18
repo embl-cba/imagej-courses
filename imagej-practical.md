@@ -395,6 +395,8 @@ Ortho-slicing is a very standard way of looking at 3-D data and typically is ava
 
 ## 3D Viewer
 
+The 3D Viewer provides volume rendering; however, we feel that ClearVolume (see below) is more user-friendly.
+
 - [ Plugins > 3D Viewer ]
 	- Resampling factor: 1
 - Examine data by
@@ -406,17 +408,23 @@ Ortho-slicing is a very standard way of looking at 3-D data and typically is ava
 
 ## ClearVolume
 
+ClearVolume provides volume rendering with a nice user interface.
+
 - Install ClearVolume update site:
 	- [ Help > Update > Manage Update Sites > [X] ClearVolume ]
 - Fiji Search Bar: ClearVolume => Open in ClearVolume
 
 ## BigDataViewer
 
+The BDV provides 3-D slicing in arbitrary orientations.
+
+- [ Plugins > BigDataViewer > Open current image ]
+
 
 # Point spread function examination
 
 For microscopy, it is very important to understand the point spread function (PSF) very well. 
-Thus, in this practical we will explore several ways of looking at 3D data in ImageJ examining PSFs.
+Thus, in this practical we will closely examine PSFs, acquired at different wavelengths.
 
 - Open “../psf/beads_p_close.tif” [File > Open]
 	- This is a so-called hyperstack with two channels: green (c1) and red (c2)
