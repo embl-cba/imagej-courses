@@ -371,33 +371,43 @@ Take home message: Always check what happens to your image when you save it!
 &nbsp;
 
 
-# 5-D data visualisation: Hyperstack viewer, 3D Viewer, ClearVolume, and BigDataViewer
+# 5-D data visualisation: Hyperstack viewer, Ortho- slicing, 3D Viewer, ClearVolume, and BigDataViewer
 
 There are many ways of looking at 3D data in ImageJ. In this pratical we will explore a number of them.
 
-- Open “../5D-mitosis/mitosis-tubulin-h2b.zip” [File > Open]
+- Open “../psf/beads_p_open.tif” [File > Open]
+
+## Composite image for multi-channel viewing
+
+In oder to view two colors simultaneously we need to enable the so-called "composite" viewing mode:
+
+- [ Image > Color > Make Composite ]
 
 ## Hyperstack Viewer
 
 The hyperstack viewer enables browsing 5-D data with z-slicing.
 
+## Ortho-slicing
+
+Ortho-slicing is a very standard way of looking at 3-D data and typically is available in all softwares, including microscope acquisition softwares.
+
+- [ Image > Stacks > Orthogonal Views ]
+
 ## 3D Viewer
 
-- Separate the channels [Image > Color > Split Channels]
-- Alternatively keep both channels: Image..Color..Make Composite
-- Select DNA channel and open in 3D Viewer [Plugins > 3D Viewer]
-	- accept default values
+- [ Plugins > 3D Viewer ]
+	- Resampling factor: 1
 - Examine data by
 	- Rotating (left mouse button)
 	- Zooming (mouse wheel)
-	- Playing the movie
 - Change Display Settings
 	- Edit...Change Color
 	- Edit...Transfer Function
 
 ## ClearVolume
 
-- Install ClearVolume update site [Help > Update > Manage Update Sites > [X] ClearVolume]
+- Install ClearVolume update site:
+	- [ Help > Update > Manage Update Sites > [X] ClearVolume ]
 - Fiji Search Bar: ClearVolume => Open in ClearVolume
 
 ## BigDataViewer
