@@ -381,7 +381,6 @@ There are many ways of looking at 3D data in ImageJ. In this pratical we will ex
 
 The hyperstack viewer enables browsing 5-D data with z-slicing.
 
-
 ## 3D Viewer
 
 - Separate the channels [Image > Color > Split Channels]
