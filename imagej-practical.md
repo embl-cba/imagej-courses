@@ -533,7 +533,7 @@ Segmentation of spot structures can be performed by generating maximum projectio
 
 ## Installation of 3D-ImageJ-Suite (mcib3d) plugins
 
-1. Start Fiji update
+1. Start Fiji update [ Help > Update > Manage Update Sites ]
 2. Select following Fiji update sites
 	1. *3D ImageJ Suite*
 	2. *ImageScience*
@@ -545,7 +545,7 @@ http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start
 ## Workflow
 
 1. Load input dataset dataset in Fiji
-	- "../
+	- "../3D-spot-detection/cell-3d-vesicles-crop.tif"
 	- Note: *3D ImageJ Suite* plugins currently can not work with hyperstacks. If you have multicolor or multi-timepoint 3D datasets, you should extract individual 3D stacks for processing
 	
 2. Switch image format to 32 bit (*Image->Type->32-bit*)
