@@ -382,6 +382,9 @@ There are many ways of looking at 3D data in ImageJ. In this pratical we will ex
 
 The hyperstack viewer enables browsing 5-D data with z-slicing.
 
+<img width="595" alt="image" src="https://user-images.githubusercontent.com/2157566/38975745-4d8c71c8-43af-11e8-887c-
+033aebc2ad84.png">
+
 ### Composite image for multi-channel viewing
 
 In oder to view two colors simultaneously we need to enable the so-called "composite" viewing mode:
@@ -390,6 +393,12 @@ In oder to view two colors simultaneously we need to enable the so-called "compo
 
 ![image](https://user-images.githubusercontent.com/2157566/38928439-24556630-4309-11e8-87e6-56d4f85cdbfd.png)
 
+#### Usage of the channel slider
+
+The meaning of the channel slider in composite mode is fantastic, but confusing:
+
+- It does **not** change what you see!
+- It changes however what channel you work on and measure!
 
 ## Ortho-slicing
 
@@ -511,6 +520,77 @@ Kymographs are a very useful way of visualising and quantifying motion in movies
 
 ![image](https://user-images.githubusercontent.com/2157566/38929198-dbb6e41e-430b-11e8-8e3b-0fe238209086.png)
 
+
+# Automated 3-D object detection
+
+## Aim
+
+Count the number of spot-like objects in 3D volume. 
+
+## Motivation
+
+Segmentation of spot structures can be performed by generating maximum projections from 3D datasets. However, in the regions with high object density maximum projections can not represent each object individually, leading to underestimation of the number of structures. Therefore, 3D analysis has to be performed.
+
+## Installation of 3D-ImageJ-Suite (mcib3d) plugins
+
+1. Start Fiji update
+2. Select following Fiji update sites
+	1. *3D ImageJ Suite*
+	2. *ImageScience*
+	3. *Java8*
+3. Restart Fiji after update (installation process is complete)
+Instructions can also be found here:
+http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start
+
+## Workflow
+
+1. Load input dataset dataset in Fiji
+	- "../
+	- Note: *3D ImageJ Suite* plugins currently can not work with hyperstacks. If you have multicolor or multi-timepoint 3D datasets, you should extract individual 3D stacks for processing
+	
+2. Switch image format to 32 bit (*Image->Type->32-bit*)
+3. Remove the pixel scaling to define all following analysis parameters in pixel units
+4. Suppress the noise
+	1. Select original stack
+	2. Apply 3D median filter to suppress noise:
+		1. *Plugins->3D->3D Fast Filters*
+		2. then select *Median* as *Filter*
+		3. Select 2 pixels smoothing radius in XY (Kernel_XY) and 1 pixel smoothing radius in Z(Kernel_Z)
+		4. Press *OK*
+	3. Rename newly created image to **Filtered** (*Image->Rename...*)
+5. Create background image
+	1. Select original stack
+	2. Apply 3D median filter to suppress noise:
+		1. *Plugins->3D->3D Fast Filters*
+		2. Select **Median** as *Filter*
+		3. Select 10 pixels Kernel_XY and 3 pixels Kernel_Z
+		4. Press *OK*
+	3. Rename newly created image to **Background** (*Image->Rename...*)
+6. Create background subtracted denoised image:
+	1. *Process->Image Calculator*
+	2. *Image1*=**Filtered**;*Image2*=**Background**;*Operation*=**Subtract**;
+	3. Select *Create new window* and *32-bit result* options
+	4. Rename newly created image to **Cleaned** (*Image->Rename...*)
+7. Create image with the seed points of the spots
+	1. *Plugins->3D->3D Fast Filters*
+	2. Select **MaximumLocal** as *Filter*
+	3. Select 3 pixels Kernel_XY and 2 pixels Kernel_Z
+	4.  Rename newly created image to **Seeds** (*Image->Rename...*)
+8. Only brightest pixels on this image will correspond to centers of real spots. Examine values of positive pixels to define thresholds on the seeds
+	-Hint: use *Syncronize Windows* tool (*Analyze->Tools->Syncronize Windows*) to correlate positions of spots and identified seeds.
+9. Run spot segmentation:
+	1. *Plugins->3D->3D Fast Filters*
+	2. Set identified seed threshold
+	3. *Local Threshold method*=**Gaussian fit**
+	4. *Radius max*=**10**
+	5. *Volume min*=**10**
+	6. *Volume max*=**1000**
+	7. *Seeds*=**Seeds**
+	8. *Spots*=**Cleaned**
+	9. *Output*=**Both**
+10. Inspect the outputs
+	1. 16-bit mask with different pixel values assigned to different spots
+	2. 3D RoiManager to select spots and overlay them on raw or processed (**Filtered**, **Cleaned**, etc.) images. Multiple objects can be selected and overlaid at the same time.
 
 
 # Image intensity measurements <a name="intensity_measurements"></a> 
