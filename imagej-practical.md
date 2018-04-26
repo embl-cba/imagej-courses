@@ -432,6 +432,10 @@ ClearVolume provides volume rendering with a nice user interface.
 
 - Install ClearVolume update site:
 	- [ Help > Update > Manage Update Sites > [X] ClearVolume ]
+		- Click [ Close ]
+		- Click [ Apply Changes ]
+	- Restart Fiji to finish the installation
+- Open “../psf/beads_p_open.tif” [File > Open]
 - Fiji Search Bar: ClearVolume => Open in ClearVolume
 
 
@@ -446,6 +450,10 @@ The BDV provides 3-D slicing in arbitrary orientations.
 
 ![image](https://user-images.githubusercontent.com/2157566/38928635-cd32d968-4309-11e8-9432-d4ef5fc93680.png)
 
+# TODO: Nice practical about z-projections
+
+Showing difference between max and sum...
+and sdev 
 
 # Point spread function examination
 
@@ -497,7 +505,7 @@ To determine the motility of (not too many) particles manual tracking can be a g
 	- Time interval: 2 s
 	- x/y calibration: 0.129 um
 - Track a few (e.g., 3) different particles
-- [X] Use centering correction? Local Maximum
+	- [X] Use centering correction? Local Maximum
 - Track particles: [Add track] click..click… [End track]
 - Try different drawing options, e.g. [Overlay Dots & Lines]
 
