@@ -6,7 +6,7 @@ This repository contains practical excercises to learn image analysis using Imag
 
 - Install Fiji: http://fiji.sc/
 - Download this repository: https://github.com/tischi/imagej-courses/archive/master.zip
-- Follow instructions given in the files within the ../practicals folder. Please note that the material in this folder is not always "self-contained", but sometimes needs explanations by a teacher.
+- Follow instructions given in the files within the ../practicals folder. Please note that the material in this folder is not always self-contained, but sometimes needs explanations by a teacher.
 
 ## Author Information
 
