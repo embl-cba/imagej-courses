@@ -968,7 +968,7 @@ Basically, you multiply each pixel in the original image with the number that is
 
 # Intensity measurements with automated local background subtraction  <a name="automated-local-background-subtraction"></a>
 
-Above we already practiced above how to subtract a local background manually; let's try to automated this. This is important for image batch analysis or when the local background is uneven and not easy to subtract manually.
+Above we already practiced above how to subtract a local background manually; let's try to automated this. This is important for image batch analysis or when the local background is and not easy to subtract manually.
 
 In biological fluorescence microscopy one often wants to detect locally bright objects such as vesicular structures on top of a non-uniform background fluorescence, e.g. from unbound cytoplasmic protein. There are different methods to remove such 'background' fluorescence from the image, e.g.:
 
@@ -1071,7 +1071,7 @@ Ways to combat this challenge are:
 	- Also works, but also in fact even alters your intensities in a bad way.
 
 Example data:
-- ../data_new/uneven-background/blobs-with-background.tif
+- ../data/uneven-background/blobs-with-background.tif
 - ../data/workflow_autophagosomes/autophagosomes_raw.tif
 
 ### Activity: Try different local background subtraction methods
@@ -1123,9 +1123,9 @@ Fiji commands:
 - Many automated thresholding methods always find a threshold, even if there is only noise.
 
 
-## Automated local tresholding
+## Automated local tresholding (under development)
 
-Automated local thresholding is another method to segment objects in the prescence of a locally varying background.
+Automated local thresholding is another method to segment objects in the prescence of a locally varying background. In fact, the results can be both mathematically and practically very similar to applying a global threshold to an image after local background subtraction.
 
 Workflow:
 - Threshold using a local thresholding algorithm
@@ -1135,6 +1135,7 @@ Workflow:
 		- Documentation: http://imagej.net/Auto_Local_Threshold
 	- [Analyze > Analyze Particles]
 	
+
 ### Spot detection using Difference of Gaussian
 
 The Difference of Gaussian (DoG) is a very popluar method for object detection when there is uneven background or also an uneven object brightness distribution.
@@ -1313,84 +1314,6 @@ Now, you can compute an area-based, object-based or distance-based colocalisatio
 - Area based colocalization: __Area__ (e.g., divide overlap by stain1)
 - Distance based colocalization: you have to write some code to find particles that are next to each other in the Results tables
 
-# The meaning of intensities in confocal and widefield microscopy
-
-todo: put images here
-
-
-# Intensity-based quantifications of BFA-induced Golgi disassembly (confocal)
-
-## Data
-
-- 3D confocal stacks
-- ...
-
-## Challenges
-
-- Intensities depend on evertyhing!
-
-
-## Detector offest (background) subtraction
-
-### Measure and subtract later
-
-Formula for sum intensities: Mean_Background * Area
-
-
-### Subtract from whole image
-
-32-bit conversion necessary to be truly independent on measurement area.
-
-### Accuracy of background subtraction
-
-Subtracting the wrong background can lead to false biological interpretations of your data.
-There will always be a small error in the background subtraction. In order to figure out how much this will influence your sum-intensity measurements you can do the following calculation:
-
-...
-### Issues
-
-What to do if you have many data sets? Can I subtract the same background from all?
-
-
-
-
-## Maximum intensity in 3-D maximum intensity projection
-
-Maximum value in a 3-D maximum intensity projection is proportional to the highest local density of observed fluorophores, where local corresponds to the confocal point spread function (~200x200x800 nm^3).
-
-### Workflow
-
-- Maximum projection
-- Manual background subtraction
-- Draw ROI
-- Measure
-
-- Easy to compute readout for the maximal local concentration in a 3-D data set.
-
-#### Normalisation strategies
-
-In a time-lapse experiment one could use the intial maximal local concentration in each cell and then monitor the 
-
-### Pro
-
-### Con
-
-- Only very local readout of whole cell
-- 
-	- 
-	- Measure the average maximal local concentration in a set of control cells and divide by this value
-
-
-## Sum
-
-
-
-# Intensity-based quantifications of H2B-mCherry during the cell-cycle (wide-field)
-
-## Mean intensity
-## Maximum intensity
-##
- 
 
 # Workflow: Autophagosome quantification
 
@@ -1492,7 +1415,7 @@ Whiteboard session:
 - Using the Spheroids image in 3D_Segmentation one can d emonstrate that the top-hat (dramatically) underestimates the background in noisy images
 
 
-## Further enhancing of spots using a Laplacian of Gaussian filter (optional)
+## Further enhancement of spots using a Laplacian of Gaussian filter (optional)
 
 Above local background subtraction methods already helped a lot to enhance the spots; however in some cases there might still be some patchy locally bright regions left that are not corresponding to "real" spots. The reason is that the local background subtraction methods cannot distinguish locall bright elongated from locally bright round objects. Convolution of the image with a [Laplacian of Gaussian](https://en.wikipedia.org/wiki/Blob_detection#The_Laplacian_of_Gaussian) filter can help to further enhance spots of a certain size. 
 
@@ -1526,7 +1449,6 @@ As you can see there are maxima detected only due to the cellular background. If
 ## Cell detection using seeded watershed
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/presentation/cell_segmentation_watershed.png" width=700/>
-
 
 The seeded watershed algorithm implemented in ImageJ's 'Find Maxima' first finds local intensity maxima as starting ('seed') points.  From these seed points it performs a 'region growing' algorithm, using the intensity information in the image to draw dividing lines at dim parts of the image.   
 
@@ -1732,8 +1654,6 @@ Execute below commands for automated spot detection (same commands we used earli
 - Script Editor: [File>Save As..] '.../SpotDetection.ijm'
 - Script Editor: [Run]
 
-
-
 ### Combine cell- and spot-detection macros and add the spot-per-cell measurement
 
 Open both macros (of course, if you have them both open already you can skip this step) and then simply code and paste the SpotDetection code below the CellDetection code.
@@ -1775,6 +1695,7 @@ If you found nothing useful you can see what I found:
 - [File>Open..] '../teacher/closeEverything.ijm'
 
 ## Adding a function to close all windows
+
 Above we already found the commands to close all windows. Here we will see how to neatly pack them into a "function" such they can be called conveniently from every point of your macro.
 
 - [File>Open..] '../teacher/CellAndSpotDetection_Improved.ijm'
@@ -1825,8 +1746,8 @@ Think about the following: Is this code ready to use for a project? What is miss
 
 The macro 'CellAndSpotDetection_Batch.ijm' is not bad but it is also missing a few things:
 
-- possibly: add more measurements; they could be simply added by recording and copying more code into the current script.
-- essentially: saving of output images for visual quality control!
+- possible: add more measurements; they could be simply added by recording and copying more code into the current script.
+- essential: saving of output images for visual quality control!
 	- e.g., raw data with overlay of cell boundaries
 	- e.g., raw data with overlay of detected spots
 - possibly: add graphical user interface for some of the parameters:
