@@ -102,3 +102,24 @@ Basically, you multiply each pixel in the original image with the number that is
 &nbsp;
 
 &nbsp;
+
+### Spot enhancement using the Difference of Gaussian
+
+The Difference of Gaussian (DoG) is a very popluar method for object detection when there is uneven background or also an uneven object brightness distribution.
+
+Workflow:
+- Blur image with a small Gaussian (about the size of the objects)
+- Blur image with a large Gaussian (about two-three times the object size)
+- Subtract the large blur from the small blur; this is the DoG!
+- Threshold the resulting image to find the object centers
+- Fiji commands:
+	- [Process > Filters > Gaussian]
+	- [Process > Image Calculator]
+	- [Analyze > Analyze Particles] or [Process > Find Maxima]
+
+Discussion:
+- The object shape is not preserved with this method
+
+	- Workflow:
+		- Find object centers using DoG
+		- Find object volumes growing from the object centers
