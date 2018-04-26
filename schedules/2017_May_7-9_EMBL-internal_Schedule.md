@@ -6,6 +6,8 @@ ATC Computer Training Lab
 
 ## Schedule
 
+Don't worry: There will be coffee breaks, one in the morning and one in the afternoon, even though they are not explicitely scheduled!
+
 ### Monday
 
 | Time | Topic |
@@ -25,8 +27,7 @@ ATC Computer Training Lab
 | 10:00 - 11:00 | Colocalization |
 | 11:00 - 12:30 | Workflow: Intracellular object quantification |
 | 12:30 - 13:30 | Lunch break |
-| 13:30 - 15:00 | Workflow: Intracellular object quantification |
-| 15:30 - 17:00 | Workflow: Intracellular object quantification |
+| 13:30 - 17:00 | Workflow: Intracellular object quantification |
 
 ### Wednesday
 
