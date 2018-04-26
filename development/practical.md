@@ -75,5 +75,25 @@ In a time-lapse experiment one could use the intial maximal local concentration 
 ## Mean intensity
 ## Maximum intensity
 ##
+
+
+# Deep convolution
+
+Since a few years "deep convolution" has revolutionized image segmentation. Mostly it is implemented as "Deep convolutional neural networks", see e.g., https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/.
+
+However, to understand what deep convolution is all about one can also simply do it with classical operations in ImageJ. Let's see how!
+
+- Open image "../deep-convolution/edge-of-dots/input01.tif" [File > Open]
+- Open macro "../deep-convolution/edge-of-dots/egde-of-dots--deep-convolution.ijm" 
+	- [File > New > Script]
+		- Script editor: [File > Open]
+- Change the line after "// Load image" to match your path 
+- [Run] the macro
+
+
+
+
+
+
  
 
