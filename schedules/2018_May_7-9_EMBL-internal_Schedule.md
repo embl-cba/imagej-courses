@@ -34,7 +34,7 @@ Don't worry: There will be coffee breaks, one in the morning and one in the afte
 | 09:30 - 12:30 | Pratical: Workflow for cell-based object quantification | 
 | 12:30 - 13:30 | Lunch break |
 | 13:30 - 14:30 | Pratical: Workflow for cell-based object quantification |
-| 14:30 - 15:30 | Advanced topics lecture: Registration, Stitching, Colocalization, Tracking, Machine Learning, Classification, Dealing with complex data formats |
+| 14:30 - 15:30 | Lecture: Registration, Stitching, Colocalization, Tracking, Machine Learning, Classification, Dealing with complex data formats |
 | 15:30 - 16:15 | Pratical: Colocalization  |
 | 16:15 - 17:30 | Pratical: TrackMate  |
 
@@ -43,6 +43,6 @@ Don't worry: There will be coffee breaks, one in the morning and one in the afte
 | Time | Topic |
 |------|-------|
 | 09:30 - 11:30 | Workflow: Workflow for cell-based object quantification (Macro Recording) |
-| 11:30 - 12:30 | Demonstrations: CellProfiler, Imaris, shinyHTM |
+| 11:30 - 12:30 | Demonstration: CellProfiler, Imaris, shinyHTM |
 | 12:30 - 13:30 | Lunch break |
 | 13:30 - 17:00 | Optional sessions: Working on own data |
