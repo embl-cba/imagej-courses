@@ -44,7 +44,7 @@ Note that there will be coffee breaks, one in the morning and one in the afterno
 
 | Time | Topic |
 |------|-------|
-| 09:30 - 11:30 | Pratical: Macro Recording of Workflow for cell-based object quantification |
+| 09:30 - 11:30 | Pratical: Macro recording of workflows and batch analysis |
 | 11:30 - 12:30 | Demonstration: CellProfiler, Imaris, shinyHTM |
 | 12:30 - 13:30 | Lunch break |
 | 13:30 - 17:00 | Optional session: Work on own data |
