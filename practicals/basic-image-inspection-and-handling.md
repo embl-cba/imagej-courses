@@ -354,7 +354,7 @@ Take home message: Always check what happens to your image when you save it!
 
 # Handling multi-color images and adding a scale bar
 
-<img src="https://github.com/tischi/imagej-courses/blob/master/presentation/color-image.png" width=200>
+<img src="https://github.com/tischi/imagej-courses/blob/master/images/color-image.png" width=200>
 
 Aim: make the images look like the image above!
 
