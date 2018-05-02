@@ -18,7 +18,7 @@ But, don't worry, even if you don't know above material you'll be able to follow
 
 Note that there will be coffee breaks, one in the morning and one in the afternoon, even though they are not explicitely scheduled!
 
-### Monday
+### Monday May 7th
 
 | Time | Topic |
 |------|-------|
@@ -29,7 +29,7 @@ Note that there will be coffee breaks, one in the morning and one in the afterno
 | 15:30 - 16:30 | Pratical: Image segmentation: Automated local background subtraction |
 | 16:30 - 17:30 | Pratical: Image segmentation: Automated global thresholding|
 
-### Tuesday
+### Tuesday May 8th
 
 | Time | Topic |
 |------|-------|
@@ -40,11 +40,11 @@ Note that there will be coffee breaks, one in the morning and one in the afterno
 | 15:30 - 16:15 | Pratical: Colocalization  |
 | 16:15 - 17:30 | Pratical: TrackMate  |
 
-### Wednesday
+### Wednesday May 9th
 
 | Time | Topic |
 |------|-------|
 | 09:30 - 11:30 | Pratical: Macro Recording of Workflow for cell-based object quantification |
 | 11:30 - 12:30 | Demonstration: CellProfiler, Imaris, shinyHTM |
 | 12:30 - 13:30 | Lunch break |
-| 13:30 - 17:00 | Optional session: Working on own data |
+| 13:30 - 17:00 | Optional session: Work on own data |
