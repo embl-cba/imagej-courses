@@ -1,4 +1,4 @@
-# 2018 May 7th-9th: Basics of Image Analysis using Imagej 
+# 2018 May 7th-9th: Basics of Image Analysis using ImageJ
 
 ## Location:
 
