@@ -19,6 +19,7 @@ e-mails: christian.tischer@embl.de, tischitischer@gmail.com
 ## Recommended literature on bioimage analysis
 
 - http://www.imaging-git.com/olympus-website-bioimage-data-analysis
+- https://legacy.gitbook.com/book/petebankhead/imagej-intro/details
 
 
 
