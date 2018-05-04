@@ -111,41 +111,19 @@ If there is a strong uneven background in your image segmenting the objects with
 Ways to combat this challenge are:
 
 - Local background subtraction
-	- If possible, this is the best method because it also corrects the intensities in your image in the right way.
+	- If possible, this might be the best method, because 
+		- it also corrects the intensities in your image.
+		- you actually see how the image looks like that you finally threshold.
 - Local tresholding
-	- Works, but does not correct intensities.
+	- Works, but
+		- does not correct intensities.
+		- can be hard to debug, because, in contrast to local background subtraction, there is no visual feedback on what happens.
 - Edge enhancement combined with 'fill holes' (not shown)
 	- Also works, but also in fact even alters your intensities in a bad way.
 
-Example data:
-- ../data/uneven-background/blobs-with-background.tif
-- ../data/workflow_autophagosomes/autophagosomes_raw.tif
+## Local background subtraction practical
 
-### Activity: Try different local background subtraction methods
-
-- Try different **local background subtraction** methods (see [here](#local-background-subtraction) for more detailed examples)
-	- Subtract a **median** filtered version of the image from the original
-	- Subtract a morphological **opening** of the image from the original (i.e. do a **top-hat** filter)
-	- Use ImageJ's "Subtract background" method 
-- After local background subtraction, segment the objects with a global intensity threshold and connected component analysis
-- ImageJ commands:
-	- [Process > Filters > Mean]
-	- [Process > Filters > Median]
-	- [Process > Filters > Minimum]
-	- [Process > Filters > Maximum]
-	- [Process > Image Calculator]
-	- [Process > Subtract Background]
-	- [Image > Adjust > Threshold]
-	- [Analyze > Analyze Particles]
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
+see [here](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-)
 
 ## Automated global thresholding
 
