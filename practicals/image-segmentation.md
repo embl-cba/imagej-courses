@@ -85,6 +85,10 @@ As mentioned, although sometimes used, I don't understand the use of S/B. For S/
 
 # Segmentation of noisy images with the help of filtering
 
+See also the [basics of image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-filtering.md)
+
+## Activity 
+
 - Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
 - Try to threshold the image [Image > Adjust > Threshold]
 	- This doesn't really work, right?
@@ -120,7 +124,10 @@ Ways to combat this challenge are:
 
 ## Local background subtraction practical
 
-see [here](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-)
+See [local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-).
+
+Once local background subtraction has been sucessfully applied it simply is a matter of applying a global threshold as discussed above.
+
 
 ## Automated global thresholding
 
