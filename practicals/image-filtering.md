@@ -1,4 +1,4 @@
-# Image filtering (convolution)
+# Image filtering
 
 Image filtering is a very wide field, where mostly one replaces the intensity of each pixel by some mathematical function of its neighbors. The most simple example is probably the 3x3 mean filter, where each pixel is replaced by the mean value in a 3x3 neighborhood (i.e. inclucing the pixel itself and its 8 neighbors).
 
@@ -21,10 +21,11 @@ Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below 
 
 |   |  Mean  |  Median  |  
 |---|---|---|
-| Central (bold pixel) gray value | |   |
+| Central pixel value after filtering | |   |
 
 
 ### Compare 3x3 mean and median filter (behavior at edges)
+
 |   |   |   |  |   |
 |---|---|---|---|---|
 | 10  | 11  | 10  | 1 | 1  |
@@ -35,7 +36,7 @@ Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below 
 
 |   |  Mean  |  Median  |  
 |---|---|---|
-| Central (bold pixel) gray value  | |   |
+| Central pixel value after filtering  | |   |
 
 
 ### Discussion
@@ -59,7 +60,7 @@ Kernel:
 |   |   |   |
 |---|---|---|
 | 1/9  | 1/9  | 1/9 |
-| 1/9  | **1/9**  | 1/9 |
+| 1/9  | 1/9 | 1/9 |
 | 1/9  | 1/9  | 1/9 |
 
 
@@ -80,7 +81,7 @@ Intermediate step:
 | 11 * 1/9   | 11 * 1/9   | 10 * 1/9   | 
 
 
-Sum is 11.33333
+Sum of the 9 pixels is 11.33333
 
 Convolved image:
 
@@ -92,6 +93,10 @@ Convolved image:
 
 
 Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
+
+### Discussion points
+
+- Issue using 8 bit images for storing convolution results...
 
 &nbsp;
 
@@ -112,23 +117,3 @@ Basically, you multiply each pixel in the original image with the number that is
 
 &nbsp;
 
-### Spot enhancement using the Difference of Gaussian
-
-The Difference of Gaussian (DoG) is a very popluar method for object detection when there is uneven background or also an uneven object brightness distribution.
-
-Workflow:
-- Blur image with a small Gaussian (about the size of the objects)
-- Blur image with a large Gaussian (about two-three times the object size)
-- Subtract the large blur from the small blur; this is the DoG!
-- Threshold the resulting image to find the object centers
-- Fiji commands:
-	- [Process > Filters > Gaussian]
-	- [Process > Image Calculator]
-	- [Analyze > Analyze Particles] or [Process > Find Maxima]
-
-Discussion:
-- The object shape is not preserved with this method
-
-	- Workflow:
-		- Find object centers using DoG
-		- Find object volumes growing from the object centers
