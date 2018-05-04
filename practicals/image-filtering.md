@@ -8,6 +8,8 @@ Mean and median can be almost the same, but, depening on the data, also be very 
 
 Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below examples and compare the results.
 
+### Compare 3x3 mean and median filter (behavior with outliers)
+
 |   |   |   |   |   |
 |---|---|---|---|---|
 | 10  | 11  | 10  | 13  | 12  ||
@@ -16,9 +18,13 @@ Let's compute a 3x3 mean and a 3x3 median filter for the central pixel in below 
 | 14  | 13  | 12  | 11  | 10  |
 | 11  | 11  | 10  | 13  | 12  |
 
-What do you get for mean and median?
+
+|   |  Mean  |  Median  |  
+|---|---|---|
+| Central (bold pixel) gray value | |   |
 
 
+### Compare 3x3 mean and median filter (behavior at edges)
 |   |   |   |  |   |
 |---|---|---|---|---|
 | 10  | 11  | 10  | 1 | 1  |
@@ -27,7 +33,10 @@ What do you get for mean and median?
 | 14  | 13  | 12  | 0  | 0  |
 | 11  | 11  | 10  | 1  | 0  |
 
-And what do you get here for mean and median?
+|   |  Mean  |  Median  |  
+|---|---|---|
+| Central (bold pixel) gray value  | |   |
+
 
 ### Discussion
 
