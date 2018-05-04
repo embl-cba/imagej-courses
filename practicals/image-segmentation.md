@@ -85,7 +85,7 @@ As mentioned, although sometimes used, I don't understand the use of S/B. For S/
 
 # Segmentation of noisy images with the help of filtering
 
-See also the [basics of image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-filtering.md)
+See also the [basics of image filtering.](https://github.com/tischi/imagej-courses/blob/master/practicals/image-filtering.md)
 
 ## Activity 
 
