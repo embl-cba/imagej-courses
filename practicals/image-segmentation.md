@@ -83,7 +83,7 @@ As mentioned, although sometimes used, I don't understand the use of S/B. For S/
 
 
 
-# Activity: Segmentation of noisy images with the help of filtering (smoothing)
+# Segmentation of noisy images with the help of filtering
 
 - Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
 - Try to threshold the image [Image > Adjust > Threshold]
@@ -101,25 +101,22 @@ As mentioned, although sometimes used, I don't understand the use of S/B. For S/
 
 &nbsp;
 
+## Segmentation in the prescence of uneven background
 
-
-
-## Segmentation with uneven background
-
-If there is a strong uneven background in your image segmenting the objects with just one threshold will not work.
+If there is an uneven background in your image segmenting the objects with just one threshold will not work.
 
 Ways to combat this challenge are:
 
-- Local background subtraction
+- **Local background subtraction**
 	- If possible, this might be the best method, because 
 		- it also corrects the intensities in your image.
 		- you actually see how the image looks like that you finally threshold.
-- Local tresholding
+- **Automated local tresholding**
 	- Works, but
 		- does not correct intensities.
 		- can be hard to debug, because, in contrast to local background subtraction, there is no visual feedback on what happens.
-- Edge enhancement combined with 'fill holes' (not shown)
-	- Also works, but also in fact even alters your intensities in a bad way.
+- **Edge enhancement combined with 'fill holes' (not shown)**
+	- Also can work, but alters your intensities in a bad way.
 
 ## Local background subtraction practical
 
