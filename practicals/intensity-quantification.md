@@ -4,7 +4,7 @@
 
 In biology it is crucial to choose the right intensity measurement. In some cases choosing mean instead of sum intensity can give you the opposite biological result!
 
-### Example
+### Definitions
 
 <img width="243" alt="image" src="https://user-images.githubusercontent.com/2157566/39675856-642a58ae-5161-11e8-977a-e2779ec0e927.png">
 
@@ -13,8 +13,6 @@ In biology it is crucial to choose the right intensity measurement. In some case
 - AreaInPixelUnits = 4
 - Mean = Sum / AreaInPixelUnits = 132
 - Sum = Mean * AreaInPixelUnits   
-
-It is important 
 
 ### Nomenclature
 
@@ -145,6 +143,8 @@ Let's first open the images:
 
 These images are made up, such that we know what the result should be! We will pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme to the damage sites. 
 
+<img width="526" alt="image" src="https://user-images.githubusercontent.com/2157566/39676179-45fa8070-5166-11e8-9a3f-5216bf3670bc.png">
+
 ### Examine with line profile
 
 Let's first look at the images using an intensity line profile and discuss what we see.
@@ -200,6 +200,21 @@ Hard work, right? And many options to make little mistakes, thus, as said, we on
 
 &nbsp;
 
+### Results
+
+- Damage: 
+	- 10 percent of protein is recruited to damage site
+- Damage and treated 01:
+	- 10 percent of protein is recruited to damage site
+	- less total intensity than in control:
+		- could be due to bleaching,
+		- or, if not the same cell as in control, a different expression level 
+		- or, a treament induced reduction of the protein level
+	- Conclusion: treatment had no effect on binding, but maybe on expression level or on nuclear import
+- Damage and treated 02:
+	- 5 percent recruitement to damage site
+	- Conclusion: Treatment seems to reduce binding
+
 
 ## Discussion points
 
@@ -220,9 +235,17 @@ Hard work, right? And many options to make little mistakes, thus, as said, we on
 
 &nbsp;
 
+
+
+
 # Intensity measurements with automated local background subtraction  <a name="automated-local-background-subtraction"></a>
 
-Above we already practiced above how to subtract a local background manually; let's try to automated this. This is important for image batch analysis or when the local background is and not easy to subtract manually.
+Above we already practiced above how to subtract a local background manually; let's try to automate this. 
+
+This is important for 
+
+- image batch analysis, or 
+- uneven local background that is not easy to subtract manually.
 
 In biological fluorescence microscopy one often wants to detect locally bright objects such as vesicular structures on top of a non-uniform background fluorescence, e.g. from unbound cytoplasmic protein. There are different methods to remove such 'background' fluorescence from the image, e.g.:
 
