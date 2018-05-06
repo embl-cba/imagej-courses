@@ -1,7 +1,7 @@
 # Intensity measurements with automated local background subtraction  <a name="automated-local-background-subtraction"></a>
 
 This practical discusses how to automate the local background subtraction in the basic 
-practical on (intensity-quantification)[https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md#image-intensity-measurements-]
+practical on [intensity-quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md#image-intensity-measurements-)
 
 This is important for 
 
