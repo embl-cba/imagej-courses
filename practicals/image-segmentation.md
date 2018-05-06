@@ -128,6 +128,11 @@ See [local background subtraction](https://github.com/tischi/imagej-courses/blob
 
 Once local background subtraction has been sucessfully applied it simply is a matter of applying a global threshold as discussed above.
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 ## Automated global thresholding
 
@@ -147,10 +152,18 @@ Example data within Fiji:
 Fiji commands:
 - [Image > Adjust > Auto Threshold]
 
+Documentation: 
+- https://imagej.net/Auto_Threshold
+
 ### Discussion
 
 - Many automated thresholding methods always find a threshold, even if there is only noise.
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 ## Automated local tresholding (under development)
 
@@ -161,6 +174,12 @@ Workflow:
 - Connected component analysis
 - Fiji commands:
 	- [Image > Adjust > Auto Local Threshold]
-		- Documentation: http://imagej.net/Auto_Local_Threshold
 	- [Analyze > Analyze Particles]
+- Documentation:
+	- http://imagej.net/Auto_Local_Threshold
 	
+&nbsp;
+
+&nbsp;
+
+&nbsp;
