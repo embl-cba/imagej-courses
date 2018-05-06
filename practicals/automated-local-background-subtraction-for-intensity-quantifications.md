@@ -1,9 +1,11 @@
 # Intensity measurements with automated local background subtraction  <a name="automated-local-background-subtraction"></a>
 
-This practical discusses how to automate the local background subtraction in the basic 
-practical on [intensity-quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md#image-intensity-measurements-)
+This practical discusses how to automate the local background subtraction in the 
+practical on [intensity-quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md#image-intensity-measurements-). 
 
-This is important for 
+The content of this practial is basically the same as [here](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-), but with different images. Although similar, the simplicity of the input data in this practical allows to examine see the pros and cons of the different methods quite well.
+
+Automated local background subtraction is important for 
 
 - image batch analysis, or 
 - uneven local background that is not easy to subtract manually.
