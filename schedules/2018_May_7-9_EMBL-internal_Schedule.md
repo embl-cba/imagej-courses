@@ -33,10 +33,10 @@ But, don't worry, even if you don't know above material you'll be able to follow
 | 09:30 - 10:00 | Welcome and self-introduction |
 | 10:00 - 12:30 | Pratical: [Basics of intensity measurements](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md) |
 | 12:30 - 13:30 | Lunch break |
-| 13:30 - 15:00 | Pratical: Image segmentation: Manual thresholding, Signal to noise, Image filtering |
-| 15:30 - 16:30 | Pratical: Image segmentation: Automated local background subtraction |
-| 16:30 - 17:30 | Pratical: Image segmentation: Automated global thresholding|
-| 00:00 - 00:00 | Recommended home-work: Intensity quantification: Automated local background subtraction |
+| 13:30 - 15:00 | Pratical: [Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md) |
+| 15:30 - 16:30 | Pratical: [Image segmentation: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-) |
+| 16:30 - 17:30 | Pratical: [Image segmentation: Automated global thresholding](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding)|
+| 00:00 - 00:00 | Recommended home-work: [Intensity quantification: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/automated-local-background-subtraction-for-intensity-quantifications.md#intensity-measurements-with-automated-local-background-subtraction--) |
 
 ### Tuesday May 8th
 
