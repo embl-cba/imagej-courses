@@ -124,7 +124,7 @@ Ways to combat this challenge are:
 
 ## Local background subtraction practical
 
-Please first learn [local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-).
+Please see here: [local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-).
 
 Once local background subtraction has been sucessfully applied it simply is a matter of applying a global threshold as discussed above.
 
