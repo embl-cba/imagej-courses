@@ -51,13 +51,13 @@ Here, we will only consider pixel- and object-based colocalisation, thus we firs
 
 Repeat above steps for "synthetic-data-ch2.tif".
 
-### Area, object and distance-based colocalization
+### Area- and object-based colocalization
 
 First we load the segmented images and compute the overlap (colocalization) image:
 
 - __[File>Open..] '“../colocalization/synthetic-data-ch1-segmented.tif”__
 - __[File>Open..] '“../colocalization/synthetic-data-ch2-segmented.tif”__
-- __[Process>Image Calculator] 'stain1_segmented.tif' 'AND' 'stain2_segmented.tif'__
+- __[Process>Image Calculator] 'synthetic-data-ch1-segmented.tif' 'AND' 'synthetic-data-ch2-segmented.tif'__
 	- The 'AND' operations keeps pixels that are non-zero in both images, i.e. the 'colocalizing' pixels.
 - __[Image>Rename..] 'Title = overlap'__
 
@@ -66,14 +66,22 @@ Now, we can compute an area- and object-based colocalisation using below command
 - **[Analyze>Set Measurements..]**	
 	- [X] 'Display label'
 		- this is nice, because it will associate measurements with the name of the image (and ROI) on which they were computed.
-- For all three images, i.e. __'stain1_segmented.tif', 'stain2_segmented.tif', 'overlap'__, run the following command : 
+- For all three images...
+	- **'synthetic-data-ch1-segmented.tif'**
+	- **'synthetic-data-ch2-segmented.tif'**
+	- **'overlap'**
+- ...perform a particle analysis:
 	- **[ Analyze > Analyze Particles ]**
 		- Especially for the **overlap** image carefully think about the **Size** filter, which enables you to set a threshold for a minimal overlap for an object to be counted as colocalizing.	
 		- [X] 'Display Results' 
 		- [X] 'Summarize' 
 		- Select: 'Display Labels' 
-- Object based colocalization: __Count__ (e.g., divide overlap by stain1) 
-- Area based colocalization: __Area__ (e.g., divide overlap by stain1)
+- Object based colocalization: __Count__
+	- coloc1 = overlap / ch1
+	- coloc2 = overlap / ch2
+- Area based colocalization: __Area__ (e.g., )
+	- coloc1 = overlap / ch1
+	- coloc2 = overlap / ch2
 
 ### Discussion points
 
