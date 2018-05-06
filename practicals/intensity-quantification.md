@@ -1,11 +1,39 @@
 # Image intensity measurements <a name="intensity_measurements"></a> 
 
-## Mean intensity and sum intensity
+## Mean intensity vs. sum intensity
 
-=> PowerPoint presentation.
+In biology it is crucial to choose the right intensity measurement. In some cases choosing mean instead of sum intensity can give you the opposite biological result!
+
+### Example
+
+<img width="243" alt="image" src="https://user-images.githubusercontent.com/2157566/39675856-642a58ae-5161-11e8-977a-e2779ec0e927.png">
+
+- Gray values: 105, 133, 148, 142
+- Sum = 105 + 133 + 148 + 142 = 528
+- AreaInPixelUnits = 4
+- Mean = Sum / AreaInPixelUnits = 132
+- Sum = Mean * AreaInPixelUnits   
+
+It is important 
+
+### Nomenclature
+
+- Alternative wordings for **sum intensity**:
+	- total intensity
+	- integrated intensity
+	- integrated density
+	- in ImageJ: 
+		- **RawIntDen** = Mean * AreaInPixelUnits
+			- This is the one you need!
+		- IntDen = Mean * AreaInCalibratedUnits
+			- ...I never understood what this is good for...
+- Alternative wordings for **mean intensity**:
+	- average intensity
+	- in ImageJ: 
+		- Mean
 
 &nbsp;
-
+	
 &nbsp;
 
 &nbsp;
@@ -13,18 +41,60 @@
 
 ## The biophysical meaning of intensities in fluorescence microscopy images
 
-=> PowerPoint presentation.
+### Widefield vs. confocal microscopy
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/2157566/39675919-da4160a0-5161-11e8-8f65-88a9fff4c209.png">
+
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/2157566/39675923-eaa546dc-5161-11e8-81f1-161cf8973a09.png">
 
 &nbsp;
 
 &nbsp;
 
 &nbsp;
+
+### Comparing mean vs. sum in widefield vs. confocal measuring DNA content during the cell cycle
+
+<img width="526" alt="image" src="https://user-images.githubusercontent.com/2157566/39675959-5c98f978-5162-11e8-86f5-a1761a5ae458.png">
+
+#### Widefield sum intensity
+
+Let's assume:
+- the image above are taken with a **widefield** microscope. 
+- in each image we draw a region of interest closely around the DNA
+- we measure the **sum** intensity
+
+What do you expect?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+#### Confocal mean intensity
+
+Now, let's assume:
+- the image above are taken with a **confocal** microscope, pinhole at 1 airy unit. 
+- in each image we draw a region of interest closely around the DNA
+- we measure the **mean** intensity
+
+What do you expect?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+#### Answers
+
+<img width="526" alt="image" src="https://user-images.githubusercontent.com/2157566/39675949-45fd1bc2-5162-11e8-8f29-2033b4a542f3.png">
 
 
 ## Activity: Manual intensity measurements
 
-Let's measure the sum intensity of two nuclei in a widefield microscopy image. Assuming that the staining is quantitative this gives us information on the cell cycle state (because the DNA content doubles during the cell cycle).
+Let's measure the sum intensity of two nuclei in a widefield microscopy image. Assuming that the staining is quantitative this could give us information on the cell cycle state (because the DNA content doubles during the cell cycle).
 
 - Open “../image-inspection/B.tif”
 - Record a ROI around one nuclues:
@@ -42,7 +112,7 @@ Let's measure the sum intensity of two nuclei in a widefield microscopy image. A
 	- [X] Mean gray value
 	- [X] Area
 	- [X] Integrated density
-		- This measures the sum intensity; in fact it will output two values; the "good" one is the **RawIntDen**, which really simply adds up the gray values in the measurement ROI.
+		- This measures the sum intensity; in fact it will output two values; the "good" one is **RawIntDen**, which really simply adds up the gray values in the measurement ROI.
 - Select all regions and measure [ROI Manager > Measure]
 
 Now we need to do the proper background subtraction for the two nuclei ROIs, using below formula:
@@ -53,7 +123,7 @@ In words, we subtract for each pixel in the ROI the mean value of the background
 
 Two compare the intensities of the two nuclei, typically computing the ratio of the sum intensities is a good readout.
 
-In this case, given the staining is quantitative, this could be used to measure the cell cycle state.
+As mentioned above, given the staining is quantitative, this could be used to infer on the cell cycle state.
 
 &nbsp;
 
@@ -61,9 +131,9 @@ In this case, given the staining is quantitative, this could be used to measure 
 
 &nbsp;
 
-## Intensity measurements and their interpretation,  with local background
+## Intensity measurements and their interpretation: Now with local background
 
-Intensity measurements are a **very tricky business**, not because they are technically difficult, but because one can make many mistakes in the interpretation of the numbers. This very easily leads to wrong scientific conclusions!
+Intensity measurements are a **quite tricky business**, not because they are technically difficult, but because one can make many mistakes in the interpretation of the numbers. Thus, they should be done with **utmost care**!
 
 ## Activity: Intensity measurements with local background subtraction
 
@@ -73,7 +143,7 @@ Let's first open the images:
 
 - Open all images in this folder "../dna-damage-synthetic-data/"
 
-We pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme. 
+These images are made up, such that we know what the result should be! We will pretent that these are **widefield microscopy** images of one nucleus where a GFP-tagged DNA damage repair enzyme is diffusing around. In some of the images a well controlled laser cut was induced and thus the DNA repair enzyme binds the damage site. Some images say "Treated" in their title. The idea is that the scientist added a drug and wanted to find out if this drug enhances or diminishes the binding of the DNA repair enzyme to the damage sites. 
 
 ### Examine with line profile
 
@@ -95,16 +165,16 @@ Ok, now let's try to measure a number that is robust with respect to microscope 
 In this case, assuming 
 
 - this is widefield microscopy, and
-- the unbound molecule is fast diffusing, and
+- the unbound molecule is diffusing fast, and
 - the laser cut had the exact same strength in all experiments
 
 it probably makes sense to divide the sum intensity of the bound protein by the sum intensity in the nucleus; i.e. total_bound / total_available. This gives the fraction of protein bound to the damage site, which has the following nice properties, it is:
 
 - independent of microscope settings
 - always a number between 0 and 1
-- closer to 1 the "better" the protein binds to the damage site
+- closer to 1 the "stronger" the protein binds to the damage site
 
-One could put more thought into this and try to relate this to a real binding rate constant (K_A), but this goes beyond the scope of this tutorial. 
+One could put even more thought into this and try to relate this to a real binding rate constant (K_A), but this goes beyond the scope of this tutorial. 
 
 To measure the **fraction of bound protein** we need to measure:
 
@@ -122,7 +192,7 @@ And finally:
 
 - fraction_bound_to_damage = total_signal_damage / total_signal_nucleus
 
-Hard work, right? And many options to make little mistakes, thus we only should preform intensity measurements with utmost care!
+Hard work, right? And many options to make little mistakes, thus, as said, we only should preform intensity measurements with utmost care!
 
 &nbsp;
 
@@ -133,17 +203,15 @@ Hard work, right? And many options to make little mistakes, thus we only should 
 
 ## Discussion points
 
-
 - Divide by the length (and or width) of the laser damage cut?
 	- length makes sense
-	- width probably not
+	- width probably not due to diffraction limit
 
 - How do our observations relate to this: https://en.wikipedia.org/wiki/Binding_constant
 
-- What about computing the mean intensity in the nucleus next to the damage site?
-	- In principle attractive, because for a association rate constant (K_A) we need the concentration of the unbound protein.
-	- For a confocal image this can make sense if there are not many substructures in the nucleus (like nucleoli). Basically, if the concentration of the protein is homgeneous, the mean intensity gives information about the concentration of the unbound protein.
-		- However, it is less obvious how to measure the concentration of the bound protein, as required for a K_A, probably one needs something else?!
+- What about using the mean intensity in the nucleus next to the damage site as a biological readout?
+	- It is an attractive number, because for measuring a association rate constant (K_A) we need the concentration of the unbound protein.	Thus, if (i) this was a confocal image and (ii) if there are not too many substructures in the nucleus (like nucleoli) the mean intensity gives information about the concentration of the unbound protein.
+	- However, it is less obvious how to measure the concentration of the bound protein, as required for a K_A, probably one needs something else?!
 	- For a widefield image the PSF is unbounded in 3D and it is thus not clear at all how to measure a concentration.
 
 &nbsp;
