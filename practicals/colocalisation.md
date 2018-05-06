@@ -1,4 +1,4 @@
-# Colocalisation: Pixel-, distance- and object-based
+# Colocalisation
 
 ## Literature
 
