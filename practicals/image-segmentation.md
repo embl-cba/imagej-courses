@@ -47,6 +47,10 @@ Let's try:
 
 # The signal to noise (S/N) ratio
 
+
+<img width="885" alt="image" src="https://user-images.githubusercontent.com/2157566/39702229-5a093cc0-5204-11e8-826e-068979e14f6c.png">
+
+
 At the microscope, especially setting up a live cell experiment where you want to avoid photo-bleaching of your fluorophore, you typically wonder: "How good does the image need to be in order for me to be able to still segment the objects?"
 
 A very important concept in this regard is the signal to noise ratio (S/N), which, in my humble opinion, is often confused with the much less important signal to background ratio (S/B).
