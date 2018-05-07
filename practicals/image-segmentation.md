@@ -22,7 +22,7 @@ Let's try:
  
 - Configure image segmentation settings [Process > Binary > Options]: 
 	- [X] Black Background
-- Open image: "../image-inspection/B.tif"  [File > Open]
+- Open image:"../signal-to-noise/hb2-mCherry.tif" [File > Open]
 - Manually adjust a threshold value [Image > Adjust > Threshold]
 	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
 - Perform a "connected component analysis"  [Analyze > Analyze Particles]
@@ -87,14 +87,22 @@ As mentioned, although sometimes used, I don't understand the use of S/B. For S/
 
 Please first learn the [basics of image filtering.](https://github.com/tischi/imagej-courses/blob/master/practicals/image-filtering.md)
 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 ## Activity 
 
-- Open: "../signal-to-noise/noisy-nuclei.tif"  [File > Open]
-- Try to threshold the image [Image > Adjust > Threshold]
-	- This doesn't really work, right?
-- Let's try to smooth the image first, e.g. using 
-	- A 11x11 median filter [Process > Filters > Median]
-		- Radius: 5 ( 2*5 + 1 = 11)
+- Open: "../signal-to-noise/hb2-mCherry.tif" [File > Open]
+	- Alternative: "../signal-to-noise/noisy-nuclei.tif"  
+- As we saw, simply thresholding the image using [Image > Adjust > Threshold] does not work for the very dim cells.
+- Now, let's try to smooth the image first, e.g. using 
+	- median filter [Process > Filters > Median]
+		- try different radii using the [ ] Preview option
 - Now, let's segment the nuclei, using:
 	- [Image > Adjust > Threshold]
 	- [Analyze > Analyze Particles]
