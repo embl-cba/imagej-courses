@@ -101,9 +101,11 @@ Please first learn the [basics of image filtering.](https://github.com/tischi/im
 
 ## Activity 
 
-- Open: "../signal-to-noise/hb2-mCherry.tif" [File > Open]
-	- Alternative: "../signal-to-noise/noisy-nuclei.tif"  
-- As we saw, simply thresholding the image using [Image > Adjust > Threshold] does not work for the very dim cells.
+- Open: "../signal-to-noise/noisy-nuclei.tif" [File > Open]
+- Try to segment the nuclei:
+	- Thresholding: [Image > Adjust > Threshold] 
+	- Particle analysis: [Analyze > Analyze Particles]
+	- Does not work very well, right?
 - Now, let's try to smooth the image first, e.g. using 
 	- median filter [Process > Filters > Median]
 		- try different radii using the [ ] Preview option
