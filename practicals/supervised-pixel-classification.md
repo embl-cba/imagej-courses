@@ -1,13 +1,13 @@
 # Supervised pixel classification
 
-## Software solutions
+## Software solutions and documentation
 
 - http://ilastik.org/
 - https://imagej.net/Trainable_Weka_Segmentation
 
 ## Practical 
 
-<img width="189" alt="image" src="https://user-images.githubusercontent.com/2157566/39700776-c31fdd46-51fe-11e8-8d2d-c82340c8b27a.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/2157566/39700776-c31fdd46-51fe-11e8-8d2d-c82340c8b27a.png">
 
 - Open “../supervised_segmentation/scanningEM_flyEye.tif”
 - Perform supervised pixel classification
@@ -23,4 +23,4 @@
   - [Analyze..Analyze Particles] 
 
 
-<img width="134" alt="image" src="https://user-images.githubusercontent.com/2157566/39700789-ce4401a2-51fe-11e8-9fbc-c8941e2a7039.png">
+<img width="200" alt="image" src="https://user-images.githubusercontent.com/2157566/39700789-ce4401a2-51fe-11e8-9fbc-c8941e2a7039.png">
