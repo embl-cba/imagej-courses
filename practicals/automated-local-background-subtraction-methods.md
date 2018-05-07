@@ -16,7 +16,7 @@ In all methods the *radius* parameter should be "quite a bit larger" than the ra
 
 Duplicate image and apply median filter to remove the locally bright spots. Then subtract the median filtered image from the raw image and save the result for later use. 
 
-- __[File>Open..] 'autophagosomes_raw.tif'__
+- __[File>Open..] '../workflow_autophagosomes/autophagosomes_raw.tif'__
 - __[Image>Rename..] 'Title=original'__
 - __[Image>Duplicate] 'Title=median'__
 - Select the 'median' image and __[Process>Filters>Median] 'radius=5'__
@@ -30,7 +30,7 @@ Duplicate image and apply median filter to remove the locally bright spots. Then
 
 A morphological opening filter is applied to the image and subtracted from the original. The morphological opening is defined as the dilation of the erosion if the image. Alltogether this reads: top_hat(image) = image - dilation(erosion(image))
 
-- __[File>Open..] 'autophagosomes_raw.tif'__
+- __[File>Open..] '../workflow_autophagosomes/autophagosomes_raw.tif'__
 - __[Image>Rename..] 'Title=original'__
 - __[Image>Duplicate] 'Title=opened'__
 - __[Process>Filters>Minimum..] 'radius=5'__ 
@@ -43,7 +43,7 @@ A morphological opening filter is applied to the image and subtracted from the o
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/images/orig__bg__rollingball.png" width=700/>
 
-- __[File>Open..] 'autophagosomes_raw.tif'__
+- __[File>Open..] '../workflow_autophagosomes/autophagosomes_raw.tif'__
 - __[Process>Subtract Background..] 'radius=5'__
 
 This seems to implement a ['rolling ball'](https://github.com/nearlyfreeapps/Rolling-Ball-Algorithm/blob/master/rolling_ball.py) background estimation (=> Whiteboard). I don't understand the mathematical algorithm how to compute this, but based on the code that i saw it seems not so simple (see also [here](http://dsp.stackexchange.com/questions/10597/uneven-background-subtraction-rolling-ball-vs-disk-tophat) and [here](https://en.wikipedia.org/wiki/Dilation_%28morphology%29#Grayscale_dilation)).
