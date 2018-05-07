@@ -87,9 +87,9 @@ Convolved image:
 
 |   |   |   |
 |---|---|---|
-| ?  | ?  | ? |
-| ?  | **11.333**  | ?  | 
-| ?  | ?  | ?  | 
+| .  | .  | . |
+| .  | **11.333**  | .  | 
+|  . | .  | .  | 
 
 
 Basically, you multiply each pixel in the original image with the number that is written in the kernel and then you replace the center pixel with the sum of all pixels.
