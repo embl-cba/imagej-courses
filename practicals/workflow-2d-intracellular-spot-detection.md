@@ -9,7 +9,7 @@ If you messed up or missed a step there also is a sub-folder __'teacher'__, form
 
 ## What to measure?
 
-<img src="https://github.com/tischi/imagej-courses/blob/master/images/bothChannels.jpg" width=200/>
+<img src="https://github.com/tischi/imagej-courses/blob/master/images/bothChannels.jpg" width=400/>
 
 - __[File>Open..] 'bothChannels.jpeg'__
 
