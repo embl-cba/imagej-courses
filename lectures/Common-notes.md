@@ -21,9 +21,11 @@ Convert `.md` to `.html` with one command line:
 More options [here](https://www.npmjs.com/package/markdown-to-slides#usage)
 
 ### Demonstration
-Press `P` to enter demonstration node
+- in *Firefox* `F11` or `Fn+F11` enters and exits full screen mode, useful when demonstrating slides with beamer
+- Press `P` to enter demonstration node
 
 ##TO DO:
 
-Find out how to define `style` and `template` files
+- Find out how to define `style` and `template` files
+- How to run presentation mode on primary screen and full screen slide in beamer/secondary screen?
 
