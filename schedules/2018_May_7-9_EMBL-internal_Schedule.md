@@ -16,7 +16,7 @@ If you prefer to work on your own computer, please:
 
 ## Prerequisites
 
-In order to save some time, and since many of you took part in the ALMF Basics in Microscopy courses, we will not repeat what has been thaught there already. If you did not attend it would be good if you could have a look at the material:
+In order to save some time, and since many of you took part in the ALMF Basics in Microscopy courses, we will not repeat what has been taught there already. If you did not attend it would be good if you could have a look at the material:
 
 - Basic handling of the [ImageJ](https://fiji.sc/) software 
 - [Image inspection and handling](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md)
@@ -31,11 +31,11 @@ But, don't worry, even if you don't know above material you'll be able to follow
 | Time | Topic |
 |------|-------|
 | 09:30 - 10:00 | Welcome and self-introduction |
-| 10:00 - 12:30 | Pratical: [Basics of intensity measurements](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md) |
+| 10:00 - 12:30 | Practical: [Basics of intensity measurements](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md) |
 | 12:30 - 13:30 | Lunch break |
-| 13:30 - 15:00 | Pratical: [Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md) |
-| 15:30 - 16:30 | Pratical: [Image segmentation: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-) |
-| 16:30 - 17:30 | Pratical: [Image segmentation: Automated global thresholding](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding)|
+| 13:30 - 15:00 | Practical: [Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md) |
+| 15:30 - 16:30 | Practical: [Image segmentation: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-) |
+| 16:30 - 17:30 | Practical: [Image segmentation: Automated global thresholding](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding)|
 | 00:00 - 00:00 | Recommended home-work: [Intensity quantification: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/automated-local-background-subtraction-for-intensity-quantifications.md#intensity-measurements-with-automated-local-background-subtraction--) |
 
 ### Tuesday May 8th
@@ -60,7 +60,7 @@ But, don't worry, even if you don't know above material you'll be able to follow
 
 ### Further information
 
-Don't worry, there will be coffee breaks, one in the morning and one in the afternoon, even though they are not explicitely scheduled :-)
+Don't worry, there will be coffee breaks, one in the morning and one in the afternoon, even though they are not explicitly scheduled :-)
 
 
 
