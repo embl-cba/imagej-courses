@@ -11,3 +11,8 @@ Image taken from: https://github.com/SuperElastix/elastix/releases/download/4.9.
   - [stackreg](http://bigwww.epfl.ch/thevenaz/stackreg/)
   - [BigWarp](https://imagej.net/BigWarp)
   - [N-D Sequence Registration](https://github.com/tischi/fiji-plugin-imageRegistration)
+
+
+## Practical
+
+TODO...
