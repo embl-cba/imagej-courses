@@ -107,6 +107,8 @@ Let's measure the sum intensity of two nuclei in a widefield microscopy image. A
 		- "background"
 		 
 - Select measurements [Analyze > Set Measurements]:
+	- [X] Display labels
+		- This will show the name of the ROI and image next to the measurements	
 	- [X] Mean gray value
 	- [X] Area
 	- [X] Integrated density
