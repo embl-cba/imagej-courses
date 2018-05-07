@@ -27,122 +27,73 @@ If you messed up or missed a step there also is a sub-folder __'teacher'__, form
 		- microscope settings change intensities
 		- total expression level changes intensities
 		- good to divide by total cell intensity => fraction of protein localized to one autophagosome
-		-  local background correction needed for spot intensity
+		- local background correction needed for spot intensity
 - Total cell intensity
 	- proportional to total amount of protein (in wide-field microscopy)
 - Mean intensity of each cell
-	- not clear what the biological meaning in the wide-field images is. 
+	- not clear what the biological meaning in a wide-field images is. 
 
-
-
-## Local background subtraction <a name="local-background-subtraction"></a>
-
-In biological fluorescence microscopy one often wants to detect locally bright objects such as vesicular structures on top of a non-uniform background fluorescence, e.g. from unbound cytoplasmic protein. There are different methods to remove such 'background' fluorescence from the image:
-
-- corrected\_image = image - mean\_filter(image, radius) 
-- corrected\_image = image - median\_filter(image, radius) 
-- corrected\_image = image - morphological\_opening(image, radius) = top\_hat(image, radius)
-- corrected\_image = IJs "RollingBall" Algorithm
-- *someone knowing other methods?*
-
-In all methods the *radius* parameter should be "quite a bit larger" than the radius of the largest locally bright structure that you want to measure (why that is becomes clear when we discuss the methods in detail).
-
-### Local background subtraction using a median filter
+## Local background subtraction to enhance the vesicles (using a median filter)
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/images/orig__median__subtraction.png" width=700/>
 
-Duplicate image and apply median filter to remove the locally bright spots. Then subtract the median filtered image from the raw image and save the result for later use. 
+There is a lot of "background" signal from unbound protein which we need to remove to simplify the spot detection.
 
-- __[File>Open..] 'autophagosomes_raw.tif'__
+Duplicate the input image and apply a median filter to remove the locally bright spots, generating a background image, consisting of unbound protein, diffusing in the cell:
+
+- __[File>Open..] '../workflow_autophagosomes/autophagosomes_raw.tif'__
 - __[Image>Rename..] 'Title=original'__
 - __[Image>Duplicate] 'Title=median'__
-- Select the 'median' image and __[Process>Filters>Median] 'radius=5'__
+- Select 'median' image and __[Process>Filters>Median] 'radius=5'__
+
+Now subtract the median filtered "background" image from the input image to obtain an image where the spots are enhanced:
+
 - __[Process>Image Calculator] 'Image1 = original' 'Operation = Subtract' 'Image2 = median' 'Create new window=Check' '32-bit output=Uncheck'__ 
+
+Save result for later use:
 - __[File>Save] 'spots_median.tif'__
-
-
-## Local background subtraction using a top-hat filter 
-
-<img src="https://github.com/tischi/imagej-courses/blob/master/images/orig__open__tophat.png" width=700/>
-
-A morphological opening filter is applied to the image and subtracted from the original. The morphological opening is defined as the dilation of the erosion if the image. Alltogether this reads: top_hat(image) = image - dilation(erosion(image))
-
-- __[File>Open..] 'autophagosomes_raw.tif'__
-- __[Image>Rename..] 'Title=original'__
-- __[Image>Duplicate] 'Title=opened'__
-- __[Process>Filters>Minimum..] 'radius=5'__ 
-- __[Process>Filters>Maximum..] 'radius=5'__ 
-- __[Process>Image Calculator] 'original' 'Subtract' 'opened' 'Create new window=Check' '32-bit output=Uncheck'__ 
-- __[File>Save] 'spots_tophat.tif'__
-
-
-## Local background subtraction using IJs "Subtract Background"
-
-<img src="https://github.com/tischi/imagej-courses/blob/master/images/orig__bg__rollingball.png" width=700/>
-
-- __[File>Open..] 'autophagosomes_raw.tif'__
-- __[Process>Subtract Background..] 'radius=5'__
-
-This seems to implement a ['rolling ball'](https://github.com/nearlyfreeapps/Rolling-Ball-Algorithm/blob/master/rolling_ball.py) background estimation (=> Whiteboard). I don't understand the mathematical algorithm how to compute this, but based on the code that i saw it seems not so simple (see also [here](http://dsp.stackexchange.com/questions/10597/uneven-background-subtraction-rolling-ball-vs-disk-tophat) and [here](https://en.wikipedia.org/wiki/Dilation_%28morphology%29#Grayscale_dilation)).
-
-
-### Comparison of the different BG subtraction methods
-
-Whiteboard session: 
-
-- Difference between median-subtraction and top-hat:
-	- top-hat underestimates background in presence of noise
-	- median overestimates background in presence of "holes"
-- Local background subtraction should only be used for (small) isolated objects
-	- e.g., may fail if used to find the background intensity in an image full of cells
-- Using the Spheroids image in 3D_Segmentation one can d emonstrate that the top-hat (dramatically) underestimates the background in noisy images
-
-
-## Further enhancement of spots using a Laplacian of Gaussian filter (optional)
-
-Above local background subtraction methods already helped a lot to enhance the spots; however in some cases there might still be some patchy locally bright regions left that are not corresponding to "real" spots. The reason is that the local background subtraction methods cannot distinguish locall bright elongated from locally bright round objects. Convolution of the image with a [Laplacian of Gaussian](https://en.wikipedia.org/wiki/Blob_detection#The_Laplacian_of_Gaussian) filter can help to further enhance spots of a certain size. 
-
-- ...
 
 
 ## Spot detection using 'Find Maxima'
 
-ImageJ's 'Find Maxima' considers a pixel a maximum if its intensity is higher - by the 'Noise tolerance' - than neighboring pixels; see [Topographic prominence](http://en.wikipedia.org/wiki/Topographic_prominence). 
+For spot counting we will now create one binary image with exactly one pixel per spot. This will greatly simplify automated cell-based spot counting later on.
 
 - __[File>Open] 'spots_median.tif'__
 - __Draw a line ROI__ across some of the spots and __[Analyze>Plot Profile]__
 	- Check how many gray values the spots 'stand out'; use this value as 'Noise tolerance' in the next step
-- __[Process>Find Maxima..] 'Noise tolerance=20' 'Output type=Single Points'__
+- **[Process>Find Maxima..]**
+	- Noise tolerance = ...
+	- Output type = Single Points
 	- check __'Preview point selection'__ and explore different 'Noise tolerance' values!
-- __[Process>Math>Divide..] 'Value=255'__
-	- => spot pixel will have a value of 1 (better for counting them later..)
+- **[Process>Math>Divide..]**
+	- Value = 255
+	- => spot pixels will have a value of 1 (better for counting them later..)
 	- The image will appear white; you have to adjust the contrast to see the dots __[Image>Adjust>Brightness/Contrast]__ 
 - __[File>Save] 'spots_points.tif'__	
 
+### Algorithmic details
 
-#### Exercise: Explore influence of local background removal   
-
-- __[File>Open..] 'autophagosomes_raw.tif'__
-- __[Process>Filters>Gaussian Blur..] 'sigma=15'__ (this removes the spots)
-- __[Process>Find Maxima..] 'Noise tolerance=100'__
-
-As you can see there are maxima detected only due to the cellular background. If you do the same using 'spots_median.tif' - where the background was removed - as input image there should be no maxima (for this 'Noise tolerance').
+ImageJ's 'Find Maxima' considers a pixel a maximum if its intensity is higher - by the 'Noise tolerance' - than neighboring pixels; see [Topographic prominence](http://en.wikipedia.org/wiki/Topographic_prominence). 
 
 
-## Cell detection using seeded watershed
+## Cell detection using a seeded watershed
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/images/cell_segmentation_watershed.png" width=700/>
 
-The seeded watershed algorithm implemented in ImageJ's 'Find Maxima' first finds local intensity maxima as starting ('seed') points.  From these seed points it performs a 'region growing' algorithm, using the intensity information in the image to draw dividing lines at dim parts of the image.   
+Since we have the spots, we now need to find the cells in order to count the number of spots per cell:
 
 - __[File>Open] 'autophagosomes_raw.tif'__
 - __[Process>Filters>Gaussian Blur..] 'sigma=10'__ (*removes features that  'distract' from the overall cell shape*)
 - __[Process>Find Maxima..] 'Noise tolerance=50' 'output=Segmented Particles'__ (*choosing 'Segmented Particles' invokes the Wathershed algorihm*)
 - __[File>Save] 'cells_bw.tif'__
 
+### Algorithmic details
+
+The seeded watershed algorithm implemented in ImageJ's 'Find Maxima' first finds local intensity maxima as starting ('seed') points. From these seed points it performs a 'region growing' algorithm, using the intensity information in the image to draw dividing lines at dim parts of the image.  
+
 Explanation for this use-case: Look at the image after blurring it. Then imagine it starts raining. Now imagine where water running down from the different hills (bright pixels) would meet. Those are the dividing lines.
 
-#### Exercise
+#### Optional activity
 
 Try the same leaving out the 'Gaussian Blur' step. Can you get it to work?
 
@@ -156,7 +107,7 @@ We run the 'Particle Analyzer' to convert the binary cell image into 'objects' (
 - __[File>Open] '../data_course/autophagosomes_raw.tif'__
 - Click on the ROIs in the ROI Manager to see them overlayed on the raw data.
 
-#### Exercise: Exclude cells based on their shape 
+#### Optional activity: Getting familiar with the Particle Analzyer
 
 1. Explore all the different output options of the 'Particle Analyzer'!
 2. Experiment with different particle exclusion criteria. For example: 
@@ -168,12 +119,11 @@ We run the 'Particle Analyzer' to convert the binary cell image into 'objects' (
 		- Click __[Help]__ to figure out what 'Circularity' is.
 
 
-## Improved cell detection by excluding background pixels
+## Optional: Improved cell detection by excluding background pixels
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/images/cell segmentation.png" width=400/>
 
-
-The problem of the seeded watershed algorithm is that the 'grows into the background' (see image). To avoid this one has to threshold the cells and combine this with the results of the watershed:
+The problem of the seeded watershed algorithm is that it 'grows into the background' (see image). To avoid this one has to threshold the cells and combine this with the results of the watershed:
 
 - __[File>Open] 'autophagosomes_raw.tif'__
 - __[Process>Filters>Gaussian Blur..] 'sigma=5'__ (*just to get rid of some noise*)
@@ -187,13 +137,19 @@ The problem of the seeded watershed algorithm is that the 'grows into the backgr
 
 ## Measure spots per cell
 
-ImageJ can measure lots of features. To have our readout more "to-the-point" we will first only select a small subset: 
+To measure how many spots we have in each cell, we simply measure in each cell ROI the integrated intensity in the 'spots_points.tif' image, where each pixel marking a spot has the value 1 (that is a very typical trick in image analysis :-).
 
-- __[Analyze>Set Measurements..] 'Area = Check' 'Integrated Density = Check' 'Mean gray value = Check'__
+Configure measurements:
 
-To measure how many 'spots' (vesicular structures) we have in each cell, we simply measure in each cell ROI the integrated intensity in the 'spots_points.tif' image, where each pixel marking a spot has the value 1 (that is a very typical trick in image analysis :-).
+- __[Analyze>Set Measurements..] 
+	- [X] Area
+	- [X] Integrated Density
+	- [X] Mean gray value
 
-- __[File>Open] 'spots_points.tif'__ (*you may see nothing on this image...do you know why?*)
+Perform cell based measurements:
+
+- __[File>Open] 'spots_points.tif'__ 
+	- *you may see nothing on this image...do you know why?*
 - __[Image>Adjust>Brightness/Contrast..] [Auto]__
 - __[Analyze>Tools>ROI Manager..]__
 - __[ROI Manager>More>>Open..] 'cells.zip'__
@@ -202,32 +158,13 @@ To measure how many 'spots' (vesicular structures) we have in each cell, we simp
 
 The 'RawIntDen' value is the spot count. How many spots did you find?
 
-#### Exercise
-Manually draw a region on the image, add it to the ROI Manager __[ROI Manager>Add]__ and measure the number of spots in this region.
+## Measure intracellular spot location, using a distance map
 
-## Manual background subtraction on whole image
-
-If we want to measure total cell intensity in a biophysically meaningful way we have to set the image background intensity to zero.  Since cells can grow dense it can be difficult or even impossible to find the correct background value in one image. Thus, sometimes one has to manually subtract a fixed background value from the image. 
-
-(=> Whiteboard session: why background subtraction; why convert to 32-bit.)
-
-- __[File>Open..] 'autophagosomes_raw.tif'__
-- __[Image>Adjust>Brightness/Contrast] 'Minimum=190' 'Maximum=230'__
-- Measure background intensity: draw a little ROI in the background and __[Analyze>Measure..]__ 
-- __[Image>Type>32-bit]__
-- __[Process>Math>Subtract..] 'Value=194'__ (*Possible pitfall: if you had a ROI on the image the value was only subtracted in this ROI*) 
-- __[File>Save As>Tiff..] 'autophagosomes_bgcorr.tif'__
-- Measure background intensity again using __[Edit>Selection>Restore Selection..]__ to get the same ROI (*should be zero now*)
-
-#### Exercise
-Do the same but leave out the 32-bit conversion step. Now measure the intensity in the background after correction! What happens? 
-
-## Compute nuclear distance map
 (=> Whiteboard session on Distance Transform)
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/images/distance map.png" width=400/>
 
-Quite often in biology one wants to know how far a certain structure is away from another (e.g. endocytosis: vesicles from plasma membrane). Such distances often can be quite easily measured using the 'Distance Transform'.
+Quite often in biology one wants to know how far a certain structure is away from another (e.g. endocytosis: vesicles from plasma membrane). Such distances can often be quite easily measured using the 'Distance Transform'.
 
 - __[File>Open..] 'nuclei_raw.tif'__
 - __[Image>Adjust>Threshold..] 'lower = 500' 'upper = Maximum' [Apply]__
@@ -237,8 +174,6 @@ Quite often in biology one wants to know how far a certain structure is away fro
 - __[Process>Binary>Distance Map]__ (*pixel values are now distances to nearest nucleus*)
 - __[File>Save As>Tiff..] 'nuclei_dist.tif'__
 
-#### Exercise
-...
 
 ## Use nuclear distance map on detected spots
 
@@ -250,11 +185,13 @@ In order to measure the distance of each previously detected spot to the nucleus
 - __[File>Open..] 'spots_points.tif'__ (*pixel values: 1 = spot; 0 = no spot*)
 
 Set non spot pixels to NaN (Not a Number):
+
 - __[Image>Type>32-bit]__ (*necessary to enable NaN values*)
 - __[Image>Adjust>Threshold..] [Set] 'lower=0.5' 'upper=1' [Apply]__
 	- When asked: __Check 'Set background pixels to NaN'__
 
 Multiply spot image with distance image:
+
 - __[File>Open..] 'nuclei_dist.tif'__ (*pixel values: distances to nearest nucleus*)
 - __[Process>Image Calculator..] 'Image1 = nuclei_dist.tif' 'Operation = Multiply' 'Image2 = spots_points.tif' '32-bit result = Check'__ 
 	- *the value of each pixel is now distance of the spot to nearest nucleus or NaN if there was no spot*
@@ -262,6 +199,7 @@ Multiply spot image with distance image:
 
 
 ## Measure intensity inside autophagosomes
+
 (=> Whiteboard session on intensity measurements in diffraction limited objects in the presence of local background (unbound protein))
 
 Often one wants quantify the intensity of objects as it reports the amount of bound labelled protein. Here, we use the 'spots_median.tif' image, where the cytoplasmic background has already been subtracted. In order to restrict the intensity measurement to the region of the spots, we use the 'spots_point.tif' image, where the center of each spot has the value 1 and the other pixels are 0. In order to measure the whole spot intensity we will dilate this image and then multiply (mask) onto the 'spots_median.tif' image (for the masking we need to set pixels outside spots to NaN (Not a Number)).
@@ -272,6 +210,25 @@ Often one wants quantify the intensity of objects as it reports the amount of bo
 - __[Process>Image Calculator..] 'Image1 = spots_points.tif' 'Operation = Multiply' 'Image2 = spots_median.tif' '32-bit result = Check'__ 
 	- *pixel values: inside spots: background corrected spot intensity; outside spots: NaN*
 - __[File>Save As>Tiff..] 'spots_intensity.tif'__
+
+## Manual background subtraction on whole image
+
+Usually it is a good idea to normalise the spot intensities to the overall expression level in each cell. If we want to measure total cell intensity properly we have to set the image background intensity to zero. Since cells can grow dense it can be difficult or even impossible to find the correct background value in one image. Thus, sometimes one has to manually subtract a fixed background value from the image. 
+
+- __[File>Open..] 'autophagosomes_raw.tif'__
+- __[Image>Adjust>Brightness/Contrast] 'Minimum=190' 'Maximum=230'__
+- Measure background intensity: draw a little ROI in the background and __[Analyze>Measure..]__ 
+- __[Image>Type>32-bit]__
+- __[Process>Math>Subtract..] 'Value=194'__ 
+	- *Likely pitfall: if you had a ROI on the image the value was only subtracted in this ROI*
+- __[File>Save As>Tiff..] 'autophagosomes_bgcorr.tif'__
+- To be sure measure the background intensity again using __[Edit>Selection>Restore Selection..]__ to get the same ROI
+	- *it should be zero now*
+
+#### Optional activity: Importance of 32-bit conversion for image-based background subtraction
+
+Do the same but leave out the 32-bit conversion step. Now measure the intensity in the background after correction! What happens? 
+
 
 ## Perform all kinds of cell based measurements 
 
@@ -287,5 +244,6 @@ Once we have the cell ROIs we can measure many cell-based features, simply loadi
 	- Click on the Results Table and __[File>Save] '*a good name*.csv'__
 	- Close Results Table! (*otherwise the next measurement values will be appended in case you want to measure another image*)
 
-#### Exercise
+#### Optional activity: Think about the results
+
 Try to remember the biological interpretation of these measurements. Think about ratios of any of the measured numbers.
