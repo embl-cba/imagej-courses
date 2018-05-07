@@ -1,6 +1,6 @@
 # Supervised object classification
 
-<img width="597" alt="image" src="https://user-images.githubusercontent.com/2157566/39701068-0b1ecbba-5200-11e8-98e6-dffa6dca2a4c.png">
+<img width="600" alt="image" src="https://user-images.githubusercontent.com/2157566/39701120-2b36fef4-5200-11e8-82a1-a4928b038534.png">
 
 ## Software solutions
 
