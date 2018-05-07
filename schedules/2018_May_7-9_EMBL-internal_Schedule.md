@@ -42,10 +42,10 @@ But, don't worry, even if you don't know above material you'll be able to follow
 
 | Time | Topic |
 |------|-------|
-| 09:30 - 12:30 | Pratical: Workflow for intracellular object quantification | 
+| 09:30 - 12:30 | Pratical: [Workflow for intracellular object quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#workflow-autophagosome-quantification) | 
 | 12:30 - 13:30 | Lunch break |
 | 13:30 - 14:30 | Pratical: 3D image analysis |
-| 14:30 - 15:30 | Lecture: Registration, Stitching, Tracking, Machine Learning, Classification, Dealing with complex data formats, Colocalization |
+| 14:30 - 15:30 | Lecture: Machine Learning, Classification, Registration, Stitching, Dealing with complex data formats |
 | 15:30 - 16:15 | Pratical: [Colocalization](https://github.com/tischi/imagej-courses/blob/master/practicals/colocalisation.md#colocalisation) |
 | 16:15 - 17:30 | Pratical: 3-D Tracking using TrackMate  |
 
