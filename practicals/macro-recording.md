@@ -1,10 +1,10 @@
-## Batch analysis with macro programming
+# Batch analysis using IJ macro programming
 
 References:
 - https://imagej.nih.gov/ij/developer/macro/functions.html
 - https://imagej.nih.gov/ij/developer/macro/macros.html
 
-### Automated counting of all cells in an image stack using a macro
+## Automated counting of all cells in an image stack using a macro
 
 As our first real example of a macro we will automatically count the number of cells in an image.
 
@@ -55,18 +55,22 @@ run("Analyze Particles...", "  show=Outlines summarize");
 
 If you now [Create] the macro, save it [ File > Save as .. ] and [Run] it, it should do the job.
 
-##### Activity: Automatically save the results table
+### Activity: Automatically save the results table
 
 Above code does not automatically save the results table, try to add this, using macro recording.
 
-#### Using variables
+#### Solution:
+
+...
+
+## Using variables
 
 Some commands in our macro will be the same, but some stuff will be different for different files.
 It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables".
 
 **=> Interactive practical on variables: numbers, strings, adding, concatenating.**
 
-##### Activity:
+### Activity
 
 In below code the directory with the images is already a variable (note how string-concatentation was used to paste it into the command).
  
@@ -85,10 +89,11 @@ setOption("BlackBackground", false);
 run("Convert to Mask", "method=Default background=Dark");
 run("Analyze Particles...", "  show=Nothing summarize");
 ```
+#### Solution
 
-Solution: '../macros/CountCells-Variables.ijm'
+- '../macros/CountCells-Variables.ijm'
 
-#### Making it really nice, with a graphical user interface
+## Making it really nice, with graphical user interface
 
 It is nice, not to have to type into the macro, but enter the variables with a GUI.
 In fact, it is not only nice, but also safer, because it prevents us from breaking the code by typing something wrong there. 
@@ -101,7 +106,7 @@ Google: imagej macro get variable from user
 
 **=> interactive practical, getting a number via the GUI and printing it**
 
-##### Activity: adding another GUI element
+### Activity: adding another GUI element
 
 In below code the threshold variable already has its GUI.
 Try to also **obtain the filepath from the GUI**.
@@ -124,10 +129,11 @@ run("Convert to Mask", "method=Default background=Dark");
 run("Analyze Particles...", "  show=Nothing summarize stack");
 ```
 
-Solution:
+#### Solution
+
 - '../macros/CountCells-GUI.ijm'
  
-##### Activity: Saving the results table with at a good place and with a good name
+### Activity: Saving the results table with at a good place and with a good name
 
 Now that we have the input file as a variable, we can automatically save the results table with a name related to this file.
 Try to do this on your own.
@@ -138,12 +144,15 @@ Hints:
 - Google: ImageJ Macro create new folder
 - https://stackoverflow.com/questions/36144914/imagej-macro-make-new-folder-and-save-output-in-new-folder 
 
+#### Solution
 
-#### The final touch: functions
+...
+
+## The final touch: functions
 
 It is very good for readability and for reusing parts of our code to pack it into small parts that belong together, so-called "functions".
 
-##### Activity
+### Activity
 
 Copy below code into Fiji. Note that everything related to measure the cells was wrapped into a function.
 Try to also **make a function for the thresholding**.
@@ -179,7 +188,7 @@ function measureCells() {
 Solution:
 - ../macros/CountCells-Functions.ijm
 
-### Analyzing multiple images in one folder
+## Analyzing multiple images in one folder
 
 ```
 // This macro batch processes all the files in one folder ending with ".tif". 
@@ -215,11 +224,11 @@ function processFile(path) {
 }
 ```
 
-#### Activity
+### Activity
 
 Add your own cell counting code!
 
-### Analyzing multiple images in one folder, including sub-folders
+## Analyzing multiple images in one folder, including sub-folders
 
 Sometimes you have your image files distributed in sub-folders. Below code deals with this.
 
