@@ -108,6 +108,8 @@ Basically, you multiply each pixel in the original image with the number that is
 
 ## Activity: Try the effect of different convolution kernels
 
+https://en.wikipedia.org/wiki/Kernel_(image_processing)
+
 - Open any image of your choice
 - [Process > Filters > Convolve] 
 
