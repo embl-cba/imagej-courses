@@ -220,10 +220,19 @@ Multiply spot image with distance image:
 
 Often one wants quantify the intensity of objects as it reports the amount of bound labelled protein. Here, we use the 'spots_median.tif' image, where the cytoplasmic background has already been subtracted. In order to restrict the intensity measurement to the region of the spots, we use the 'spots_point.tif' image, where the center of each spot has the value 1 and the other pixels are 0. In order to measure the whole spot intensity we will dilate this image and then multiply (mask) onto the 'spots_median.tif' image (for the masking we need to set pixels outside spots to NaN (Not a Number)).
 
+Enlarge spots:
 - __[File>Open..] 'spots_points.tif'__ (*pixel values: 1 = spot; 0 = no spot*)
 - __[Process>Filters>Maximum..] 'radius=2'__   (*enlarge spots to include all fluorescence*)
+
+Set pixles outside spots to NaN (Not a Number):
+- __[Image>Type>32-bit]__ (*necessary to enable NaN values*)
+- __[Image>Adjust>Threshold..] [Set] 'lower=0.5' 'upper=1' [Apply]__
+	- When asked: __Check 'Set background pixels to NaN'__
+- **[ Image > Rename ]** "spots_enlarged"
+
+Multiply spots with background corrected intensity image:
 - __[File>Open..] 'spots_median.tif'__ (*pixel values: background corrected autophagosome intensities*)
-- __[Process>Image Calculator..] 'Image1 = spots_points.tif' 'Operation = Multiply' 'Image2 = spots_median.tif' '32-bit result = Check'__ 
+- __[Process>Image Calculator..] 'Image1 = spots_enlarged' 'Operation = Multiply' 'Image2 = spots_median.tif' '32-bit result = Check'__ 
 	- *pixel values: inside spots: background corrected spot intensity; outside spots: NaN*
 - __[File>Save As>Tiff..] 'spots_intensity.tif'__
 
