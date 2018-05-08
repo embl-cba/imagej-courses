@@ -56,7 +56,7 @@ http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start
 8. Only brightest pixels on this image will correspond to centers of real spots. Examine values of positive pixels to define thresholds on the seeds
 	-Hint: use *Syncronize Windows* tool (*Analyze->Tools->Syncronize Windows*) to correlate positions of spots and identified seeds.
 9. Run spot segmentation:
-	1. *Plugins->3D->3D Fast Filters*
+	1. *Plugins->3D->3D Spot Segmentation*
 	2. Set identified seed threshold
 	3. *Local Threshold method*=**Gaussian fit**
 	4. *Radius max*=**10**
