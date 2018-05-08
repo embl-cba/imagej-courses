@@ -184,18 +184,18 @@ Solution:
 ```
 // This macro batch processes all the files in one folder ending with ".tif". 
 
- dir = getDirectory("Choose a Directory ");
- setBatchMode(true); // will run faster because it will not show all the windows
- 
- processFiles( dir );
+dir = getDirectory("Choose a Directory ");
+setBatchMode(true); // will run faster because it will not show all the windows
 
- function processFiles( dir ) {
-    list = getFileList( dir );
-    for (i = 0; i < list.length; i++) {
-           path = dir + list[i];
-           processFile( path );
-        }
-    }
+processFiles( dir );
+
+function processFiles( dir ) {
+   list = getFileList( dir );
+   for (i = 0; i < list.length; i++) {
+          path = dir + list[i];
+          processFile( path );
+       }
+   }
 }
 
 function processFile(path) {
