@@ -257,6 +257,9 @@ Do the same but leave out the 32-bit conversion step. Now measure the intensity 
 
 ## Perform all kinds of cell based measurements 
 
+
+![image](https://user-images.githubusercontent.com/2157566/39751022-305fa310-52b7-11e8-9a7b-563bab9093fe.png)
+
 Once we have the cell ROIs we can measure many cell-based features, simply loading different input images for the measurement: 
 
 - __[Analyze>Tools>ROI Manager..]__ 
