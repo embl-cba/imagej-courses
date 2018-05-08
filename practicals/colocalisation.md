@@ -66,6 +66,7 @@ Now, we can compute an area- and object-based colocalisation using below command
 - **[Analyze>Set Measurements..]**	
 	- [X] 'Display label'
 		- this is nice, because it will associate measurements with the name of the image (and ROI) on which they were computed.
+	- [X] 'Area'
 - For all three images...
 	- **'synthetic-data-ch1-segmented.tif'**
 	- **'synthetic-data-ch2-segmented.tif'**
