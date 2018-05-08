@@ -56,7 +56,10 @@ Save result for later use:
 ### Optional activity
 
 Explore different radii for the median-based background subtraction: e.g., 1 or 50. 
-What happens in those cases? Are the spots still nicely highlighted?
+
+What happens in those cases? 
+
+Are the spots still nicely highlighted?
 
 ## Spot detection using 'Find Maxima'
 
