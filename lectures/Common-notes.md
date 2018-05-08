@@ -28,4 +28,5 @@ More options [here](https://www.npmjs.com/package/markdown-to-slides#usage)
 
 - Find out how to define `style` and `template` files
 - How to run presentation mode on primary screen and full screen slide in beamer/secondary screen?
+- How to scale images to fit in the slides?
 
