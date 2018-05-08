@@ -191,11 +191,13 @@ processFiles( dir );
 
 function processFiles( dir ) {
    list = getFileList( dir );
-   for (i = 0; i < list.length; i++) {
-          path = dir + list[i];
-          processFile( path );
-       }
+   
+   for (i = 0; i < list.length; i++) 
+   {
+   	path = dir + list[i];
+        processFile( path );
    }
+ 
 }
 
 function processFile(path) {
@@ -213,8 +215,13 @@ function processFile(path) {
 }
 ```
 
+#### Activity
+
+Add your own cell counting code!
 
 ### Analyzing multiple images in one folder, including sub-folders
+
+Sometimes you have your image files distributed in sub-folders. Below code deals with this.
 
 ```
 // "BatchProcessFolders"
@@ -245,7 +252,9 @@ function processFile(path) {
 }
 
 function processFile(path) {
-     if (endsWith(path, ".tif")) {
+     
+     if (endsWith(path, ".tif")) 
+     {
          
          print( "Processing file: " + path );
          
@@ -253,8 +262,7 @@ function processFile(path) {
          
          //
          // ADD OWN CODE HERE
-         //
-        
+         //   
     }
 }
 ```
