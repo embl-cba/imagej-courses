@@ -68,3 +68,28 @@ http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start
 10. Inspect the outputs
 	1. 16-bit mask with different pixel values assigned to different spots
 	2. 3D RoiManager to select spots and overlay them on raw or processed (**Filtered**, **Cleaned**, etc.) images. Multiple objects can be selected and overlaid at the same time.
+
+# Challenge task: Count spots in nuclei
+
+## Description
+
+- Dataset `cell-3d-vesicles-crop.tif` has two channels 
+	- Nuclear stain (channel 1)
+	- Spots inside nuclei (channel 2)
+	- 
+- Aim: identify how many spots belong to each nucleus
+
+## Workflow
+
+- Segment nuclei
+	- Isolate nuclei channel
+	- Smooth to reduce the noise
+	- Use `3D simple segmentation` function
+	- Produce count mask
+- Segment spots
+	- Isolate spots channel
+	- Use workflow above for spot detection in the whole image
+	- Add identified 3D spots to 3D ROI Manager
+- Identify which spots belong to which nucleus
+	- Measure minimum and maximum values of 3D spots on the nuclear count mask
+	- Measured values indicate index of target nucleus 
