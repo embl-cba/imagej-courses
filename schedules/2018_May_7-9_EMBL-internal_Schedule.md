@@ -42,21 +42,21 @@ But, don't worry, even if you don't know above material you'll be able to follow
 
 | Time | Topic |
 |------|-------|
-| 09:30 - 12:30 | Pratical: [Workflow for intracellular object quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#workflow-autophagosome-quantification) | 
+| 09:30 - 12:30 | Practical: [Workflow for intracellular object quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#workflow-autophagosome-quantification) | 
 | 12:30 - 13:30 | Lunch break |
-| 13:30 - 14:30 | Pratical: [3D image analysis](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-analysis.md) |
+| 13:30 - 14:30 | Practical: [3D image analysis](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-analysis.md) |
 | 14:30 - 15:30 | Brief lectures & demonstrations: [Supervised pixel classification](https://github.com/tischi/imagej-courses/blob/master/practicals/supervised-pixel-classification.md#supervised-pixel-classification), [Supervised object classification](https://github.com/tischi/imagej-courses/blob/master/practicals/supervised-object-classification.md#supervised-object-classification), [Registration](https://github.com/tischi/imagej-courses/blob/master/practicals/image-registration.md), Stitching, Dealing with complex data formats |
-| 15:30 - 16:15 | Pratical: [Colocalization](https://github.com/tischi/imagej-courses/blob/master/practicals/colocalisation.md#colocalisation) |
-| 16:15 - 17:30 | Pratical: 3-D Tracking using TrackMate  |
+| 15:30 - 16:15 | Practical: [Colocalization](https://github.com/tischi/imagej-courses/blob/master/practicals/colocalisation.md#colocalisation) |
+| 16:15 - 17:30 | Practical: [3-D Tracking using TrackMate](https://github.com/tischi/imagej-courses/blob/master/practicals/tracking-with-trackmate.md)  |
 
 ### Wednesday May 9th
 
 | Time | Topic |
 |------|-------|
-| 09:30 - 11:30 | Pratical: Batch analysis in ImageJ |
+| 09:30 - 11:30 | Practical: Batch analysis in ImageJ |
 | 11:30 - 12:30 | Demonstrations: CellProfiler, Imaris, shinyHTM |
 | 12:30 - 13:30 | Lunch break |
-| 13:30 - 17:00 | Pratical: Work on own data (optional session) |
+| 13:30 - 17:00 | Practical: Work on own data (optional session) |
 
 ### Further information
 
