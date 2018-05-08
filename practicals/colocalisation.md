@@ -84,6 +84,10 @@ Now, we can compute an area- and object-based colocalisation using below command
 	- coloc1 = overlap / ch1
 	- coloc2 = overlap / ch2
 
+
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/2157566/39761061-56f03240-52d7-11e8-9361-7e6e1b6a6647.png">
+
+
 ### Discussion points
 
 - Many parameters influencing the results, thus a tricky business! In general the strategy would be to use the exact same parameters for a treated and a control sample.
