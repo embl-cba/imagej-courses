@@ -132,15 +132,24 @@ We run the 'Particle Analyzer' to convert the binary cell image into 'objects' (
 
 The problem of the seeded watershed algorithm is that it 'grows into the background' (see image). To avoid this one has to threshold the cells and combine this with the results of the watershed:
 
+Generate a binary image ("foreground") with all pixels outside cells set to zero:
 - __[File>Open] 'autophagosomes_raw.tif'__
 - __[Process>Filters>Gaussian Blur..] 'sigma=5'__ (*just to get rid of some noise*)
 - __[Image>Adjust>Threshold..] 'lower th=230' 'upper th=Max' [Apply]__
 - __[Image>Rename..] 'foreground'__ (*all background pixels are zero*)
+
+Combine the "foreground" image with the watershed image, using an AND operation.
+Basically, this will set all cell-cell boundary pixels in the foreground image to zero.
 - __[File>Open] 'cells_bw.tif'__ (*this is the image that we got from the watershed*)
 - __[Process>Image Calculator..] 'foreground' 'AND' 'cells_bw.tif' [OK]__ (*we combine both...*)
 - __[File>Save] 'cells_bw_improved.tif'__ (*...and get an image where we removed the background pixels and still have dividing lines between the cells*)
-- __[Analyze>Analyze Particles..] 'Size=100-Infinity' 'Exclude on edges=Check' 'Add to Manager=Check'__  (*simply finds the cell objects*)
-- __[ROI Manager>More>>Save..] 'cells_improved.zip'__
+
+Convert the binary cell image to ROIs and save them:
+- __[Analyze>Analyze Particles..]
+	- Size = 100-Infinity
+	- [X] Exclude on edges
+	- [X] Add to Manager
+- __[ROI Manager > More >> Save..] 'cells_improved.zip'__
 
 ## Measure spots per cell
 
