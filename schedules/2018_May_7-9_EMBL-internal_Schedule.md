@@ -47,7 +47,7 @@ But, don't worry, even if you don't know above material you'll be able to follow
 | 13:30 - 14:30 | Practical: [3D image analysis](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-analysis.md) |
 | 14:30 - 15:30 | Brief lectures & demonstrations: [Supervised pixel classification](https://github.com/tischi/imagej-courses/blob/master/practicals/supervised-pixel-classification.md#supervised-pixel-classification), [Supervised object classification](https://github.com/tischi/imagej-courses/blob/master/practicals/supervised-object-classification.md#supervised-object-classification), [Registration](https://github.com/tischi/imagej-courses/blob/master/practicals/image-registration.md), Stitching, Dealing with complex data formats |
 | 15:30 - 16:15 | Practical: [Colocalization](https://github.com/tischi/imagej-courses/blob/master/practicals/colocalisation.md#colocalisation) |
-| 16:15 - 17:30 | Practical: [3-D Tracking using TrackMate](https://github.com/tischi/imagej-courses/blob/master/practicals/tracking-with-trackmate.md)  |
+| 16:15 - 17:30 | Practical: [Tracking using TrackMate](https://github.com/tischi/imagej-courses/blob/master/practicals/tracking-with-trackmate.md)  |
 
 ### Wednesday May 9th
 
