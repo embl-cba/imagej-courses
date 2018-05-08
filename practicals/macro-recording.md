@@ -59,9 +59,15 @@ If you now [Create] the macro, save it [ File > Save as .. ] and [Run] it, it sh
 
 Above code does not automatically save the results table, try to add this, using macro recording.
 
+&nbsp;
+
+&nbsp;
+
 #### Solution:
 
-...
+```
+saveAs("Results", "C:\\Users\\teach\\Desktop\\Summary.csv");
+```
 
 ## Using variables
 
@@ -89,9 +95,18 @@ setOption("BlackBackground", false);
 run("Convert to Mask", "method=Default background=Dark");
 run("Analyze Particles...", "  show=Nothing summarize");
 ```
+
+&nbsp;
+
+&nbsp;
+
 #### Solution
 
-- '../macros/CountCells-Variables.ijm'
+```
+threshold = 29;
+...
+setThreshold( threshold, 255 );
+```
 
 ## Making it really nice, with graphical user interface
 
@@ -129,9 +144,15 @@ run("Convert to Mask", "method=Default background=Dark");
 run("Analyze Particles...", "  show=Nothing summarize stack");
 ```
 
+&nbsp;
+
+&nbsp;
+
 #### Solution
 
-- '../macros/CountCells-GUI.ijm'
+```
+filepath = File.openDialog( "Select a File" );
+```
  
 ### Activity: Saving the results table with at a good place and with a good name
 
