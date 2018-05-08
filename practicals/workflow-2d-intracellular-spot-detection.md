@@ -53,6 +53,10 @@ Now subtract the median filtered "background" image from the input image to obta
 Save result for later use:
 - __[File>Save] 'spots_median.tif'__
 
+### Optional activity
+
+Explore different radii for the median-based background subtraction: e.g., 1 or 50. 
+What happens in those cases? Are the spots still nicely highlighted?
 
 ## Spot detection using 'Find Maxima'
 
