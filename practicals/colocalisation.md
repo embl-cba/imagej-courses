@@ -85,7 +85,7 @@ Now, we can compute an area- and object-based colocalisation using below command
 	- coloc2 = overlap / ch2
 
 
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/2157566/39761061-56f03240-52d7-11e8-9361-7e6e1b6a6647.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/2157566/39761366-3206c862-52d8-11e8-9527-ee29677c1407.png">
 
 
 ### Discussion points
