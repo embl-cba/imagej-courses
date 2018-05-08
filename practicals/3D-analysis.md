@@ -22,7 +22,7 @@ http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start
 ## Workflow
 
 1. Load input dataset dataset in Fiji
-	- "../3D-spot-detection/spots-in-nuclei.tif"
+	- "../3D-spot-detection/cell-3d-vesicles-crop.tif"
 	- Note: *3D ImageJ Suite* plugins currently can not work with hyperstacks. If you have multicolor or multi-timepoint 3D datasets, you should extract individual 3D stacks for processing
 	
 2. Switch image format to 32 bit (*Image->Type->32-bit*)
@@ -73,7 +73,7 @@ http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start
 
 ## Description
 
-- Dataset `cell-3d-vesicles-crop.tif` has two channels 
+- Dataset `spots-in-nuclei.tif` has two channels 
 	- Nuclear stain (channel 1)
 	- Spots inside nuclei (channel 2)
 	- 
