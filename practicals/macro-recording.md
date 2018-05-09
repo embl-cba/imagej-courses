@@ -20,8 +20,6 @@ Record workflow for cell counting:
 - Threshold
 	- [Image > Adjust Threshold]
 		- [X] Dark background
-		- [ ] Calculate threshold for each image
-			- Uncheck this, otherwise some auto-thresholding is going on!
 		- [Apply]
 - Set measurements, keeping tracking of the file-name
 	- [Analyze > Set measurements]
