@@ -53,6 +53,30 @@ run("Analyze Particles...", "  show=Outlines summarize");
 
 If you now [Create] the macro, save it [ File > Save as .. ] and [Run] it, it should do the job.
 
+### Cleaning up and adding comments
+
+In fact there a number of lines recorded that are not really needed, below code is sufficient.
+
+In addition, it is good style to add comments '//' and visually separate code belonging together.
+
+```
+// close all images
+run("Close All"); 
+
+// open file
+open("C:/Users/teach/Desktop/imagej-courses-master/data/mitocheck-movie/EMBO_2012_Group3--empty--empty--W0002--P001--T00000--Z000--C.tif");
+
+// threshold
+setThreshold(18, 255);
+run("Convert to Mask");
+
+// configure measurements
+run("Set Measurements...", "area display redirect=None decimal=3");
+
+// perform particle analysis
+run("Analyze Particles...", "  show=Nothing summarize");
+```
+
 ### Activity: Automatically save the results table
 
 Above code does not automatically save the results table, try to add this, using macro recording.
