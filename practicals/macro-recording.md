@@ -32,12 +32,9 @@ Record workflow for cell counting:
 			- This will give you for a given image the average results of all objects
     - Show: Nothing
 
-Your recorded macro should look similar to the text shown below:
+Your recorded macro should look somewhat similar to the text shown below:
 
 ```
-//
-// ../macros/CountCells.ijm
-//
 open("H:\\imagej-courses-master\\data\\mitocheck-movie\\EMBO_2012_Group3--empty--empty--W0002--P001--T00000--Z000--C.tif");
 run("Set Measurements...", "area display redirect=None decimal=3");
 setAutoThreshold("Default dark");
