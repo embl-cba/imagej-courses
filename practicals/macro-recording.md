@@ -153,6 +153,34 @@ table_filepath = filepath + ".csv";
 saveAs( "Results", table_filepath + ".csv" );
 ```
 
+### Combined solutions
+
+```
+// user input
+filepath = "C:/Users/teach/Desktop/imagej-courses-master/data/mitocheck-movie/EMBO_2012_Group3--empty--empty--W0002--P001--T00000--Z000--C.tif";
+threshold = 18;
+
+// close all images
+run("Close All"); 
+
+// open file
+open( filepath );
+
+// threshold
+setThreshold( threshold, 255 );
+run( "Convert to Mask" );
+
+// configure measurements
+run("Set Measurements...", "area display redirect=None decimal=3");
+
+// perform particle analysis
+run("Analyze Particles...", "  show=Nothing summarize");
+
+// save results table
+table_filepath = filepath + ".csv";
+saveAs( "Results", table_filepath );
+```
+
 ##### Note
 
 It is not ideal to have the results in the same folder as the image. 
