@@ -54,7 +54,7 @@ But, don't worry, even if you don't know above material you'll be able to follow
 | Time | Topic |
 |------|-------|
 | 09:30 - 11:30 | Practical: [Macro recording and scripting in ImageJ](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md) |
-| 11:30 - 12:30 | Demonstrations: CellProfiler, Imaris, shinyHTM |
+| 11:30 - 12:30 | Brief mentionings: [CellProfiler](http://cellprofiler.org/tutorials/), [Imaris](http://www.bitplane.com/learning), [KNIME](https://www.knime.com/community/image-processing), [shinyHTM](https://github.com/hmbotelho/shinyHTM#shinyhtm) |
 | 12:30 - 13:30 | Lunch break |
 | 13:30 - 17:00 | Practical: Work on own data (optional session) |
 
