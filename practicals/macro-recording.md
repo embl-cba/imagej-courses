@@ -95,24 +95,35 @@ It is good style to put all the things that can change at the top of the code, s
 
 **=> Interactive practical on variables: numbers, strings, adding, concatenating.**
 
-### Activity
+### Activity: Making filepath and threshold variables
 
 In below code the directory with the images is already a variable (note how string-concatentation was used to paste it into the command).
  
 Copy the code into Fiji and also **try to make the threshold a variable**.
 
 ```
-// User input as variables
-filepath = "H:\\imagej-courses-master\\data\\mitocheck-movie\\EMBO_2012_Group3--empty--empty--W0002--P001--T00000--Z000--C.tif";
+// user input
+filepath = "C:/Users/teach/Desktop/imagej-courses-master/data/mitocheck-movie/EMBO_2012_Group3--empty--empty--W0002--P001--T00000--Z000--C.tif";
 
-// Code
+// close all images
+run("Close All"); 
+
+// open file
 open( filepath );
-run("Set Measurements...", "area display redirect=None decimal=4");
-setAutoThreshold("Default dark");
-setThreshold(29, 255);
-setOption("BlackBackground", false);
-run("Convert to Mask", "method=Default background=Dark");
+
+// threshold
+setThreshold( 18, 255 );
+run( "Convert to Mask" );
+
+// configure measurements
+run("Set Measurements...", "area display redirect=None decimal=3");
+
+// perform particle analysis
 run("Analyze Particles...", "  show=Nothing summarize");
+
+// save results table
+saveAs("Results", "C:\\Users\\teach\\Desktop\\Summary.csv");
+
 ```
 
 &nbsp;
@@ -126,6 +137,26 @@ threshold = 29;
 ...
 setThreshold( threshold, 255 );
 ```
+
+### Activity: Naming results table as input image
+
+Try to make the filename of the results table resemble the image name, using "String concantenation".
+
+Hints:
+- image_filename = "image.tif";
+- table_filename = image_filename + ".csv";
+
+#### Solution
+
+```
+table_filepath = filepath + ".csv";
+saveAs( "Results", table_filepath + ".csv" );
+```
+
+##### Note
+
+It is not ideal to have the results in the same folder as the image. 
+To avoid this we would have to split the filepath into a directory and filename...
 
 ## Making it really nice, with graphical user interface
 
