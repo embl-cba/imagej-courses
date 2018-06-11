@@ -8,20 +8,10 @@ ETH Zurich, IDA
 
 Participants use their own laptops.
 
-Please:
+## Prerequisites
 
 - Install Fiji: https://imagej.net/Fiji/Downloads
 - Download course material: https://github.com/tischi/imagej-courses/archive/master.zip
-
-## Prerequisites
-
-In order to save some time, and since many of you took part in the ALMF Basics in Microscopy courses, we will not repeat what has been taught there already. If you did not attend it would be good if you could have a look at the material:
-
-- Basic handling of the [ImageJ](https://fiji.sc/) software 
-- 
-- [3D image inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-image-inspection.md)
-
-But, don't worry, even if you don't know above material you'll be able to follow the course.
 
 ## Schedule
 
