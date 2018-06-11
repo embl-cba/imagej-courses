@@ -27,6 +27,8 @@ Participants use their own laptops.
 
 ### Further practical material
 
+This is further material, which will **not** be taught during this ZIDAS course, but you could work through it on you own at some other time.
+
 | Time | Topic |
 |------|-------|
 | ...| Practical: [Image segmentation: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-) |
