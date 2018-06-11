@@ -25,7 +25,7 @@ Participants use their own laptops.
 | 13:30 - 15:30 | Practical: [Basics of intensity measurements](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md)
 | 15:30 - 17:00 | Practical: [Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md) |
 
-### Further teaching material
+### Further practical material
 
 | Time | Topic |
 |------|-------|
@@ -34,10 +34,8 @@ Participants use their own laptops.
 | ... | Practical: [Intensity quantification: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/automated-local-background-subtraction-for-intensity-quantifications.md#intensity-measurements-with-automated-local-background-subtraction--) |
 | ... | Practical: [Workflow for intracellular object quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#workflow-autophagosome-quantification) | 
 | ... | Practical: [3D image analysis](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-analysis.md) |
-| ... | Brief lectures & demonstrations: [Supervised pixel classification](https://github.com/tischi/imagej-courses/blob/master/practicals/supervised-pixel-classification.md#supervised-pixel-classification), [Supervised object classification](https://github.com/tischi/imagej-courses/blob/master/practicals/supervised-object-classification.md#supervised-object-classification), [Registration](https://github.com/tischi/imagej-courses/blob/master/practicals/image-registration.md), Stitching, Dealing with complex data formats |
 | ... | Practical: [Colocalization](https://github.com/tischi/imagej-courses/blob/master/practicals/colocalisation.md#colocalisation) |
 | ...| Practical: [Tracking using TrackMate](https://github.com/tischi/imagej-courses/blob/master/practicals/tracking-with-trackmate.md)  |
 | ... | Practical: [Macro recording and scripting in ImageJ](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md) |
-| ... | Brief mentionings: [CellProfiler](http://cellprofiler.org/tutorials/), [Imaris](http://www.bitplane.com/learning), [KNIME](https://www.knime.com/community/image-processing), [shinyHTM](https://github.com/hmbotelho/shinyHTM#shinyhtm) |
 
 
