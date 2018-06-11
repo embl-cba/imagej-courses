@@ -1,4 +1,4 @@
-# 2018 June 19th: Basics of Image Inspection, Handling and Intensity Measurements using ImageJ
+# Basics of Image Inspection, Handling and Intensity Measurements using ImageJ
 
 ## Location:
 
