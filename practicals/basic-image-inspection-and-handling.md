@@ -87,7 +87,7 @@ Note that this does not change the numbers but only the appearance on your scree
 &nbsp;
 
 
-# Image presentation
+# Image data presentation
 
 <img width="1056" alt="image" src="https://user-images.githubusercontent.com/2157566/41596158-b7dea420-73c9-11e8-95e6-4837fd6f222c.png">
 
@@ -98,12 +98,11 @@ Note that this does not change the numbers but only the appearance on your scree
 	- [ Image > Rename ]
 		- After merging the images their names will always be "Composite". Thus you should immediately rename to, e.g. "treated" or "untreated".
 	- [ Analyze > Tools > Scale Bar ]
-		-
 	- [ Image > Adjust > Brightness&Contrast ]
 		- After adjusting the LUT for one image, click [ Set ] and
 		* [X] “Propagate to all other open images”
 			- This is __super important__ as it will ensure that the same LUT is used for all open images, which is critical for a scientifically meaningful presentation of your data.
-			- All pairs of images that were acquired with the same microscope settings should be treated this way.
+			- All pairs of images that were acquired with the same microscope settings should be treated this way. In above example figure all images in the same column must have the same LUT settings. On the other hand, it does typically not make sense to use the same LUT for, e.g., a DAPI signal and a GFP signal.
 			- This also works for *Composite* images 
 	- [ Edit > Copy to System ] 
 		- Copies the active image to the clip-board of your computer from where you can paste it, e.g. into PowerPoint.
@@ -114,6 +113,7 @@ Note that this does not change the numbers but only the appearance on your scree
 
 &nbsp;
 
+&nbsp;
 
 
 
