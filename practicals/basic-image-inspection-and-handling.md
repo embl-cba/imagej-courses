@@ -92,11 +92,11 @@ Note that this does not change the numbers but only the appearance on your scree
 <img width="1056" alt="image" src="https://user-images.githubusercontent.com/2157566/41596158-b7dea420-73c9-11e8-95e6-4837fd6f222c.png">
 
 - Open all files in “../image-presentation” 
-- Generate above figure in PowerPoint, using the following Fiji commands 
+- Generate above figure in PowerPoint, using the following Fiji commands:
 	- [ Image > Color > Merge Channels ]
 		- This combines two single channel images into one so called *Composite* image
 	- [ Image > Rename ]
-		- After merging the images their names will always be "Composite". Thus you should immediately rename to, e.g. "treated" or "untreated".
+		- After merging the images their names will always be "Composite". Thus, not to loose track, you should immediately rename to, e.g. "treated" or "untreated".
 	- [ Analyze > Tools > Scale Bar ]
 	- [ Image > Adjust > Brightness&Contrast ]
 		- After adjusting the LUT for one image, click [ Set ] and
