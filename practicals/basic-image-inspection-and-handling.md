@@ -89,7 +89,26 @@ Note that this does not change the numbers but only the appearance on your scree
 
 # Image presentation
 
--> see ../handouts/image-data-presentation.pdf
+<img width="1056" alt="image" src="https://user-images.githubusercontent.com/2157566/41596158-b7dea420-73c9-11e8-95e6-4837fd6f222c.png">
+
+- Open all files in “../image-presentation” 
+- Generate above figure in PowerPoint, using the following Fiji commands 
+	- [ Image > Color > Merge Channels ]
+		- This combines two single channel images into one so called *Composite* image
+	- [ Image > Rename ]
+		- After merging the images their names will always be "Composite". Thus you should immediately rename to, e.g. "treated" or "untreated".
+	- [ Analyze > Tools > Scale Bar ]
+		-
+	- [ Image > Adjust > Brightness&Contrast ]
+		- After adjusting the LUT for one image, click [ Set ] and
+		* [X] “Propagate to all other open images”
+			- This is __super important__ as it will ensure that the same LUT is used for all open images, which is critical for a scientifically meaningful presentation of your data.
+			- All pairs of images that were acquired with the same microscope settings should be treated this way.
+			- This also works for *Composite* images 
+	- [ Edit > Copy to System ] 
+		- Copies the active image to the clip-board of your computer from where you can paste it, e.g. into PowerPoint.
+		- The good thing about this command is that the image (in terms of the LUT settings) will look the same in PowerPoint as it did on your screen in ImageJ. In other words, the LUT settings are "burned into" the image.
+
  
 &nbsp;
 
