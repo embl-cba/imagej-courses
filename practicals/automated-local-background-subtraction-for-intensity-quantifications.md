@@ -3,7 +3,7 @@
 This practical discusses how to automate the local background subtraction in the 
 practical on [intensity-quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md#image-intensity-measurements-). 
 
-The content of this practial is basically the same as [here](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-), but with different images. Although similar, the simplicity of the input data in this practical allows to examine see the pros and cons of the different methods quite well.
+The content of this practial is basically the same as [here](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-), but with different images. Although similar, the synthetic input data in this practical allows to examine the pros and cons of the different methods in a more controlled way.
 
 Automated local background subtraction is important for 
 
@@ -19,25 +19,6 @@ In biological fluorescence microscopy one often wants to detect locally bright o
 - ...
 
 In all methods the *radius* parameter should be "quite a bit larger" than the radius of the largest locally bright structure that you want to measure (why that is becomes clear when we discuss the methods in detail).
-
-## Local background subtraction using a median filter
-
-What we'll do here is to duplicate the image and apply median filter to remove the locally bright spots. Then we subtract the median filtered image from the original image: 
-
-- [File>Open..] "../dna-damage-synthetic-data/Damaged.tif"
-- [Image>Rename..] 'Title=original'
-- [Image>Duplicate] 'Title=median'
-- Select the 'median' image and [Process>Filters>Median] 'radius=5'
-- [Process>Image Calculator] 'Image1 = original' 'Operation = Subtract' 'Image2 = median' 
-	- [X] Create new window 
-	- [X] 32-bit output 
-- [Image>Rename] "median_subtraction"
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
 
 
 ## Local background subtraction using a top-hat filter 
@@ -61,6 +42,26 @@ A morphological opening filter is applied to the image and subtracted from the o
 &nbsp;
 
 &nbsp;
+
+## Local background subtraction using a median filter
+
+What we'll do here is to duplicate the image and apply median filter to remove the locally bright spots. Then we subtract the median filtered image from the original image: 
+
+- [File>Open..] "../dna-damage-synthetic-data/Damaged.tif"
+- [Image>Rename..] 'Title=original'
+- [Image>Duplicate] 'Title=median'
+- Select the 'median' image and [Process>Filters>Median] 'radius=5'
+- [Process>Image Calculator] 'Image1 = original' 'Operation = Subtract' 'Image2 = median' 
+	- [X] Create new window 
+	- [X] 32-bit output 
+- [Image>Rename] "median_subtraction"
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 
 
 ## Local background subtraction using IJs "Subtract Background"
