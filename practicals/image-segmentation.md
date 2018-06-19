@@ -22,7 +22,7 @@ Let's try:
  
 - Configure image segmentation settings [Process > Binary > Options]: 
 	- [X] Black Background
-- Open image:"../image-inspection/B.tif" [File > Open]
+- Open image: "../image-inspection/B.tif" [File > Open]
 - Manually adjust a threshold value [Image > Adjust > Threshold]
 	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
 - Perform a "connected component analysis"  [Analyze > Analyze Particles]
