@@ -20,7 +20,12 @@ Duplicate image and apply median filter to remove the locally bright spots. Then
 - __[Image>Rename..] 'Title=original'__
 - __[Image>Duplicate] 'Title=median'__
 - Select the 'median' image and __[Process>Filters>Median] 'radius=5'__
-- __[Process>Image Calculator] 'Image1 = original' 'Operation = Subtract' 'Image2 = median' 'Create new window=Check' '32-bit output=Uncheck'__ 
+- __[Process>Image Calculator]__ 
+	- Image1: original 
+	- Operation: Subtract
+	- Image2: median 
+	* [X] 'Create new window' 
+	* [X] '32-bit output'
 - __[File>Save] 'spots_median.tif'__
 
 
@@ -35,7 +40,13 @@ A morphological opening filter is applied to the image and subtracted from the o
 - __[Image>Duplicate] 'Title=opened'__
 - __[Process>Filters>Minimum..] 'radius=5'__ 
 - __[Process>Filters>Maximum..] 'radius=5'__ 
-- __[Process>Image Calculator] 'original' 'Subtract' 'opened' 'Create new window=Check' '32-bit output=Uncheck'__ 
+- __[Process>Image Calculator]__
+	* Image1: original
+	* Operation: Subtract
+	* Image2: opened 
+	* [X] 'Create new window' 
+	* [ ] '32-bit'
+		* Top hat filter cannot lead to negative values (which in fact is a problem, because you underestimate your actual background
 - __[File>Save] 'spots_tophat.tif'__
 
 
