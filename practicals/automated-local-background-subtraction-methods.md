@@ -10,6 +10,14 @@ In biological fluorescence microscopy one often wants to detect locally bright o
 
 In all methods the *radius* parameter should be "quite a bit larger" than the radius of the largest locally bright structure that you want to measure (why that is becomes clear when we discuss the methods in detail).
 
+
+&nbsp;
+	
+&nbsp;
+
+&nbsp;
+
+
 ### Local background subtraction using a median filter
 
 <img src="https://github.com/tischi/imagej-courses/blob/master/images/orig__median__subtraction.png" width=700/>
@@ -27,6 +35,13 @@ Duplicate image and apply median filter to remove the locally bright spots. Then
 	* [X] 'Create new window' 
 	* [X] '32-bit output'
 - __[File>Save] 'spots_median.tif'__
+
+
+&nbsp;
+	
+&nbsp;
+
+&nbsp;
 
 
 ## Local background subtraction using a top-hat filter 
@@ -48,6 +63,14 @@ A morphological opening filter is applied to the image and subtracted from the o
 	* [ ] '32-bit'
 		* Top hat filter cannot lead to negative values (which in fact is a problem, because you underestimate your actual background
 - __[File>Save] 'spots_tophat.tif'__
+
+
+
+&nbsp;
+	
+&nbsp;
+
+&nbsp;
 
 
 ## Local background subtraction using IJs "Subtract Background"
