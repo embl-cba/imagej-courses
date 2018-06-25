@@ -10,8 +10,10 @@ Training lab computers
 
 ## Prerequisites
 
-- ImageJ:     **C:\soft_advanced_microscopy_course-2018\Fiji.app\ImageJ-win64.exe**
-- Course material:     **\\Computer Teaching Lab 1TB\imagej-courses-master**
+- ImageJ:     
+  - **C:\soft_advanced_microscopy_course-2018\Fiji.app\ImageJ-win64.exe**
+- Course material:
+  - **\Computer\Computer Teaching Lab\imagej-courses-master\data**
 
 ## Schedule
 
