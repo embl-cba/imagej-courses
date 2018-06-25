@@ -19,11 +19,14 @@ Training lab computers
 
 | Time | Topic |
 |------|-------|
-| 20:30 - 21:30 | Practical: [Image inspection and handling](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md) |
+| 20:30 - 21:30 | Demonstration: [Ways to inspect images](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#inspection-of-the-numerical-content-of-images)|
+| 20:30 - 21:30 | Lecture: [Properties of images](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#important-numerical-properties-of-microscopy-images) |
+| 20:30 - 21:30 | Practical: [Image inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#activity-image-content-inspection) |
+| 20:30 - 21:30 | Discussion/Demonstration: [16-bit to 8-bit conversion](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#discussion-how-to-convert-16-bit-to-8-bit) |
 
 ### Further practical material
 
-This is further material, which will **not** be taught during this ZIDAS course, but you could work through it on you own at some other time.
+This is further material, which will **not** be taught during this course, but you could work through it on you own at some other time.
 
 | Time | Topic |
 |------|-------|
