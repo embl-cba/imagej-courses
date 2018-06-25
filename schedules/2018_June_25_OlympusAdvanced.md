@@ -1,29 +1,25 @@
-# Basics of Image Inspection, Handling and Intensity Measurements using ImageJ
+# Essentials of Image Inspection
 
 ## Location:
 
-ETH Zurich, IDA
+EMBL HD, Computer Training Lab, ATC
 
 ## Computers
 
-Participants use their own laptops.
+Training lab computers
 
 ## Prerequisites
 
-- Install Fiji: https://imagej.net/Fiji/Downloads
-- Download course material: https://github.com/tischi/imagej-courses/archive/master.zip
+- Fiji: C:\soft_advanced_microscopy_course-2018\Fiji.app\ImageJ-win64.exe
+- Course material: Computer Teaching Lab 1TB\imagej-courses-master
 
 ## Schedule
 
-### Tuesday June 19th
+### Monday June 25th
 
 | Time | Topic |
 |------|-------|
-| 09:30 - 10:00 | Welcome and self-introduction |
-| 10:00 - 12:30 | Practical: [Image inspection and handling](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md) |
-| 12:30 - 13:30 | Lunch |
-| 13:30 - 15:30 | Practical: [Basics of intensity measurements](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md)
-| 15:30 - 17:00 | Practical: [Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md) |
+| 20:30 - 21:30 | Practical: [Image inspection and handling](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md) |
 
 ### Further practical material
 
@@ -31,6 +27,8 @@ This is further material, which will **not** be taught during this ZIDAS course,
 
 | Time | Topic |
 |------|-------|
+| ... | Practical: [Basics of intensity measurements](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md)
+| ... | Practical: [Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md) |
 | ...| Practical: [Image segmentation: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-) |
 | ... | Practical: [Image segmentation: Automated global thresholding](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding)|
 | ... | Practical: [Intensity quantification: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/automated-local-background-subtraction-for-intensity-quantifications.md#intensity-measurements-with-automated-local-background-subtraction--) |
