@@ -24,6 +24,16 @@ Lecture slides can be downloaded after the course. Link will be provided later h
 |  3  |[Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md)|
 |  4  |Automated [global](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding) and [local](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-local-tresholding-under-development) thresholding 
 
+### Homework advanced exercises
+
+| N | Exercise |
+|------|-------|
+|  1  |[3D image inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-image-inspection.md)|
+|  2  |[Intensity quantification: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/automated-local-background-subtraction-for-intensity-quantifications.md#intensity-measurements-with-automated-local-background-subtraction--) |
+|  3  |[Workflow for intracellular object quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#workflow-autophagosome-quantification) | 
+|  4  |[Colocalization](https://github.com/tischi/imagej-courses/blob/master/practicals/colocalisation.md#colocalisation) |
+|  5  |[Tracking using TrackMate](https://github.com/tischi/imagej-courses/blob/master/practicals/tracking-with-trackmate.md)  |
+|  6 |[Macro recording and scripting in ImageJ](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md) |
 
 
 
