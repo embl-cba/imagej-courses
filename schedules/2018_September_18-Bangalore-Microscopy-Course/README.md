@@ -6,7 +6,7 @@
 |             Day                |           Time             |                Activity           |
 |--------------------------------|----------------------------|-----------------------------------|
 |         Tuesday 18.09          |        11.45-12:45         | ***Lecture***: Image Analysis     |
-|         Tuesday 18.09          |        17.00-19:00         | ***Practicals***: Image Analysis  |
+|         Tuesday 18.09          |        17.00-19:00         | ***Practicals***: Basic image analysis operations |
 | Saturday 22.09<br>Sunday 23.09 | 11.15-18:15<br>09.00-18:00 | ***Project***: 3D Image Processing|
 
 ## Lecture
@@ -22,6 +22,7 @@ Lecture slides can be downloaded after the course. Link will be provided later h
 |  1  |[Image inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#activity-image-content-inspection)|
 |  2  |[Basics of intensity measurements](https://github.com/tischi/imagej-courses/blob/master/practicals/intensity-quantification.md)|
 |  3  |[Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md)|
+|  4  |Automated [global](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding) and [local](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-local-tresholding-under-development) thresholding 
 
 
 
