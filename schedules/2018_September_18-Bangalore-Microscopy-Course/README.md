@@ -24,7 +24,7 @@ Lecture slides can be downloaded after the course. Link will be provided later h
 |  3  |[Image segmentation: Manual thresholding, Signal to noise, Image filtering](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md)|
 |  4  |Automated [global](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding) and [local](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-local-tresholding-under-development) thresholding 
 
-### Homework advanced exercises
+### Homework (advanced exercises)
 
 | N | Exercise |
 |------|-------|
