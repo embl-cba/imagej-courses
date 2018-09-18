@@ -7,7 +7,7 @@ An image essentially is an array of numbers with some metadata. For scientific i
 Let's open an image and explore different tools to inspect the numbers in this image.
 We start by inspection an 8-bit image, where the numbers range from 0 to 255 (2^8-1); we'll explore different bit depths later.
 
-- Open image "../image-inspection/B.tif"  [File > Open]
+- Open image "data/image-inspection/B.tif"  [File > Open]
 
 ### Mouse over
 
@@ -53,7 +53,7 @@ LUTs assign a certain color to each numerical value. Intensity differences are b
 
 While the colors in a given LUT are fixed, one can change how these colors are mapped onto the numbers in the image.
 
-- Open image "../image-inspection/B.tif"  [File > Open]
+- Open image "data/image-inspection/B.tif"  [File > Open]
 - Change the LUT settings:
 	- [Image > Adjust > Brightness/Contrast]
 
@@ -70,7 +70,7 @@ Note that this does not change the numbers but only the appearance on your scree
 
 ## Activity: Explore different LUTs 
 
-- Open image "../image-inspection/B.tif"  [File > Open]
+- Open image "data/image-inspection/B.tif"  [File > Open]
 - Explore different LUTs [Image > Lookup Tables], e.g.
 	- Grays
 		- If you have no specific other reason, this is the "go-to" LUT
@@ -148,7 +148,7 @@ The aim is to assign each image to one of the following issues:
 - too much saturation
 
 Use below workflow to inspect the images:
-- Open “../image-inspection/A.tif”  [File > Open]
+- Open “data/image-inspection/A.tif”  [File > Open]
 - Also open B.tif, C.tif, D.tif, E.tif 
 - Use the following [image inspection methods](#image_inspection) to check above the images and find their "issues", e.g, inspect the values in the images by
 	- Adjusting the display [Image > Adjust > Brightness/Contrast]
@@ -179,7 +179,7 @@ Images can have different bit depths. Let's start by exploring some of the limit
 
 ### Adding numbers
 
-- Open image "../image-inspection/B.tif" [File > Open]
+- Open image "data/image-inspection/B.tif" [File > Open]
 - Copy image [Image > Duplicate]
 	- Title: "after math"
 - Add 100 to each pixel in the image [Process > Math > Add]
@@ -194,7 +194,7 @@ Images can have different bit depths. Let's start by exploring some of the limit
 
 ### Subtracting numbers
 
-- Open image "../image-inspection/B.tif" [File > Open]
+- Open image "data/image-inspection/B.tif" [File > Open]
 - Copy image [Image > Duplicate]
 	- Title: "after math"
 - Subtract 100 from each pixel in the image [Process > Math > Subtract]
@@ -204,7 +204,7 @@ Images can have different bit depths. Let's start by exploring some of the limit
 
 ### Dividing numbers
 
-- Open image "../image-inspection/B.tif" [File > Open]
+- Open image "data/image-inspection/B.tif" [File > Open]
 - Copy image [Image > Duplicate]
 	- Title: "after math"
 - Copy the image [Image > Duplicate]
@@ -229,7 +229,7 @@ Images can have different bit depths. Let's start by exploring some of the limit
 
 Floating point images are there to solve the issues that you encountered in above activity, because they allow for numbers like -1.2 and 0.55, which are not allowd in integer images.
 
-- Open image "../image-inspection/B.tif" [File > Open]
+- Open image "data/image-inspection/B.tif" [File > Open]
 - Duplicate the image and already name "32-bit" [Image > Duplicate]
 - Convert to 32-bit floating point [Image > Type > 32 bit]
 - Inspect the gray values! Did they change after the conversion to 32 bit?
@@ -291,7 +291,7 @@ Image bit depth conversion is something that you should generally avoid, but som
 
 OK! Now comes the **tricky part**, where several projects were going very wrong in the past!
 
-- Open "../image-format-conversion/16bit.tif" [File > Open]
+- Open "data/image-format-conversion/16bit.tif" [File > Open]
 - Inspect the gray values: What are the minimum and maximum? Note them down.
 - Adjust the display such that it looks nice [Image > Adjust > Brightness/Contrast]
 - Convert to 8-bit [Image > Type > 8bit]
