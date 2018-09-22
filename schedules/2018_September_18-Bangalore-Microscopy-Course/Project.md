@@ -12,7 +12,7 @@
 
 4. Check 3D Visualisation options.
 
-5. Project 2D volume data to 2D planes. 
+5. Project 3D volume data to 2D planes. 
 	1. Try sum and max projections
 	2. Which information is maintained and what is lost?
 
