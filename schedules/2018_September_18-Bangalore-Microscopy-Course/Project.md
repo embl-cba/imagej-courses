@@ -17,7 +17,7 @@
 	2. Which information is maintained and what is lost?
 
 6. **Develop 3D image analysis protocol**
-	1. Install and use [3D image suite](imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start) package. It provides you set of tools for 3D analysis.
+	1. Install and use [3D image suite](http://imagejdocu.tudor.lu/doku.php?id=plugin:stacks:3d_ij_suite:start) package. It provides you set of tools for 3D analysis.
 	2. Segment nuclei in 3D. Use *Simple segmentation* tool.
 	3. Segment foci in 3D. Use *Spot segmentation* tool.
 	4. Discard spots which do not belong to any nuclei.
