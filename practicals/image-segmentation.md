@@ -22,7 +22,7 @@ Let's try:
  
 - Configure image segmentation settings [Process > Binary > Options]: 
 	- [X] Black Background
-- Open image: "../image-inspection/B.tif" [File > Open]
+- Open image: "data/image-inspection/B.tif" [File > Open]
 - Manually adjust a threshold value [Image > Adjust > Threshold]
 	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
 - Perform a "connected component analysis"  [Analyze > Analyze Particles]
@@ -58,7 +58,7 @@ A very important concept in this regard is the signal to noise ratio (S/N), whic
 
 Let's have a look and try to segment nuclei of different intensities:
 
-- Open "../signal-to-noise/hb2-mCherry.tif"  [File > Open]
+- Open "data/signal-to-noise/hb2-mCherry.tif"  [File > Open]
 - Now try to threshold the nuclei  [Image > Adjust > Threshold]
 	- You see that this is easy for the bright ones but does not really work for the very dim ones (you may have to adjust the LUT settings [Image > Adjust > Brightness/Contrast] to even see the dark ones).
 
@@ -102,7 +102,7 @@ Please first learn the [basics of image filtering.](https://github.com/tischi/im
 
 ## Activity 
 
-- Open: "../signal-to-noise/noisy-nuclei.tif" [File > Open]
+- Open: "data/signal-to-noise/noisy-nuclei.tif" [File > Open]
 - Try to segment the nuclei:
 	- Thresholding: [Image > Adjust > Threshold] 
 	- Particle analysis: [Analyze > Analyze Particles]
