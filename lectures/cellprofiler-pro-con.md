@@ -3,15 +3,14 @@
 ### Pro
 
 - Graphical user interface 
-- Search bar
+- Create workflows without code
 - Active community: www.image.sc
-- Macro recording
-- Very good for inspecting n-dimensional image data
-- Many many pluins and libraries
-
+- Only one way to do one thing
+- Everything nicely works together
+- Designed for batch analysis of many images
 
 ### Con
 
-- Image inspection only very basic
- 
-
+- Image inspection capabilities only very basic
+- Branching in workflows not visible 
+- Images are rescaled upon loading 

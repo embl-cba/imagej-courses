@@ -1,4 +1,4 @@
-## The pros and cons of Fiji
+## Fiji
 
 ### Pro
 
@@ -14,4 +14,4 @@
 
 - Many ways to achieve the same goal (confusing)
 - Can be difficult to find the best plugin for a certain task
-
+- Workflow design requires programming
