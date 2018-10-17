@@ -15,14 +15,15 @@ Participants use their own laptops ?
   - [Fiji > Help > Update... > Manage Update Sites]
     - [X] MorpholibJ
     - [X] 3D Imagej Suite
-    - [X] ImageScience 
+    - [X] ImageScience
+    - [X] ClearVolume 
     - Click [ Close ]; the updates sites will be installed...
     - Restart Fiji
-  - Check that the update sites are installed, you should now find
+  - Check that the update sites are installed! E.g., you should now find
     - [ Fiji > Plugins > MorpholibJ > ... ]
     - [ Fiji > Plugins > 3D > ... ]
     - [ Fiji > Plugins > FeatureJ > ... ]
-- Download course material: https://github.com/tischi/imagej-courses/archive/master.zip
+- Download the course material: https://github.com/tischi/imagej-courses/archive/master.zip
 
 ## Schedule
 
@@ -34,6 +35,7 @@ Participants use their own laptops ?
 | 10:00 - 10:15 | Fiji and CellProfiler: When to use which |  
 | 11:45 - 12:00 | Feedback with sticky notes |
 | .. | Lunch |
+| .. | Attractive 4D movie making using ClearVolume |
 
 
 ### Further practical material
