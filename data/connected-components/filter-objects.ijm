@@ -1,9 +1,4 @@
-run("Close All");
-open("/Users/tischer/Documents/imagej-courses/data/object-measurement-visualisations/nuclei-2d.tif");
 
-setThreshold(23, 255);
-run("Convert to Mask");
-run("Connected Components Labeling", "connectivity=4 type=[16 bits]");
 run("Region Morphometry");
 
 
