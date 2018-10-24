@@ -15,7 +15,8 @@ run("Morphological Filters", "operation=Dilation element=Disk radius="+radius);
 // dilate(erode(input)) = opening(input)
 
 // subtract opening from input
-imageCalculator("Subtract create 32-bit", "input","input-Erosion-Dilation");
+// (no need for floating point, because there cannot be negative values)
+imageCalculator("Subtract create", "input","input-Erosion-Dilation");
 rename("tophat");
 
 // all in one command:   tophat = input - dilate(erode(input))
