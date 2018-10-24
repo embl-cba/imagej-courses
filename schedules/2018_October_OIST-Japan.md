@@ -31,6 +31,7 @@ Participants use their own laptops ?
 
 | Time | Topic |
 |------|-------|
+| 09:00 - .. | Introduction: NeuBIAS meeting |
 | 09:30 - 10:00 | Welcome and self-introduction with ice-breaker |
 | 10:00 - 10:15 | Fiji and CellProfiler: When to use which |  
 | 11:45 - 12:00 | Feedback with sticky notes |
