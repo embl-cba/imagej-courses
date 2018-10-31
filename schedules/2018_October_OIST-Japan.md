@@ -28,17 +28,17 @@ https://github.com/tischi/imagej-courses/blob/master/handouts/image-analysis-bas
 
 ## Example data
 
-The example data needed for the course can be found (here)[https://github.com/tischi/imagej-courses/tree/master/data].
+The example data needed for the course can be found [here](https://github.com/tischi/imagej-courses/tree/master/data).
 
-Please download follwing instructions here: https://goo.gl/b7mA4q
-
+Please download following instructions here: https://goo.gl/b7mA4q
 
 ## Prerequisites
 
 - Install Fiji: https://imagej.net/Fiji/Downloads
 - Install Fiji Update Sites: 
   - [Fiji > Help > Update... > Manage Update Sites]
-    - [X] IJPB Plugins (MorpholibJ)
+    - [X] IJPB Plugins
+       - This installs MorpholibJ
     - [X] 3D ImageJ Suite
     - [X] ImageScience
     - [X] ClearVolume 
@@ -48,7 +48,7 @@ Please download follwing instructions here: https://goo.gl/b7mA4q
     - [ Fiji > Plugins > MorpholibJ > ... ]
     - [ Fiji > Plugins > 3D > ... ]
     - [ Fiji > Plugins > FeatureJ > ... ]
-- Download the course material: https://github.com/tischi/imagej-courses/archive/master.zip
+- Download the [course material](https://github.com/tischi/imagej-courses/archive/master.zip)
 
 ## Schedule
 
@@ -62,8 +62,8 @@ Please download follwing instructions here: https://goo.gl/b7mA4q
 
 | Time | Topic |
 |------|-------|
-| 09:30 | (Teacher introduction)[https://github.com/tischi/imagej-courses/blob/master/teacher-profiles/christian-tischer.md#teacher-profile-christian-tischer]  |
-| .. | (NEUBIAS Meeting Announcement)[http://eubias.org/NEUBIAS/neubias2020-conference/luxembourg-2019/] |
+| 09:30 | [Teacher introduction](https://github.com/tischi/imagej-courses/blob/master/teacher-profiles/christian-tischer.md#teacher-profile-christian-tischer]) |
+| .. | [NEUBIAS Meeting Announcement](http://eubias.org/NEUBIAS/neubias2020-conference/luxembourg-2019/) |
 | .. | Students self introduction: Name, Country, Recent inspiring event |
 | 10:00 | [Fiji and CellProfiler](https://github.com/tischi/imagej-courses/blob/master/lectures/fiji-vs-cellprofiler.md) |
 | 10:15 | Image analysis fundamentals, using Fijij with macro scripting |
