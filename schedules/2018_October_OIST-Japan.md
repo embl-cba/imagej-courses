@@ -12,9 +12,13 @@ Thursday, Nov. 1, 2018
 
 Participants use own laptops.
 
-## Course document
+## Interactive course document
 
 https://docs.google.com/document/d/11Ii8Y2vN_Kc245T-1mYdp_SrGlhmZyArj1EEFyZ1-XU/edit?usp=sharing
+
+## Handouts
+
+https://github.com/tischi/imagej-courses/blob/master/handouts/image-analysis-basics.pdf
 
 ## Prerequisites
 
