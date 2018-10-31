@@ -1,20 +1,28 @@
 # Basics of Image Inspection, Handling and Intensity Measurements using ImageJ
 
-## Location:
+## Location
 
 OIST, Japan
 
+## Date
+
+Thursday, Nov. 1, 2018
+
 ## Computers
 
-Participants use their own laptops ?
+Participants use own laptops.
+
+## Course document
+
+https://docs.google.com/document/d/11Ii8Y2vN_Kc245T-1mYdp_SrGlhmZyArj1EEFyZ1-XU/edit?usp=sharing
 
 ## Prerequisites
 
 - Install Fiji: https://imagej.net/Fiji/Downloads
 - Install Fiji Update Sites: 
   - [Fiji > Help > Update... > Manage Update Sites]
-    - [X] MorpholibJ
-    - [X] 3D Imagej Suite
+    - [X] IJPB Plugins (MorpholibJ)
+    - [X] 3D ImageJ Suite
     - [X] ImageScience
     - [X] ClearVolume 
     - Click [ Close ]; the updates sites will be installed...
@@ -27,31 +35,25 @@ Participants use their own laptops ?
 
 ## Schedule
 
+- This is the first day of a 4 day course. 
+- During this first day we will learn the fundamentals of image analysis using Fiji.
+  - We will also learn generating short image analysis workflows in Fiji, using ImageJ Macro recording.
+- In the following days you will learn generating longer workflows using CellProfiler.
+  - CellProfiler uses many of the fundamental concepts you will learn during this first day.
+
 ###  October 31st
 
 | Time | Topic |
 |------|-------|
-| 09:00 - .. | Introduction: NeuBIAS meeting |
-| 09:30 - 10:00 | Welcome and self-introduction with ice-breaker |
-| 10:00 - 10:15 | Fiji and CellProfiler: When to use which |  
-| 11:45 - 12:00 | Feedback with sticky notes |
-| .. | Lunch |
-| .. | Attractive 4D movie making using ClearVolume |
-
-
-### Further practical material
-
-This is further material, which will **not** be taught during this ZIDAS course, but you could work through it on you own at some other time.
-
-| Time | Topic |
-|------|-------|
-| ...| Practical: [Image segmentation: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-) |
-| ... | Practical: [Image segmentation: Automated global thresholding](https://github.com/tischi/imagej-courses/blob/master/practicals/image-segmentation.md#automated-global-thresholding)|
-| ... | Practical: [Intensity quantification: Automated local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/automated-local-background-subtraction-for-intensity-quantifications.md#intensity-measurements-with-automated-local-background-subtraction--) |
-| ... | Practical: [Workflow for intracellular object quantification](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#workflow-autophagosome-quantification) | 
-| ... | Practical: [3D image analysis](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-analysis.md) |
-| ... | Practical: [Colocalization](https://github.com/tischi/imagej-courses/blob/master/practicals/colocalisation.md#colocalisation) |
-| ...| Practical: [Tracking using TrackMate](https://github.com/tischi/imagej-courses/blob/master/practicals/tracking-with-trackmate.md)  |
-| ... | Practical: [Macro recording and scripting in ImageJ](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md) |
-
+| 09:30 | Teacher introduction |
+| .. | NEUBIAS Meeting |
+| .. | Students self introduction: Name, Country, Recent inspiring event |
+| 10:00 | [Fiji and CellProfiler](https://github.com/tischi/imagej-courses/blob/master/lectures/fiji-vs-cellprofiler.md) |
+| 10:15 | Image analysis fundamentals, using Fijij with macro scripting |
+| 11:15 | Image analysis fundamentals, using Fijij with macro scripting |
+| 11:00 | Coffee break |
+| 13:00 | Lunch |
+| 14:00 | Image analysis fundamentals, using Fijij with macro scripting |
+| 15:30 | Coffee break |
+| 17:00 | Course end |
 
