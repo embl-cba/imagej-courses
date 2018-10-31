@@ -46,7 +46,7 @@ https://docs.google.com/document/d/11Ii8Y2vN_Kc245T-1mYdp_SrGlhmZyArj1EEFyZ1-XU/
 | Time | Topic |
 |------|-------|
 | 09:30 | Teacher introduction |
-| .. | NEUBIAS Meeting |
+| .. | (NEUBIAS Meeting Announcement)[http://eubias.org/NEUBIAS/neubias2020-conference/luxembourg-2019/] |
 | .. | Students self introduction: Name, Country, Recent inspiring event |
 | 10:00 | [Fiji and CellProfiler](https://github.com/tischi/imagej-courses/blob/master/lectures/fiji-vs-cellprofiler.md) |
 | 10:15 | Image analysis fundamentals, using Fijij with macro scripting |
