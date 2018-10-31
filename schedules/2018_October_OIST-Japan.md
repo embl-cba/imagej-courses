@@ -1,4 +1,4 @@
-# Basics of Image Inspection, Handling and Intensity Measurements using ImageJ
+# Image analysis fundamentals
 
 ## Location
 
@@ -10,15 +10,28 @@ Thursday, Nov. 1, 2018
 
 ## Computers
 
-Participants use own laptops.
+Participants use own laptops or provided laptops.
+
+## Software
+
+Fiji (is just ImageJ)
 
 ## Interactive course document
 
-https://docs.google.com/document/d/11Ii8Y2vN_Kc245T-1mYdp_SrGlhmZyArj1EEFyZ1-XU/edit?usp=sharing
+https://goo.gl/DWUXLR
 
 ## Handouts
 
 https://github.com/tischi/imagej-courses/blob/master/handouts/image-analysis-basics.pdf
+
+(you have them printed as well)
+
+## Example data
+
+The example data needed for the course can be found (here)[https://github.com/tischi/imagej-courses/tree/master/data].
+
+Please download follwing instructions here: https://goo.gl/b7mA4q
+
 
 ## Prerequisites
 
@@ -49,15 +62,18 @@ https://github.com/tischi/imagej-courses/blob/master/handouts/image-analysis-bas
 
 | Time | Topic |
 |------|-------|
-| 09:30 | Teacher introduction |
+| 09:30 | (Teacher introduction)[https://github.com/tischi/imagej-courses/blob/master/teacher-profiles/christian-tischer.md#teacher-profile-christian-tischer]  |
 | .. | (NEUBIAS Meeting Announcement)[http://eubias.org/NEUBIAS/neubias2020-conference/luxembourg-2019/] |
 | .. | Students self introduction: Name, Country, Recent inspiring event |
 | 10:00 | [Fiji and CellProfiler](https://github.com/tischi/imagej-courses/blob/master/lectures/fiji-vs-cellprofiler.md) |
 | 10:15 | Image analysis fundamentals, using Fijij with macro scripting |
-| 11:15 | Image analysis fundamentals, using Fijij with macro scripting |
 | 11:00 | Coffee break |
+| 11:30 | Image analysis fundamentals, using Fijij with macro scripting |
 | 13:00 | Lunch |
 | 14:00 | Image analysis fundamentals, using Fijij with macro scripting |
-| 15:30 | Coffee break |
-| 17:00 | Course end |
+| 15:45 | Coffee break |
+| 16:15 | Image analysis fundamentals, using Fijij with macro scripting |
+| 17:30 | Course end => Welcome Party |
+| 19:50 | Shuttle bus departs |
+ 
 

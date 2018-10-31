@@ -1,0 +1,13 @@
+!!de.embl.cba.metadata.MetaData
+metadata:
+  Total data size: 0 Mb
+  Image dimensions: 412x432x1x1x1
+  Physical dimensions: {X: NA, Y: NA, Z: NA, T: NA}
+  Channels:
+    Channel 0: {Entity: NA, Label: NA}
+  Time points: [Time_00001]
+  Positions: [Pos_00001]
+  Species: {Name: NA, Taxon: NA}
+  Imaging method: NA
+  Developmental stage: NA
+  Cell line: NA
