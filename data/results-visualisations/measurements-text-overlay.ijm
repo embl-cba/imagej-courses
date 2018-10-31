@@ -1,3 +1,10 @@
+#@File labelImage
+
+// open image
+run("Close All");
+open(labelImage);
+
+// perform measurements
 run("Particle Analysis 3D", "volume inertia surface_0=[Crofton (13 dirs.)] euler_0=C26");
 
 // TODO: change font size: setFont
@@ -9,7 +16,7 @@ for ( i = 0; i < Table.size; ++i )
 	y = Table.get( "Elli.Center.Y", i );
 	z = Table.get( "Elli.Center.Z", i );
 	
-	// TODO: change to unscaled coordinates: toUnscaled
+	toUnscaled(x, y, z);
 
 	Overlay.drawString( volume, x, y );
 	Overlay.setPosition( z );	
