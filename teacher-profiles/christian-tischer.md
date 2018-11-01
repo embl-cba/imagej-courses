@@ -1,5 +1,6 @@
-# Teacher profile: Christian Tischer
+# Teacher profile
 
+- Name: Christian Tischer
 - University degree: Physics (PhD)
 - Research background: Biophysics (molecular motors and microtubules)
 - Current affiliation: EMBL Heidelberg, Germany, Centre for Bioimage Analysis (CBA)
