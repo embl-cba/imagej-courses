@@ -30,7 +30,8 @@ https://github.com/tischi/imagej-courses/blob/master/handouts/image-analysis-bas
 
 The example data needed for the course can be found [here](https://github.com/tischi/imagej-courses/tree/master/data).
 
-Please download following instructions here: https://goo.gl/b7mA4q
+Please download course material following instructions here: 
+https://goo.gl/b7mA4q
 
 ## Prerequisites
 
@@ -63,14 +64,14 @@ Please download following instructions here: https://goo.gl/b7mA4q
 | Time | Topic |
 |------|-------|
 | 09:30 | [Teacher introduction](https://github.com/tischi/imagej-courses/blob/master/teacher-profiles/christian-tischer.md#teacher-profile-christian-tischer]) |
-| .. | [NEUBIAS Meeting Announcement](http://eubias.org/NEUBIAS/neubias2020-conference/luxembourg-2019/) |
-| .. | Students self introduction: Name, Country, Recent inspiring event |
+| .. | Students self introduction: Name, Current country, Recent inspiring event |
 | 10:00 | [Fiji and CellProfiler](https://github.com/tischi/imagej-courses/blob/master/lectures/fiji-vs-cellprofiler.md) |
 | 10:15 | Image analysis fundamentals, using Fijij with macro scripting |
 | 11:00 | Coffee break |
 | 11:30 | Image analysis fundamentals, using Fijij with macro scripting |
 | 13:00 | Lunch |
-| 14:00 | Image analysis fundamentals, using Fijij with macro scripting |
+| 14:00 | [NEUBIAS Meeting Announcement](http://eubias.org/NEUBIAS/neubias2020-conference/luxembourg-2019/) |
+| 14:05 | Image analysis fundamentals, using Fijij with macro scripting |
 | 15:45 | Coffee break |
 | 16:15 | Image analysis fundamentals, using Fijij with macro scripting |
 | 17:30 | Course end => Welcome Party |
