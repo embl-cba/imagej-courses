@@ -9,7 +9,9 @@ EMBL HD, room 13-518 (ALMF)
 2. [Fiji](https://imagej.net/Fiji/Downloads) installation
 3. Downloading example datasets
 	1. [Image inspection](https://github.com/tischi/imagej-courses/tree/master/data/image-inspection)
-	2. [Image format conversion](https://github.com/tischi/imagej-courses/tree/master/data/image-format-conversion)
+	2. [Image Presentation](https://github.com/tischi/imagej-courses/tree/master/data/image-presentation)
+	3. [Image format conversion](https://github.com/tischi/imagej-courses/tree/master/data/image-format-conversion)
+	
 
 
 
