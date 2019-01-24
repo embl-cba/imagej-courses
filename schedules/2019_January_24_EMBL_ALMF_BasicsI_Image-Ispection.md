@@ -17,7 +17,7 @@ EMBL HD, room 13-518 (ALMF)
 
 |  N  |  Topic  |
 |-----|------------|
-|  1  |[Image inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#activity-image-content-inspection)|
+|  1  |[Image inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#inspection-of-the-numerical-content-of-images)|
 |  2  |[Image data presentation](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#lookup-tables-luts)|
 |  3  |[Image bit depth](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#image-bit-depths)|
 |  4  |[Image format and format conversion](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#lookup-tables-luts)|
