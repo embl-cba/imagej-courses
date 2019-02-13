@@ -1,9 +1,19 @@
-# 3D data visualisation: Hyperstack viewer, Ortho-slicing, 3D Viewer, ClearVolume, and BigDataViewer
+# 3D data inspection
 
 There are many ways of looking at 3D data in ImageJ. In this pratical we will explore a number of them.
 
-- Open “../psf/beads_p_open.tif” [File > Open]
+- Hyperstack viewer
+- Ortho-slicing
+- Projections
+- 3D Viewer
+- ClearVolume
+- BigDataViewer
+- 3DScript
+	- https://bene51.github.io/3Dscript/gallery.html
 
+## Data 
+
+- Please open “../psf/beads_p_open.tif” [File > Open]
 
 ## Hyperstack Viewer
 
@@ -35,7 +45,11 @@ Ortho-slicing is a very standard way of looking at 3-D data and typically is ava
 
 ![image](https://user-images.githubusercontent.com/2157566/38928505-5af4e8c8-4309-11e8-859d-148d3dad1a54.png)
 
+## Projections
 
+Another way to inspect (and sometimes even analyse) are projections of your data.
+
+- [ Image > Stacks > Z Project ]
 
 ## 3D Viewer
 
@@ -68,19 +82,13 @@ ClearVolume provides volume rendering with a nice user interface.
 
 ![image](https://user-images.githubusercontent.com/2157566/38928602-9ea40b1c-4309-11e8-84cc-b67bc5188960.png)
 
-
 ## BigDataViewer
 
-The BDV provides 3-D slicing in arbitrary orientations.
+The BDV provides 3-D slicing in arbitrary orientations and support big image data, which does not fit into the RAM of your computer.
 
 - [ Plugins > BigDataViewer > Open current image ]
 
 ![image](https://user-images.githubusercontent.com/2157566/38928635-cd32d968-4309-11e8-9432-d4ef5fc93680.png)
-
-# TODO: Nice practical about z-projections
-
-Showing difference between max and sum...
-and sdev 
 
 # Point spread function examination
 
