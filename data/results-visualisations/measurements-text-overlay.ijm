@@ -8,6 +8,7 @@ open(labelImage);
 run("Particle Analysis 3D", "volume inertia surface_0=[Crofton (13 dirs.)] euler_0=C26");
 
 // TODO: change font size: setFont
+setFont("SansSerif", 4);
 
 for ( i = 0; i < Table.size; ++i )
 {

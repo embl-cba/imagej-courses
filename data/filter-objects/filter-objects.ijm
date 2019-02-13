@@ -3,7 +3,7 @@
 
 run("Region Morphometry");
 
-minArea = 40;
+minArea = 0;
 maxArea = 200;
 
 // TODO: Duplicate the label image, in order not to loose the original one

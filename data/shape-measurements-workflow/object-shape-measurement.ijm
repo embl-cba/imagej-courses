@@ -22,3 +22,4 @@ saveAs("Results", outputDirectory + "/" + Table.title + ".csv");
 
 // Clean up
 run("Close All");
+// TODO: close table 
