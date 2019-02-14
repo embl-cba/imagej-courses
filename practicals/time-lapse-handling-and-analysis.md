@@ -1,6 +1,6 @@
-# Basics time-lapse data annotation and movie generation
+# Basic time-lapse data annotation and movie generation
 
-- Open “../tracking/ TransportOfEndosomalVirus.tif”
+- [ File > Open ] “../tracking/TransportOfEndosomalVirus.tif”
 - Add time stamps: [ Image > Stacks > Time Stamper] (dt=2s)
 - Save as movie: [File > Save As > AVI…] (jpeg compression)
 
