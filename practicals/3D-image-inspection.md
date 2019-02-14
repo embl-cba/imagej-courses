@@ -1,4 +1,4 @@
-# 3D data inspection
+# 3D image inspection
 
 There are many ways of looking at 3D data in ImageJ. In this pratical we will explore a number of them.
 
@@ -11,11 +11,11 @@ There are many ways of looking at 3D data in ImageJ. In this pratical we will ex
 - 3DScript
 	- https://bene51.github.io/3Dscript/gallery.html
 
-## Example Data 
+## Example data 
 
 - Please open, e.g., “../3D-data/???” [File > Open]
 
-## Hyperstack Viewer
+## Hyperstack viewer
 
 The hyperstack viewer enables browsing of 5-D (3D + channel + time ) data in a slice mode.
 
@@ -52,8 +52,8 @@ Ortho-slicing also is a good way of looking at 3-D data and typically is availab
 
 You can also slice your data at an angle.
 
+- Draw a line on the image, indicating the slicing plane
 - [ Image > Stacks > Reslice ]
-	- Draw a line on the image before, in order to indicate the slicing plane.
 
 ## Projections
 
@@ -96,7 +96,6 @@ ClearVolume provides volume rendering with a nice user interface.
 - Open “../psf/beads_p_open.tif” [File > Open]
 - Fiji Search Bar: ClearVolume => Open in ClearVolume
 
-
 ![image](https://user-images.githubusercontent.com/2157566/38928602-9ea40b1c-4309-11e8-84cc-b67bc5188960.png)
 
 ## BigDataViewer
@@ -116,16 +115,16 @@ There also is a way in ImageJ to make professional 3D rotation animations:
 - Manual: https://bene51.github.io/3Dscript/Manual.pdf
 - Examples: https://bene51.github.io/3Dscript/gallery.html
 
-## Other (commercial solutions)
+## Other (also commercial) solutions
 
-There are of course many other software to look at data in 3D.
+There are of course many other software to look at 3D image data.
 On the commerical side Imaris and Arivis are popular in Biology. 
-In terms of open-source Chimera is probably worth exploring: https://www.cgl.ucsf.edu/chimera/
+In terms of open-source, Chimera is probably worth exploring: https://www.cgl.ucsf.edu/chimera/
 
 # Point spread function examination
 
 For microscopy, it is very important to understand the point spread function (PSF) very well. 
-Thus, in this practical we will closely examine PSFs, acquired at different wavelengths.
+Thus, in this practical, we will closely examine PSFs, acquired at different wavelengths.
 
 - Open “../psf/beads_p_close.tif” [File > Open]
 	- This is a so-called hyperstack with two channels: green (c1) and red (c2)
@@ -135,14 +134,16 @@ Thus, in this practical we will closely examine PSFs, acquired at different wave
 	- Projection Type: Sum Slices
 - Repeat above steps for “../psf/beads_p_open.tif”
 
-Just visually comparing the PSFs of closed and open pinhole, what is the main difference? 
-Can you also see a difference between the green and the red PSF? What would you expect?
+## Activity
+
+1. Visually comparing the PSFs of closed and open pinhole, what is the main difference?
+2. Can you also see a difference between the green and the red PSF? What would you expect?
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/2157566/38828012-00cd084e-41b5-11e8-9ed6-488641015eed.png">
 
 ## Optional activity: measure the width of the PSFs
 
-Compare the width of the green and red PSFs in the x/y-direction. What would you expect?
+Quantify the width of the green and red PSFs in the x/y-direction.
 
 - Choose a central z-plane in the original file
 	- Using the channel slider of the hyperstack viewer, select the green channel.
