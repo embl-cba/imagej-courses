@@ -11,22 +11,25 @@ There are many ways of looking at 3D data in ImageJ. In this pratical we will ex
 - 3DScript
 	- https://bene51.github.io/3Dscript/gallery.html
 
-## Data 
+## Example Data 
 
-- Please open “../psf/beads_p_open.tif” [File > Open]
+- Please open, e.g., “../3D-data/???” [File > Open]
 
 ## Hyperstack Viewer
 
-The hyperstack viewer enables browsing 5-D data with z-slicing.
+The hyperstack viewer enables browsing of 5-D (3D + channel + time ) data in a slice mode.
 
 <img width="595" alt="image" src="https://user-images.githubusercontent.com/2157566/38975745-4d8c71c8-43af-11e8-887c-
 033aebc2ad84.png">
 
-### Composite image for multi-channel viewing
+### Multi-color viewing options
 
-In oder to view two colors simultaneously we need to enable the so-called "composite" viewing mode:
+There are different ways to look at multi-color images, you can switch between them:
 
-- [ Image > Color > Make Composite ]
+- [ Image > Color > Channels Tool ]
+	- Grayscale
+	- Color
+	- Composite
 
 ![image](https://user-images.githubusercontent.com/2157566/38928439-24556630-4309-11e8-87e6-56d4f85cdbfd.png)
 
@@ -39,16 +42,31 @@ The meaning of the channel slider in composite mode is fantastic, but confusing:
 
 ## Ortho-slicing
 
-Ortho-slicing is a very standard way of looking at 3-D data and typically is available in all softwares, including microscope acquisition softwares.
+Ortho-slicing also is a good way of looking at 3-D data and typically is available in all softwares, including microscope acquisition softwares.
 
 - [ Image > Stacks > Orthogonal Views ]
 
 ![image](https://user-images.githubusercontent.com/2157566/38928505-5af4e8c8-4309-11e8-859d-148d3dad1a54.png)
 
+## Non-orthogonal slicing
+
+You can also slice your data at an angle.
+
+- [ Image > Stacks > Reslice ]
+	- Draw a line on the image before, in order to indicate the slicing plane.
+
 ## Projections
 
-Another way to inspect (and sometimes even analyse) are projections of your data.
+Another way to inspect (and sometimes even analyse) images are projections of your data.
 
+- [ Image > Stacks > Z Project ]
+
+In general, maximum projections are the best for looking at the data.
+For quantification however, sum projections can be biologically more meaningful.
+
+You can also realise projections along different axes but z by first running a "reslicing" without specifying a particular plane.
+
+- [ Image > Stacks > Reslice ]
 - [ Image > Stacks > Z Project ]
 
 ## 3D Viewer
@@ -56,7 +74,7 @@ Another way to inspect (and sometimes even analyse) are projections of your data
 The 3D Viewer provides volume rendering; however, we feel that ClearVolume (see below) is more user-friendly.
 
 - [ Plugins > 3D Viewer ]
-	- Resampling factor: 1
+	- Resampling factor: This is how much you downsample (more => faster rendering)
 - Examine data by
 	- Rotating (left mouse button)
 	- Zooming (mouse wheel)
@@ -65,7 +83,6 @@ The 3D Viewer provides volume rendering; however, we feel that ClearVolume (see 
 	- Edit...Transfer Function
 	
 ![image](https://user-images.githubusercontent.com/2157566/38928558-7f5a455a-4309-11e8-93cd-dbb09cc0c2ca.png)
-
 
 ## ClearVolume
 
@@ -90,6 +107,21 @@ The BDV provides 3-D slicing in arbitrary orientations and support big image dat
 
 ![image](https://user-images.githubusercontent.com/2157566/38928635-cd32d968-4309-11e8-9432-d4ef5fc93680.png)
 
+## 3Dscript
+
+There also is a way in ImageJ to make professional 3D rotation animations:
+
+- Update Site: https://romulus.oice.uni-erlangen.de/updatesite/
+- Introduction: https://bene51.github.io/3Dscript/
+- Manual: https://bene51.github.io/3Dscript/Manual.pdf
+- Examples: https://bene51.github.io/3Dscript/gallery.html
+
+## Other (commercial solutions)
+
+There are of course many other software to look at data in 3D.
+On the commerical side Imaris and Arivis are popular in Biology. 
+In terms of open-source Chimera is probably worth exploring: https://www.cgl.ucsf.edu/chimera/
+
 # Point spread function examination
 
 For microscopy, it is very important to understand the point spread function (PSF) very well. 
@@ -107,7 +139,6 @@ Just visually comparing the PSFs of closed and open pinhole, what is the main di
 Can you also see a difference between the green and the red PSF? What would you expect?
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/2157566/38828012-00cd084e-41b5-11e8-9ed6-488641015eed.png">
-
 
 ## Optional activity: measure the width of the PSFs
 

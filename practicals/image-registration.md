@@ -13,6 +13,15 @@ Image taken from: https://github.com/SuperElastix/elastix/releases/download/4.9.
   - [N-D Sequence Registration](https://github.com/tischi/fiji-plugin-imageRegistration)
 
 
-## Practical
+## Rotational jitter correction
 
-TODO...
+When acquiring large z-stacks in can happen that a living sample moves during the time it takes to acquire the stack.
+This can lead to motion artifacts that can however sometimes be corrected.
+
+- [ Help > Manage Update Sites ] Add BIG-EPFL and restart Fiji
+- [ File > Open ] "../registration/rotational-jitter.tif"
+- StackReg: Rigid Body
+
+
+ 
+
