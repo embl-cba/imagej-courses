@@ -14,8 +14,8 @@ EMBL HD, room 202 (ALMF)
 
 |  Topic  |
 |------------|
-|[3D Image and PSF Inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-image-inspection.md)|
-|[Image registration](https://github.com/tischi/imagej-courses/blob/master/practicals/image-registration.md)|
-|[]()|
+|[Basic 3D image handling and PSF inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-image-inspection.md)|
+|[Basic image registration](https://github.com/tischi/imagej-courses/blob/master/practicals/image-registration.md)|
+|[Basic time-lapse handling and analysis](https://github.com/tischi/imagej-courses/blob/master/practicals/time-lapse-handling-and-analysis.md)|
 |[]()|
 
