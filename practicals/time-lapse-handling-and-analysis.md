@@ -6,6 +6,10 @@
 
 # Manual tracking
 
+There are multiple tracking plugins in ImageJ.
+Noteworthy is [Mastodon](https://github.com/fiji/TrackMate3), which is very good for really big data.
+Here, we will use a very simple manual tracking plugin.
+
 To determine the motility of (not too many) particles manual tracking can be a good option.
 
 - Open “../tracking/ TransportOfEndosomalVirus.tif”
