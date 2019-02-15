@@ -1,4 +1,4 @@
-# Basics of Image Handling, Inspection and Processing
+# Basics of 3D and Time-lapse Image Handling, Inspection and Processing
 
 ## Location:
 
