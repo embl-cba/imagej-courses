@@ -106,6 +106,8 @@ ClearVolume provides volume rendering with a nice user interface.
 
 The BDV provides 3-D slicing in arbitrary orientations and support big image data, which does not fit into the RAM of your computer.
 
+- https://imagej.net/BigDataViewer
+- https://www.nature.com/articles/nmeth.3392
 - [ Plugins > BigDataViewer > Open current image ]
 
 ![image](https://user-images.githubusercontent.com/2157566/38928635-cd32d968-4309-11e8-9432-d4ef5fc93680.png)
