@@ -13,7 +13,11 @@ There are many ways of looking at 3D data in ImageJ. In this pratical we will ex
 
 ## Example data 
 
-- Please open, e.g., “../3D-data/???” [File > Open]
+You can open any multichannel 3D time-lapse. 
+For example:
+
+- “../3D-data/spots3d-2ch.tif" [File > Open]
+- [ File > Open Samples > Mitosis ]
 
 ## Hyperstack viewer
 
