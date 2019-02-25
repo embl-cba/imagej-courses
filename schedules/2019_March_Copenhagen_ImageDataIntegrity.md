@@ -1,6 +1,6 @@
 # Image Data Integrity
 
-## Location:
+## Location
 
 Copenhagen
 
