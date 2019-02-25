@@ -4,11 +4,15 @@
 
 Copenhagen
 
+## Duration
+
+1.5 hours
+
 ## Prerequisites
 
-1. Own laptop with Fiji
-2. [Fiji](https://imagej.net/Fiji/Downloads) installation
-3. [Material](https://github.com/tischi/imagej-courses/archive/master.zip)
+1. Own laptop
+2. A runnning [Fiji](https://imagej.net/Fiji/Downloads) installation
+3. This [course material](https://github.com/tischi/imagej-courses/archive/master.zip)
 
 ## Topics
 
