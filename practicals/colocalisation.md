@@ -7,11 +7,12 @@
 
 ## General considerations
 
+- Microscopy: Check for chromatic shits, usinge multi-color beads 
+- Microscopy: Check for chromatic crosstalk, imaging samples leave out the respective other stain
 - Draw example images to see what you mean by "colocalisation"
 	- Warning: there are tons of possibilities => you have to exactly know what you are doing!
 	- You have to chose your point of view: overlap of ch1 with ch2 vs. overlap of ch2 with ch1
 	- You can measure pixel- or object-based overlap or some distance criterium (e.g., centroid- or boundary-based)
-- Use tetraspec beads to check your microscope
 - Diffraction limit depends on wavelength
 - Due to the diffraction limit everything can appear to colocalise with ER or tubulin
 - The cytoplasm in a cell can be quite small, so proteins might colocalise just by chance
