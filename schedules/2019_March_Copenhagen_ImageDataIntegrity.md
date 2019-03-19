@@ -1,8 +1,8 @@
-# Basics of 3D and Time-lapse Image Handling, Inspection and Processing
+# Image Data Integrity
 
 ## Location:
 
-EMBL HD, room 202 (ALMF)
+Copenhagen
 
 ## Prerequisites
 
@@ -14,8 +14,6 @@ EMBL HD, room 202 (ALMF)
 
 |  Topic  |
 |------------|
-|[Basic 3D image handling and PSF inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/3D-image-inspection.md)|
-|[Basic image registration](https://github.com/tischi/imagej-courses/blob/master/practicals/image-registration.md)|
 |[Basic time-lapse handling and analysis](https://github.com/tischi/imagej-courses/blob/master/practicals/time-lapse-handling-and-analysis.md)|
 |[]()|
 
