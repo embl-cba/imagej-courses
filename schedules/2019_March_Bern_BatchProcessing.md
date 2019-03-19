@@ -4,6 +4,12 @@
 
 Bern
 
+UniS, Schanzeneckstrasse 1, B-102
+
+## Teacher
+
+Christian Tischer, EMBL Heidelberg, Centre for Bioimage Analysis (CBA)
+
 ## Prerequisites
 
 1. Bring your own laptop
@@ -14,9 +20,9 @@ Bern
 
 |  Time  |  Topic  |
 |-----|------------|
-| 09:30 - 10:30  | [Batch analysis in ImageJ](https://github.com/tischi/imagej-courses/blob/master/practicals/batch-analysis-without-programming.md)
-| 10:45 - 12:00  | [Essentials of ImageJ macro programming](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md)|
-| 12:00 - 13:00  | Lunch break |
-| 13:00 - 16:00 | Practice macro programming, using own data |
+| 09:00 - 10:00  | [Batch analysis in ImageJ](https://github.com/tischi/imagej-courses/blob/master/practicals/batch-analysis-without-programming.md)
+| 10:30 - 12:00  | [Essentials of ImageJ macro programming](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md)|
+| 12:00 - 13:30  | Lunch |
+| 13:00 - 16:30 | Practice macro programming, using participants data |
 
 
