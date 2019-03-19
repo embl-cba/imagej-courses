@@ -7,7 +7,7 @@
 
 ## General considerations
 
-- Microscopy: Check for chromatic shifts, usinge multi-color beads 
+- Microscopy: Check for chromatic shifts, using multi-color beads 
 - Microscopy: Check for chromatic crosstalk, imaging samples leave out the respective other stain
 - Draw example images to see what you mean by "colocalisation"
 	- Warning: there are tons of possibilities => you have to exactly know what you are doing!
