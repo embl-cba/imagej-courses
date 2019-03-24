@@ -126,9 +126,9 @@ In the following we will see how to deal with this case.
 
 #### Activity
 
-Load many 3D stacks into one Hyperstack.
+Load many 3D stacks into one Hyperstack and preform a maximum projection for each 3D stack.
 
-In order for this to work we first need to install the very useful BioFormats plugin:
+In order for this to work we first need to **install the BioFormats plugin**:
 
 - [Help > Update]: 
 	- [Manage Update Sites]: 
@@ -167,43 +167,4 @@ Workflow:
 	- Input: "../data/different-file-formats/"
 	- Output: `Tiff`
 	- Leave other options at default values
-
-
-
-### Activity: Batch: Paint filename into image
-
-It is good practice to have meaningful filenames, e.g., containing a particular treatment that your images were subjected to. For quick visual inspection of your data it can thus be useful to display the filename in the image.
-
-Workflow:
-- Use ImageJ's in-built batch processing, chosing one of the example macros.
-	- [Process > Batch > Macro] 
-		- Input: "../data/meaningful-filenames/"
-		- Output: your choice 
-		- Combine code from two of the example macros: "Print index and title", "Label"
-			- ```setFont("SansSerif", 18, "antialiased");```
-			- ```setColor("red");```
-			- ```drawString(getTitle(), 20, 30);``` 
-		- [Process]
-
-Don't worry for now too much about the code; we will learn more about it later.
-
-### Macro recording for putting a scale bar on multiple images
-
-It is also very useful to have a scale bar in the images, e.g. for publication on a web-site.
-There is no predefined macro for adding a scale bar in Process > Batch; thus we have to record the command on our own.
-
-Workflow:
-- Record the macro command for putting a scale bar:
-	- [Plugins > Macros > Record..]
-		- Record: Macro (not Java)
-	- Open some file, e.g. "../data/meaningful_filenames/Treatment_A.tif"
-	- Put a scale bar:
-		- [Analyze > Tools > Scale Bar..]
-			- choose some parameters that you like
-			- [OK]
-	- Now the window should show some text, such as:
-		- ```run("Scale Bar...", "width=50 height=4 font=14 color=White background=None location=[Lower Right] bold");```
-
-- Use the recorded text (copy & paste) to put a scale bar onto multiple images using [Process > Batch > Macro..] (see above)
- 
 
