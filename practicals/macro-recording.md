@@ -4,6 +4,19 @@ References:
 - https://imagej.nih.gov/ij/developer/macro/functions.html
 - https://imagej.nih.gov/ij/developer/macro/macros.html
 
+## Introduction
+
+Software can often be ran by either
+
+- Graphical User Interface (GUI) 
+- Scripting 
+
+Think about pros and cons of those two approaches.
+
+## Concept
+
+[ GUI actions ] --- recorded ---> [ Script ]
+
 ## Automated counting of all cells in an image stack using a macro
 
 As our first real example of a macro we will automatically count the number of cells in an image.
@@ -90,20 +103,31 @@ saveAs("Results", "C:\\Users\\teach\\Desktop\\Summary.csv");
 
 ## Using variables
 
-Some commands in our macro will be the same, but some stuff will be different for different files.
+Reusing a macro for different data set might require adapting some parameters.
 It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables".
 
-**=> Interactive practical on variables: numbers, strings, adding, concatenating.**
+### Concept
 
-### Activity: Making filepath and threshold variables
-
-In below code the directory with the images is already a variable (note how string-concatentation was used to paste it into the command).
+[ Variable ] --- has ---> [ Name ]
+[ Variable ] --- has ---> [ Content ]
+[ Content ] --- can be ---> [ Text ] --- has ---> [ Quotation marks ] 
+[ Content ] --- can be ---> [ Numeric ] 
  
-Copy the code into Fiji and also **try to make the threshold a variable**.
+### Activity: Interactive practical on variables: numbers, strings, adding, concatenating.
+
+### Activity: Make filepath and threshold variables
+
+In below code, the directory with the images is already a variable (note how string-concatentation was used to paste it into the command).
+ 
+- Copy below code into Fiji's script editor [ File > New > Script ]
+- Adapt the content of the `filepath` **variable**.
+- Also make the lower threshold (`18`) a **variable**, with 
+	- name: `threshold`
+	- content: `18` 
 
 ```
-// user input
-filepath = "C:/Users/teach/Desktop/imagej-courses-master/data/mitocheck-movie/EMBO_2012_Group3--empty--empty--W0002--P001--T00000--Z000--C.tif";
+// variables
+filepath = ".../imagej-courses-master/data/mitocheck-movie/EMBO_2012_Group3--empty--empty--W0002--P001--T00000--Z000--C.tif";
 
 // close all images
 run("Close All"); 
@@ -133,18 +157,24 @@ saveAs("Results", "C:\\Users\\teach\\Desktop\\Summary.csv");
 #### Solution
 
 ```
-threshold = 29;
+threshold = 18;
 ...
 setThreshold( threshold, 255 );
 ```
 
-### Activity: Naming results table as input image
+### Activity: Name results table after input image
 
-Try to make the filename of the results table resemble the image name, using "String concantenation".
+In above macro, try to make the filename of the results table resemble the image name, using "String concantenation".
 
 Hints:
 - image_filename = "image.tif";
 - table_filename = image_filename + ".csv";
+
+
+&nbsp;
+
+&nbsp;
+
 
 #### Solution
 
@@ -186,23 +216,33 @@ saveAs( "Results", table_filepath );
 It is not ideal to have the results in the same folder as the image. 
 To avoid this we would have to split the filepath into a directory and filename...
 
-## Making it really nice, with graphical user interface
+## Adding graphical user interface (GUI) for variables
 
-It is nice, not to have to type into the macro, but enter the variables with a GUI.
+Sometimes, it can be nice not to have to type into the macro, but enter the variables with a GUI.
 In fact, it is not only nice, but also safer, because it prevents us from breaking the code by typing something wrong there. 
 
-Typically, I use google to find out how to do something related to programming:
+### Concept
 
-Google: imagej macro get variable from user
-- http://imagej.1557.x6.nabble.com/Having-a-macro-prompt-for-variable-input-td3694090.html
-- getNumber("prompt", defaultValue); 
+[ GUI element ] --- fetches content for ---> [ Variable ]
 
-**=> interactive practical, getting a number via the GUI and printing it**
+### Hints
 
-### Activity: adding another GUI element
+Typically, I use internet search to find out how to do something related to programming:
 
-In below code the threshold variable already has its GUI.
-Try to also **obtain the filepath from the GUI**.
+- Search the internet: `imagej macro get variable from user`
+	- You should find:
+		- http://imagej.1557.x6.nabble.com/Having-a-macro-prompt-for-variable-input-td3694090.html
+		- getNumber("prompt", defaultValue); 
+
+### Activity: Fetching a number via a GUI element
+
+Interactive activity: fetching a number via a GUI element and print it
+
+### Activity: Fetching a file path via a GUI element
+
+In below code, the threshold variable already has its GUI.
+
+- Try to also **obtain the filepath from a GUI element**.
 
 Hint: 
 - https://imagej.nih.gov/ij/macros/OpenDialogDemo.txt
@@ -226,13 +266,15 @@ run("Analyze Particles...", "  show=Nothing summarize stack");
 
 &nbsp;
 
+
+
 #### Solution
 
 ```
 filepath = File.openDialog( "Select a File" );
 ```
  
-### Activity: Saving the results table with at a good place and with a good name
+### Activity: Saving the results table at a good place and with a good name
 
 Now that we have the input file as a variable, we can automatically save the results table with a name related to this file.
 Try to do this on your own.
@@ -247,18 +289,28 @@ Hints:
 
 ...
 
-## The final touch: functions
+## Functions
 
-It is very good for readability and for reusing parts of our code to pack it into small parts that belong together, so-called "functions".
+It is very good for ithe readability and for reusing parts of our code to refactor it into small parts that belong together, so-called "functions".
+
+### Concept
+
+[ Function ] --- has ---> [ Name ]
+[ Function ] --- contains ---> [ Code ]
+[ Code ] -> [ Executable via name ]   
+[ Function ] --- can have ---> [ Parameters ] 
+[ Parameters ] --- are ---> [ Variables ]
 
 ### Activity
 
-Copy below code into Fiji. Note that everything related to measure the cells was wrapped into a function.
-Try to also **make a function for the thresholding**.
+- Copy below code into Fiji.
+- Note how everything related to measure the cells was wrapped into a function.
+- Try to also make a function for the thresholding.
 
 ```
 // User input
 //
+
 filepath = File.openDialog("Select a File");
 threshold = getNumber("Enter threshold", 29);
 
@@ -267,12 +319,13 @@ threshold = getNumber("Enter threshold", 29);
 
 open( filepath );
 
-// put into a function...
+// TODO: put into a function...
 setAutoThreshold("Default dark");
 setThreshold(threshold, 255);
 setOption("BlackBackground", false);
 run("Convert to Mask", "method=Default background=Dark"); 
 
+// a function
 measureCells();
 
 // Functions
@@ -286,6 +339,7 @@ function measureCells() {
 
 Solution:
 - ../macros/CountCells-Functions.ijm
+
 
 ## Analyzing multiple images in one folder
 

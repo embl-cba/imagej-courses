@@ -1,7 +1,7 @@
 # Batch analysis in ImageJ
 
 There are several ways to achieve batch analysis of many images in ImageJ:
-- Putting images into an image (hyper-)stack 
+- Concatenating many images into one image (hyper-)stack 
 - Using [Process > Batch]
 - Writing scripts, e.g. using the ImageJ Macro language
 
@@ -12,24 +12,32 @@ There are several ways to achieve batch analysis of many images in ImageJ:
 
 ## Batch analysis using image stacks
 
-If your images have the same dimensions in x,y (and z) and you want to apply the exact same operation to all of them the easiest option for batch analysis is to load all of them into one image (hyper-)stack.
+If your images have the same dimensions in x,y (and z) and you want to apply the exact same operation to all of them,
+ the easiest option for batch analysis is to load all of them into one image (hyper-)stack.
 
-### Automatically counting the number of nuclei in many images <a name="AutoCount"></a>
+### Concept
 
-Counting the number of objects in many images is probably the most classical bio-image analysis application; thus let's start with this!
+( apply operation ) -> [ Image1 ]
+( apply operation ) -> [ Image2 ]
+[ Image1 ], [ Image2 ], [ ImageN] -> ( concatenate ) -> [ Image Stack ] 
+( apply operation ) -> [ Image stack ]
+
+### Activity: Automatically count number of nuclei in many images <a name="AutoCount"></a>
+
+Counting the number of objects in many images is one the most common bio-image analysis application; thus let's start with this!
 
 Workflow:
 - Load all images into an image stack
 	- [File > Import > Image Sequence] 
-		- '../data_new/mitocheck_movie'
+		- '../data/mitocheck_movie'
 - Threshold all images
 	- [Image > Adjust Threshold]
 		- [X] Dark background
 		- [ ] Calculate threshold for each image
-			- Uncheck this, otherwise some auto-thresholdin is going on!
+			- Uncheck this, otherwise some auto-thresholding is going on!
 		- [Apply]
 			- Yes, do it for the whole stack!
-- Set measurements, keeping tracking of the file-name
+- Set measurements
 	- [Analyze > Set measurements]
 		- [X] Area
 		- [X] Display label
@@ -43,19 +51,59 @@ Workflow:
 
 Often your data might not be in one folder. 
 For example have a look at the folder:
-"../data_new/data-in-subfolders"
-To still load them into one image stack you can use a macro that is provided in this repository:
+"../data/data-in-subfolders"
+To still load them into one image stack you can use a script that is provided in this repository:
 
-Workflow:
-- Load and run the macro
-	- Drag&Drop onto Fij: "../macros/import-from-subfolders.py"
-	- Press [Run]
-		- Filename contains: ".tif"
-		- Choose as folder: "../data_new/data-in-subfolders/"
-- You have all data in one stack and could for instance count the number of cells, as we learned above.
+- Drag & Drop onto Fiji: "../macros/import-from-subfolders.py"
+- Press [Run]
+	- Filename contains: ".tif"
+	- Choose as folder: "../data/data-in-subfolders/"
 
-Comment:
-- Like this, you cannot change the data and then save it back into the same folder-structure; this would require writing some macro code (see below)
+You have all data in one stack and could for instance count the number of cells, as we learned above.
+
+#### Comment
+
+Like this, you cannot change the data and then save it back into the same folder-structure; this would require writing some macro code (see below)
+
+### Good filenames are essential for batch-processing
+
+[ Good filenames ] -- enable --> [ Batch processing ]
+[ Good filenames ] -- have --> [ Naming pattern ]
+[ Good filenames ] -- are --> [ Sorted properly ]
+
+#### Examples for good filenames
+
+```
+ctrl-t-00000-of-00212.tif
+ctrl-t-00001-of-00212.tif
+ctrl-t-00002-of-00212.tif
+```
+
+```
+treatment001-T0000-C00.tif
+treatment001-T0001-C00.tif
+treatment001-T0002-C00.tif
+treatment001-T0000-C01.tif
+treatment001-T0001-C02.tif
+treatment001-T0002-C03.tif
+```
+
+#### Good filenames formative assessment
+
+Given below filenames...
+
+```
+image-c00-t0000.tif
+image-c00-t0001.tif
+image-c00-t0002.tif
+```
+...which one is the correct next one (one answer)?
+
+1. image-c00-t0003.tif
+2. Image-c00-t0003.tif
+3. image-c0-t3.tif
+4. image_c00_t0003.tif
+
 
 ### Computing and saving 3-D maximum projections of many stacks
 
@@ -63,14 +111,13 @@ If you have 3-D data, all having the same x,y,z dimensions, you could implement 
 
 ### Making a hyperstack from single files, using [Import Image Sequence]
 
-Sometimes data beloning to different image stacks is distributed across single files.
+Sometimes data beloning to different image stacks is distributed across several files.
 Here, you can see how to rearrange them into a hyper-stack after loading. 
-
 
 Workflow:
 - Load all images
 	- [File > Import Image Sequence]
-		- "../data_new/mitosis-5D-single-files/"
+		- "../data/mitosis-5D-single-files/"
 - Make a hyperstack
 	- [Image > Hyperstack > Stack to Hyperstack]
 		- Determine the correct dimensions inspecting the filenames 
@@ -87,7 +134,7 @@ Workflow:
 In above workflow we had to manually enter the dimensions of the data.
 If the filenames are very well structured those dimensions can be determined automatically as shown in the next workflow.
 
-### Making a hyperstack from single files using the Bioformats Importer
+### Making a hyperstack from many single files using the Bioformats Importer
 
 In order for this to work we need to install the very useful BioFormats plugin:
 - [Help > Update]: 
@@ -102,22 +149,27 @@ In order for this to work we need to install the very useful BioFormats plugin:
 Workflow:
 - Load individual files as hyperstack
 	- [Plugins > Bio-Formats > Bio-Formats Importer]:
-		- click on one file in the folder "../data_new/mitosis-5D-single-files/"
+		- click on one file in the folder "../data/mitosis-5D-single-files/"
 		- View stack with: "Hyperstack"
 		- [X] Group files with similar names
 			- You'll see how it interprets your file-naming scheme
 		- [OK]
 - Do the processing of your choice and save the data again using [File > Save as > Image Sequence]
 
-#### Image stacks
+### Construct a Hyperstack from individual image stack files
 
 Another frequently occuring scenario is that you have 3-D data, where each file is one image stack.
 In the following we will see how to deal with this case. In fact, you can still do the hyperstack trick, because the Bio-Formats plugin can automatically combine data from image stacks into one hyperstack.
 
-Workflow:
+##### Concept
+
+[ 3D Image Stack File - 01 ], [ 3D Image Stack File - 02 ], [ .... ] -> ( grouped loading ) -> [ 5D Hyperstack ] 
+
+##### Activity
+
 - Load many stacks into one hyperstack
 	- [Plugins > Bio-Formats > Bio-Formats Importer]:
-		- click on one file in folder: "../data_new/mitosis-4D-stacks/"
+		- click on one file in folder: "../data/mitosis-4D-stacks/"
 		- View stack with: "Hyperstack"
 		- [X] Group files with similar names
 			- You'll see how it interprets your file-naming scheme
@@ -140,7 +192,7 @@ Data:
 
 Workflow:
 - [Process > Batch > Convert]: 
-	- Input: "../data_new/different-file-formats/"
+	- Input: "../data/different-file-formats/"
 	- Output: you can choose :-)
 	- Leave other options at default values
 
@@ -151,7 +203,7 @@ It is good practice to have meaningful filenames, e.g., containing a particular 
 Workflow:
 - Use ImageJ's in-built batch processing, chosing one of the example macros.
 	- [Process > Batch > Macro] 
-		- Input: "../data_new/meaningful-filenames/"
+		- Input: "../data/meaningful-filenames/"
 		- Output: your choice 
 		- Combine code from two of the example macros: "Print index and title", "Label"
 			- ```setFont("SansSerif", 18, "antialiased");```
@@ -170,7 +222,7 @@ Workflow:
 - Record the macro command for putting a scale bar:
 	- [Plugins > Macros > Record..]
 		- Record: Macro (not Java)
-	- Open some file, e.g. "../data_new/meaningful_filenames/Treatment_A.tif"
+	- Open some file, e.g. "../data/meaningful_filenames/Treatment_A.tif"
 	- Put a scale bar:
 		- [Analyze > Tools > Scale Bar..]
 			- choose some parameters that you like
