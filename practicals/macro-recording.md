@@ -51,7 +51,6 @@ In order to run the code we have to
 ### Recorder
 
 [ Recorder window ] -> ( Records code )
-
 [ Recorder window ] -> ( Choose language )
 
 ### Script editor window
