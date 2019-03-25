@@ -17,9 +17,72 @@ Think about pros and cons of those two approaches.
 
 [ GUI actions ] --- recorded ---> [ Script ]
 
+## Smoothing an image
+
+Let's record our first macro!
+
+- Turn on the macro recorder:
+	- [Plugins > Macros > Record]
+- Execute below UI commands
+	- [ File > Open... ]
+		- "/imagej-courses/data/convolution-filters/noisy-nuclei.tif" 
+	- [ Process > Filters > Mean... ]
+		- Radius: 2
+		- [ OK ]
+
+You should now see below text in the **Recorder** window:
+
+```
+open("/imagej-courses/data/convolution-filters/noisy-nuclei.tif");
+run("Mean...", "radius=2");
+```
+
+In order to run the code we have to
+- [Create] the macro
+	- This opens up the **Script** editor window
+- Now you can [Run] it!
+
+## Concepts
+
+### Recorder
+
+[ Recorder window ] -> ( Records code )
+[ Recorder window ] -> ( Choose language )
+
+### Script editor window
+
+[ Script editor window ] -> ( Run code )
+[ Script editor window ] -> ( Edit code )
+[ Script editor window ] -> ( Save code )
+[ Script editor window ] -> ( Open code )
+
+### Recorded code content
+
+[ open( file ); ] -> [ Function ]
+[ open( file ); ] --- has ---> [ 1 text parameter ]
+
+
+[ run ] -> [ Function ]
+[ run ] --- has ---> [ 2 text parameters ]
+1. Name of menu command
+2. Command parameter(s) as a "key value" pair(s)
+
+
+[ Key value pair ] --- has ---> [ Key (name) ]
+[ Key value pair ] --- has ---> [ Value ] --- can be ---> [ Number ]
+
+
+[ Text parameters ] --- enclosed by ---> [ Quotation marks " " ]
+
+
+[ Function ] --- has ---> [ Name ]
+[ Function ] --- can have ---> [ Parameters ]
+[ ; ] -> indicates the end of one "block of code"
+
+
 ## Automated counting of all cells in an image stack using a macro
 
-As our first real example of a macro we will automatically count the number of cells in an image.
+As our first really useful example of a macro we will automatically count the number of cells in an image.
 
 Turn on macro recorder:
 
@@ -58,10 +121,13 @@ run("Convert to Mask");
 run("Analyze Particles...", "  show=Outlines summarize");
 ```
 
-- "//" means that a line of code only is a comment
-- We have to remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
+Before we can run the code we have to:
 
-If you now [Create] the macro, save it [ File > Save as .. ] and [Run] it, it should do the job.
+- Remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
+	- "//" means that a line of code only is a comment
+- [Create] the macro
+- Save it [ File > Save as .. ].
+- Now you can [Run] it and it should do the job :-)
 
 ### Cleaning up and adding comments
 
