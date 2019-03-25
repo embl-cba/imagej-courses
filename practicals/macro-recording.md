@@ -11,11 +11,15 @@ Software can often be ran by either
 - Graphical User Interface (GUI) 
 - Scripting 
 
-Think about pros and cons of those two approaches.
+Have you done scripting before?
 
-## Concept
+[ Script ] --- is ---> [ Executable text ]
 
-[ GUI actions ] --- recorded ---> [ Script ]
+Think about pros and cons of GUI vs scripting.
+
+## Script recording concept
+
+[ GUI actions ] --- record as ---> [ Script ]
 
 ## Smoothing an image
 
@@ -47,28 +51,36 @@ In order to run the code we have to
 ### Recorder
 
 [ Recorder window ] -> ( Records code )
+
 [ Recorder window ] -> ( Choose language )
 
 ### Script editor window
 
 [ Script editor window ] -> ( Run code )
+
 [ Script editor window ] -> ( Edit code )
+
 [ Script editor window ] -> ( Save code )
+
 [ Script editor window ] -> ( Open code )
 
 ### Recorded code content
 
 [ open( file ); ] -> [ Function ]
+
 [ open( file ); ] --- has ---> [ 1 text parameter ]
 
 
 [ run ] -> [ Function ]
+
 [ run ] --- has ---> [ 2 text parameters ]
+
 1. Name of menu command
 2. Command parameter(s) as a "key value" pair(s)
 
 
 [ Key value pair ] --- has ---> [ Key (name) ]
+
 [ Key value pair ] --- has ---> [ Value ] --- can be ---> [ Number ]
 
 
@@ -76,7 +88,9 @@ In order to run the code we have to
 
 
 [ Function ] --- has ---> [ Name ]
+
 [ Function ] --- can have ---> [ Parameters ]
+
 [ ; ] -> indicates the end of one "block of code"
 
 
