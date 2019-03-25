@@ -27,7 +27,6 @@ If your images have the same dimensions in x,y (and z) and you want to apply the
 
 Counting the number of objects in many images is one the most common bio-image analysis application; thus let's start with this!
 
-Workflow:
 - Load all images into an image stack
 	- [File > Import > Image Sequence] 
 		- '../data/mitocheck_movie'

@@ -64,7 +64,12 @@ In order to run the code we have to
 
 open( ... );
 - [ open ] -> [ Function ]
-- [ open ] --- has ---> [ 1 text parameter ]
+- [ open ] --- has ---> [ Parameter ]
+
+
+Parameter
+[ Parameter(s) ] --- configure ---> [ Function ]
+
 
 run( ... );
 - [ run ] -> [ Function ]
@@ -72,12 +77,17 @@ run( ... );
 	1. Name of menu command
 	2. Command parameter(s) as a "key value" pair(s)
 
+
 radius=2
 - [ Key value pair ] --- has ---> [ Key (name) ]
 - [ Key value pair ] --- has ---> [ Value ] --- can be ---> [ Number ]
+- [ = ] -> [ Operator ] 
+- [ = ] --- assigns ---> Value to key
+
 
 "radius=2"
 - [ Text parameters ] --- enclosed by ---> [ Quotation marks " " ]
+
 
 Function
 - [ Function ] --- has ---> [ Name ]
