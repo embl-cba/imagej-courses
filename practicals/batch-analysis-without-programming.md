@@ -18,10 +18,10 @@ If your images have the same dimensions in x,y (and z) and you want to apply the
 
 ### Concept
 
-( apply operation ) -> [ Image1 ]
-( apply operation ) -> [ Image2 ]
-[ Image1 ], [ Image2 ], [ ImageN] -> ( concatenate ) -> [ Image Stack ] 
-( apply operation ) -> [ Image stack ]
+- ( apply operation ) -> [ Image1 ]
+- ( apply operation ) -> [ Image2 ]
+- [ Image1 ], [ Image2 ], [ ImageN] -> ( concatenate ) -> [ Image Stack ] 
+- ( apply operation ) -> [ Image stack ]
 
 ### Activity: Automatically count number of nuclei in many images <a name="AutoCount"></a>
 
@@ -68,9 +68,9 @@ Like this, you cannot change the data and then save it back into the same folder
 
 ## Good filenames are essential for batch-processing
 
-[ Good filenames ] -- enable --> [ Batch processing ]
-[ Good filenames ] -- have --> [ Naming pattern ]
-[ Good filenames ] -- are --> [ Sorted properly ]
+- [ Good filenames ] -- enable --> [ Batch processing ]
+- [ Good filenames ] -- have --> [ Naming pattern ]
+- [ Good filenames ] -- are --> [ Sorted properly ]
 
 ### Examples for good filenames
 
