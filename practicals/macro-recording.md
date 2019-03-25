@@ -138,10 +138,15 @@ run("Convert to Mask");
 run("Analyze Particles...", "  show=Outlines summarize");
 ```
 
+### Comment concept
+
+- [ // ] --- starts a ---> [ Comment ]
+- [ Comment ] --- is ---> [ Not executed text ]
+
+
 Before we can run the code we have to:
 
 - Remove the "//" before the line starting with 'setTreshold', because we actually want to execute it.
-	- "//" means that a line of code only is a comment
 - [Create] the macro
 - Save it [ File > Save as .. ].
 - Now you can [Run] it and it should do the job :-)
@@ -189,14 +194,21 @@ saveAs("Results", "C:\\Users\\teach\\Desktop\\Summary.csv");
 Reusing a macro for different data set might require adapting some parameters.
 It is good style to put all the things that can change at the top of the code, such that it is easy to modify. For this we need so-called "variables".
 
-### Concept
+### Variable concept
 
 - [ Variable ] --- has ---> [ Name ]
 - [ Variable ] --- has ---> [ Content ]
 - [ Content ] --- can be ---> [ Text ] --- has ---> [ Quotation marks ] 
 - [ Content ] --- can be ---> [ Numeric ] 
+- [ String ] --- is another name for ---> [ Text ]
  
 ### Activity: Interactive practical on variables: numbers, strings, adding, concatenating.
+
+### Combining variables concept
+
+- [ + ] --- combines ---> [ Variables ]
+- [ + ] --- adds ---> [ Numeric variables ]
+- [ + ] --- concatenates ---> [ Text variables ] 
 
 ### Activity: Make filepath and threshold variables
 
@@ -376,13 +388,13 @@ Hints:
 
 It is very good for ithe readability and for reusing parts of our code to refactor it into small parts that belong together, so-called "functions".
 
-### Concept
+### Function concept
 
-[ Function ] --- has ---> [ Name ]
-[ Function ] --- contains ---> [ Code ]
-[ Code ] -> [ Executable via name ]   
-[ Function ] --- can have ---> [ Parameters ] 
-[ Parameters ] --- are ---> [ Variables ]
+- [ Function ] --- has ---> [ Name ]
+- [ Function ] --- contains ---> [ Code ]
+- [ Code ] -> [ Executable via name ]   
+- [ Function ] --- can have ---> [ Parameters ] 
+- [ Parameters ] --- are ---> [ Variables ]
 
 ### Activity
 
@@ -427,83 +439,89 @@ Solution:
 ## Analyzing multiple images in one folder
 
 ```
-// This macro batch processes all the files in one folder ending with ".tif". 
-
 dir = getDirectory("Choose a Directory ");
-setBatchMode(true); // will run faster because it will not show all the windows
 
-processFiles( dir );
-
-function processFiles( dir ) {
-   list = getFileList( dir );
+files = getFileList( dir );
    
-   for (i = 0; i < list.length; i++) 
-   {
-   	path = dir + list[i];
-        processFile( path );
-   }
- 
+for (i = 0; i < files.length; i++) 
+{
+   path = dir + files[i];
+   processFile( filePath );
 }
 
-function processFile(path) {
-     if (endsWith(path, ".tif")) {
+function processFile( filePath ) 
+{
+	print( "Processing file: " + path );
+        open( path );
          
-         print( "Processing file: " + path );
-         
-         open( path );
-         
-         //
-         // ADD OWN CODE HERE
-         //
-        
-    }
+        //
+        // ADD OWN CODE HERE
+        //
 }
 ```
+
+- Copy above code into the Script editor
+- ...and run it!
+
+
+### Concepts
+
+#### Arrays (Lists)
+
+- [ Array ] --- has ---> [ Name ]
+- [ Array ] --- contains ---> [ Variables ]
+- [ Array ] --- has ---> [ Length ]
+- [ Name[index] ] --- retrieves ---> [ Variable ]
+
+#### For loop
+
+- [ For loop ] --- iterates ---> [ Numeric variable ]
+- [ For loop ] --- has ---> [ Start ]
+- [ For loop ] --- has ---> [ Ending condition ]
+- [ For loop ] --- has ---> [ Increment ]
+
 
 ### Activity
 
 Add your own cell counting code!
+
+
+
+## Batch mode
+
+Execute code much faster by suppressing any output.
+
+```
+setBatchMode( true );
+```
 
 ## Analyzing multiple images in one folder, including sub-folders
 
 Sometimes you have your image files distributed in sub-folders. Below code deals with this.
 
 ```
-// "BatchProcessFolders"
-//
-// This macro batch processes all the files in a folder and any
-// subfolders in that folder. In this example, it runs the Subtract 
-// Background command of TIFF files. For other kinds of processing,
-// edit the processFile() function at the end of this macro.
+dir = getDirectory("Choose a Directory ");
 
- dir = getDirectory("Choose a Directory ");
- setBatchMode(true); // will run faster because it will not show the windows
- processFiles(dir);
-
- function processFiles(dir) {
-    list = getFileList(dir);
-    for ( i = 0; i < list.length; i++) 
-    {
-        if ( endsWith(list[i], "/") ) {
-            // recursively go into sub-folders
-            processFiles( "" + dir + list[i] );
-        }
-        else 
-        {
-           path = dir + list[i];
-           processFile( path );
-        }
+list = getFileList(dir);
+for ( i = 0; i < list.length; i++) 
+{
+	if ( endsWith(list[i], "/") ) {
+		// recursively go into sub-folders
+		processFiles( "" + dir + list[i] );
+	}
+	else 
+	{
+		path = dir + list[i];
+		processFile( path );
+	}
     }
 }
 
-function processFile(path) 
+function processFile( path ) 
 {     
-     if (endsWith(path, ".tif")) 
-     {
-         
-         print( "Processing file: " + path );
-         
-         open( path );
+	print( "Processing file: " + path );
+
+	open( path );
          
          //
          // ADD OWN CODE HERE
