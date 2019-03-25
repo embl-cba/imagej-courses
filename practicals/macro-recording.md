@@ -55,42 +55,33 @@ In order to run the code we have to
 
 ### Script editor window
 
-[ Script editor window ] -> ( Run code )
-
-[ Script editor window ] -> ( Edit code )
-
-[ Script editor window ] -> ( Save code )
-
-[ Script editor window ] -> ( Open code )
+- [ Script editor window ] -> ( Run code )
+- [ Script editor window ] -> ( Edit code )
+- [ Script editor window ] -> ( Save code )
+- [ Script editor window ] -> ( Open code )
 
 ### Recorded code content
 
-[ open( file ); ] -> [ Function ]
+- [ open ] -> [ Function ]
+- [ open ] --- has ---> [ 1 text parameter ]
 
-[ open( file ); ] --- has ---> [ 1 text parameter ]
-
-
-[ run ] -> [ Function ]
-
-[ run ] --- has ---> [ 2 text parameters ]
-
-1. Name of menu command
-2. Command parameter(s) as a "key value" pair(s)
+- [ run ] -> [ Function ]
+- [ run ] --- has ---> [ 2 text parameters ]
+	1. Name of menu command
+	2. Command parameter(s) as a "key value" pair(s)
 
 
-[ Key value pair ] --- has ---> [ Key (name) ]
-
-[ Key value pair ] --- has ---> [ Value ] --- can be ---> [ Number ]
-
-
-[ Text parameters ] --- enclosed by ---> [ Quotation marks " " ]
+- [ Key value pair ] --- has ---> [ Key (name) ]
+- [ Key value pair ] --- has ---> [ Value ] --- can be ---> [ Number ]
 
 
-[ Function ] --- has ---> [ Name ]
+- [ Text parameters ] --- enclosed by ---> [ Quotation marks " " ]
 
-[ Function ] --- can have ---> [ Parameters ]
 
-[ ; ] -> indicates the end of one "block of code"
+- [ Function ] --- has ---> [ Name ]
+- [ Function ] --- can have ---> [ Parameters ]
+
+- [ ; ] -> indicates the end of one "block of code"
 
 
 ## Automated counting of all cells in an image stack using a macro
@@ -187,10 +178,10 @@ It is good style to put all the things that can change at the top of the code, s
 
 ### Concept
 
-[ Variable ] --- has ---> [ Name ]
-[ Variable ] --- has ---> [ Content ]
-[ Content ] --- can be ---> [ Text ] --- has ---> [ Quotation marks ] 
-[ Content ] --- can be ---> [ Numeric ] 
+- [ Variable ] --- has ---> [ Name ]
+- [ Variable ] --- has ---> [ Content ]
+- [ Content ] --- can be ---> [ Text ] --- has ---> [ Quotation marks ] 
+- [ Content ] --- can be ---> [ Numeric ] 
  
 ### Activity: Interactive practical on variables: numbers, strings, adding, concatenating.
 
