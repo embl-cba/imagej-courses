@@ -62,25 +62,28 @@ In order to run the code we have to
 
 ### Recorded code content
 
+open( ... );
 - [ open ] -> [ Function ]
 - [ open ] --- has ---> [ 1 text parameter ]
 
+run( ... );
 - [ run ] -> [ Function ]
 - [ run ] --- has ---> [ 2 text parameters ]
 	1. Name of menu command
 	2. Command parameter(s) as a "key value" pair(s)
 
-
+radius=2
 - [ Key value pair ] --- has ---> [ Key (name) ]
 - [ Key value pair ] --- has ---> [ Value ] --- can be ---> [ Number ]
 
-
+"radius=2"
 - [ Text parameters ] --- enclosed by ---> [ Quotation marks " " ]
 
-
+Function
 - [ Function ] --- has ---> [ Name ]
 - [ Function ] --- can have ---> [ Parameters ]
 
+;
 - [ ; ] -> indicates the end of one "block of code"
 
 
