@@ -200,8 +200,30 @@ It is good style to put all the things that can change at the top of the code, s
 - [ Variable ] --- has ---> [ Content ]
 - [ Content ] --- can be ---> [ Text ] --- has ---> [ Quotation marks ] 
 - [ Content ] --- can be ---> [ Numeric ] 
+- [ Name ] --- must only contain ---> [ Letter Numbers _ ]
+- [ Name ] --- must not start with ---> [ Number ]
+- [ Name ] --- follows ---> [ Conventions ]
+- [ Name ] --- should --> Start with lower case
+- [ Name ] --- example ---> [ cellCount ]
+- [ Name ] --- example ---> [ cell_count ]
 - [ String ] --- is another name for ---> [ Text ]
- 
+
+### Variable formative assessment
+
+Which of the following are valid variable names?
+
+1. Cell Count
+2. cell-count
+3. cellCount
+4. CellCount
+5. Cell,Count
+5. cell____co__unt
+6. 10cellCoun_t
+7. ___CeLLCoooount
+
+
+
+
 ### Activity: Interactive practical on variables: numbers, strings, adding, concatenating.
 
 ### Combining variables concept
