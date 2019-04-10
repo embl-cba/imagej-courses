@@ -71,6 +71,8 @@ Like this, you cannot change the data and then save it back into the same folder
 - [ Good filenames ] -- have --> [ Naming pattern ]
 - [ Good filenames ] -- are --> [ Sorted properly ]
 
+- [ Good filenames ] -- should not contain --> [ , \ / " ' space * ]
+
 ### Examples for good filenames
 
 ```
