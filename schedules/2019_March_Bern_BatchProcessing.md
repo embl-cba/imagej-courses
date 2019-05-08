@@ -1,4 +1,4 @@
-# Basics of Image Handling, Inspection and Processing
+# Essentials of ImageJ Batch Processing and Macro Scripting
 
 ## Location:
 
