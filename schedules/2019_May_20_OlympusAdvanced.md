@@ -9,7 +9,7 @@
 
 ### Exercise
 
-- [Image inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#activity-image-content-inspection)
+- [Image inspection](https://github.com/embl-cba/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#inspection-of-the-numerical-content-of-images)
 	- [Ways to inspect images](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#inspection-of-the-numerical-content-of-images)
 	- [Image presentation](https://github.com/embl-cba/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#image-bit-depth-conversions) 
 	- [Image content inspection](https://github.com/tischi/imagej-courses/blob/master/practicals/basic-image-inspection-and-handling.md#activity-image-content-inspection) 
