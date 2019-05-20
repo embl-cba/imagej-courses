@@ -2,6 +2,9 @@
 
 # Image analysis session
 
+### Tools
+- Fiji is here: ***C:\software_Advanced-Microscopy-Course_2019\Fiji.app***
+- Data are here: ***K:\Image-Analysis-Session\data***
 
 
 ### Exercise
