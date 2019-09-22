@@ -116,6 +116,60 @@ Note that this does not change the numbers but only the appearance on your scree
 &nbsp;
 
 
+# Image format conversion
+
+Unfortunately there are many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice!
+
+## Activity: Save an image in different formats and inspect how this affects its numerical content and file size
+
+- Open “../image-format-conversion/16bit.tif” [File > Open]
+	- Adjust the display such that you actually see something [Image > Adjust > Brightness/Contrast]
+- Save as **Jpeg** using different levels of compression (quality)
+	- Adjust Jpeg quality (0-100) to 10 [Edit > Option > Input/Output]
+	- save as "quality_10.jpg"  [File > Save As > Jpeg]
+	- repeat for Jpeg qualities 75, and 100
+- Save as **Png** "image.png" [File > Save As > PNG]
+- Save as **Zip** "image.zip" [File > Save As > ZIP]
+- Now, adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
+	- Save as "saturated.tif" [File > Save As > Tiff]
+	- Save as "saturated.jpg" [File > Save As > Jpeg]
+	- Save as "saturated.png" [File > Save As > PNG]
+
+Now, let's inspect what happened to the image when saving it in the different formats.
+
+1. Go to the folder where they have been saved an observe the file sizes
+2. Open them again in Fiji and check what happened to the gray values
+
+To document your findings, you may make a table like below and fill in columns:
+
+ Image       | File size | Gray values (min, max) 
+-------------|-----------|------------------------ 
+ 16bit.tif   |           |
+ quality_10.jpg    |       |
+ quality_75.jpg      |          |
+ quality_100.jpg    |                |
+ image.png     |                            |
+ image.zip     |                            |
+ saturated.tif |   |
+ saturated.jpg |   |
+ saturated.png |   |
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+Take home message: Always check what happens to your image when you save it! 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
 
 # Important numerical properties of microscopy images
 
@@ -170,80 +224,6 @@ E      |                                     |
 &nbsp;
 
 &nbsp;
-
-# Image bit depths
-
-Images can have different bit depths. Let's start by exploring some of the limitations of the 8-bit image that we were dealing with until now.
-
-## Activity: Exploring the limitations of an 8-bit image <a name="8bit_limitations"></a> 
-
-### Adding numbers
-
-- Open image "data/image-inspection/B.tif" [File > Open]
-- Copy image [Image > Duplicate]
-	- Title: "after math"
-- Add 100 to each pixel in the image [Process > Math > Add]
-- Inspect the gray values!
-- Find (two) pixels for which the result is correct and incorrect
-
-| x  | y  | original value  | value after math   | correct?  |
-|---|---|---|---|---|
-| &nbsp;  |   |   |   |   |
-| &nbsp;  |   |   |   |   |
-
-
-### Subtracting numbers
-
-- Open image "data/image-inspection/B.tif" [File > Open]
-- Copy image [Image > Duplicate]
-	- Title: "after math"
-- Subtract 100 from each pixel in the image [Process > Math > Subtract]
-- Inspect the gray values!
-
-
-
-### Dividing numbers
-
-- Open image "data/image-inspection/B.tif" [File > Open]
-- Copy image [Image > Duplicate]
-	- Title: "after math"
-- Copy the image [Image > Duplicate]
-- Divide each pixel in the image by 2 [Process > Math > Divide]
-- Inspect the gray values!
- 
-
-### Conclusions
-
-- Obviously this is not what we want since it is all wrong :-).
-- If possible try to avoid mathematical operations on a pixel level
-- If you need to change the values in an image consider changing it to a "floating point image" (see below).
-
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-## Activity: Exploring floating point images
-
-Floating point images are there to solve the issues that you encountered in above activity, because they allow for numbers like -1.2 and 0.55, which are not allowd in integer images.
-
-- Open image "data/image-inspection/B.tif" [File > Open]
-- Duplicate the image and already name "32-bit" [Image > Duplicate]
-- Convert to 32-bit floating point [Image > Type > 32 bit]
-- Inspect the gray values! Did they change after the conversion to 32 bit?
-- Now let's repeat [above activity](#8bit_limitations)
-
-Much better, right?!
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-
 
 ## Image bit depths in ImageJ
 
@@ -318,44 +298,69 @@ Hopefully you are **shocked** that we all got different results! How can this be
 &nbsp;
 
 
-# Image format conversion
+# Image bit depths
 
-Unfortunately there are many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice!
+Images can have different bit depths. Let's start by exploring some of the limitations of the 8-bit image that we were dealing with until now.
 
-## Activity: Save an image in different formats and inspect how this affects its numerical content and file size
+## Activity: Exploring the limitations of an 8-bit image <a name="8bit_limitations"></a> 
 
-- Open “../image-format-conversion/16bit.tif” [File > Open]
-	- Adjust the display such that you actually see something [Image > Adjust > Brightness/Contrast]
-- Save as **Jpeg** using different levels of compression (quality)
-	- Adjust Jpeg quality (0-100) to 10 [Edit > Option > Input/Output]
-	- save as "quality_10.jpg"  [File > Save As > Jpeg]
-	- repeat for Jpeg qualities 75, and 100
-- Save as **Png** "image.png" [File > Save As > PNG]
-- Save as **Zip** "image.zip" [File > Save As > ZIP]
-- Now, adjust the display such that the image **appears saturated** [Image > Adjust > Brightness/Contrast]
-	- Save as "saturated.tif" [File > Save As > Tiff]
-	- Save as "saturated.jpg" [File > Save As > Jpeg]
-	- Save as "saturated.png" [File > Save As > PNG]
+### Adding numbers
 
-Now, let's inspect what happened to the image when saving it in the different formats.
+- Open image "data/image-inspection/B.tif" [File > Open]
+- Copy image [Image > Duplicate]
+	- Title: "after math"
+- Add 100 to each pixel in the image [Process > Math > Add]
+- Inspect the gray values!
+- Find (two) pixels for which the result is correct and incorrect
 
-1. Go to the folder where they have been saved an observe the file sizes
-2. Open them again in Fiji and check what happened to the gray values
+| x  | y  | original value  | value after math   | correct?  |
+|---|---|---|---|---|
+| &nbsp;  |   |   |   |   |
+| &nbsp;  |   |   |   |   |
 
-To document your findings, you may make a table like below and fill in columns:
 
- Image       | File size | Gray values (min, max) 
--------------|-----------|------------------------ 
- 16bit.tif   |           |
- quality_10.jpg    |       |
- quality_75.jpg      |          |
- quality_100.jpg    |                |
- image.png     |                            |
- image.zip     |                            |
- saturated.tif |   |
- saturated.jpg |   |
- saturated.png |   |
+### Subtracting numbers
 
+- Open image "data/image-inspection/B.tif" [File > Open]
+- Copy image [Image > Duplicate]
+	- Title: "after math"
+- Subtract 100 from each pixel in the image [Process > Math > Subtract]
+- Inspect the gray values!
+
+### Dividing numbers
+
+- Open image "data/image-inspection/B.tif" [File > Open]
+- Copy image [Image > Duplicate]
+	- Title: "after math"
+- Copy the image [Image > Duplicate]
+- Divide each pixel in the image by 2 [Process > Math > Divide]
+- Inspect the gray values!
+ 
+
+### Conclusions
+
+- Obviously this is not what we want since it is all wrong :-).
+- If possible try to avoid mathematical operations on a pixel level
+- If you need to change the values in an image consider changing it to a "floating point image" (see below).
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Activity: Exploring floating point images
+
+Floating point images are there to solve the issues that you encountered in above activity, because they allow for numbers like -1.2 and 0.55, which are not allowd in integer images.
+
+- Open image "data/image-inspection/B.tif" [File > Open]
+- Duplicate the image and already name "32-bit" [Image > Duplicate]
+- Convert to 32-bit floating point [Image > Type > 32 bit]
+- Inspect the gray values! Did they change after the conversion to 32 bit?
+- Now let's repeat [above activity](#8bit_limitations)
+
+Much better, right?!
 
 &nbsp;
 
@@ -363,11 +368,7 @@ To document your findings, you may make a table like below and fill in columns:
 
 &nbsp;
 
-Take home message: Always check what happens to your image when you save it! 
 
-&nbsp;
 
-&nbsp;
 
-&nbsp;
 
