@@ -369,6 +369,32 @@ Much better, right?!
 &nbsp;
 
 
+# Image File Formats
+
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Activity: Opening Images of different microscope output formats
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+## Guidelines for the best practices
+- 
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 
 
 
