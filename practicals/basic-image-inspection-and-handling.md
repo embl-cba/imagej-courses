@@ -116,7 +116,33 @@ Note that this does not change the numbers but only the appearance on your scree
 &nbsp;
 
 
-# Image format conversion
+# Image file formats: Opening
+
+## Background
+
+Follow [this link](../lectures/image-file-formats.md) to learn about light microscopy image file formats.
+
+&nbsp;
+
+## Activity: Opening Images of different microscope output formats
+- Open multichannel stack stored in single file
+	-  Data file: ../data/file-formats/MT-stack.czi
+	- Extract metadata (Use "Display metadata" option in Bio-Formats opening dialog; or *Image* -> *Show Info...* for already opened image)
+		- Pixe size
+		- Objective specifications
+- Open multichannel stack stored in multiple files. Follow [these guidelines](5D-image-loading-from-multiple-files.md).
+- Open images from "multiposition" file.
+	- Dataset: ../data/file-formats/Multiposition.lic
+	- [Plugins > Bio-Formats > Bio-Formats Importer]:
+		- click on one file in the folder "../data/mitosis-5D-single-files/"
+		- To open all images at the same time, use "Open all series" option (for big files can be very slow).
+		- If "Open all series" is unselected, additional dialog will open to specify which datasets need to be opened. 
+
+
+&nbsp;
+
+
+# Image file formats: Saving
 
 Unfortunately there are many different image formats and since not all software can open all formats you most likely will have to sometimes save your images in different formats. It is of utmost importance that you check what happens to the numerical content of your images when you are doing this! So let's practice!
 
@@ -369,30 +395,6 @@ Much better, right?!
 &nbsp;
 
 
-# Image File Formats
-
-## Background
-
-Follow [this link](../lectures/image-file-formats.md) to learn about light microscopy image file formats.
-
-&nbsp;
-
-## Activity: Opening Images of different microscope output formats
-- Open multichannel stack stored in single file
-	-  Data file: ../data/file-formats/MT-stack.czi
-	- Extract metadata (Use "Display metadata" option in Bio-Formats opening dialog; or *Image* -> *Show Info...* for already opened image)
-		- Pixe size
-		- Objective specifications
-- Open multichannel stack stored in multiple files. Follow [these guidelines](5D-image-loading-from-multiple-files.md).
-- Open images from "multiposition" file.
-	- Dataset: ../data/file-formats/Multiposition.lic
-	- [Plugins > Bio-Formats > Bio-Formats Importer]:
-		- click on one file in the folder "../data/mitosis-5D-single-files/"
-		- To open all images at the same time, use "Open all series" option (for big files can be very slow).
-		- If "Open all series" is unselected, additional dialog will open to specify which datasets need to be opened. 
-
-
-&nbsp;
 
 
 
