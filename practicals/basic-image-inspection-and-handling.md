@@ -378,13 +378,14 @@ Follow [this link](../lectures/image-file-formats.md) to learn about light micro
 &nbsp;
 
 ## Activity: Opening Images of different microscope output formats
-- Open multichannel stack stored in single file ....oir
+- Open multichannel stack stored in single file
+	-  Data file: ../data/file-formats/MT-stack.czi
 	- Extract metadata (Use "Display metadata" option in Bio-Formats opening dialog; or *Image* -> *Show Info...* for already opened image)
 		- Pixe size
 		- Objective specifications
 - Open multichannel stack stored in multiple files. Follow [these guidelines](5D-image-loading-from-multiple-files.md).
 - Open images from "multiposition" file.
-	- Dataset: ../data/multiposition/Multiposition.lic
+	- Dataset: ../data/file-formats/Multiposition.lic
 	- [Plugins > Bio-Formats > Bio-Formats Importer]:
 		- click on one file in the folder "../data/mitosis-5D-single-files/"
 		- To open all images at the same time, use "Open all series" option (for big files can be very slow).
