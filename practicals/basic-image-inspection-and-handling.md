@@ -1,6 +1,6 @@
 # Inspection of the numerical content of images
 
-An image essentially is an array of numbers with some metadata. For scientific image analysis it is very important to constantly inspect the numeric content of our images, for instance to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
+A scientific image can be seen as a collection of numbers with metadata. For scientific image analysis it is very important to constantly inspect the numeric content of the image, e.g., to check whether the image was acquired properly, or whether a mathematical operation such as background subtraction had the desired effect.
 
 ## Activity: Image inspection <a name="image_inspection"></a> 
 
@@ -87,7 +87,18 @@ Note that this does not change the numbers but only the appearance on your scree
 &nbsp;
 
 
+# Image spatial calibration 
+
+Scientific images often are spatially calibrated, which, in the simplest case, means that their pixels have a physical size.
+
+- Open “../image-presentation/treated_C01.tif” 
+- Appreciate that there are now two pixel coordinates shown (pixel units and calibrated units)
+- Check the image's calibrated pixel size using [ Image > Properties ] 
+
+
 # Image data presentation
+
+After acquiring good data on the microscope the next most important thing is to present the data as quantitatively as possible, e.g. in talks or publications. 
 
 <img width="1056" alt="image" src="https://user-images.githubusercontent.com/2157566/41596158-b7dea420-73c9-11e8-95e6-4837fd6f222c.png">
 
@@ -101,7 +112,7 @@ Note that this does not change the numbers but only the appearance on your scree
 	- [ Image > Adjust > Brightness&Contrast ]
 		- After adjusting the LUT for one image, click [ Set ] and
 		* [X] “Propagate to all other open images”
-			- This is __super important__ as it will ensure that the same LUT is used for all open images, which is critical for a scientifically meaningful presentation of your data.
+			- This is __very important__ as it will ensure that the same LUT is used for all open images, which is critical for a scientifically meaningful presentation of your data.
 			- All pairs of images that were acquired with the same microscope settings should be treated this way. In above example figure all images in the same column must have the same LUT settings. On the other hand, it does typically not make sense to use the same LUT for, e.g., a DAPI signal and a GFP signal.
 			- This also works for *Composite* images 
 	- [ Edit > Copy to System ] 
@@ -126,7 +137,7 @@ Follow [this link](../lectures/image-file-formats.md) to learn about light micro
 
 ## Activity: Opening Images of different microscope output formats
 - Open multichannel stack stored in single file
-	-  Data file: ../data/file-formats/MT-stack.czi
+	- Data file: ../data/file-formats/MT-stack.czi
 	- Extract metadata (Use "Display metadata" option in Bio-Formats opening dialog; or *Image* -> *Show Info...* for already opened image)
 		- Pixe size
 		- Objective specifications
