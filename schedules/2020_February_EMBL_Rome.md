@@ -92,5 +92,5 @@ Fiji (is just ImageJ)
 	- Basic concepts of image analysis
 - Thursday, Feb. 13, whole day, 2020
 	- Advanced concepts of image analysis
-- Friday, Feb. 14, half day, 2030
+- Friday, Feb. 14, half day, 2020
 	- Image analysis automation using IJ Macro scripting
