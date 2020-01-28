@@ -8,7 +8,7 @@ EMBL Rome
 
 - Wednesday, Feb. 12, whole day, 2020
 - Thursday, Feb. 13, whole day, 2020
-- Friday, Feb. 14, half day, 2030 
+- Friday, Feb. 14, half day, 2020 
 
 ## Teachers
 
@@ -30,8 +30,8 @@ Fiji (is just ImageJ)
 
 - Please print the [handout](https://github.com/tischi/imagej-courses/blob/master/handouts/image-analysis-basics.pdf).
 - Please download the [example data](https://github.com/embl-cba/imagej-courses/archive/master.zip).
-- Please install Fiji: https://imagej.net/Fiji/Downloads
-- Please install Fiji Update Sites: 
+- Please install [Fiji](https://imagej.net/Fiji/Downloads)
+- Please install several Fiji Update Sites: 
   - [Fiji > Help > Update... > Manage Update Sites]
     - [X] IJPB Plugins
        - This installs MorpholibJ
@@ -49,7 +49,7 @@ Fiji (is just ImageJ)
 
 ### Basic concepts of image analysis:
 
-- Basic image content: what is a pixel
+- Images are made of pixels
 - Lookup tables (LUTs)
 - Calibration of pixel sizes
 - Image (pixel) data types
@@ -66,7 +66,7 @@ Fiji (is just ImageJ)
 - Convolution filters (mean, gauss, edge)
 - Typical image analysis workflow
 
-### More advanced concepts of image analysis:
+### Advanced concepts of image analysis:
 
 - Rank filters
 - Rank filter sequences (morphological filtering)
@@ -89,8 +89,8 @@ Fiji (is just ImageJ)
 ## Course schedule
 
 - Wednesday, Feb. 12, whole day, 2020
-	- Basic concepts of image analysis, Part 1
+	- Basic concepts of image analysis
 - Thursday, Feb. 13, whole day, 2020
-	- Basic concepts of image analysis, Part 2
+	- Advanced concepts of image analysis
 - Friday, Feb. 14, half day, 2030
 	- Image analysis automation using IJ Macro scripting
