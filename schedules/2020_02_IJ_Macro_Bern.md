@@ -1,4 +1,4 @@
-# Essentials of ImageJ Batch Processing and Macro Scripting
+# Essentials of ImageJ Macro Scripting
 
 ## Location:
 
@@ -28,7 +28,6 @@ Christian Tischer, EMBL Heidelberg, Centre for Bioimage Analysis (CBA)
 
 | Time | Topic |
 |-----|-----|
-| 09:00 - 10:00 | [Batch analysis in ImageJ without programming](https://github.com/tischi/imagej-courses/blob/master/practicals/batch-analysis-without-programming.md)
-| 10:30 - 12:00 | [Essentials of ImageJ macro programming](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md) |
+| 09:30 - 12:00 | [Essentials of ImageJ macro programming](https://github.com/tischi/imagej-courses/blob/master/practicals/macro-recording.md) |
 | 12:00 - 13:30 | Lunch |
-| 13:30 - 16:30 | Practice macro programming, using participants data |
+| 13:30 - 16:30 | Practice macro programming, using your own data |
