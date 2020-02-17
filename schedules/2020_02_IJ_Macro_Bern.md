@@ -4,7 +4,7 @@
 
 Bern
 
-UniS, Schanzeneckstrasse 1, B-102
+UniS, Schanzeneckstrasse 1, B-105
 
 ## Date
 
