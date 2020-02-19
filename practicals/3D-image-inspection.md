@@ -121,8 +121,13 @@ There also is a way in ImageJ to make professional 3D rotation animations:
 ## Other (also commercial) solutions
 
 There are of course many other software to look at 3D image data.
+
 On the commerical side Imaris and Arivis are popular in Biology. 
-In terms of open-source, Chimera is probably worth exploring: https://www.cgl.ucsf.edu/chimera/
+
+The Imaris 3D Viewer is now also available for free!
+
+In terms of open-source, e.g., Chimera is quite popluar: https://www.cgl.ucsf.edu/chimera/
+
 
 # Point spread function examination
 
