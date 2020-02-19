@@ -23,9 +23,6 @@ For example:
 
 The hyperstack viewer enables browsing of 5-D (3D + channel + time ) data in a slice mode.
 
-<img width="595" alt="image" src="https://user-images.githubusercontent.com/2157566/38975745-4d8c71c8-43af-11e8-887c-
-033aebc2ad84.png">
-
 ### Multi-color viewing options
 
 There are different ways to look at multi-color images, you can switch between them:
