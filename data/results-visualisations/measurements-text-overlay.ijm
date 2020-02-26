@@ -4,12 +4,16 @@
 run("Close All");
 open(labelImage);
 
+// glasbey lut
+run("glasbey_on_dark");
+
 // perform measurements
 run("Analyze Regions 3D", "volume surface_area mean_breadth sphericity euler_number centroid inertia_ellipsoid ellipsoid_elongations max._inscribed surface_area_method=[Crofton (13 dirs.)] euler_connectivity=C26");
 
-// TODO: change font size: setFont
+// set font size
 setFont("SansSerif", 4);
 
+// paint text into table
 for ( i = 0; i < Table.size; ++i )
 {
 	volume = Table.get( "Volume", i );
@@ -25,7 +29,3 @@ for ( i = 0; i < Table.size; ++i )
 }
 
 Overlay.show();
-
-
-
-
