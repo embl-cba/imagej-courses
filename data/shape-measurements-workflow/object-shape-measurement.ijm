@@ -1,10 +1,10 @@
 // Get input from user
-#@File image (label="input image")
-#@File (style="directory", label="output directory") outputDirectory
+#@File (label="Please select an input image") inputImage 
+#@File (style="directory", label="Please select an output directory") outputDirectory
 
 // Open image
 run("Close All");
-open(image);
+open(inputImage);
 
 // Binarize (Threshold)
 setThreshold(24, 255);
@@ -15,11 +15,12 @@ run("Convert to Mask");
 run("Connected Components Labeling", "connectivity=4 type=[16 bits]");
 
 // Measure shape
-run("Region Morphometry");
+run("Analyze Regions", "area circularity");
 
 // Export results
 saveAs("Results", outputDirectory + "/" + Table.title + ".csv");
 
 // Clean up
 run("Close All");
-// TODO: close table 
+close(Table.title + ".csv");
+//close("*.csv");
