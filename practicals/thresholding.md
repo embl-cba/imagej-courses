@@ -10,33 +10,34 @@ In fluorescence microscopy, image segmentation often is easy, because the object
 
 Let's try:
  
-- Configure image segmentation settings [Process > Binary > Options]: 
+- [Process > Binary > Options]
 	- [X] Black Background
-- Open image: "thresholding-neubias-2020/nuclei.tif" [File > Open]
-- Manually adjust a threshold value [Image > Adjust > Threshold]
-	- You may press [Apply] but you do not have to; it also works with the "red" overlay.
+- Open image: "thresholding-neubias-2020/nuclei.tif"
+- [Image > Adjust > Threshold]
 - Connected components labeling using MorpholibJ
+
+Difference between thresholding and gating!
+
+Changing LUT settings does not change threshold!
 
 ## Changing the threshold affects which objects we find
 
-- Open image: "thresholding-neubias-2020/mitotic-and-interphase-cell.tif" 
+- Open image: "thresholding-neubias-2020/mitotic-and-interphase-cell.tif"
+- [Image > Adjust > Threshold]
 
 We can choose to only find the bright cell, however we cannot only find the dark cell. Why?
 
-- Difference between thresholding and gating!
-- Changing LUT settings does not change threshold!
-
-# The signal to noise (S/N) ratio
+## Sufficient signal to noise (S/N) is important for thresholding
 
 <img width="885" alt="image" src="https://user-images.githubusercontent.com/2157566/39702229-5a093cc0-5204-11e8-826e-068979e14f6c.png">
 
-- Open "thresholding-neubias-2020/hb2-mCherry.tif"  [File > Open]
+- Open image: "thresholding-neubias-2020/hb2-mCherry.tif"
 
 It is difficult to binarise the dim nuclei. Why?
 
-Make line profiles to inspect the intensities.
-
 Measure the signal to noise ratio of few nuclei.
+
+One can use signal to noise to compute a threshold value: `threshold = meanBG + N * stdBG`, where in general N can be tuned to balance false positives and false negatives. 
 
 ## Manual thresholding may not be practical for automated microscopy
 
@@ -45,37 +46,20 @@ Measure the signal to noise ratio of few nuclei.
 
 Finding one threshold for both images is not possible.
 
+- Examine the image histograms to understand the reason.
 
 ## Automated global thresholding
 
-Sometimes, if you have many images to analyse, you may need automated methods that find the threshold for you. There are many good methods, but it is dangerous to apply them, and you always need to check if it worked! 
+- Open image: "thresholding-neubias-2020/nuclei.tif"  
+- Open image: "thresholding-neubias-2020/dimmer-nuclei.tif"  
+- Open image: "thresholding-neubias-2020/no-nuclei-just-noise.tif"  
 
-Workflow:
-- Apply automated thresholding
-
-Example data within Fiji: 
-- [File > Open Samples > Blobs]
-	- [Image > Lookup Tables > Invert LUT]
-- [File > Open Samples > Hela cells]
-	- [Image > Color > Split Channels]
-- [File > New Image]
-	- [Process > Noise > Add Noise]
-
-Fiji commands:
 - [Image > Adjust > Auto Threshold]
+	- https://imagej.net/Auto_Threshold
 
-Documentation: 
-- https://imagej.net/Auto_Threshold
-
-### Discussion
-
-- Many automated thresholding methods always find a threshold, even if there is only noise.
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
+The images with the nuclei can be auto-thresholded, but the image with noise only presents a challenge!
+Look at the histograms to understand why.
+To deal with this, e.g., in CellProfiler, one can specify a lower threshold limit.
 
 ## Automated local tresholding (under development)
 
@@ -89,12 +73,7 @@ Workflow:
 	- [Analyze > Analyze Particles]
 - Documentation:
 	- http://imagej.net/Auto_Local_Threshold
-	
-&nbsp;
 
-&nbsp;
-
-&nbsp;
 
 ## Segmentation in the prescence of uneven background
 
