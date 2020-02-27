@@ -61,46 +61,22 @@ The images with the nuclei can be auto-thresholded, but the image with noise onl
 Look at the histograms to understand why.
 To deal with this, e.g., in CellProfiler, one can specify a lower threshold limit.
 
-## Automated local tresholding (under development)
+## Automated local tresholding 
 
-Automated local thresholding is another method to segment objects in the prescence of a locally varying background. In fact, the results can be both mathematically and practically very similar to applying a global threshold to an image after local background subtraction.
+- open image: "thresholding-neubias-2020/uneven-background-test-image.tif"  
 
-Workflow:
-- Threshold using a local thresholding algorithm
-- Connected component analysis
-- Fiji commands:
-	- [Image > Adjust > Auto Local Threshold]
-	- [Analyze > Analyze Particles]
-- Documentation:
+- [Image > Adjust > Auto Local Threshold]
 	- http://imagej.net/Auto_Local_Threshold
+	- read **Niblack**
 
+Reasonable Niblack parameters for "uneven-background-test-image.tif" image: 
+- radius: 50 (much larger than objects of interest)
+- parameter 1: 2 or 3 (depends on background noise level)
 
-## Segmentation in the prescence of uneven background
+Explore applying a mean filter before thresholding.
 
-If there is an uneven background in your image segmenting the objects with just one threshold will not work.
+- open image: "thresholding-neubias-2020/autophagosomes.tif"  
 
-Ways to combat this challenge are:
-
-- **Local background subtraction**
-	- If possible, this might be the best method, because 
-		- it also corrects the intensities in your image.
-		- you actually see how the image looks like that you finally threshold.
-- **Automated local tresholding**
-	- Works, but
-		- does not correct intensities.
-		- can be hard to debug, because, in contrast to local background subtraction, there is no visual feedback on what happens.
-- **Edge enhancement combined with 'fill holes' (not shown)**
-	- Also can work, but alters your intensities in a bad way.
-
-## Local background subtraction practical
-
-Please see here: [local background subtraction](https://github.com/tischi/imagej-courses/blob/master/practicals/workflow-2d-intracellular-spot-detection.md#local-background-subtraction-).
-
-Once local background subtraction has been sucessfully applied it simply is a matter of applying a global threshold as discussed above.
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
+Reasonable Niblack parameters for "autophagosomes.tif" image: 
+- radius: 15
+- parameter 1: 1 
