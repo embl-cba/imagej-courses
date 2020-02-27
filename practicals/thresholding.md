@@ -70,6 +70,7 @@ To deal with this, e.g., in CellProfiler, one can specify a lower threshold limi
 - [Image > Adjust > Auto Local Threshold]
 	- http://imagej.net/Auto_Local_Threshold
 	- read **Niblack**
+		- notice: Parameter 2: `-c` allows to specify a minimal threshold
 
 Reasonable Niblack parameters for "uneven-background-test-image.tif" image: 
 - radius: 50 (much larger than objects of interest)
@@ -81,6 +82,23 @@ Explore applying a mean filter before thresholding.
 
 - open image: "thresholding-neubias-2020/autophagosomes.tif"  
 
+One cannot find a global threshold to segment the autophagosomes due to uneven background.
+
 Reasonable Niblack parameters for "autophagosomes.tif" image: 
 - radius: 15
 - parameter 1: 1 
+
+### Nuclei of different intensity image
+
+- open image: "thresholding-neubias-2020/different-intensity-nuclei.tif"  
+
+Choosing a global threshold to also segment the dimmest nucleus causes other nuclei to merge.
+
+- [Image > Adjust > Auto Local Threshold]
+	- http://imagej.net/Auto_Local_Threshold
+	- read **MidGrey**
+		- notice: Parameter 2: `-c` allows to specify a minimal threshold
+
+Reasonable MidGrey parameters for "different-intensity-nuclei.tif" image: 
+- radius: 15
+- parameter 1: -1 
