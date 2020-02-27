@@ -102,3 +102,9 @@ Choosing a global threshold to also segment the dimmest nucleus causes other nuc
 Reasonable MidGrey parameters for "different-intensity-nuclei.tif" image: 
 - radius: 15
 - parameter 1: -1 
+
+## Learn more
+
+### Image binarisation by clustering
+
+TODO
