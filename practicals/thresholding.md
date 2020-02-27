@@ -56,6 +56,11 @@ Finding one threshold for both images is not possible.
 
 - [Image > Adjust > Auto Threshold]
 	- https://imagej.net/Auto_Threshold
+	- Otsu: https://en.wikipedia.org/wiki/Otsu%27s_method
+		- find threshold to maximise:  `(1 - p1) * p1 ( m1 - m2 )^2`
+			- `abs(m1 - m2)` should be large
+			- `p1` probability for class 1 should be around 0.5 
+		
 
 The images with the nuclei can be auto-thresholded, but the image with noise only presents a challenge!
 Look at the histograms to understand why.
