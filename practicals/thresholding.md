@@ -63,6 +63,8 @@ To deal with this, e.g., in CellProfiler, one can specify a lower threshold limi
 
 ## Automated local tresholding 
 
+### Test image
+
 - open image: "thresholding-neubias-2020/uneven-background-test-image.tif"  
 
 - [Image > Adjust > Auto Local Threshold]
@@ -74,6 +76,8 @@ Reasonable Niblack parameters for "uneven-background-test-image.tif" image:
 - parameter 1: 2 or 3 (depends on background noise level)
 
 Explore applying a mean filter before thresholding.
+
+### Autophagosome image
 
 - open image: "thresholding-neubias-2020/autophagosomes.tif"  
 
